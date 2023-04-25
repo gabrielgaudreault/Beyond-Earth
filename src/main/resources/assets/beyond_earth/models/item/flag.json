@@ -1,5 +1,5 @@
 {
-  "parent": "beyond_earth:block/flag",
+  "parent": "beyond_earth:template/flag",
   "display": {
     "thirdperson": {
       "rotation": [

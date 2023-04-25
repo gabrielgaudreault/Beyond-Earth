@@ -1,3 +1,6 @@
 {
-  "parent": "beyond_earth:custom/template_globe"
+  "parent": "beyond_earth:template/globe",
+  "textures": {
+    "particle": "beyond_earth:block/globes/venus_globe"
+  }
 }

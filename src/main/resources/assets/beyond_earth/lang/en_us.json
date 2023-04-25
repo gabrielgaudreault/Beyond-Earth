@@ -23,7 +23,7 @@
   "item.beyond_earth.steel_tank": "Steel Tank",
   "item.beyond_earth.pygro_spawn_egg": "Pygro Spawn Egg",
   "item.beyond_earth.pygro_brute_spawn_egg": "Pygro Brute Spawn Egg",
-  "item.beyond_earth.iron_stick": "Iron Stick",
+  "item.beyond_earth.iron_rod": "Iron Rod",
   "item.beyond_earth.oxygen_gear": "Oxygen Gear",
   "item.beyond_earth.engine_fan": "Engine Fan",
   "item.beyond_earth.rocket_fin": "Rocket Fin",
@@ -53,16 +53,19 @@
   "item.beyond_earth.space_suit": "Space Suit",
   "item.beyond_earth.space_pants": "Space Pants",
   "item.beyond_earth.space_boots": "Space Boots",
+  "item.beyond_earth.space_helmet": "Space Helmet",
 
   "item.beyond_earth.netherite_oxygen_mask": "Netherite Oxygen Mask",
   "item.beyond_earth.netherite_space_suit": "Netherite Space Suit",
   "item.beyond_earth.netherite_space_pants": "Netherite Space Pants",
   "item.beyond_earth.netherite_space_boots": "Netherite Space Boots",
+  "item.beyond_earth.netherite_space_helmet": "Netherite Space Helmet",
 
   "item.beyond_earth.jet_suit_oxygen_mask": "Jet Suit Oxygen Mask",
+  "item.beyond_earth.jet_helmet": "Jet Suit Helmet",
   "item.beyond_earth.jet_suit": "Jet Suit",
-  "item.beyond_earth.jet_suit_pants": "Jet Suit Pants",
-  "item.beyond_earth.jet_suit_boots": "Jet Suit Boots",
+  "item.beyond_earth.jet_pants": "Jet Suit Pants",
+  "item.beyond_earth.jet_boots": "Jet Suit Boots",
 
   "item.beyond_earth.calorite_ingot": "Calorite Ingot",
   "item.beyond_earth.compressed_calorite": "Compressed Calorite",
@@ -142,6 +145,12 @@
   "block.beyond_earth.moon_ice_shard_ore": "Moon Ice Shard Ore",
   "block.beyond_earth.mars_ice_shard_ore": "Mars Ice Shard Ore",
   "block.beyond_earth.glacio_ice_shard_ore": "Glacio Ice Shard Ore",
+  "block.beyond_earth.desh_pillar": "Desh Pillar",
+  "block.beyond_earth.desh_plating_block": "Desh Plating Block",
+  "block.beyond_earth.blue_iron_pillar": "Blue Iron Pillar",
+  "block.beyond_earth.infernal_spire": "Infernal Spire",
+  "block.beyond_earth.barricade_block": "Barricade Block",
+  "block.beyond_earth.meteorite": "Meteorite",
 
   "block.beyond_earth.moon_stone_brick_slab": "Moon Stone Brick Slab",
   "block.beyond_earth.moon_stone_bricks": "Moon Stone Bricks",
@@ -214,6 +223,8 @@
   "biome.beyond_earth.venus": "Venus",
   "biome.beyond_earth.mercury": "Mercury",
   "biome.beyond_earth.mars": "Mars",
+  "biome.beyond_earth.phobos": "Phobos",
+  "biome.beyond_earth.deimos": "Deimos",
   "biome.beyond_earth.moon": "Moon",
   "biome.beyond_earth.mars_ice_spikes": "Mars Ice Spikes",
   "biome.beyond_earth.glacio": "Glacio",
@@ -315,6 +326,8 @@
   "gui.beyond_earth.planet_selection.earth": "Earth",
   "gui.beyond_earth.planet_selection.moon": "Moon",
   "gui.beyond_earth.planet_selection.mars": "Mars",
+  "gui.beyond_earth.planet_selection.phobos": "Phobos",
+  "gui.beyond_earth.planet_selection.deimos": "Deimos",
   "gui.beyond_earth.planet_selection.mercury": "Mercury",
   "gui.beyond_earth.planet_selection.venus": "Venus",
   "gui.beyond_earth.planet_selection.solar_system_sun": "Sun",
@@ -347,5 +360,8 @@
   "general.beyond_earth.jet_suit_disabled_mode": "Disabled",
   "general.beyond_earth.jet_suit_normal_mode": "Normal",
   "general.beyond_earth.jet_suit_hover_mode": "Hover",
-  "general.beyond_earth.jet_suit_elytra_mode": "Elytra"
+  "general.beyond_earth.jet_suit_elytra_mode": "Elytra",
+  
+  "config.jade.plugin_beyond_earth.entity": "Entity",
+  "config.jade.plugin_beyond_earth.block": "Block"
 }

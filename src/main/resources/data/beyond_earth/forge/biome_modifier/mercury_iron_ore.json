@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#beyond_earth:mercury",
+  "features": "beyond_earth:mercury_iron_ore",
+  "step": "underground_ores"
+}

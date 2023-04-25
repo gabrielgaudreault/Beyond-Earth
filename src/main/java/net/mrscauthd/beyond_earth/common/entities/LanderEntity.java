@@ -1,5 +1,11 @@
 package net.mrscauthd.beyond_earth.common.entities;
 
+import java.util.function.Consumer;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
+import io.netty.buffer.Unpooled;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -13,7 +19,8 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -22,27 +29,27 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
+import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandlerModifiable;
+import net.minecraftforge.items.ItemStackHandler;
+import net.minecraftforge.items.wrapper.CombinedInvWrapper;
 import net.minecraftforge.network.NetworkHooks;
 import net.mrscauthd.beyond_earth.BeyondEarth;
 import net.mrscauthd.beyond_earth.common.keybinds.KeyVariables;
 import net.mrscauthd.beyond_earth.common.menus.LanderMenu;
 
-import net.minecraftforge.items.wrapper.CombinedInvWrapper;
-import net.minecraftforge.items.ItemStackHandler;
-import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.common.capabilities.Capability;
+public class LanderEntity extends IVehicleEntity {
 
-import javax.annotation.Nullable;
-import javax.annotation.Nonnull;
+	public static Consumer<LanderEntity> playBoost = e -> {
+	};
 
-import io.netty.buffer.Unpooled;
+	public static Consumer<LanderEntity> playBeep = e -> {
+	};
 
-public class LanderEntity extends VehicleEntity {
-
-	public LanderEntity(EntityType type, Level world) {
-		super(type, world);
+	public LanderEntity(EntityType<?> type, Level level) {
+		super(type, level);
 	}
 
 	@Override
@@ -85,7 +92,8 @@ public class LanderEntity extends VehicleEntity {
 
 	@Override
 	public boolean hurt(DamageSource source, float amount) {
-		if (!source.isProjectile() && source.getEntity() != null && source.getEntity().isCrouching() && !this.isVehicle()) {
+		if (!source.isProjectile() && source.getEntity() != null && source.getEntity().isCrouching()
+				&& !this.isVehicle()) {
 			this.dropEquipment();
 
 			if (!this.level.isClientSide) {
@@ -103,7 +111,8 @@ public class LanderEntity extends VehicleEntity {
 		if (p_150347_ >= 3.0F) {
 
 			if (!this.level.isClientSide) {
-				this.level.explode(null, this.getX(), this.getY(), this.getZ(), 10, true, Explosion.BlockInteraction.BREAK);
+				this.level.explode(null, this.getX(), this.getY(), this.getZ(), 10, true,
+						Level.ExplosionInteraction.TNT);
 
 				this.remove(RemovalReason.DISCARDED);
 			}
@@ -121,37 +130,37 @@ public class LanderEntity extends VehicleEntity {
 		}
 	}
 
-	private final ItemStackHandler inventory = new ItemStackHandler(2) {
+	private final ItemStackHandler inventory = new ItemStackHandler(11) {
 		@Override
 		public int getSlotLimit(int slot) {
 			return 64;
 		}
 	};
 
-	private final CombinedInvWrapper combined = new CombinedInvWrapper(inventory);
+	private final CombinedInvWrapper combined = new CombinedInvWrapper(this.inventory);
 
 	@Override
 	public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> capability, @Nullable Direction side) {
-		if (this.isAlive() && capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY && side == null) {
+		if (this.isAlive() && capability == ForgeCapabilities.ITEM_HANDLER && side == null) {
 			return LazyOptional.of(() -> combined).cast();
 		}
 		return super.getCapability(capability, side);
 	}
 
 	public IItemHandlerModifiable getItemHandler() {
-		return (IItemHandlerModifiable) this.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).resolve().get();
+		return (IItemHandlerModifiable) this.getCapability(ForgeCapabilities.ITEM_HANDLER, null).resolve().get();
 	}
 
 	@Override
 	public void addAdditionalSaveData(CompoundTag compound) {
-		compound.put("InventoryCustom", inventory.serializeNBT());
+		compound.put("InventoryCustom", this.inventory.serializeNBT());
 	}
 
 	@Override
 	public void readAdditionalSaveData(CompoundTag compound) {
 		Tag inventoryCustom = compound.get("InventoryCustom");
 		if (inventoryCustom instanceof CompoundTag) {
-			inventory.deserializeNBT((CompoundTag) inventoryCustom);
+			this.inventory.deserializeNBT((CompoundTag) inventoryCustom);
 		}
 	}
 
@@ -189,7 +198,7 @@ public class LanderEntity extends VehicleEntity {
 	}
 
 	public ItemStackHandler getInventory() {
-		return inventory;
+		return this.inventory;
 	}
 
 	@Override
@@ -198,9 +207,25 @@ public class LanderEntity extends VehicleEntity {
 		this.slowDownLander();
 	}
 
+	@Override
+	public void onAddedToWorld() {
+		super.onAddedToWorld();
+		this.beepWarningSound();
+		this.boostSound();
+	}
+
+	public void beepWarningSound() {
+		if (level.isClientSide())
+			playBeep.accept(this);
+	}
+
+	public void boostSound() {
+		if (level.isClientSide())
+			playBoost.accept(this);
+	}
+
 	public Player getFirstPlayerPassenger() {
-		if (!this.getPassengers().isEmpty() && this.getPassengers().get(0) instanceof Player) {
-			Player player = (Player) this.getPassengers().get(0);
+		if (!this.getPassengers().isEmpty() && this.getPassengers().get(0) instanceof Player player) {
 
 			return player;
 		}
@@ -214,7 +239,6 @@ public class LanderEntity extends VehicleEntity {
 		if (player != null) {
 			if (KeyVariables.isHoldingJump(player)) {
 
-				Level level = this.level;
 				Vec3 vec = this.getDeltaMovement();
 
 				if (!this.isOnGround() && !this.isEyeInFluid(FluidTags.WATER)) {
@@ -224,9 +248,10 @@ public class LanderEntity extends VehicleEntity {
 
 					this.fallDistance = (float) (vec.y() * (-1) * 4.5);
 
-					if (level instanceof ServerLevel) {
+					if (this.level instanceof ServerLevel) {
 						for (ServerPlayer p : ((ServerLevel) player.level).getServer().getPlayerList().getPlayers()) {
-							((ServerLevel) level).sendParticles(p, ParticleTypes.SPIT, true, this.getX(), this.getY() - 0.3, this.getZ(), 3, 0.1, 0.1, 0.1, 0.001);
+							((ServerLevel) this.level).sendParticles(p, ParticleTypes.SPIT, true, this.getX(),
+									this.getY() - 0.3, this.getZ(), 3, 0.1, 0.1, 0.1, 0.001);
 						}
 					}
 				}

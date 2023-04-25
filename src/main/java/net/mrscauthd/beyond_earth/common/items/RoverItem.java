@@ -22,8 +22,12 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 import net.mrscauthd.beyond_earth.BeyondEarth;
+import net.mrscauthd.beyond_earth.common.blocks.entities.machines.gauge.GaugeTextHelper;
+import net.mrscauthd.beyond_earth.common.blocks.entities.machines.gauge.GaugeValueHelper;
+import net.mrscauthd.beyond_earth.common.config.Config;
 import net.mrscauthd.beyond_earth.common.entities.RoverEntity;
 import net.mrscauthd.beyond_earth.common.registries.EntityRegistry;
+import net.mrscauthd.beyond_earth.common.util.FluidUtil2;
 import net.mrscauthd.beyond_earth.client.registries.ItemRendererRegistry;
 
 import java.util.List;
@@ -41,7 +45,8 @@ public class RoverItem extends VehicleItem {
         super.appendHoverText(itemStack, level, list, tooltipFlag);
 
         int fuel = itemStack.getOrCreateTag().getInt(FUEL_TAG);
-        list.add(Component.translatable("general." + BeyondEarth.MODID + ".fuel").append(": ").withStyle(ChatFormatting.BLUE).append("\u00A77" + fuel + " mb" + "\u00A78" + " | " + "\u00A77" + "3000 mb"));
+        int capacity = Config.ROVER_FUEL_BUCKETS.get() * FluidUtil2.BUCKET_SIZE;
+        list.add(GaugeTextHelper.buildFuelStorageTooltip(GaugeValueHelper.getFuel(fuel, capacity), ChatFormatting.GRAY));
     }
 
     @Override
@@ -69,14 +74,14 @@ public class RoverItem extends VehicleItem {
 
         if (level.noCollision(aabb)) {
 
-            AABB scanAbove = new AABB(x - 0, y - 0, z - 0, x + 1, y + 1, z + 1);
+            AABB scanAbove = new AABB(x, y, z, x + 1, y + 1, z + 1);
             List<Entity> entities = player.getCommandSenderWorld().getEntitiesOfClass(Entity.class, scanAbove);
 
             if (entities.isEmpty()) {
                 RoverEntity rover = new RoverEntity(EntityRegistry.ROVER.get(), world);
 
                 rover.setPos((double) pos.getX() + 0.5D,  pos.getY() + 1, (double) pos.getZ() + 0.5D);
-                double d0 = this.getYOffset(world, pos, true, rover.getBoundingBox());
+                double d0 = getYOffset(world, pos, true, rover.getBoundingBox());
 
                 /** ROTATION */
                 float f = (float) Mth.floor((Mth.wrapDegrees(context.getRotation() - 180.0F) + 5.626F) / 11.25F) * 11.25F;
@@ -111,16 +116,6 @@ public class RoverItem extends VehicleItem {
                 return ItemRendererRegistry.ROVER_ITEM_RENDERER;
             }
         });
-    }
-
-    @Override
-    public void fillItemCategory(CreativeModeTab p_41391_, NonNullList<ItemStack> p_41392_) {
-        super.fillItemCategory(p_41391_, p_41392_);
-        if (this.allowedIn(p_41391_)) {
-            ItemStack itemStack = new ItemStack(this);
-            itemStack.getOrCreateTag().putInt(FUEL_TAG, 3000);
-            p_41392_.add(itemStack);
-        }
     }
 
     public static void roverPlaceSound(BlockPos pos, Level world) {

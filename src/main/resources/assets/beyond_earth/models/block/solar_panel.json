@@ -1,12 +1,7 @@
 {
-  "parent": "block/cube",
+  "parent": "beyond_earth:custom/solar_panel",
   "textures": {
-    "down": "beyond_earth:blocks/machineback",
-    "up": "beyond_earth:blocks/block_solar_panel_top",
-    "north": "beyond_earth:blocks/block_solar_panel_side",
-    "east": "beyond_earth:blocks/block_solar_panel_side",
-    "south": "beyond_earth:blocks/block_solar_panel_side",
-    "west": "beyond_earth:blocks/block_solar_panel_side",
-    "particle": "beyond_earth:blocks/machineback"
+    "0": "beyond_earth:block/machines/solar_panel",
+    "particle": "beyond_earth:block/machines/solar_panel"
   }
 }

@@ -2,7 +2,6 @@ package net.mrscauthd.beyond_earth.common.fluids.types;
 
 import com.mojang.blaze3d.shaders.FogShape;
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.math.Vector3f;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
@@ -18,6 +17,7 @@ import net.minecraftforge.fluids.FluidType;
 import net.mrscauthd.beyond_earth.BeyondEarth;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.joml.Vector3f;
 
 import java.util.function.Consumer;
 
@@ -37,7 +37,7 @@ public class OilFluidType extends FluidType {
         entity.move(MoverType.SELF, entity.getDeltaMovement());
 
         if (entity.getFluidTypeHeight(this) <= entity.getFluidJumpThreshold()) {
-            entity.setDeltaMovement(entity.getDeltaMovement().multiply(0.5D, (double)0.8F, 0.5D));
+            entity.setDeltaMovement(entity.getDeltaMovement().multiply(0.5D, 0.8F, 0.5D));
             Vec3 vec33 = entity.getFluidFallingAdjustedMovement(gravity, flag, entity.getDeltaMovement());
             entity.setDeltaMovement(vec33);
         } else {
@@ -50,7 +50,7 @@ public class OilFluidType extends FluidType {
 
         Vec3 vec34 = entity.getDeltaMovement();
         if (entity.horizontalCollision && entity.isFree(vec34.x, vec34.y + (double)0.6F - entity.getY() + d8, vec34.z)) {
-            entity.setDeltaMovement(vec34.x, (double)0.3F, vec34.z);
+            entity.setDeltaMovement(vec34.x, 0.3F, vec34.z);
         }
 
         return true;
@@ -65,10 +65,10 @@ public class OilFluidType extends FluidType {
     @Override
     public void initializeClient(Consumer<IClientFluidTypeExtensions> consumer) {
         consumer.accept(new IClientFluidTypeExtensions() {
-            private static final ResourceLocation UNDERWATER_LOCATION = new ResourceLocation(BeyondEarth.MODID, "textures/blocks/under_oil.png");
-            private static final ResourceLocation WATER_STILL = new ResourceLocation(BeyondEarth.MODID, "blocks/fluid_oil_still");
-            private static final ResourceLocation WATER_FLOW = new ResourceLocation(BeyondEarth.MODID, "blocks/fluid_oil_flow");
-            private static final ResourceLocation WATER_OVERLAY = new ResourceLocation(BeyondEarth.MODID, "blocks/oil_overlay");
+            private static final ResourceLocation UNDERWATER_LOCATION = new ResourceLocation(BeyondEarth.MODID, "textures/block/fluids/under_oil.png");
+            private static final ResourceLocation WATER_STILL = new ResourceLocation(BeyondEarth.MODID, "block/fluids/oil_still");
+            private static final ResourceLocation WATER_FLOW = new ResourceLocation(BeyondEarth.MODID, "block/fluids/oil_flow");
+            private static final ResourceLocation WATER_OVERLAY = new ResourceLocation(BeyondEarth.MODID, "block/fluids/oil_overlay");
 
             @Override
             public ResourceLocation getStillTexture() {

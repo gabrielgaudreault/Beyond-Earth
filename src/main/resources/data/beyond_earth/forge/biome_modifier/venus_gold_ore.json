@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#beyond_earth:venus",
+  "features": "beyond_earth:venus_gold_ore",
+  "step": "underground_ores"
+}

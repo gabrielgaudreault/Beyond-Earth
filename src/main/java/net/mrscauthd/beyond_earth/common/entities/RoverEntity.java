@@ -36,24 +36,32 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.wrapper.CombinedInvWrapper;
 import net.minecraftforge.network.NetworkHooks;
 import net.mrscauthd.beyond_earth.BeyondEarth;
+import net.mrscauthd.beyond_earth.common.blocks.entities.machines.gauge.GaugeValueHelper;
+import net.mrscauthd.beyond_earth.common.blocks.entities.machines.gauge.IGaugeValue;
+import net.mrscauthd.beyond_earth.common.blocks.entities.machines.gauge.IGaugeValuesProvider;
+import net.mrscauthd.beyond_earth.common.config.Config;
 import net.mrscauthd.beyond_earth.common.keybinds.KeyVariables;
 import net.mrscauthd.beyond_earth.common.menus.RoverMenu;
 import net.mrscauthd.beyond_earth.common.registries.ItemsRegistry;
 import net.mrscauthd.beyond_earth.common.registries.TagRegistry;
+import net.mrscauthd.beyond_earth.common.util.FluidUtil2;
 import net.mrscauthd.beyond_earth.common.util.Methods;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+
+import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 
-public class RoverEntity extends VehicleEntity {
+public class RoverEntity extends IVehicleEntity implements IGaugeValuesProvider {
     private double speed = 0;
 
     public float flyingSpeed = 0.02F;
@@ -61,17 +69,34 @@ public class RoverEntity extends VehicleEntity {
     public float animationSpeed;
     public float animationPosition;
 
-    private float FUEL_USE_TICK = 8;
+    private final float FUEL_USE_TICK = 8;
     private float FUEL_TIMER = 0;
 
     public static final EntityDataAccessor<Integer> FUEL = SynchedEntityData.defineId(RoverEntity.class, EntityDataSerializers.INT);
 
     public static final EntityDataAccessor<Boolean> FORWARD = SynchedEntityData.defineId(RoverEntity.class, EntityDataSerializers.BOOLEAN);
 
-    public RoverEntity(EntityType type, Level worldIn) {
+    public static final int DEFAULT_FUEL_BUCKETS = 3;
+
+    public RoverEntity(EntityType<?> type, Level worldIn) {
         super(type, worldIn);
         this.entityData.define(FUEL, 0);
         this.entityData.define(FORWARD, false);
+    }
+
+    public int getFuelCapacity() {
+        return Config.ROVER_FUEL_BUCKETS.get() * FluidUtil2.BUCKET_SIZE;
+    }
+    
+    public IGaugeValue getFuelGauge() {
+    	int fuel = this.getEntityData().get(FUEL);
+    	int capacity = this.getFuelCapacity();
+    	return GaugeValueHelper.getFuel(fuel, capacity);
+    }
+
+    @Override
+    public List<IGaugeValue> getDisplayGaugeValues() {
+        return Collections.singletonList(this.getFuelGauge());
     }
 
     @Override
@@ -111,7 +136,7 @@ public class RoverEntity extends VehicleEntity {
 
     @Override
     public Vec3 getDismountLocationForPassenger(LivingEntity livingEntity) {
-        Vec3[] avector3d = new Vec3[]{getCollisionHorizontalEscapeVector((double)this.getBbWidth(), (double)livingEntity.getBbWidth(), livingEntity.getYRot()), getCollisionHorizontalEscapeVector((double)this.getBbWidth(), (double)livingEntity.getBbWidth(), livingEntity.getYRot() - 22.5F), getCollisionHorizontalEscapeVector((double)this.getBbWidth(), (double)livingEntity.getBbWidth(), livingEntity.getYRot() + 22.5F), getCollisionHorizontalEscapeVector((double)this.getBbWidth(), (double)livingEntity.getBbWidth(), livingEntity.getYRot() - 45.0F), getCollisionHorizontalEscapeVector((double)this.getBbWidth(), (double)livingEntity.getBbWidth(), livingEntity.getYRot() + 45.0F)};
+        Vec3[] avector3d = new Vec3[]{getCollisionHorizontalEscapeVector(this.getBbWidth(), livingEntity.getBbWidth(), livingEntity.getYRot()), getCollisionHorizontalEscapeVector(this.getBbWidth(), livingEntity.getBbWidth(), livingEntity.getYRot() - 22.5F), getCollisionHorizontalEscapeVector(this.getBbWidth(), livingEntity.getBbWidth(), livingEntity.getYRot() + 22.5F), getCollisionHorizontalEscapeVector(this.getBbWidth(), livingEntity.getBbWidth(), livingEntity.getYRot() - 45.0F), getCollisionHorizontalEscapeVector(this.getBbWidth(), livingEntity.getBbWidth(), livingEntity.getYRot() + 45.0F)};
         Set<BlockPos> set = Sets.newLinkedHashSet();
         double d0 = this.getBoundingBox().maxY;
         double d1 = this.getBoundingBox().minY - 0.5D;
@@ -231,14 +256,14 @@ public class RoverEntity extends VehicleEntity {
 
     @Override
     public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> capability, @Nullable Direction side) {
-        if (this.isAlive() && capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY && side == null) {
+        if (this.isAlive() && capability == ForgeCapabilities.ITEM_HANDLER && side == null) {
             return LazyOptional.of(() -> combined).cast();
         }
         return super.getCapability(capability, side);
     }
 
     public IItemHandlerModifiable getItemHandler() {
-        return (IItemHandlerModifiable) this.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null).resolve().get();
+        return (IItemHandlerModifiable) this.getCapability(ForgeCapabilities.ITEM_HANDLER, null).resolve().get();
     }
 
     @Override
@@ -261,8 +286,7 @@ public class RoverEntity extends VehicleEntity {
     }
 
     public Player getFirstPlayerPassenger() {
-        if (!this.getPassengers().isEmpty() && this.getPassengers().get(0) instanceof Player) {
-            Player player = (Player) this.getPassengers().get(0);
+        if (!this.getPassengers().isEmpty() && this.getPassengers().get(0) instanceof Player player) {
 
             return player;
         }
@@ -349,8 +373,8 @@ public class RoverEntity extends VehicleEntity {
         //Fuel Load up
         if (this.inventory.getStackInSlot(0).getItem() instanceof BucketItem) {
             if (((BucketItem) this.getInventory().getStackInSlot(0).getItem()).getFluid().is(TagRegistry.FLUID_VEHICLE_FUEL_TAG)) {
-                if (this.entityData.get(FUEL) <= 2000) {
-                    this.getEntityData().set(FUEL, (this.getEntityData().get(FUEL) + 1000));
+                if (this.entityData.get(FUEL) + FluidUtil2.BUCKET_SIZE <= Config.ROVER_FUEL_BUCKETS.get() * FluidUtil2.BUCKET_SIZE) {
+                    this.getEntityData().set(FUEL, (this.getEntityData().get(FUEL) + FluidUtil2.BUCKET_SIZE));
                     this.inventory.setStackInSlot(0, new ItemStack(Items.BUCKET));
                 }
             }
@@ -360,7 +384,7 @@ public class RoverEntity extends VehicleEntity {
             return;
         }
 
-        if (!(this.getPassengers().get(0) instanceof Player)) {
+        if (!(this.getPassengers().get(0) instanceof Player passanger)) {
             return;
         }
 
@@ -369,8 +393,6 @@ public class RoverEntity extends VehicleEntity {
         }
 
         FUEL_TIMER++;
-
-        Player passanger = (Player) this.getPassengers().get(0);
 
         passanger.resetFallDistance();
 
@@ -400,9 +422,7 @@ public class RoverEntity extends VehicleEntity {
     public void travel(Vec3 p_21280_) {
         this.calculateEntityAnimation(this, this instanceof FlyingAnimal);
 
-        if (!this.getPassengers().isEmpty() && this.getPassengers().get(0) instanceof Player) {
-
-            Player passanger = (Player) this.getPassengers().get(0);
+        if (!this.getPassengers().isEmpty() && this.getPassengers().get(0) instanceof Player passanger) {
 
             this.flyingSpeed = this.getSpeed() * 0.15F;
             this.maxUpStep = 1.0F;

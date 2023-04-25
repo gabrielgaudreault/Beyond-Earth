@@ -13,6 +13,7 @@
       "type": "forge:mod_loaded"
     }
   ],
+  "rate": "metal",
   "ingredient": {
     "tag": "forge:raw_materials/ostrum"
   },

@@ -1,9 +1,6 @@
 package net.mrscauthd.beyond_earth.common.blocks;
 
-import javax.annotation.Nullable;
-
 import com.mojang.authlib.GameProfile;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -22,38 +19,30 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
-import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
-import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.block.state.properties.*;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.level.pathfinder.PathComputationType;
-import net.minecraft.world.phys.shapes.BooleanOp;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.mrscauthd.beyond_earth.common.blocks.entities.FlagBlockEntity;
+import net.mrscauthd.beyond_earth.common.registries.ItemsRegistry;
+
+import javax.annotation.Nullable;
+
+import static net.minecraft.world.level.block.state.properties.BlockStateProperties.DOUBLE_BLOCK_HALF;
 
 public class FlagBlock extends BaseEntityBlock implements SimpleWaterloggedBlock {
-	public static final EnumProperty<DoubleBlockHalf> HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
+	public static final EnumProperty<DoubleBlockHalf> HALF = DOUBLE_BLOCK_HALF;
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
 	public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
 
-	public static VoxelShape SOUTH_SHAPE = Shapes.empty();
-	public static VoxelShape NORTH_SHAPE = Shapes.empty();
-	public static VoxelShape EAST_SHAPE = Shapes.empty();
-	public static VoxelShape WEST_SHAPE = Shapes.empty();
-
-	public static VoxelShape LOWER_SOUTH_SHAPE = Shapes.empty();
-	public static VoxelShape LOWER_NORTH_SHAPE = Shapes.empty();
-	public static VoxelShape LOWER_EAST_SHAPE = Shapes.empty();
-	public static VoxelShape LOWER_WEST_SHAPE = Shapes.empty();
+	public static final VoxelShape SHAPE = Shapes.box((double)7/16, 0, (double)7/16, (double)9/16, 1, (double)9/16);
 
 	public FlagBlock(BlockBehaviour.Properties builder) {
 		super(builder);
@@ -61,63 +50,13 @@ public class FlagBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
 	}
 
 	@Override
-	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
-		if (state.getValue(HALF) == DoubleBlockHalf.LOWER) {
-			switch (state.getValue(FACING)) {
-				case NORTH:
-				default:
-					return LOWER_NORTH_SHAPE;
-				case SOUTH:
-					return LOWER_SOUTH_SHAPE;
-				case EAST:
-					return LOWER_EAST_SHAPE;
-				case WEST:
-					return LOWER_WEST_SHAPE;
-			}
-		} else {
-			switch (state.getValue(FACING)) {
-				case NORTH:
-				default:
-					return NORTH_SHAPE;
-				case SOUTH:
-					return SOUTH_SHAPE;
-				case EAST:
-					return EAST_SHAPE;
-				case WEST:
-					return WEST_SHAPE;
-			}
-		}
-	}
-
-	static {
-		NORTH_SHAPE = Shapes.join(NORTH_SHAPE, Shapes.box(0.125, 0, 0.46875, 0.1875, 1, 0.53125), BooleanOp.OR);
-		NORTH_SHAPE = Shapes.join(NORTH_SHAPE, Shapes.box(0.1875, 0.4375, 0.4996875, 0.9375, 0.9375, 0.5), BooleanOp.OR);
-
-		SOUTH_SHAPE = Shapes.join(SOUTH_SHAPE, Shapes.box(0.8125, 0, 0.46875, 0.875, 1, 0.53125), BooleanOp.OR);
-		SOUTH_SHAPE = Shapes.join(SOUTH_SHAPE, Shapes.box(0.0625, 0.4375, 0.4996875, 0.8125, 0.9375, 0.5), BooleanOp.OR);
-
-		EAST_SHAPE = Shapes.join(EAST_SHAPE, Shapes.box(0.46875, 0, 0.125, 0.53125, 1, 0.1875), BooleanOp.OR);
-		EAST_SHAPE = Shapes.join(EAST_SHAPE, Shapes.box(0.49975, 0.4375, 0.1875, 0.5000625, 0.9375, 0.9375), BooleanOp.OR);
-
-		WEST_SHAPE = Shapes.join(WEST_SHAPE, Shapes.box(0.46875, 0, 0.8125, 0.53125, 1, 0.875), BooleanOp.OR);
-		WEST_SHAPE = Shapes.join(WEST_SHAPE, Shapes.box(0.49975, 0.4375, 0.0625, 0.5000625, 0.9375, 0.8125), BooleanOp.OR);
-
-		LOWER_NORTH_SHAPE = Shapes.join(LOWER_NORTH_SHAPE, Shapes.box(0.125, 0.0625, 0.46875, 0.1875, 1, 0.53125), BooleanOp.OR);
-		LOWER_NORTH_SHAPE = Shapes.join(LOWER_NORTH_SHAPE, Shapes.box(0.09375, 0, 0.4375, 0.21875, 0.0625, 0.5625), BooleanOp.OR);
-
-		LOWER_SOUTH_SHAPE = Shapes.join(LOWER_SOUTH_SHAPE, Shapes.box(0.8125, 0.0625, 0.46875, 0.875, 1, 0.53125), BooleanOp.OR);
-		LOWER_SOUTH_SHAPE = Shapes.join(LOWER_SOUTH_SHAPE, Shapes.box(0.78125, 0, 0.4375, 0.90625, 0.0625, 0.5625), BooleanOp.OR);
-
-		LOWER_EAST_SHAPE = Shapes.join(LOWER_EAST_SHAPE, Shapes.box(0.46875, 0.0625, 0.125, 0.53125, 1, 0.1875), BooleanOp.OR);
-		LOWER_EAST_SHAPE = Shapes.join(LOWER_EAST_SHAPE, Shapes.box(0.4375, 0, 0.09375, 0.5625, 0.0625, 0.21875), BooleanOp.OR);
-
-		LOWER_WEST_SHAPE = Shapes.join(LOWER_WEST_SHAPE, Shapes.box(0.46875, 0.0625, 0.8125, 0.53125, 1, 0.875), BooleanOp.OR);
-		LOWER_WEST_SHAPE = Shapes.join(LOWER_WEST_SHAPE, Shapes.box(0.4375, 0, 0.78125, 0.5625, 0.0625, 0.90625), BooleanOp.OR);
+	public RenderShape getRenderShape(BlockState p_49232_) {
+		return RenderShape.MODEL;
 	}
 
 	@Override
-	public RenderShape getRenderShape(BlockState p_49232_) {
-		return RenderShape.MODEL;
+	public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+		return SHAPE;
 	}
 
 	@SuppressWarnings("deprecation")
@@ -140,6 +79,7 @@ public class FlagBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
 			removeBottomHalf(worldIn, pos, state, player);
 		}
 		super.playerWillDestroy(worldIn, pos, state, player);
+		player.addItem(ItemsRegistry.FLAG_ITEM.get().getDefaultInstance());
 	}
 
 	protected static void removeBottomHalf(Level world, BlockPos pos, BlockState state, Player player) {
@@ -176,15 +116,13 @@ public class FlagBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
 
 		BlockEntity tileentity = worldIn.getBlockEntity(new BlockPos(pos.getX(), pos.getY() + 1, pos.getZ()));
 
-		if (tileentity instanceof FlagBlockEntity) {
-			FlagBlockEntity flagtileentity = (FlagBlockEntity) tileentity;
+		if (tileentity instanceof FlagBlockEntity flagtileentity) {
 
 			CompoundTag compoundnbt = new CompoundTag();
 			NbtUtils.writeGameProfile(compoundnbt, new GameProfile(placer.getUUID(), placer.getName().getString()));
 			flagtileentity.getPersistentData().put("FlagOwner", compoundnbt);
 
-			if (placer instanceof Player) {
-				Player player = (Player) placer;
+			if (placer instanceof Player player) {
 
 				flagtileentity.setOwner(player.getGameProfile());
 			}
@@ -209,7 +147,7 @@ public class FlagBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
 	public interface ISkullType {
 	}
 
-	public static enum Types implements FlagBlock.ISkullType {
+	public enum Types implements FlagBlock.ISkullType {
 		PLAYER
 	}
 

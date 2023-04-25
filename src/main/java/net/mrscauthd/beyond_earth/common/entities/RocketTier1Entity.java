@@ -5,23 +5,23 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.*;
-import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.MinecraftForge;
 import net.mrscauthd.beyond_earth.BeyondEarth;
+import net.mrscauthd.beyond_earth.common.config.Config;
 import net.mrscauthd.beyond_earth.common.events.forge.SetRocketItemStackEvent;
 
 import net.mrscauthd.beyond_earth.common.registries.ItemsRegistry;
 import net.mrscauthd.beyond_earth.common.registries.ParticleRegistry;
-import net.mrscauthd.beyond_earth.common.registries.TagRegistry;
 
 public class RocketTier1Entity extends IRocketEntity {
 
-	public RocketTier1Entity(EntityType type, Level world) {
-		super(type, world);
+	public static final int DEFAULT_FUEL_BUCKETS = 3;
+
+	public RocketTier1Entity(EntityType<?> type, Level level) {
+		super(type, level);
 	}
 
 	@Override
@@ -35,6 +35,11 @@ public class RocketTier1Entity extends IRocketEntity {
 	}
 
 	@Override
+	public int getBucketsOfFull() {
+		return Config.ROCKET_TIER_1_FUEL_BUCKETS.get();
+	}
+
+	@Override
 	public double getPassengersRidingOffset() {
 		return super.getPassengersRidingOffset() - 2.35;
 	}
@@ -43,7 +48,6 @@ public class RocketTier1Entity extends IRocketEntity {
 	public ItemStack getRocketItem() {
 		ItemStack itemStack = new ItemStack(ItemsRegistry.TIER_1_ROCKET_ITEM.get(), 1);
 		itemStack.getOrCreateTag().putInt(BeyondEarth.MODID + ":fuel", this.getEntityData().get(FUEL));
-		itemStack.getOrCreateTag().putInt(BeyondEarth.MODID + ":buckets", this.getEntityData().get(BUCKETS));
 		MinecraftForge.EVENT_BUS.post(new SetRocketItemStackEvent(this, itemStack));
 
 		return itemStack;
@@ -64,20 +68,6 @@ public class RocketTier1Entity extends IRocketEntity {
 					((ServerLevel) this.level).sendParticles(p, ParticleTypes.CAMPFIRE_COSY_SMOKE, true, this.getX() - vec.x, this.getY() - vec.y - 0.1, this.getZ() - vec.z, 6, 0.1, 0.1, 0.1, 0.023);
 				}
 			}
-		}
-	}
-
-	@Override
-	public void fillUpRocket() {
-		if (this.getInventory().getStackInSlot(0).getItem() instanceof BucketItem) {
-			if (((BucketItem) this.getInventory().getStackInSlot(0).getItem()).getFluid().is(TagRegistry.FLUID_VEHICLE_FUEL_TAG) && this.entityData.get(BUCKETS) != 1) {
-				this.getInventory().setStackInSlot(0, new ItemStack(Items.BUCKET));
-				this.getEntityData().set(BUCKETS, 1);
-			}
-		}
-
-		if (this.getEntityData().get(BUCKETS) == 1 && this.getEntityData().get(FUEL) < 3000) {
-			this.getEntityData().set(FUEL, this.getEntityData().get(FUEL) + 10);
 		}
 	}
 }

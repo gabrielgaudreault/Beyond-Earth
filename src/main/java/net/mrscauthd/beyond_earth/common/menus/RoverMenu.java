@@ -34,7 +34,7 @@ public class RoverMenu {
 
 			IItemHandlerModifiable itemHandler = rover.getItemHandler();
 
-			this.addSlot(new SlotItemHandler(itemHandler, 0, 8, 63) {
+			this.addSlot(new SlotItemHandler(itemHandler, 0, 20, 26) {
 				@Override
 				public boolean mayPlace(@NotNull ItemStack stack) {
 					if (stack.getItem() instanceof BucketItem) {
@@ -44,19 +44,15 @@ public class RoverMenu {
 				}
 			});
 
-			this.addSlot(new SlotItemHandler(itemHandler, 1, 151, 16));
-			this.addSlot(new SlotItemHandler(itemHandler, 2, 133, 16));
-			this.addSlot(new SlotItemHandler(itemHandler, 3, 115, 16));
-			this.addSlot(new SlotItemHandler(itemHandler, 4, 97, 16));
+			this.addSlot(new SlotItemHandler(itemHandler, 1, 20, 56) {
+				@Override
+				public boolean mayPlace(@NotNull ItemStack stack) {
+					return false;
+				}
+			});
 
-			this.addSlot(new SlotItemHandler(itemHandler, 5, 151, 34));
-			this.addSlot(new SlotItemHandler(itemHandler, 6, 133, 34));
-			this.addSlot(new SlotItemHandler(itemHandler, 7, 115, 34));
-			this.addSlot(new SlotItemHandler(itemHandler, 8, 97, 34));
-
-			//TODO CHECK IF IT WORKS RIGHT
 			/** CREATE INVENTORY SLOTS */
-			MenuHelper.createInventorySlots(inv, this::addSlot, 36, 137);
+			MenuHelper.createInventorySlots(inv, this::addSlot, 8, 99);
 		}
 
 		@Override

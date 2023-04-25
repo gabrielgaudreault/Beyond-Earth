@@ -16,7 +16,7 @@ import net.mrscauthd.beyond_earth.common.entities.LanderEntity;
 
 public class WarningOverlay implements IGuiOverlay {
 
-    public static final ResourceLocation WARNING_TEXTURE = new ResourceLocation(BeyondEarth.MODID, "textures/overlay/warning.png");
+    public static final ResourceLocation WARNING = new ResourceLocation(BeyondEarth.MODID, "textures/overlay/warning.png");
 
     @Override
     public void render(ForgeGui gui, PoseStack poseStack, float partialTick, int width, int height) {
@@ -31,13 +31,11 @@ public class WarningOverlay implements IGuiOverlay {
             float sin = (float) Math.sin((mc.level.getDayTime() + partialTick) / 6.0f);
             float flash = Mth.clamp(sin, 0.0f, 4.0f);
 
-            System.out.println(flash);
-
             RenderSystem.setShaderColor(flash, flash, flash, flash);
 
             /** WARNING IMAGE */
-            RenderSystem.setShaderTexture(0, WARNING_TEXTURE);
-            gui.blit(poseStack, width / 2 - 58, 50, 0, 0, 116, 21, 116, 21);
+            RenderSystem.setShaderTexture(0, WARNING);
+            ForgeGui.blit(poseStack, width / 2 - 58, 50, 0, 0, 116, 21, 116, 21);
 
             /** SPEED TEXT */
             RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
