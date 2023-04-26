@@ -60,7 +60,6 @@ import net.mrscauthd.beyond_earth.common.registries.TagRegistry;
 import net.mrscauthd.beyond_earth.common.util.Planets.Planet;
 import net.mrscauthd.beyond_earth.common.items.SpaceBaliseItem;
 
-
 public class Methods {
     public static final ResourceLocation SPACE_STATION = new ResourceLocation(BeyondEarth.MODID, "space_station");
     public static final TagKey<Item> SPACE_SUIT_PART = TagKey.create(Keys.ITEMS, new ResourceLocation(BeyondEarth.MODID, "space_suit"));
