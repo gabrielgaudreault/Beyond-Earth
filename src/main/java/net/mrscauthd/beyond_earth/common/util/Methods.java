@@ -51,6 +51,7 @@ import net.mrscauthd.beyond_earth.common.events.forge.LivingSetFireInHotPlanetEv
 import net.mrscauthd.beyond_earth.common.events.forge.LivingSetVenusRainEvent;
 import net.mrscauthd.beyond_earth.common.events.forge.ResetPlanetSelectionMenuNeededNbtEvent;
 import net.mrscauthd.beyond_earth.common.events.forge.TeleportAndCreateLanderEvent;
+import net.mrscauthd.beyond_earth.common.items.SpaceBaliseItem;
 import net.mrscauthd.beyond_earth.common.items.VehicleItem;
 import net.mrscauthd.beyond_earth.common.menus.planetselection.PlanetSelectionMenu;
 import net.mrscauthd.beyond_earth.common.registries.DamageSourceRegistry;
@@ -296,6 +297,11 @@ public class Methods {
 
         Level newLevel = serverPlayer.level;
 
+        int baliseX = 0;
+        int baliseZ = 0;
+        String baliseLevel = "minecraft:debug";
+
+
         if (!newLevel.isClientSide) {
             LanderEntity landerEntity = new LanderEntity(EntityRegistry.LANDER.get(), newLevel);
             landerEntity.moveTo(serverPlayer.position());
@@ -308,6 +314,25 @@ public class Methods {
 
                 if (!compoundTag.isEmpty()) {
                     landerEntity.getInventory().setStackInSlot(i, ItemStack.of(compoundTag));
+                    if (ItemStack.of(compoundTag).getItem() instanceof SpaceBaliseItem balise) {
+                        CompoundTag coords = ItemStack.of(compoundTag).getTagElement("coords");
+
+                        if (coords != null) {
+                            baliseX = coords.getInt("x");
+                            baliseZ = coords.getInt("z");
+                            baliseLevel = coords.getString("level");
+
+                            if (baliseLevel.equals(newLevel.dimension().location().toString())) {
+                                serverPlayer.teleportTo(baliseX, yPos, baliseZ);
+
+                                landerEntity.moveTo(serverPlayer.position());
+
+                            }
+                        } else {
+                            BeyondEarth.LOGGER.error("NO COORDS FOUND");
+
+                        }
+                    }
                 }
             }
 
