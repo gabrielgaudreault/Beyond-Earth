@@ -51,7 +51,6 @@ import net.mrscauthd.beyond_earth.common.events.forge.LivingSetFireInHotPlanetEv
 import net.mrscauthd.beyond_earth.common.events.forge.LivingSetVenusRainEvent;
 import net.mrscauthd.beyond_earth.common.events.forge.ResetPlanetSelectionMenuNeededNbtEvent;
 import net.mrscauthd.beyond_earth.common.events.forge.TeleportAndCreateLanderEvent;
-import net.mrscauthd.beyond_earth.common.items.SpaceBaliseItem;
 import net.mrscauthd.beyond_earth.common.items.VehicleItem;
 import net.mrscauthd.beyond_earth.common.menus.planetselection.PlanetSelectionMenu;
 import net.mrscauthd.beyond_earth.common.registries.DamageSourceRegistry;
@@ -59,6 +58,8 @@ import net.mrscauthd.beyond_earth.common.registries.EntityRegistry;
 import net.mrscauthd.beyond_earth.common.registries.ItemsRegistry;
 import net.mrscauthd.beyond_earth.common.registries.TagRegistry;
 import net.mrscauthd.beyond_earth.common.util.Planets.Planet;
+import net.mrscauthd.beyond_earth.common.items.SpaceBaliseItem;
+
 
 public class Methods {
     public static final ResourceLocation SPACE_STATION = new ResourceLocation(BeyondEarth.MODID, "space_station");
