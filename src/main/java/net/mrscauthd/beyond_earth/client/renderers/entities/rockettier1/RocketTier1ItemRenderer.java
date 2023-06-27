@@ -1,4 +1,4 @@
-package net.mrscauthd.beyond_earth.client.renderers.entities.rocket;
+package net.mrscauthd.beyond_earth.client.renderers.entities.rockettier1;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -16,18 +16,18 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.mrscauthd.beyond_earth.BeyondEarth;
-import net.mrscauthd.beyond_earth.common.entities.RocketEntity;
+import net.mrscauthd.beyond_earth.common.entities.RocketTier1Entity;
 
 @OnlyIn(Dist.CLIENT)
-public class RocketItemRenderer<T extends RocketEntity> extends BlockEntityWithoutLevelRenderer {
+public class RocketTier1ItemRenderer<T extends RocketTier1Entity> extends BlockEntityWithoutLevelRenderer {
 
     /** TEXTURE */
-    public static final ResourceLocation TEXTURE = new ResourceLocation(BeyondEarth.MODID, "textures/vehicle/rocket.png");
+    public static final ResourceLocation TEXTURE = new ResourceLocation(BeyondEarth.MODID, "textures/vehicle/rocket_t1.png");
 
     /** MODEL */
-    private RocketModel model;
+    private RocketTier1Model model;
 
-    public RocketItemRenderer(BlockEntityRenderDispatcher p_172550_, EntityModelSet p_172551_) {
+    public RocketTier1ItemRenderer(BlockEntityRenderDispatcher p_172550_, EntityModelSet p_172551_) {
         super(p_172550_, p_172551_);
     }
 
@@ -46,7 +46,7 @@ public class RocketItemRenderer<T extends RocketEntity> extends BlockEntityWitho
         vertexBuilder = buffer.getBuffer(RenderType.entityCutoutNoCullZOffset(TEXTURE));
 
         if (this.model == null) {
-            this.model = new RocketModel(mc.getEntityModels().bakeLayer(RocketModel.LAYER_LOCATION));
+            this.model = new RocketTier1Model(mc.getEntityModels().bakeLayer(RocketTier1Model.LAYER_LOCATION));
         }
 
         this.model.renderToBuffer(matrixStackIn, vertexBuilder, combinedLight, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
