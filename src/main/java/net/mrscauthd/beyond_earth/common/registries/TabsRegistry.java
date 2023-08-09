@@ -78,6 +78,7 @@ public class TabsRegistry {
                 builder.accept(ItemsRegistry.DESH_TANK.get());
                 builder.accept(ItemsRegistry.OSTRUM_TANK.get());
                 builder.accept(ItemsRegistry.CALORITE_TANK.get());
+                builder.accept(ItemsRegistry.GLACIO_TREE_SAPLING_ITEM.get());
             }).build());
 
     public static RegistryObject<CreativeModeTab> MATERIALS = CREATIVE_MOD_TAB.register("tab_materials", () -> CreativeModeTab.builder()
@@ -190,6 +191,16 @@ public class TabsRegistry {
                 builder.accept(ItemsRegistry.GLACIO_COPPER_ORE_ITEM.get());
                 builder.accept(ItemsRegistry.GLACIO_IRON_ORE_ITEM.get());
                 builder.accept(ItemsRegistry.GLACIO_LAPIS_ORE_ITEM.get());
+                builder.accept(ItemsRegistry.GLACIO_WOOD_LOG_ITEM.get());
+                builder.accept(ItemsRegistry.GLACIO_WOOD_ITEM.get());
+                builder.accept(ItemsRegistry.GLACIO_WOOD_LEAVES_ITEM.get());
+                builder.accept(ItemsRegistry.GLACIO_WOOD_TRAPDOOR_ITEM.get());
+                builder.accept(ItemsRegistry.GLACIO_WOOD_DOOR_ITEM.get());
+                builder.accept(ItemsRegistry.GLACIO_WOOD_PLANKS_ITEM.get());
+                builder.accept(ItemsRegistry.GLACIO_WOOD_STAIRS_ITEM.get());
+                builder.accept(ItemsRegistry.GLACIO_WOOD_SLAB_ITEM.get());
+                builder.accept(ItemsRegistry.PERMAFROST_GRASS_ITEM.get());
+                builder.accept(ItemsRegistry.PERMAFROST_DIRT_ITEM.get());
             }).build());
 
     public static RegistryObject<CreativeModeTab> SPAWN_EGGS = CREATIVE_MOD_TAB.register("tab_spawn_eggs", () -> CreativeModeTab.builder()
