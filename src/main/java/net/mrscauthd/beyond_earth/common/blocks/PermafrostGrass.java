@@ -14,42 +14,45 @@ import net.minecraft.world.level.lighting.LightEngine;
 import net.mrscauthd.beyond_earth.common.registries.BlockRegistry;
 
 public class PermafrostGrass extends SnowyDirtBlock {
-    public PermafrostGrass(Properties pProperties) {
-        super(pProperties);
+    public PermafrostGrass(Properties properties) {
+        super(properties);
     }
 
-    private static boolean canBeGrass(BlockState pState, LevelReader pLevelReader, BlockPos pPos) {
-        BlockPos blockpos = pPos.above();
-        BlockState blockstate = pLevelReader.getBlockState(blockpos);
+    private static boolean canBeGrass(BlockState state, LevelReader reader, BlockPos pos) {
+        BlockPos above = pos.above();
+        BlockState blockstate = reader.getBlockState(above);
         if (blockstate.is(Blocks.SNOW) && blockstate.getValue(SnowLayerBlock.LAYERS) == 1) {
             return true;
         } else if (blockstate.getFluidState().getAmount() == 8) {
             return false;
         } else {
-            int i = LightEngine.getLightBlockInto(pLevelReader, pState, pPos, blockstate, blockpos, Direction.UP, blockstate.getLightBlock(pLevelReader, blockpos));
-            return i < pLevelReader.getMaxLightLevel();
+            int i = LightEngine.getLightBlockInto(reader, state, pos, blockstate, above, Direction.UP, blockstate.getLightBlock(reader, above));
+            return i < reader.getMaxLightLevel();
         }
     }
 
-    private static boolean canPropagate(BlockState pState, LevelReader pLevel, BlockPos pPos) {
-        BlockPos blockpos = pPos.above();
-        return canBeGrass(pState, pLevel, pPos) && !pLevel.getFluidState(blockpos).is(FluidTags.WATER);
+    private static boolean canPropagate(BlockState state, LevelReader reader, BlockPos pos) {
+        BlockPos above = pos.above();
+        return canBeGrass(state, reader, pos) && !reader.getFluidState(above).is(FluidTags.WATER);
     }
 
     @Override
-    public void randomTick(BlockState pState, ServerLevel pLevel, BlockPos pPos, RandomSource pRandom) {
-        if (!canBeGrass(pState, pLevel, pPos)) {
-            if (!pLevel.isAreaLoaded(pPos, 1)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light and spreading
-            pLevel.setBlockAndUpdate(pPos, BlockRegistry.PERMAFROST_DIRT.get().defaultBlockState());
-        } else {
-            if (!pLevel.isAreaLoaded(pPos, 3)) return; // Forge: prevent loading unloaded chunks when checking neighbor's light and spreading
-            if (pLevel.getMaxLocalRawBrightness(pPos.above()) >= 9) {
+    public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+        BlockPos above = pos.above();
+        if (!level.isClientSide && !level.isAreaLoaded(pos, 3)) {
+            if (!level.getBlockState(above).isAir()) {
+                level.setBlockAndUpdate(pos, BlockRegistry.PERMAFROST_DIRT.get().defaultBlockState());
+            }
+        }
+        else {
+            if (!level.isAreaLoaded(pos, 3)) return;
+            if (level.getMaxLocalRawBrightness(above) >= 9) {
                 BlockState blockstate = this.defaultBlockState();
 
                 for(int i = 0; i < 4; ++i) {
-                    BlockPos blockpos = pPos.offset(pRandom.nextInt(3) - 1, pRandom.nextInt(5) - 3, pRandom.nextInt(3) - 1);
-                    if (pLevel.getBlockState(blockpos).is(BlockRegistry.PERMAFROST_DIRT.get()) && canPropagate(blockstate, pLevel, blockpos)) {
-                        pLevel.setBlockAndUpdate(blockpos, blockstate.setValue(SNOWY, Boolean.valueOf(pLevel.getBlockState(blockpos.above()).is(Blocks.SNOW))));
+                    BlockPos blockpos = pos.offset(random.nextInt(3) - 1, random.nextInt(5) - 3, random.nextInt(3) - 1);
+                    if (level.getBlockState(blockpos).is(BlockRegistry.PERMAFROST_DIRT.get()) && canPropagate(blockstate, level, blockpos)) {
+                        level.setBlockAndUpdate(blockpos, blockstate.setValue(SNOWY, Boolean.valueOf(level.getBlockState(blockpos.above()).is(Blocks.SNOW))));
                     }
                 }
             }
