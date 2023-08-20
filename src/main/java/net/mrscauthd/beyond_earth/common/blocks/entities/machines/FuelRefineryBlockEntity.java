@@ -71,8 +71,8 @@ public class FuelRefineryBlockEntity extends AbstractMachineBlockEntity {
     @Override
     protected void createFluidHandlers(NamedComponentRegistry<IFluidHandler> registry) {
         super.createFluidHandlers(registry);
-        this.inputTank = (FluidTank) registry.computeIfAbsent(this.getInputTankName(), k -> this.creatTank(k));
-        this.outputTank = (FluidTank) registry.computeIfAbsent(this.getOutputTankName(), k -> this.creatTank(k));
+        this.inputTank = (FluidTank) registry.computeIfAbsent(this.getInputTankName(), this::creatTank);
+        this.outputTank = (FluidTank) registry.computeIfAbsent(this.getOutputTankName(), this::creatTank);
         this.tanks = new FluidMultiTank(Arrays.asList(this.getInputTank(), this.getOutputTank()));
     }
 

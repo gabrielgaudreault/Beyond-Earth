@@ -53,6 +53,7 @@ public class TabsRegistry {
                 builder.accept(ItemsRegistry.OXYGEN_LOADER_ITEM.get());
                 builder.accept(ItemsRegistry.OXYGEN_BUBBLE_DISTRIBUTOR_ITEM.get());
                 builder.accept(ItemsRegistry.WATER_PUMP_ITEM.get());
+                builder.accept(ItemsRegistry.ROCKET_UPGRADER_ITEM.get());
             }).build());
 
     public static RegistryObject<CreativeModeTab> BASICS = CREATIVE_MOD_TAB.register("tab_basics", () -> CreativeModeTab.builder()

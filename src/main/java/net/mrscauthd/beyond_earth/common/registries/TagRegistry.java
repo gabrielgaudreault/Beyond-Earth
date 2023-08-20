@@ -28,4 +28,7 @@ public class TagRegistry {
     public static final TagKey<Biome> MERCURY_BIOMES_TAG = TagKey.create(Registries.BIOME, new ResourceLocation(BeyondEarth.MODID, "mercury"));
     public static final TagKey<Biome> MOON_BIOMES_TAG = TagKey.create(Registries.BIOME, new ResourceLocation(BeyondEarth.MODID, "moon"));
     public static final TagKey<Biome> VENUS_BIOMES_TAG = TagKey.create(Registries.BIOME, new ResourceLocation(BeyondEarth.MODID, "venus"));
+
+    /** ROCKET UPGRADE */
+    public static final TagKey<Item> ROCKET_UPGRADE_TAG = TagKey.create(Registries.ITEM, new ResourceLocation(BeyondEarth.MODID, "rocket_upgrade"));
 }

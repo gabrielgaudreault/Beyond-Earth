@@ -8,8 +8,7 @@ import net.mrscauthd.beyond_earth.BeyondEarth;
 import net.mrscauthd.beyond_earth.common.data.recipes.*;
 
 public class RecipeTypeRegistry {
-    public static final DeferredRegister<RecipeType<?>> RECIPE_TYPES = DeferredRegister.create(Keys.RECIPE_TYPES,
-            BeyondEarth.MODID);
+    public static final DeferredRegister<RecipeType<?>> RECIPE_TYPES = DeferredRegister.create(Keys.RECIPE_TYPES, BeyondEarth.MODID);
 
     public static final RegistryObject<ItemStackToItemStackRecipeType<CompressingRecipe>> COMPRESSING;
     public static final RegistryObject<BeyondEarthRecipeType<GeneratingRecipe>> COAL_GENERATING;

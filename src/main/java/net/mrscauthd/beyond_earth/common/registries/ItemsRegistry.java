@@ -20,11 +20,8 @@ public class ItemsRegistry {
 
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, BeyondEarth.MODID);
 
-    /** ROCKET ITEMS */
+    /** VEHICLE ITEMS */
     public static final RegistryObject<RocketItem> ROCKET_ITEM = ITEMS.register("rocket", () -> new RocketItem(new Item.Properties()));
-
-
-    /** ROVER ITEMS */
     public static final RegistryObject<RoverItem> ROVER_ITEM = ITEMS.register("rover", () -> new RoverItem(new Item.Properties().stacksTo(1).rarity(Rarity.RARE)));
 
     /** SPAWN EGG ITEMS */
@@ -45,7 +42,6 @@ public class ItemsRegistry {
     public static final RegistryObject<BlockItem> GLACIO_GLOBE_ITEM = ITEMS.register("glacio_globe", () -> new GlobeItem(BlockRegistry.GLACIO_GLOBE_BLOCK.get(), new Item.Properties().rarity(Rarity.EPIC).stacksTo(1), new ResourceLocation(BeyondEarth.MODID, "textures/block/globes/glacio_globe.png")));
 
     /** SPACE SUIT ITEMS */
-    //public static final RegistryObject<Item> OXYGEN_MASK = ITEMS.register("oxygen_mask", () -> new SpaceSuit.Helmet(SpaceSuitMaterial.ARMOR_MATERIAL, EquipmentSlot.HEAD, new Item.Properties()));
     public static final RegistryObject<Item> SPACE_HELMET = ITEMS.register("space_helmet", () -> new SpaceSuit.Helmet(SpaceSuitMaterial.ARMOR_MATERIAL, ArmorItem.Type.HELMET, new Item.Properties()));
     public static final RegistryObject<Item> SPACE_SUIT = ITEMS.register("space_suit", () -> new SpaceSuit.Suit(SpaceSuitMaterial.ARMOR_MATERIAL, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
     public static final RegistryObject<Item> SPACE_PANTS = ITEMS.register("space_pants", () -> new SpaceSuit.Pants(SpaceSuitMaterial.ARMOR_MATERIAL, ArmorItem.Type.LEGGINGS, new Item.Properties()));
@@ -71,7 +67,6 @@ public class ItemsRegistry {
     /** NORMAL ITEMS */
     // SPECIAL ITEMS
     public static final RegistryObject<Item> COAL_TORCH_ITEM = ITEMS.register("coal_torch", () -> new CoalTorchItem(BlockRegistry.COAL_TORCH_BLOCK.get(), BlockRegistry.WALL_COAL_TORCH_BLOCK.get(),new Item.Properties()));
-
     public static final RegistryObject<Item> CHEESE = ITEMS.register("cheese", () -> new Item(new Item.Properties().food((new FoodProperties.Builder()).nutrition(4).saturationMod(3f).build())));
     public static final RegistryObject<Item> HAMMER = ITEMS.register("hammer", () -> new HammerItem(new Item.Properties().durability(9).setNoRepair()));
     public static final RegistryObject<Item> IRON_ROD = ITEMS.register("iron_rod", () -> new Item(new Item.Properties()));
@@ -133,6 +128,8 @@ public class ItemsRegistry {
     public static final RegistryObject<BlockItem> OXYGEN_LOADER_ITEM = ITEMS.register("oxygen_loader", () -> new BlockItem(BlockRegistry.OXYGEN_LOADER_BLOCK.get(), new Item.Properties()));
     public static final RegistryObject<BlockItem> OXYGEN_BUBBLE_DISTRIBUTOR_ITEM = ITEMS.register("oxygen_bubble_distributor", () -> new BlockItem(BlockRegistry.OXYGEN_BUBBLE_DISTRIBUTOR_BLOCK.get(), new Item.Properties()));
     public static final RegistryObject<BlockItem> WATER_PUMP_ITEM = ITEMS.register("water_pump", () -> new BlockItem(BlockRegistry.WATER_PUMP_BLOCK.get(), new Item.Properties()));
+    public static final RegistryObject<BlockItem> ROCKET_UPGRADER_ITEM = ITEMS.register("rocket_upgrader", () -> new BlockItem(BlockRegistry.ROCKET_UPGRADER_BLOCK.get(), new Item.Properties()));
+
 
     // NORMAL BLOCK ITEMS
     public static final RegistryObject<BlockItem> STEEL_BLOCK_ITEM = ITEMS.register("steel_block", () -> new BlockItem(BlockRegistry.STEEL_BLOCK.get(), new Item.Properties()));
