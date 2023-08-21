@@ -245,7 +245,6 @@ public class Planets {
         // Misc rendering related things
 
         // These are for planet selection screen
-        public float _distance = 0;
         public float _xPos = 0;
         public float _yPos = 0;
 
@@ -256,7 +255,7 @@ public class Planets {
         public float _initPhase = 0;
 
         // Planet button tier
-        public int tier = 0;
+        public double distanceFromEarth = 0;
         public int button_category = -1;
 
         public List<Planet> moons;

@@ -74,7 +74,7 @@ public class PlanetRegistry {
         mercury.mass = 0.055f * Planets.PLANET_MASS_SCALE;
         mercury.texture = MERCURY_TEXTURE;
         mercury.rotation = 270;
-        mercury.tier = 3;
+        mercury.distanceFromEarth = 91690000;
         mercury.g = 0.38f;
         mercury.radius = 2439.7;
         mercury.temperature = 430;
@@ -84,7 +84,7 @@ public class PlanetRegistry {
         venus.mass = 0.81f * Planets.PLANET_MASS_SCALE;
         venus.texture = VENUS_TEXTURE;
         venus.rotation = 180;
-        venus.tier = 3;
+        venus.distanceFromEarth = 41400000;
         venus.g = 0.904f;
         venus.radius = 6051.8;
         venus.temperature = 482;
@@ -93,7 +93,7 @@ public class PlanetRegistry {
         Planets.Planet earth = BY_DIMENSION.get(LevelRegistry.EARTH);
         earth.texture = EARTH_TEXTURE;
         earth.rotation = 90;
-        earth.tier = 1;
+        earth.distanceFromEarth = 0;
         earth.radius = 6371.0;
         earth.airDensity = 1;
         earth.hasOxygen = true;
@@ -104,7 +104,7 @@ public class PlanetRegistry {
         mars.orbitRadius = 1.52f * Planets.PLANET_ORBIT_SCALE;
         mars.mass = 0.107f * Planets.PLANET_MASS_SCALE;
         mars.texture = MARS_TEXTURE;
-        mars.tier = 2;
+        mars.distanceFromEarth = 78340000;
         mars.radius = 3389.5;
         mars.g = 0.3794f;
         mars.temperature = -63;
@@ -164,7 +164,7 @@ public class PlanetRegistry {
         glacio.mass = 0.08f * Planets.PLANET_MASS_SCALE;
         glacio.orbitRadius = 0.39f * Planets.PLANET_ORBIT_SCALE;
         glacio.rotation = 180;
-        glacio.tier = 4;
+        glacio.distanceFromEarth = 378429e8;
         glacio.g = 0.3794f;
         glacio.temperature = -20;
         glacio.hasRain = true;

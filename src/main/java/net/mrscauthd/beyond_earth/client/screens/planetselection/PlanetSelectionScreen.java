@@ -1,6 +1,7 @@
 package net.mrscauthd.beyond_earth.client.screens.planetselection;
 
 import com.google.common.collect.Lists;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.Screen;
@@ -24,6 +25,7 @@ import net.mrscauthd.beyond_earth.client.screens.helper.ScreenHelper;
 import net.mrscauthd.beyond_earth.client.screens.planetselection.helper.CategoryHelper;
 import net.mrscauthd.beyond_earth.client.screens.planetselection.helper.PlanetSelectionScreenHelper;
 import net.mrscauthd.beyond_earth.common.data.recipes.IngredientStack;
+import net.mrscauthd.beyond_earth.common.entities.RocketEntity;
 import net.mrscauthd.beyond_earth.common.menus.planetselection.PlanetSelectionMenu;
 import net.mrscauthd.beyond_earth.common.registries.NetworkRegistry;
 import net.mrscauthd.beyond_earth.common.util.Planets;
@@ -84,8 +86,8 @@ public class PlanetSelectionScreen extends Screen implements MenuAccess<PlanetSe
     public static final Component OXYGEN_FALSE_TEXT = PlanetSelectionScreenHelper.tl("oxygen.false");
     public static final Component ITEM_REQUIREMENT_TEXT = PlanetSelectionScreenHelper.tl("item_requirement");
 
-    public static final Component ROCKET_TIER_1_TEXT = Component
-            .translatable("entity." + BeyondEarth.MODID + ".rocket_t" + 1);
+    public static final Component ROCKET_TEXT = Component
+            .translatable("entity." + BeyondEarth.MODID + ".rocket");
 
     public static final float MOON_ORBIT_SPEED = 2.5f;
     public static final float PLANET_ORBIT_SPEED = 2.5f;
@@ -281,35 +283,35 @@ public class PlanetSelectionScreen extends Screen implements MenuAccess<PlanetSe
         this.updateButtonVisibility();
     }
 
-    public void addPlanetButtons(Planet parent, Planet p, int planetCategory, int starCategory) {
-        if (p.description == null) {
-            p.description = PlanetSelectionScreenHelper.tl(p.name);
+    public void addPlanetButtons(Planet parent, Planet planet, int planetCategory, int starCategory) {
+        if (planet.description == null) {
+            planet.description = PlanetSelectionScreenHelper.tl(planet.name);
         }
 
         // Planet button
         if (parent == null) {
-            Component tierText = Component.translatable("entity." + BeyondEarth.MODID + ".rocket_t" + p.tier);
+            String distanceText = String.valueOf(planet.distanceFromEarth);
             ModifiedButton planetCategoryButton = PlanetSelectionScreenHelper.addCategoryButton(this, this.category, 10,
-                    1, 70, 20, planetCategory, this.checkDistance(0), false,
+                    1, 70, 20, planetCategory, this.canGoOn(planet), false,
                     ModifiedButton.ButtonTypes.SOLAR_SYSTEM_CATEGORY,
-                    List.of(p.description.getString(), tierText.getString()), BUTTON_TEXTURE,
-                    ModifiedButton.ColorTypes.GREEN, p.description);
+                    List.of(planet.description.getString(), distanceText), BUTTON_TEXTURE,
+                    ModifiedButton.ColorTypes.GREEN, planet.description);
             planetCategoryButton.isVisible = i -> i == starCategory;
         }
 
         // Teleport buttons
         List<String> buttonText = Lists.newArrayList();
-        buttonText.add(p.description.getString());
-        buttonText.add(String.format("%.3f m/s²", p.g * 9.807));
-        buttonText.add(p.hasOxygen ? "a" + OXYGEN_TRUE_TEXT.getString() : "c" + OXYGEN_FALSE_TEXT.getString());
+        buttonText.add(planet.description.getString());
+        buttonText.add(String.format("%.3f m/s²", planet.g * 9.807));
+        buttonText.add(planet.hasOxygen ? "a" + OXYGEN_TRUE_TEXT.getString() : "c" + OXYGEN_FALSE_TEXT.getString());
 
-        boolean niceT = p.temperature < 100 && p.temperature > -100;
-        buttonText.add(niceT ? "a" + p.temperature : "c" + p.temperature);
+        boolean niceT = planet.temperature < 100 && planet.temperature > -100;
+        buttonText.add(niceT ? "a" + planet.temperature : "c" + planet.temperature);
 
         ModifiedButton planetButton = PlanetSelectionScreenHelper.addHandlerButton(this, 10, 1, 70, 20, true, false,
-                true, NetworkRegistry.PACKET_HANDLER, PlanetSelectionScreenHelper.getNetworkHandler(p.planetID),
+                true, NetworkRegistry.PACKET_HANDLER, PlanetSelectionScreenHelper.getNetworkHandler(planet.planetID),
                 ModifiedButton.ButtonTypes.PLANET_CATEGORY, buttonText, BUTTON_TEXTURE,
-                ModifiedButton.ColorTypes.LIGHT_BLUE, p.description);
+                ModifiedButton.ColorTypes.LIGHT_BLUE, planet.description);
         planetButton.isVisible = i -> i == planetCategory;
 
         // Orbit teleport buttons
@@ -317,7 +319,7 @@ public class PlanetSelectionScreen extends Screen implements MenuAccess<PlanetSe
                 "c" + "-270");
 
         ModifiedButton orbitButton = PlanetSelectionScreenHelper.addHandlerButton(this, 84, 2, 37, 20, true, false,
-                true, NetworkRegistry.PACKET_HANDLER, PlanetSelectionScreenHelper.getNetworkHandler(p.orbitID),
+                true, NetworkRegistry.PACKET_HANDLER, PlanetSelectionScreenHelper.getNetworkHandler(planet.orbitID),
                 ModifiedButton.ButtonTypes.PLANET_CATEGORY, buttonText, SMALL_BUTTON_TEXTURE,
                 ModifiedButton.ColorTypes.LIGHT_BLUE, ORBIT_TEXT);
         orbitButton.isVisible = i -> i == planetCategory;
@@ -325,13 +327,13 @@ public class PlanetSelectionScreen extends Screen implements MenuAccess<PlanetSe
         // Space station teleport buttons
         ModifiedButton stationButton = PlanetSelectionScreenHelper.addHandlerButton(this, 125, 3, 75, 20,
                 this.spaceStationItemList, false, true, NetworkRegistry.PACKET_HANDLER,
-                PlanetSelectionScreenHelper.getNetworkHandler(p.stationID),
+                PlanetSelectionScreenHelper.getNetworkHandler(planet.stationID),
                 ModifiedButton.ButtonTypes.PLANET_SPACE_STATION_CATEGORY, buttonText, LARGE_BUTTON_TEXTURE,
                 ModifiedButton.ColorTypes.GREEN, SPACE_STATION_TEXT);
         stationButton.isVisible = i -> i == planetCategory;
 
-        p.moons.forEach(p2 -> {
-            addPlanetButtons(p, p2, planetCategory, starCategory);
+        planet.moons.forEach(p2 -> {
+            addPlanetButtons(planet, p2, planetCategory, starCategory);
         });
     }
 
@@ -594,8 +596,7 @@ public class PlanetSelectionScreen extends Screen implements MenuAccess<PlanetSe
 
           Player player = this.menu.getPlayer();
 
-          if (player.getAbilities().instabuild || player.isSpectator()) { return true;
-          }
+          if (player.getAbilities().instabuild || player.isSpectator()) return true;
 
           Inventory inv = player.getInventory(); int itemStackCount = 0;
 
@@ -608,9 +609,9 @@ public class PlanetSelectionScreen extends Screen implements MenuAccess<PlanetSe
 
         return itemStackCount >= ingredientStack.getCount();
     }
-    // TODO : check distance between each planet
-    public boolean checkDistance(int distance) {
-        return true;
+
+    public boolean canGoOn(Planet planet) {
+        return planet.distanceFromEarth <= this.menu.getDistance();
     }
 
     /**

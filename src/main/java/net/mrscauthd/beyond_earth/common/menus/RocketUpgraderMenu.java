@@ -31,8 +31,8 @@ public class RocketUpgraderMenu {
             this.blockEntity = blockEntity;
 
             IItemHandlerModifiable internal = blockEntity.getItemHandler();
-            this.addSlot(new SlotItemHandler(internal, RocketUpgraderBlockEntity.SLOT_ROCKET_INPUT, 21, 56));
-            this.addSlot(new SlotItemHandler(internal, RocketUpgraderBlockEntity.SLOT_UPGRADE_INPUT, 68, 56));
+            this.addSlot(new SlotItemHandler(internal, RocketUpgraderBlockEntity.SLOT_UPGRADE_INPUT, 21, 56));
+            this.addSlot(new SlotItemHandler(internal, RocketUpgraderBlockEntity.SLOT_ROCKET_INPUT, 68, 56));
             this.addSlot(new SlotItemHandler(internal, RocketUpgraderBlockEntity.SLOT_OUTPUT, 132, 56));
 
             MenuHelper.createInventorySlots(inv, this::addSlot, 8, 142);
@@ -43,7 +43,7 @@ public class RocketUpgraderMenu {
         }
 
         @Override
-        public boolean stillValid(Player p_38874_) {
+        public boolean stillValid(Player player) {
             return !this.getBlockEntity().isRemoved();
         }
 

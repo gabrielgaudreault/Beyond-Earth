@@ -19,7 +19,7 @@ import net.mrscauthd.beyond_earth.client.screens.helper.ScreenHelper;
 
 public class RocketHeightBarOverlay implements IGuiOverlay {
     /** ROCKET TEXTURE */
-    public static final ResourceLocation ROCKET = new ResourceLocation(BeyondEarth.MODID, "textures/planet_bar/rocket_t1.png");
+    public static final ResourceLocation ROCKET = new ResourceLocation(BeyondEarth.MODID, "textures/planet_bar/rocket.png");
 
     @Override
     public void render(ForgeGui gui, GuiGraphics graphics, float partialTick, int width, int height) {

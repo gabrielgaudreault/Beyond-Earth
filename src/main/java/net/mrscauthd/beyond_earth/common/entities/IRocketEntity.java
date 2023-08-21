@@ -77,7 +77,7 @@ public abstract class IRocketEntity extends IVehicleEntity implements HasCustomI
 
     public abstract double getRocketSpeed();
 
-    public abstract int getTier();
+    public abstract double getMaxDistanceTravelable();
 
     public abstract int getBucketsOfFull();
 
@@ -428,11 +428,12 @@ public abstract class IRocketEntity extends IVehicleEntity implements HasCustomI
         if (this.getY() > 600) {
             if (player != null) {
 
-                if (player.containerMenu == player.inventoryMenu) {
+                if (player.hasContainerOpen()) {
                     player.closeContainer();
                 }
 
-                player.getPersistentData().putBoolean(BeyondEarth.MODID + ":planet_selection_menu_open", true);
+                player.getPersistentData().putDouble("beyond_earth:rocket_distance", this.getMaxDistanceTravelable());
+                player.getPersistentData().putBoolean("beyond_earth:planet_selection_menu_open", true);
 
                 /** SAVE ITEMS IN THE PLAYER */
                 ListTag tag = new ListTag();

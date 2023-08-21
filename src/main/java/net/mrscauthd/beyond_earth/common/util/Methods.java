@@ -359,7 +359,7 @@ public class Methods {
 
     public static void resetPlanetSelectionMenuNeededNbt(Player player) {
         player.getPersistentData().putBoolean(BeyondEarth.MODID + ":planet_selection_menu_open", false);
-        player.getPersistentData().putInt(BeyondEarth.MODID + ":rocket_tier", 0);
+        player.getPersistentData().putInt(BeyondEarth.MODID + ":rocket_distance", 0);
         player.getPersistentData().put(BeyondEarth.MODID + ":rocket_item_list", new CompoundTag());
 
         MinecraftForge.EVENT_BUS.post(new ResetPlanetSelectionMenuNeededNbtEvent(player));
@@ -379,11 +379,11 @@ public class Methods {
                     @Override
                     public AbstractContainerMenu createMenu(int id, Inventory inventory, Player player) {
                         FriendlyByteBuf packetBuffer = new FriendlyByteBuf(Unpooled.buffer());
-                        packetBuffer.writeInt(player.getPersistentData().getInt(BeyondEarth.MODID + ":rocket_tier"));
+                        packetBuffer.writeInt(player.getPersistentData().getInt(BeyondEarth.MODID + ":rocket_distance"));
                         return new PlanetSelectionMenu.GuiContainer(id, inventory, packetBuffer);
                     }
                 }, buf -> {
-                    buf.writeInt(player.getPersistentData().getInt(BeyondEarth.MODID + ":rocket_tier"));
+                    buf.writeInt(player.getPersistentData().getInt(BeyondEarth.MODID + ":rocket_distance"));
                 });
             }
         }

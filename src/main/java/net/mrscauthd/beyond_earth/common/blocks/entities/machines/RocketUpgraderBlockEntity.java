@@ -28,8 +28,8 @@ import net.mrscauthd.beyond_earth.common.registries.TagRegistry;
 
 public class RocketUpgraderBlockEntity extends AbstractMachineBlockEntity {
 
-    public static final int SLOT_ROCKET_INPUT = 0;
-    public static final int SLOT_UPGRADE_INPUT = 1;
+    public static final int SLOT_UPGRADE_INPUT = 0;
+    public static final int SLOT_ROCKET_INPUT = 1;
     public static final int SLOT_OUTPUT = 2;
 
     public RocketUpgraderBlockEntity(BlockPos pos, BlockState state) {

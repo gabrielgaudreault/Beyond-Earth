@@ -24,7 +24,7 @@ import java.util.List;
 @OnlyIn(Dist.CLIENT)
 public class RocketScreen extends AbstractContainerScreen<RocketMenu.GuiContainer> {
 
-	private static final ResourceLocation TEXTURE = new ResourceLocation(BeyondEarth.MODID, "textures/gui/rocket_t1.png");
+	private static final ResourceLocation TEXTURE = new ResourceLocation(BeyondEarth.MODID, "textures/gui/rocket.png");
 
 	public static final ResourceLocation FLUID_TANK_OVERLAY = new ResourceLocation(BeyondEarth.MODID, "textures/gui/util/fluid_tank_overlay.png");
 
@@ -67,7 +67,7 @@ public class RocketScreen extends AbstractContainerScreen<RocketMenu.GuiContaine
 
 	@Override
 	protected void renderLabels(GuiGraphics graphics, int p_97809_, int p_97810_) {
-		graphics.drawString(this.font, this.title.getString(), (this.imageWidth / 2) - 33, this.titleLabelY, 0xDBDBDB);
+		graphics.drawString(this.font, Component.translatable("entity." + BeyondEarth.MODID + ".rocket"), (this.imageWidth / 2) - 33, this.titleLabelY, 0xDBDBDB);
 		graphics.drawString(this.font, this.playerInventoryTitle, this.inventoryLabelX, this.inventoryLabelY, 0xDBDBDB);
 	}
 

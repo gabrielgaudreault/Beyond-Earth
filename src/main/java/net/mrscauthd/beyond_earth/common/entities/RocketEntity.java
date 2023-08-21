@@ -29,8 +29,8 @@ public class RocketEntity extends IRocketEntity {
 	}
 
 	@Override
-	public int getTier() {
-		return 1;
+	public double getMaxDistanceTravelable() {
+		return 500000;
 	}
 
 	@Override

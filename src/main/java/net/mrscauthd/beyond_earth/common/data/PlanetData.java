@@ -83,7 +83,7 @@ public class PlanetData {
         boolean tidal_lock = false;
 
         // Planet button tier
-        int tier = 0;
+        double distanceFromEarth = 0;
 
         public List<PlanetEntry> moons = new ArrayList<>();
 
@@ -102,7 +102,7 @@ public class PlanetData {
             this.has_clouds = planet.hasClouds;
             this.has_rain = planet.hasRain;
             this.has_dust_storms = planet.hasDustStorms;
-            this.tier = planet.tier;
+            this.distanceFromEarth = planet.distanceFromEarth;
             this.g = planet.g;
             this.tidal_lock = planet.tidalLock;
             this.air_density = planet.airDensity;
@@ -158,7 +158,7 @@ public class PlanetData {
             planet.hasOxygen = this.has_oxygen;
             planet.hasRain = this.has_rain;
             planet.spaceLevel = this.space_level;
-            planet.tier = this.tier;
+            planet.distanceFromEarth = this.distanceFromEarth;
             planet.orbitColour = this.orbit_colour;
 
             if (parent != null)
