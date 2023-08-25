@@ -26,7 +26,7 @@ public class EntityRegistry {
 
 
     /** VEHICLE ENTITIES */
-    public static final RegistryObject<EntityType<RocketEntity>> ROCKET = ENTITIES.register("rocket_t1", () -> EntityType.Builder.of(RocketEntity::new, MobCategory.MISC).sized(1.1f, 4.4f).fireImmune().build(new ResourceLocation(BeyondEarth.MODID, "rocket_t1").toString()));
+    public static final RegistryObject<EntityType<RocketEntity>> ROCKET = ENTITIES.register("rocket", () -> EntityType.Builder.of(RocketEntity::new, MobCategory.MISC).sized(1.1f, 4.4f).fireImmune().build(new ResourceLocation(BeyondEarth.MODID, "rocket_t1").toString()));
     public static final RegistryObject<EntityType<LanderEntity>> LANDER = ENTITIES.register("lander", () -> EntityType.Builder.of(LanderEntity::new, MobCategory.MISC).sized(1.0f, 2.0f).fireImmune().build(new ResourceLocation(BeyondEarth.MODID, "lander").toString()));
     public static final RegistryObject<EntityType<RoverEntity>> ROVER = ENTITIES.register("rover", () -> EntityType.Builder.of(RoverEntity::new, MobCategory.MISC).sized(2.5f, 1.0f).fireImmune().build(new ResourceLocation(BeyondEarth.MODID, "rover").toString()));
 

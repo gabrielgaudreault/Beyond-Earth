@@ -2,6 +2,7 @@ package net.mrscauthd.beyond_earth.common.entities;
 
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EntityType;
@@ -30,7 +31,8 @@ public class RocketEntity extends IRocketEntity {
 
 	@Override
 	public double getMaxDistanceTravelable() {
-		return 500000;
+		CompoundTag tag = this.serializeNBT();
+		return (double) (600000 + tag.getInt("fuelLimit")) / tag.getInt("fuelUsage");
 	}
 
 	@Override

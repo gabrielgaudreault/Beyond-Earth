@@ -63,6 +63,11 @@ public class ItemsRegistry {
     public static final RegistryObject<BlockItem> ROCKET_LAUNCH_PAD_ITEM = ITEMS.register("rocket_launch_pad", () -> new BlockItem(BlockRegistry.ROCKET_LAUNCH_PAD.get(), new Item.Properties()));
     public static final RegistryObject<Item> FLAG_ITEM = ITEMS.register("flag", () -> new DoubleHighBlockItem(BlockRegistry.FLAG_BLOCK.get(), new Item.Properties()));
 
+    /** ROCKET UPGRADE */
+    public static final RegistryObject<Item> BASIC_FUEL_UPGRADE = ITEMS.register("basic_fuel_upgrade", () -> new RocketUpgradeItem(new Item.Properties(), 1, 0));
+    public static final RegistryObject<Item> ADVANCED_FUEL_UPGRADE = ITEMS.register("advanced_fuel_upgrade", () -> new RocketUpgradeItem(new Item.Properties(), 3, 0));
+    public static final RegistryObject<Item> HYDROGEN_MOTOR_UPGRADE = ITEMS.register("hydrogen_motor_upgrade", () -> new RocketUpgradeItem(new Item.Properties(), 0, 500000));
+
 
     /** NORMAL ITEMS */
     // SPECIAL ITEMS

@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "beyond_earth:basic_fuel_upgrade",
+    "beyond_earth:advanced_fuel_upgrade",
+    "beyond_earth:hydrogen_motor_upgrade"
+  ]
+}

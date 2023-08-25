@@ -10,17 +10,17 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class VehicleItem extends Item {
-    public VehicleItem(Properties p_41383_) {
-        super(p_41383_);
+    public VehicleItem(Properties properties) {
+        super(properties);
     }
 
-    protected static double getYOffset(LevelReader p_20626_, BlockPos p_20627_, boolean p_20628_, AABB p_20629_) {
-        AABB aabb = new AABB(p_20627_);
+    protected static double getYOffset(LevelReader reader, BlockPos pos, boolean p_20628_, AABB p_20629_) {
+        AABB aabb = new AABB(pos);
         if (p_20628_) {
             aabb = aabb.expandTowards(0.0D, -1.0D, 0.0D);
         }
 
-        Iterable<VoxelShape> iterable = p_20626_.getCollisions(null, aabb);
+        Iterable<VoxelShape> iterable = reader.getCollisions(null, aabb);
         return 1.0D + Shapes.collide(Direction.Axis.Y, p_20629_, iterable, p_20628_ ? -2.0D : -1.0D);
     }
 }

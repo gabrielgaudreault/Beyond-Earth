@@ -10,6 +10,7 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.energy.IEnergyStorage;
+import net.mrscauthd.beyond_earth.BeyondEarth;
 import net.mrscauthd.beyond_earth.common.blocks.entities.machines.power.NamedComponentRegistry;
 import net.mrscauthd.beyond_earth.common.blocks.entities.machines.power.PowerSystemEnergyCommon;
 import net.mrscauthd.beyond_earth.common.blocks.entities.machines.power.PowerSystemRegistry;
@@ -64,7 +65,23 @@ public class RocketUpgraderBlockEntity extends AbstractMachineBlockEntity {
 
     @Override
     protected void tickProcessing() {
+        ItemStack upgrade_input = this.getItem(getSlotUpgradeInput());
+        ItemStack rocket_input = this.getItem(getSlotRocketInput());
+        ItemStack output = this.getItem(getSlotOutput());
 
+
+        if (!upgrade_input.isEmpty() && !rocket_input.isEmpty() && output.isEmpty()) {
+            output = rocket_input.copy();
+            this.removeItem(getSlotUpgradeInput(), 1);
+            this.removeItem(getSlotRocketInput(), 1);
+            output.setTag(upgrade_input.getTagElement(BeyondEarth.MODID + ":upgrade").copy());
+            this.setItem(getSlotOutput(), output);
+        }
+     }
+
+    @Override
+    public boolean hasSpaceInOutput() {
+        return true;
     }
 
     @Override
@@ -78,11 +95,6 @@ public class RocketUpgraderBlockEntity extends AbstractMachineBlockEntity {
     @Override
     public AbstractContainerMenu createMenu(int id, Inventory inventory) {
         return new RocketUpgraderMenu.GuiContainer(id, inventory, this);
-    }
-
-    @Override
-    public boolean hasSpaceInOutput() {
-        return false;
     }
 
     @Override

@@ -38,6 +38,9 @@ public class TabsRegistry {
                 builder.accept(ItemsRegistry.CHEESE.get());
                 builder.accept(ItemsRegistry.FUEL_BUCKET.get());
                 builder.accept(ItemsRegistry.OIL_BUCKET.get());
+                builder.accept(ItemsRegistry.BASIC_FUEL_UPGRADE.get());
+                builder.accept(ItemsRegistry.ADVANCED_FUEL_UPGRADE.get());
+                builder.accept(ItemsRegistry.HYDROGEN_MOTOR_UPGRADE.get());
             }).build());
 
     public static RegistryObject<CreativeModeTab> MACHINES = CREATIVE_MOD_TAB.register("tab_machines", () -> CreativeModeTab.builder()
@@ -61,7 +64,6 @@ public class TabsRegistry {
             .icon(() -> new ItemStack(ItemsRegistry.DESH_ENGINE.get()))
             .withTabsBefore(MACHINES.getId())
             .displayItems((feature, builder) -> {
-                builder.accept(ItemsRegistry.COAL_TORCH_ITEM.get());
                 builder.accept(ItemsRegistry.HAMMER.get());
                 builder.accept(ItemsRegistry.IRON_ROD.get());
                 builder.accept(ItemsRegistry.OXYGEN_GEAR.get());
