@@ -4,7 +4,6 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.mrscauthd.beyond_earth.BeyondEarth;
 import net.mrscauthd.beyond_earth.client.renderers.entities.VehicleRenderer;
-import net.mrscauthd.beyond_earth.common.entities.IRocketEntity;
 import net.mrscauthd.beyond_earth.common.entities.RocketEntity;
 
 public class RocketTier4Renderer extends VehicleRenderer<RocketEntity, RocketTier4Model<RocketEntity>> {
@@ -16,12 +15,12 @@ public class RocketTier4Renderer extends VehicleRenderer<RocketEntity, RocketTie
     }
 
     @Override
-    public ResourceLocation getTextureLocation(RocketEntity p_114482_) {
+    public ResourceLocation getTextureLocation(RocketEntity rocket) {
         return TEXTURE;
     }
 
     @Override
     protected boolean isShaking(RocketEntity rocket) {
-        return rocket.getEntityData().get(IRocketEntity.ROCKET_START);
+        return rocket.getEntityData().get(RocketEntity.ROCKET_START);
     }
 }

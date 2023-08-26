@@ -9,7 +9,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.client.gui.overlay.ForgeGui;
 import net.minecraftforge.client.gui.overlay.IGuiOverlay;
 import net.mrscauthd.beyond_earth.BeyondEarth;
-import net.mrscauthd.beyond_earth.common.entities.IRocketEntity;
+import net.mrscauthd.beyond_earth.common.entities.RocketEntity;
 import net.mrscauthd.beyond_earth.common.util.Methods;
 
 public class RocketTimerOverlay implements IGuiOverlay {
@@ -35,8 +35,8 @@ public class RocketTimerOverlay implements IGuiOverlay {
             int timer = 0;
 
             /** GET TIMER */
-            if (vehicle instanceof IRocketEntity) {
-                timer = vehicle.getEntityData().get(IRocketEntity.START_TIMER);
+            if (vehicle instanceof RocketEntity) {
+                timer = vehicle.getEntityData().get(RocketEntity.START_TIMER);
             }
 
             int timerWidth = width / 2 - 31;

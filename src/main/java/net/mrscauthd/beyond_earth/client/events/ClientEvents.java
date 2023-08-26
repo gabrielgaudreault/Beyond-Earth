@@ -24,16 +24,16 @@ import net.minecraftforge.client.event.sound.PlaySoundEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.mrscauthd.beyond_earth.BeyondEarth;
-import net.mrscauthd.beyond_earth.client.sounds.TickableJetSuitFlySound;
-import net.mrscauthd.beyond_earth.client.util.ClientMethods;
-import net.mrscauthd.beyond_earth.common.entities.IRocketEntity;
-import net.mrscauthd.beyond_earth.common.entities.LanderEntity;
-import net.mrscauthd.beyond_earth.common.util.Methods;
-import net.mrscauthd.beyond_earth.client.sounds.SpaceSoundSystem;
-import net.mrscauthd.beyond_earth.client.sounds.TickableSpaceSoundSystem;
 import net.mrscauthd.beyond_earth.client.events.forge.RenderHandItemEvent;
 import net.mrscauthd.beyond_earth.client.events.forge.RenderViewEvent;
 import net.mrscauthd.beyond_earth.client.events.forge.SetupLivingBipedAnimEvent;
+import net.mrscauthd.beyond_earth.client.sounds.SpaceSoundSystem;
+import net.mrscauthd.beyond_earth.client.sounds.TickableJetSuitFlySound;
+import net.mrscauthd.beyond_earth.client.sounds.TickableSpaceSoundSystem;
+import net.mrscauthd.beyond_earth.client.util.ClientMethods;
+import net.mrscauthd.beyond_earth.common.entities.LanderEntity;
+import net.mrscauthd.beyond_earth.common.entities.RocketEntity;
+import net.mrscauthd.beyond_earth.common.util.Methods;
 
 @Mod.EventBusSubscriber(modid = BeyondEarth.MODID, value = Dist.CLIENT)
 public class ClientEvents {
@@ -118,7 +118,7 @@ public class ClientEvents {
             CameraType cameraType = mc.options.getCameraType();
 
             if (cameraType.equals(CameraType.THIRD_PERSON_FRONT) || cameraType.equals(CameraType.THIRD_PERSON_BACK)) {
-                if (riddingEntity.getEntityData().get(IRocketEntity.ROCKET_START)) {
+                if (riddingEntity.getEntityData().get(RocketEntity.ROCKET_START)) {
                     ClientMethods.setBobView(event.getPoseStack(), event.getTick());
                     event.setCanceled(true);
                 }

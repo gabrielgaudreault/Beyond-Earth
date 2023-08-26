@@ -4,13 +4,13 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.mrscauthd.beyond_earth.common.armors.JetSuit;
-import net.mrscauthd.beyond_earth.common.entities.IRocketEntity;
+import net.mrscauthd.beyond_earth.common.entities.RocketEntity;
 import net.mrscauthd.beyond_earth.common.util.Methods;
 
 public class KeyMethods {
 
     public static void startRocket(Player player) {
-        if (player.isPassenger() && player.getVehicle() instanceof IRocketEntity rocket) {
+        if (player.isPassenger() && player.getVehicle() instanceof RocketEntity rocket) {
 
             rocket.startRocket();
         }
