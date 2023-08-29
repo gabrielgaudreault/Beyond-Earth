@@ -3,6 +3,7 @@ package net.mrscauthd.beyond_earth.common.items;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -43,6 +44,9 @@ public class RocketItem extends VehicleItem {
     public static final String FUEL_TAG = BeyondEarth.MODID + ":fuel";
     public static final String BUCKET_TAG = BeyondEarth.MODID + ":buckets";
 
+    public int fuelCapacityModifier = 0;
+    public int fuelUsageModifier = 0;
+
     public RocketItem(Properties properties) {
         super(properties);
     }
@@ -61,7 +65,7 @@ public class RocketItem extends VehicleItem {
     }
 
     public int getFuelBuckets() {
-        return Config.ROCKET_FUEL_BUCKETS.get();
+        return RocketEntity.DEFAULT_FUEL_BUCKETS + fuelCapacityModifier;
     }
 
     @Override
@@ -113,6 +117,8 @@ public class RocketItem extends VehicleItem {
 
                     /** SET TAGS */
                     rocket.getEntityData().set(RocketEntity.FUEL, itemStack.getOrCreateTag().getInt(FUEL_TAG));
+                    rocket.getEntityData().set(RocketEntity.FUEL_BUCKET_NEEDED, getFuelBuckets());
+                    rocket.getEntityData().set(RocketEntity.FUEL_USAGE, RocketEntity.DEFAULT_FUEL_USAGE + fuelUsageModifier);
 
                     /** CALL PLACE ROCKET EVENT */
                     MinecraftForge.EVENT_BUS.post(new PlaceRocketEvent(rocket, context));
@@ -140,6 +146,9 @@ public class RocketItem extends VehicleItem {
         int fuel = itemstack.getOrCreateTag().getInt(FUEL_TAG);
         int capacity = this.getFuelBuckets() * FluidUtil2.BUCKET_SIZE;
         list.add(GaugeTextHelper.buildFuelStorageTooltip(GaugeValueHelper.getFuel(fuel, capacity), ChatFormatting.GRAY));
+
+        list.add(Component.literal("Fuel Capacity Modifier : " + fuelCapacityModifier));
+        list.add(Component.literal("Fuel Usage Modifier : " + fuelUsageModifier));
     }
 
     @Override

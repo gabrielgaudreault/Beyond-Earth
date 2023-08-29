@@ -1,33 +1,21 @@
 package net.mrscauthd.beyond_earth.common.entities;
 
+import com.google.common.collect.Sets;
+import io.netty.buffer.Unpooled;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.Tag;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.HasCustomInventoryScreen;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.common.MinecraftForge;
-import net.mrscauthd.beyond_earth.BeyondEarth;
-import net.mrscauthd.beyond_earth.common.blocks.entities.machines.gauge.IGaugeValuesProvider;
-import net.mrscauthd.beyond_earth.common.config.Config;
-import net.mrscauthd.beyond_earth.common.events.forge.SetRocketItemStackEvent;
-import net.mrscauthd.beyond_earth.common.registries.ItemsRegistry;
-import net.mrscauthd.beyond_earth.common.registries.ParticleRegistry;
-import com.google.common.collect.Sets;
-import io.netty.buffer.Unpooled;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.nbt.ListTag;
-import net.minecraft.nbt.Tag;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.InteractionHand;
@@ -41,11 +29,15 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.vehicle.DismountHelper;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.BucketItem;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
@@ -53,12 +45,17 @@ import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.wrapper.CombinedInvWrapper;
 import net.minecraftforge.network.NetworkHooks;
+import net.mrscauthd.beyond_earth.BeyondEarth;
 import net.mrscauthd.beyond_earth.common.blocks.RocketLaunchPad;
 import net.mrscauthd.beyond_earth.common.blocks.entities.machines.gauge.GaugeValueHelper;
 import net.mrscauthd.beyond_earth.common.blocks.entities.machines.gauge.IGaugeValue;
+import net.mrscauthd.beyond_earth.common.blocks.entities.machines.gauge.IGaugeValuesProvider;
 import net.mrscauthd.beyond_earth.common.events.forge.SetPlanetSelectionMenuNeededNbtEvent;
+import net.mrscauthd.beyond_earth.common.events.forge.SetRocketItemStackEvent;
 import net.mrscauthd.beyond_earth.common.keybinds.KeyVariables;
 import net.mrscauthd.beyond_earth.common.menus.RocketMenu;
+import net.mrscauthd.beyond_earth.common.registries.ItemsRegistry;
+import net.mrscauthd.beyond_earth.common.registries.ParticleRegistry;
 import net.mrscauthd.beyond_earth.common.registries.SoundRegistry;
 import net.mrscauthd.beyond_earth.common.registries.TagRegistry;
 import net.mrscauthd.beyond_earth.common.util.FluidUtil2;
@@ -72,9 +69,13 @@ import java.util.Set;
 
 public class RocketEntity extends IVehicleEntity implements HasCustomInventoryScreen, IGaugeValuesProvider {
 	public static final int DEFAULT_FUEL_BUCKETS = 3;
+	public static final int DEFAULT_DISTANCE_TRAVELABLE = 600000;
+	public static final int DEFAULT_FUEL_USAGE = 3;
 
 	public static final EntityDataAccessor<Boolean> ROCKET_START = SynchedEntityData.defineId(RocketEntity.class, EntityDataSerializers.BOOLEAN);
 	public static final EntityDataAccessor<Integer> FUEL = SynchedEntityData.defineId(RocketEntity.class, EntityDataSerializers.INT);
+	public static final EntityDataAccessor<Integer> FUEL_BUCKET_NEEDED = SynchedEntityData.defineId(RocketEntity.class, EntityDataSerializers.INT);
+	public static final EntityDataAccessor<Integer> FUEL_USAGE = SynchedEntityData.defineId(RocketEntity.class, EntityDataSerializers.INT);
 	public static final EntityDataAccessor<Integer> START_TIMER = SynchedEntityData.defineId(RocketEntity.class, EntityDataSerializers.INT);
 
 	public RocketEntity(EntityType<?> type, Level level) {
@@ -85,16 +86,15 @@ public class RocketEntity extends IVehicleEntity implements HasCustomInventorySc
 	}
 
 	public double getRocketSpeed() {
-		return 0.63;
+		return 0.6 + 0.1 * (DEFAULT_FUEL_USAGE - this.getEntityData().get(FUEL_USAGE));
 	}
 
 	public double getMaxDistanceTravelable() {
-		CompoundTag tag = this.serializeNBT();
-		return (double) (600000 + tag.getInt("fuelLimit")) / tag.getInt("fuelUsage");
+		return (double) (DEFAULT_DISTANCE_TRAVELABLE * this.getEntityData().get(FUEL_BUCKET_NEEDED)) / this.getEntityData().get(FUEL_USAGE);
 	}
 
 	public int getBucketsOfFull() {
-		return Config.ROCKET_FUEL_BUCKETS.get();
+		return this.getEntityData().get(FUEL_BUCKET_NEEDED);
 	}
 
 	public double getPassengersRidingOffset() {
@@ -239,6 +239,8 @@ public class RocketEntity extends IVehicleEntity implements HasCustomInventorySc
 		compound.putBoolean("rocket_start", this.getEntityData().get(ROCKET_START));
 		compound.putInt("fuel", this.getEntityData().get(FUEL));
 		compound.putInt("start_timer", this.getEntityData().get(START_TIMER));
+		compound.putInt("fuel_capacity", this.getEntityData().get(FUEL_BUCKET_NEEDED));
+		compound.putInt("fuel_usage", this.getEntityData().get(FUEL_USAGE));
 	}
 
 	@Override
@@ -253,6 +255,8 @@ public class RocketEntity extends IVehicleEntity implements HasCustomInventorySc
 		this.getEntityData().set(ROCKET_START, compound.getBoolean("rocket_start"));
 		this.getEntityData().set(FUEL, compound.getInt("fuel"));
 		this.getEntityData().set(START_TIMER, compound.getInt("start_timer"));
+		this.getEntityData().set(FUEL_BUCKET_NEEDED, compound.getInt("fuel_capacity"));
+		this.getEntityData().set(FUEL_USAGE, compound.getInt("fuel_usage"));
 	}
 
 	@Override

@@ -14,15 +14,21 @@ import net.mrscauthd.beyond_earth.client.registries.ItemRendererRegistry;
 import java.util.function.Consumer;
 
 public class RocketUpgradeItem extends Item {
-    public RocketUpgradeItem(Properties properties, int fuelLimitModifier, int fuelUsageModifier) {
+    private int fuelCapacityModifier;
+    private int fuelUsageModifier;
+
+    public RocketUpgradeItem(Properties properties, int fuelCapacityModifier, int fuelUsageModifier) {
         super(properties);
 
-        if (Minecraft.getInstance().level != null) {
-            CompoundTag upgrade = getDefaultInstance().getOrCreateTagElement(BeyondEarth.MODID + ":upgrade");
-            upgrade.putInt("fuelLimit", fuelLimitModifier);
-            upgrade.putInt("fuelUsage", fuelUsageModifier);
-        }
+        this.fuelCapacityModifier = fuelCapacityModifier;
+        this.fuelUsageModifier = fuelUsageModifier;
     }
 
+    public int getFuelCapacityModifier() {
+        return  fuelCapacityModifier;
+    }
 
+    public int getFuelUsageModifier() {
+        return fuelUsageModifier;
+    }
 }

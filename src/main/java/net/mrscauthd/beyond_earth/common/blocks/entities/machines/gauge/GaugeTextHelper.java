@@ -154,8 +154,8 @@ public class GaugeTextHelper {
 
 	public static MutableComponent buildBlockTooltip(GaugeTextBuilder builder, ChatFormatting color) {
 		builder.setTextStyle(Style.EMPTY.withColor(ChatFormatting.BLUE));
-		builder.setAmountStyle(Style.EMPTY.withColor(color));
-		builder.setCapacityStyle(Style.EMPTY.withColor(color));
+		builder.setAmountStyle(Style.EMPTY.withColor(ChatFormatting.GOLD));
+		builder.setCapacityStyle(Style.EMPTY.withColor(ChatFormatting.RED));
 		builder.setExtraStyle(0, Style.EMPTY.withColor(color));
 		return builder.build();
 	}

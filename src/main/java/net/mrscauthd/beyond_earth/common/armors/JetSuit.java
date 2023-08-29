@@ -404,6 +404,11 @@ public class JetSuit {
         public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, String type) {
             return BeyondEarth.MODID + ":textures/armor/jet_suit_pants.png";
         }
+
+        @Override
+        public int getFuelCapacity() {
+            return 1000;
+        }
     }
 
     public static class Boots extends ISpaceArmor.Boots {

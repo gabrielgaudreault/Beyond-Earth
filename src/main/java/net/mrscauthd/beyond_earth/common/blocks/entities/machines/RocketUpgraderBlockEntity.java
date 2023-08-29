@@ -20,6 +20,8 @@ import net.mrscauthd.beyond_earth.common.capabilities.oxygen.OxygenUtil;
 import net.mrscauthd.beyond_earth.common.config.Config;
 import net.mrscauthd.beyond_earth.common.data.recipes.BeyondEarthRecipeType;
 import net.mrscauthd.beyond_earth.common.data.recipes.OxygenMakingRecipeAbstract;
+import net.mrscauthd.beyond_earth.common.items.RocketItem;
+import net.mrscauthd.beyond_earth.common.items.RocketUpgradeItem;
 import net.mrscauthd.beyond_earth.common.menus.OxygenLoaderMenu;
 import net.mrscauthd.beyond_earth.common.menus.RocketUpgraderMenu;
 import net.mrscauthd.beyond_earth.common.registries.BlockEntityRegistry;
@@ -67,21 +69,27 @@ public class RocketUpgraderBlockEntity extends AbstractMachineBlockEntity {
     protected void tickProcessing() {
         ItemStack upgrade_input = this.getItem(getSlotUpgradeInput());
         ItemStack rocket_input = this.getItem(getSlotRocketInput());
-        ItemStack output = this.getItem(getSlotOutput());
 
+        if (!upgrade_input.isEmpty() && !rocket_input.isEmpty() && hasSpaceInOutput()) {
+            ItemStack output = rocket_input.copy();
 
-        if (!upgrade_input.isEmpty() && !rocket_input.isEmpty() && output.isEmpty()) {
-            output = rocket_input.copy();
-            this.removeItem(getSlotUpgradeInput(), 1);
-            this.removeItem(getSlotRocketInput(), 1);
-            output.setTag(upgrade_input.getTagElement(BeyondEarth.MODID + ":upgrade").copy());
-            this.setItem(getSlotOutput(), output);
+            if (output.getItem() instanceof RocketItem rocket) {
+                if (upgrade_input.getItem() instanceof RocketUpgradeItem upgrade) {
+                    rocket.fuelCapacityModifier = upgrade.getFuelCapacityModifier();
+                    rocket.fuelUsageModifier = upgrade.getFuelUsageModifier();
+                    output = rocket.asItem().getDefaultInstance();
+
+                    this.removeItem(getSlotUpgradeInput(), 1);
+                    this.removeItem(getSlotRocketInput(), 1);
+                    this.setItem(getSlotOutput(), output);
+                }
+            }
         }
      }
 
     @Override
     public boolean hasSpaceInOutput() {
-        return true;
+        return this.getItem(getSlotOutput()).isEmpty();
     }
 
     @Override

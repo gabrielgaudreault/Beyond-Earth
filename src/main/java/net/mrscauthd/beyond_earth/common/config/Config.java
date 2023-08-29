@@ -71,8 +71,6 @@ public class Config {
 
         public static final ForgeConfigSpec.ConfigValue<Integer> ROVER_FUEL_BUCKETS;
 
-        public static final ForgeConfigSpec.ConfigValue<Integer> ROCKET_FUEL_BUCKETS;
-
         public static final ForgeConfigSpec.ConfigValue<Boolean> WATER_TO_ICE_MOON;
         public static final ForgeConfigSpec.ConfigValue<Boolean> WATER_TO_ICE_GLACIO;
 
@@ -166,10 +164,6 @@ public class Config {
 
             BUILDER.push("Rover");
             ROVER_FUEL_BUCKETS = BUILDER.comment("Set required buckets for fuel full, default: " + RoverEntity.DEFAULT_FUEL_BUCKETS + " buckets").define("FuelBuckets", RoverEntity.DEFAULT_FUEL_BUCKETS);
-            BUILDER.pop();
-
-            BUILDER.push("Rocket");
-            ROCKET_FUEL_BUCKETS = BUILDER.comment("Set required buckets for fuel full, default: " + RocketEntity.DEFAULT_FUEL_BUCKETS + " buckets").define("FuelBuckets", RocketEntity.DEFAULT_FUEL_BUCKETS);
             BUILDER.pop();
 
             BUILDER.pop();

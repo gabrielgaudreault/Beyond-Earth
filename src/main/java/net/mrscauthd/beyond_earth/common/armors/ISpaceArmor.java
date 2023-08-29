@@ -1,35 +1,32 @@
 package net.mrscauthd.beyond_earth.common.armors;
 
-import java.util.HashMap;
-import java.util.List;
-
-import net.mrscauthd.beyond_earth.common.util.Methods;
-import org.jetbrains.annotations.Nullable;
-
 import com.google.common.collect.Maps;
-
 import net.minecraft.ChatFormatting;
-import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.mrscauthd.beyond_earth.BeyondEarth;
+import net.mrscauthd.beyond_earth.common.blocks.entities.machines.gauge.GaugeTextHelper;
+import net.mrscauthd.beyond_earth.common.blocks.entities.machines.gauge.GaugeValueHelper;
 import net.mrscauthd.beyond_earth.common.capabilities.oxygen.IOxygenStorage;
 import net.mrscauthd.beyond_earth.common.capabilities.oxygen.OxygenProvider;
 import net.mrscauthd.beyond_earth.common.capabilities.oxygen.OxygenUtil;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.HashMap;
+import java.util.List;
 
 public abstract class ISpaceArmor extends ArmorItem {
     private static final HashMap<String, ResourceLocation> TEXTURES = Maps.newHashMap();
+    public static final String FUEL_TAG = BeyondEarth.MODID + ":fuel";
 
     public ISpaceArmor(ArmorMaterial armorMaterial, Type equipmentSlot, Properties properties) {
         super(armorMaterial, equipmentSlot, properties);
@@ -42,8 +39,6 @@ public abstract class ISpaceArmor extends ArmorItem {
     }
 
     public static abstract class Chestplate extends ISpaceArmor {
-        public float oxygenTime;
-
         public Chestplate(ArmorMaterial armorMaterial, Type equipmentSlot, Properties properties) {
             super(armorMaterial, equipmentSlot, properties);
         }
@@ -52,7 +47,7 @@ public abstract class ISpaceArmor extends ArmorItem {
         public void appendHoverText(ItemStack itemStack, Level level, List<Component> list, TooltipFlag tooltipFlag) {
             super.appendHoverText(itemStack, level, list, tooltipFlag);
             IOxygenStorage oxygen = OxygenUtil.getItemStackOxygenStorage(itemStack);
-            list.add(Component.translatable("general." + BeyondEarth.MODID + ".oxygen").append(": ").withStyle(ChatFormatting.BLUE).append("\u00A76" + oxygen.getOxygen() + " mb" +  "\u00A78" + " | " + "\u00A7c" + oxygen.getMaxCapacity() + " mb"));
+            list.add(GaugeTextHelper.buildSpacesuitOxygenTooltip(GaugeValueHelper.getOxygen(oxygen.getOxygen(), oxygen.getMaxCapacity())));
         }
 
         @Override
@@ -63,7 +58,6 @@ public abstract class ISpaceArmor extends ArmorItem {
         @Override
         public void onArmorTick(ItemStack stack, Level level, Player player) {
             super.onArmorTick(stack, level, player);
-
         }
 
         public abstract int getOxygenCapacity();
@@ -73,6 +67,20 @@ public abstract class ISpaceArmor extends ArmorItem {
         public Leggings(ArmorMaterial armorMaterial, Type equipmentSlot, Properties properties) {
             super(armorMaterial, equipmentSlot, properties);
         }
+
+        public void appendHoverText(ItemStack itemStack, Level level, List<Component> list, TooltipFlag tooltipFlag) {
+            super.appendHoverText(itemStack, level, list, tooltipFlag);
+            int fuel = itemStack.getOrCreateTag().getInt(FUEL_TAG);
+            int capacity = this.getFuelCapacity();
+            list.add(GaugeTextHelper.buildFuelStorageTooltip(GaugeValueHelper.getFuel(fuel, capacity), ChatFormatting.GRAY));
+        }
+
+        @Override
+        public void onArmorTick(ItemStack stack, Level level, Player player) {
+            super.onArmorTick(stack, level, player);
+        }
+
+        public abstract int getFuelCapacity();
     }
 
     public static abstract class Boots extends ISpaceArmor {
