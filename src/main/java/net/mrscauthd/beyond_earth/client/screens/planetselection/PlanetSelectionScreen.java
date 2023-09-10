@@ -121,8 +121,8 @@ public class PlanetSelectionScreen extends Screen implements MenuAccess<PlanetSe
     /** BUTTON ROW END */
     public int rowEnd;
 
-    public PlanetSelectionScreen(PlanetSelectionMenu.GuiContainer menu, Inventory inventory, Component p_96550_) {
-        super(p_96550_);
+    public PlanetSelectionScreen(PlanetSelectionMenu.GuiContainer menu, Inventory inventory, Component component) {
+        super(component);
         this.menu = menu;
         this.starIndex.set(0);
     }

@@ -21,7 +21,7 @@ public class ItemsRegistry {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, BeyondEarth.MODID);
 
     /** VEHICLE ITEMS */
-    public static final RegistryObject<RocketItem> ROCKET_ITEM = ITEMS.register("rocket", () -> new RocketItem(new Item.Properties()));
+    public static final RegistryObject<RocketItem> ROCKET_ITEM = ITEMS.register("rocket", () -> new RocketItem(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<RoverItem> ROVER_ITEM = ITEMS.register("rover", () -> new RoverItem(new Item.Properties().stacksTo(1).rarity(Rarity.RARE)));
 
     /** SPAWN EGG ITEMS */

@@ -82,11 +82,13 @@ public class RocketEntity extends IVehicleEntity implements HasCustomInventorySc
 		super(type, level);
 		this.entityData.define(ROCKET_START, false);
 		this.entityData.define(FUEL, 0);
+		this.entityData.define(FUEL_BUCKET_NEEDED, DEFAULT_FUEL_BUCKETS);
+		this.entityData.define(FUEL_USAGE, DEFAULT_FUEL_USAGE);
 		this.entityData.define(START_TIMER, 0);
 	}
 
 	public double getRocketSpeed() {
-		return 0.6 + 0.1 * (DEFAULT_FUEL_USAGE - this.getEntityData().get(FUEL_USAGE));
+		return 0.64;
 	}
 
 	public double getMaxDistanceTravelable() {
@@ -104,6 +106,8 @@ public class RocketEntity extends IVehicleEntity implements HasCustomInventorySc
 	public ItemStack getRocketItem() {
 		ItemStack itemStack = new ItemStack(ItemsRegistry.ROCKET_ITEM.get(), 1);
 		itemStack.getOrCreateTag().putInt(BeyondEarth.MODID + ":fuel", this.getEntityData().get(FUEL));
+		itemStack.getOrCreateTag().putInt("fuelCapacityModifier", this.getEntityData().get(FUEL_BUCKET_NEEDED) - DEFAULT_FUEL_BUCKETS);
+		itemStack.getOrCreateTag().putInt("fuelUsageModifier", this.getEntityData().get(FUEL_USAGE) - DEFAULT_FUEL_USAGE);
 		MinecraftForge.EVENT_BUS.post(new SetRocketItemStackEvent(this, itemStack));
 
 		return itemStack;

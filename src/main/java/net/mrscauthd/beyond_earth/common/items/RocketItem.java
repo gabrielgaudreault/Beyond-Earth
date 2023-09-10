@@ -117,8 +117,8 @@ public class RocketItem extends VehicleItem {
 
                     /** SET TAGS */
                     rocket.getEntityData().set(RocketEntity.FUEL, itemStack.getOrCreateTag().getInt(FUEL_TAG));
-                    rocket.getEntityData().set(RocketEntity.FUEL_BUCKET_NEEDED, getFuelBuckets());
-                    rocket.getEntityData().set(RocketEntity.FUEL_USAGE, RocketEntity.DEFAULT_FUEL_USAGE + fuelUsageModifier);
+                    rocket.getEntityData().set(RocketEntity.FUEL_BUCKET_NEEDED, RocketEntity.DEFAULT_FUEL_BUCKETS + itemStack.getOrCreateTag().getInt("fuelCapacityModifier"));
+                    rocket.getEntityData().set(RocketEntity.FUEL_USAGE, RocketEntity.DEFAULT_FUEL_USAGE + itemStack.getOrCreateTag().getInt("fuelUsageModifier"));
 
                     /** CALL PLACE ROCKET EVENT */
                     MinecraftForge.EVENT_BUS.post(new PlaceRocketEvent(rocket, context));

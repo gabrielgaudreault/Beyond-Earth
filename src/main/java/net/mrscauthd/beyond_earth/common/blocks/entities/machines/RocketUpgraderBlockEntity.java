@@ -20,6 +20,7 @@ import net.mrscauthd.beyond_earth.common.capabilities.oxygen.OxygenUtil;
 import net.mrscauthd.beyond_earth.common.config.Config;
 import net.mrscauthd.beyond_earth.common.data.recipes.BeyondEarthRecipeType;
 import net.mrscauthd.beyond_earth.common.data.recipes.OxygenMakingRecipeAbstract;
+import net.mrscauthd.beyond_earth.common.entities.RocketEntity;
 import net.mrscauthd.beyond_earth.common.items.RocketItem;
 import net.mrscauthd.beyond_earth.common.items.RocketUpgradeItem;
 import net.mrscauthd.beyond_earth.common.menus.OxygenLoaderMenu;
@@ -78,6 +79,9 @@ public class RocketUpgraderBlockEntity extends AbstractMachineBlockEntity {
                     rocket.fuelCapacityModifier = upgrade.getFuelCapacityModifier();
                     rocket.fuelUsageModifier = upgrade.getFuelUsageModifier();
                     output = rocket.asItem().getDefaultInstance();
+
+                    output.getOrCreateTag().putInt("fuelCapacityModifier", rocket.fuelCapacityModifier);
+                    output.getOrCreateTag().putInt("fuelUsageModifier", RocketEntity.DEFAULT_FUEL_USAGE + rocket.fuelUsageModifier);
 
                     this.removeItem(getSlotUpgradeInput(), 1);
                     this.removeItem(getSlotRocketInput(), 1);
