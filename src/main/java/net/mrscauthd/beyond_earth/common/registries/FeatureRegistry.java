@@ -17,4 +17,6 @@ public class FeatureRegistry {
      */
     public static final RegistryObject<InfernalSpireColumn> INFERNAL_SPIRE_COLUMN = FEATURES.register("infernal_spire_column", () -> new InfernalSpireColumn(ColumnFeatureConfiguration.CODEC));
     public static final RegistryObject<ModifiedBlockBlobFeature> MODIFIED_BLOCK_BLOB = FEATURES.register("modified_block_blob", () -> new ModifiedBlockBlobFeature(BlockStateConfiguration.CODEC));
+
+
 }

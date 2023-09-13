@@ -1,7 +1,6 @@
 package net.mrscauthd.beyond_earth.common.registries;
 
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -145,6 +144,12 @@ public class BlockRegistry {
     public static final RegistryObject<Block> GLACIO_WOOD_SLAB = BLOCKS.register("glacio_wood_slab", () -> new SlabBlock(BlockBehaviour.Properties.copy(Blocks.OAK_SLAB)));
     public static final RegistryObject<Block> PERMAFROST_GRASS = BLOCKS.register("permafrost_grass", () -> new PermafrostGrass(BlockBehaviour.Properties.copy(Blocks.GRASS_BLOCK)));
     public static final RegistryObject<Block> PERMAFROST_DIRT = BLOCKS.register("permafrost_dirt", () -> new Block(BlockBehaviour.Properties.copy(Blocks.DIRT)));
+
+    // Uranium
+    public static final RegistryObject<Block> MERCURY_URANIUM_ORE = BLOCKS.register("mercury_uranium_ore", () -> new UraniumOre(BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(3.5F).sound(SoundType.LANTERN).noOcclusion().requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> URANIUM_BLOCK = BLOCKS.register("uranium_block", () -> new UraniumBlock(BlockBehaviour.Properties.copy(Blocks.DIRT)));
+    public static final RegistryObject<Block> RAW_URANIUM_BLOCK = BLOCKS.register("uranium_raw_block", () -> new UraniumRawBlock(BlockBehaviour.Properties.copy(Blocks.DIRT)));
+
 
     /** FLUID BLOCKS */
     //FUEL
