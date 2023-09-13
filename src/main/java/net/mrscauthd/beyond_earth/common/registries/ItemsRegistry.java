@@ -240,7 +240,7 @@ public class ItemsRegistry {
 
     //Items
     public static final RegistryObject<UraniumItem> RAW_URANIUM = ITEMS.register("raw_uranium", () -> new UraniumItem(new Item.Properties()));
-    public static final RegistryObject<UraniumItem> URANIUM = ITEMS.register("uranium", () -> new UraniumItem(new Item.Properties()));
+    public static final RegistryObject<UraniumItem> URANIUM_INGOT = ITEMS.register("uranium_ingot", () -> new UraniumItem(new Item.Properties()));
 
 
     /** BUCKET ITEMS */
