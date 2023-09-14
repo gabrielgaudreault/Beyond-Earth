@@ -45,10 +45,7 @@ import net.mrscauthd.beyond_earth.common.events.forge.FireworkRocketUseEvent;
 import net.mrscauthd.beyond_earth.common.events.forge.ItemEntityTickAtEndEvent;
 import net.mrscauthd.beyond_earth.common.events.forge.LivingSprintingEvent;
 import net.mrscauthd.beyond_earth.common.events.forge.TryStartFallFlyingEvent;
-import net.mrscauthd.beyond_earth.common.registries.LevelRegistry;
-import net.mrscauthd.beyond_earth.common.registries.NetworkRegistry;
-import net.mrscauthd.beyond_earth.common.registries.SoundRegistry;
-import net.mrscauthd.beyond_earth.common.registries.TagRegistry;
+import net.mrscauthd.beyond_earth.common.registries.*;
 import net.mrscauthd.beyond_earth.common.util.EntityGravity;
 import net.mrscauthd.beyond_earth.common.util.ItemGravity;
 import net.mrscauthd.beyond_earth.common.util.Methods;
@@ -305,8 +302,7 @@ public class Events {
         for (ItemStack stack : itemStacks) {
             if (stack.is(TagRegistry.RADIOACTIVE_ITEMS_TAG)) {
                 if(!Methods.isLivingInJetSuit(player)) {
-                    player.addEffect(new MobEffectInstance(MobEffects.POISON, 100, 1));
-                    BeyondEarth.LOGGER.info("Container Opened with radioactive items");
+                    player.addEffect(new MobEffectInstance(MobEffectsRegistry.RADIATION.get(), 100));
 
                 }
 

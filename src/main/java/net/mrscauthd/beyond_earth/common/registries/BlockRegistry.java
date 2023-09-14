@@ -146,7 +146,7 @@ public class BlockRegistry {
     public static final RegistryObject<Block> PERMAFROST_DIRT = BLOCKS.register("permafrost_dirt", () -> new Block(BlockBehaviour.Properties.copy(Blocks.DIRT)));
 
     // Uranium
-    public static final RegistryObject<Block> MERCURY_URANIUM_ORE = BLOCKS.register("mercury_uranium_ore", () -> new UraniumOre(BlockBehaviour.Properties.of().requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> MERCURY_URANIUM_ORE = BLOCKS.register("mercury_uranium_ore", () -> new UraniumOre(BlockBehaviour.Properties.of().mapColor(MapColor.STONE).sound(SoundType.STONE).strength(3.0F, 3.0F).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> URANIUM_BLOCK = BLOCKS.register("uranium_block", () -> new UraniumBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)));
     public static final RegistryObject<Block> RAW_URANIUM_BLOCK = BLOCKS.register("raw_uranium_block", () -> new UraniumRawBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)));
 
