@@ -245,6 +245,7 @@
 
   "death.attack.oxygen": "%1$s couldn\u0027t breathe anymore",
   "death.attack.venus.acid": "%1$s was a sacrifice to the acid",
+  "death.attack.radiations": "%1$s try to it uranium",
 
   "entity.beyond_earth.alien.farmer": "Farmer",
   "entity.beyond_earth.alien.fisherman": "Fisherman",

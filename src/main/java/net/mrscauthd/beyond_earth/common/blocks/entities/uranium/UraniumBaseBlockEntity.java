@@ -1,11 +1,14 @@
 package net.mrscauthd.beyond_earth.common.blocks.entities.uranium;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
+import net.mrscauthd.beyond_earth.common.registries.MobEffectsRegistry;
+import net.mrscauthd.beyond_earth.common.util.Methods;
 
 import java.util.List;
 
@@ -20,7 +23,10 @@ public class UraniumBaseBlockEntity extends BlockEntity  {
 
         List<LivingEntity> entities = this.level.getEntitiesOfClass(LivingEntity.class, area);
         for (LivingEntity entity : entities) {
-            entity.setSecondsOnFire(10);
+            if(!Methods.isLivingInJetSuit(entity)) {
+                entity.addEffect(new MobEffectInstance(MobEffectsRegistry.RADIATION.get(), 100));
+
+            }
         }
     }
 }

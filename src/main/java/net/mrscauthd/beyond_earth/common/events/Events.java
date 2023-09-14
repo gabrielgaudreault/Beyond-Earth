@@ -1,8 +1,12 @@
 package net.mrscauthd.beyond_earth.common.events;
 
+import net.minecraft.core.NonNullList;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.Container;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
@@ -11,6 +15,8 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
@@ -25,6 +31,7 @@ import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
+import net.minecraftforge.event.entity.player.PlayerContainerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.network.PacketDistributor;
@@ -41,11 +48,13 @@ import net.mrscauthd.beyond_earth.common.events.forge.TryStartFallFlyingEvent;
 import net.mrscauthd.beyond_earth.common.registries.LevelRegistry;
 import net.mrscauthd.beyond_earth.common.registries.NetworkRegistry;
 import net.mrscauthd.beyond_earth.common.registries.SoundRegistry;
+import net.mrscauthd.beyond_earth.common.registries.TagRegistry;
 import net.mrscauthd.beyond_earth.common.util.EntityGravity;
 import net.mrscauthd.beyond_earth.common.util.ItemGravity;
 import net.mrscauthd.beyond_earth.common.util.Methods;
 import net.mrscauthd.beyond_earth.common.util.OxygenSystem;
 import net.mrscauthd.beyond_earth.common.util.Planets;
+import org.checkerframework.dataflow.qual.SideEffectFree;
 
 @Mod.EventBusSubscriber(modid = BeyondEarth.MODID)
 public class Events {
@@ -66,6 +75,7 @@ public class Events {
                     player.getPersistentData().getBoolean(BeyondEarth.MODID + ":planet_selection_menu_open"));
         }
     }
+
 
     @SubscribeEvent
     public static void livingEntityTick(LivingEvent.LivingTickEvent event) {
@@ -284,5 +294,24 @@ public class Events {
 		// This can be null during the /reload command
 		if (event.getPlayer() != null)
 			NetworkRegistry.PACKET_HANDLER.send(PacketDistributor.PLAYER.with(() -> event.getPlayer()), holder);
+    }
+
+    @SubscribeEvent
+    public static void onPlayerOpenContainer(PlayerContainerEvent.Open event) {
+        Player player = event.getEntity();
+        AbstractContainerMenu container = event.getContainer();
+        NonNullList<ItemStack> itemStacks = container.getItems();
+
+        for (ItemStack stack : itemStacks) {
+            if (stack.is(TagRegistry.RADIOACTIVE_ITEMS_TAG)) {
+                if(!Methods.isLivingInJetSuit(player)) {
+                    player.addEffect(new MobEffectInstance(MobEffects.POISON, 100, 1));
+                    BeyondEarth.LOGGER.info("Container Opened with radioactive items");
+
+                }
+
+            }
+
+        }
     }
 }

@@ -31,4 +31,8 @@ public class TagRegistry {
 
     /** ROCKET UPGRADE */
     public static final TagKey<Item> ROCKET_UPGRADE_TAG = TagKey.create(Registries.ITEM, new ResourceLocation(BeyondEarth.MODID, "rocket_upgrade"));
+
+    /** ITEMS */
+    public static final TagKey<Item> RADIOACTIVE_ITEMS_TAG = TagKey.create(Registries.ITEM, new ResourceLocation(BeyondEarth.MODID, "radioactive_items"));
+
 }

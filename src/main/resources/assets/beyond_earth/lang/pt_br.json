@@ -222,6 +222,7 @@
   "key.beyond_earth.switch_jet_suit_mode": "Alternar Modo da Mochila a Jato",
   "death.attack.oxygen": "%1$s não conseguiu respirar mais",
   "death.attack.venus.acid": "%1$s foi sacrificado ao ácido",
+  "death.attack.radiations": "%1$s try to it uranium",
   "entity.beyond_earth.alien.farmer": "Agricultor",
   "entity.beyond_earth.alien.fisherman": "Pescador",
   "entity.beyond_earth.alien.shepherd": "Pastor",

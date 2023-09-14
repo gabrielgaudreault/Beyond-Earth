@@ -222,6 +222,8 @@
   "key.beyond_earth.switch_jet_suit_mode": "Changer Le Mode De Vol Du Jet Suit",
   "death.attack.oxygen": "%1$s N'e Pouvais Plus Respirer",
   "death.attack.venus.acid": "%1$s C'était Un Sacrifice à L'acide",
+  "death.attack.radiations": "%1$s a essayé de manger de l'uranium",
+
   "entity.beyond_earth.alien.farmer": "Fermier",
   "entity.beyond_earth.alien.fisherman": "Pêcheur",
   "entity.beyond_earth.alien.shepherd": "Berger",

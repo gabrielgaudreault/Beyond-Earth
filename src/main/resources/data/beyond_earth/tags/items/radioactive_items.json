@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "beyond_earth:uranium_block",
+    "beyond_earth:raw_uranium_block",
+    "beyond_earth:uranium_ingot",
+    "beyond_earth:raw_uranium"
+
+  ]
+}

@@ -220,6 +220,7 @@
   "key.beyond_earth.switch_jet_suit_mode": "제트 슈트 모드 변경",
   "death.attack.oxygen": "%1$s은(는) 더 이상 숨 쉴 수 없습니다",
   "death.attack.venus.acid": "%1$s은(는) 대량의 산성에 희생되었습니다",
+  "death.attack.radiations": "%1$s try to it uranium",
   "entity.beyond_earth.alien.farmer": "농부",
   "entity.beyond_earth.alien.fisherman": "어부",
   "entity.beyond_earth.alien.shepherd": "양치기",
