@@ -222,6 +222,7 @@ public class ItemsRegistry {
     public static final RegistryObject<BlockItem> MARS_OSTRUM_ORE_ITEM = ITEMS.register("mars_ostrum_ore", () -> new BlockItem(BlockRegistry.MARS_OSTRUM_ORE.get(), new Item.Properties()));
     public static final RegistryObject<BlockItem> MARS_ICE_SHARD_ORE_ITEM = ITEMS.register("mars_ice_shard_ore", () -> new BlockItem(BlockRegistry.MARS_ICE_SHARD_ORE.get(), new Item.Properties()));
     public static final RegistryObject<BlockItem> MERCURY_IRON_ORE_ITEM = ITEMS.register("mercury_iron_ore", () -> new BlockItem(BlockRegistry.MERCURY_IRON_ORE.get(), new Item.Properties()));
+    public static final RegistryObject<BlockItem> MERCURY_URANIUM_ORE_ITEM = ITEMS.register("mercury_uranium_ore", () -> new UraniumBlockItem(BlockRegistry.MERCURY_URANIUM_ORE.get(), new Item.Properties()));
     public static final RegistryObject<BlockItem> VENUS_COAL_ORE_ITEM = ITEMS.register("venus_coal_ore", () -> new BlockItem(BlockRegistry.VENUS_COAL_ORE.get(), new Item.Properties()));
     public static final RegistryObject<BlockItem> VENUS_GOLD_ORE_ITEM = ITEMS.register("venus_gold_ore", () -> new BlockItem(BlockRegistry.VENUS_GOLD_ORE.get(), new Item.Properties()));
     public static final RegistryObject<BlockItem> VENUS_DIAMOND_ORE_ITEM = ITEMS.register("venus_diamond_ore", () -> new BlockItem(BlockRegistry.VENUS_DIAMOND_ORE.get(), new Item.Properties()));
@@ -231,6 +232,16 @@ public class ItemsRegistry {
     public static final RegistryObject<BlockItem> GLACIO_COPPER_ORE_ITEM = ITEMS.register("glacio_copper_ore", () -> new BlockItem(BlockRegistry.GLACIO_COPPER_ORE.get(), new Item.Properties()));
     public static final RegistryObject<BlockItem> GLACIO_IRON_ORE_ITEM = ITEMS.register("glacio_iron_ore", () -> new BlockItem(BlockRegistry.GLACIO_IRON_ORE.get(), new Item.Properties()));
     public static final RegistryObject<BlockItem> GLACIO_LAPIS_ORE_ITEM = ITEMS.register("glacio_lapis_ore", () -> new BlockItem(BlockRegistry.GLACIO_LAPIS_ORE.get(), new Item.Properties()));
+
+    /** URANIUM */
+    // Blocks
+    public static final RegistryObject<BlockItem> URANIUM_BLOCK = ITEMS.register("uranium_block", () -> new UraniumBlockItem(BlockRegistry.URANIUM_BLOCK.get(), new Item.Properties()));
+    public static final RegistryObject<BlockItem> RAW_URANIUM_BLOCK = ITEMS.register("raw_uranium_block", () -> new UraniumBlockItem(BlockRegistry.RAW_URANIUM_BLOCK.get(), new Item.Properties()));
+
+    //Items
+    public static final RegistryObject<RadioactiveItem> RAW_URANIUM = ITEMS.register("raw_uranium", () -> new RadioactiveItem(new Item.Properties()));
+    public static final RegistryObject<RadioactiveItem> URANIUM_INGOT = ITEMS.register("uranium_ingot", () -> new RadioactiveItem(new Item.Properties()));
+
 
     /** BUCKET ITEMS */
     public static final RegistryObject<BucketItem> FUEL_BUCKET = ITEMS.register("fuel_bucket", () -> new ModifiedBucketItem(FluidRegistry.FUEL_STILL, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1), true));

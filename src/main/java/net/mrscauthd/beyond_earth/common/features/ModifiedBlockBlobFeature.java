@@ -15,6 +15,7 @@ public class ModifiedBlockBlobFeature extends Feature<BlockStateConfiguration> {
         super(p_65248_);
     }
 
+    @Override
     public boolean place(FeaturePlaceContext<BlockStateConfiguration> p_159471_) {
         BlockPos blockpos = p_159471_.origin();
         WorldGenLevel worldgenlevel = p_159471_.level();

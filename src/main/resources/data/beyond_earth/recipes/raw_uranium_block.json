@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "beyond_earth",
+  "result": {
+    "item": "beyond_earth:raw_uranium_block"
+  },
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "tag": "beyond_earth:raw_uranium"
+    }
+  }
+}

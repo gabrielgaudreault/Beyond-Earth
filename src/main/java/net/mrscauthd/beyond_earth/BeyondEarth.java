@@ -44,6 +44,7 @@ public class BeyondEarth {
 		StructureRegistry.STRUCTURES.register(bus);
 		FeatureRegistry.FEATURES.register(bus);
 		TabsRegistry.CREATIVE_MOD_TAB.register(bus);
+		MobEffectsRegistry.MOB_EFFECTS.register(bus);
 
 		MinecraftForge.EVENT_BUS.register(this);
 	}

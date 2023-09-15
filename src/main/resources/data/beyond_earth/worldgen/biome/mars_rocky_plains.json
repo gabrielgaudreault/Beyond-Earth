@@ -50,7 +50,8 @@
 	  "minecraft:cave_vines",
       "minecraft:lush_caves_clay",
 	  "minecraft:lush_caves_vegetation",
-	  "minecraft:classic_vines_cave_feature"
+	  "minecraft:classic_vines_cave_feature",
+      "beyond_earth:beyond_earth:mars_rock"
     ]
   ]
 }
