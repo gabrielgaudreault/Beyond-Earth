@@ -32,7 +32,6 @@ public abstract class AbstractGaugeDataRenderer {
 
     public void render(GuiGraphics graphics, int left, int top, int width, int height) {
         this.drawBorder(graphics, left, top, width, height);
-
         int padding = this.getBorderWidth();
         Rectangle2d innerBounds = new Rectangle2d(left + padding, top + padding, width - padding * 2,
                 height - padding * 2);

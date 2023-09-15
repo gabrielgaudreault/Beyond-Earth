@@ -69,13 +69,14 @@ import java.util.Set;
 
 public class RocketEntity extends IVehicleEntity implements HasCustomInventoryScreen, IGaugeValuesProvider {
 	public static final int DEFAULT_FUEL_BUCKETS = 3;
-	public static final int DEFAULT_DISTANCE_TRAVELABLE = 600000;
+	public static final long DEFAULT_DISTANCE_TRAVELABLE = 13500000;
 	public static final int DEFAULT_FUEL_USAGE = 3;
 
 	public static final EntityDataAccessor<Boolean> ROCKET_START = SynchedEntityData.defineId(RocketEntity.class, EntityDataSerializers.BOOLEAN);
 	public static final EntityDataAccessor<Integer> FUEL = SynchedEntityData.defineId(RocketEntity.class, EntityDataSerializers.INT);
 	public static final EntityDataAccessor<Integer> FUEL_BUCKET_NEEDED = SynchedEntityData.defineId(RocketEntity.class, EntityDataSerializers.INT);
 	public static final EntityDataAccessor<Integer> FUEL_USAGE = SynchedEntityData.defineId(RocketEntity.class, EntityDataSerializers.INT);
+	public static final EntityDataAccessor<Long> MAX_DISTANCE_TRAVELABLE = SynchedEntityData.defineId(RocketEntity.class, EntityDataSerializers.LONG);
 	public static final EntityDataAccessor<Integer> START_TIMER = SynchedEntityData.defineId(RocketEntity.class, EntityDataSerializers.INT);
 
 	public RocketEntity(EntityType<?> type, Level level) {
@@ -84,6 +85,7 @@ public class RocketEntity extends IVehicleEntity implements HasCustomInventorySc
 		this.entityData.define(FUEL, 0);
 		this.entityData.define(FUEL_BUCKET_NEEDED, DEFAULT_FUEL_BUCKETS);
 		this.entityData.define(FUEL_USAGE, DEFAULT_FUEL_USAGE);
+		this.entityData.define(MAX_DISTANCE_TRAVELABLE, DEFAULT_DISTANCE_TRAVELABLE);
 		this.entityData.define(START_TIMER, 0);
 	}
 
@@ -92,7 +94,8 @@ public class RocketEntity extends IVehicleEntity implements HasCustomInventorySc
 	}
 
 	public double getMaxDistanceTravelable() {
-		return (double) (DEFAULT_DISTANCE_TRAVELABLE * this.getEntityData().get(FUEL_BUCKET_NEEDED)) / this.getEntityData().get(FUEL_USAGE);
+		return this.getEntityData().get(FUEL_BUCKET_NEEDED);
+		/** return (double) (DEFAULT_DISTANCE_TRAVELABLE * this.getEntityData().get(FUEL_BUCKET_NEEDED)) / this.getEntityData().get(FUEL_USAGE); */
 	}
 
 	public int getBucketsOfFull() {
@@ -245,6 +248,7 @@ public class RocketEntity extends IVehicleEntity implements HasCustomInventorySc
 		compound.putInt("start_timer", this.getEntityData().get(START_TIMER));
 		compound.putInt("fuel_capacity", this.getEntityData().get(FUEL_BUCKET_NEEDED));
 		compound.putInt("fuel_usage", this.getEntityData().get(FUEL_USAGE));
+		compound.putDouble(BeyondEarth.MODID + ":rocket_distance", this.getEntityData().get(MAX_DISTANCE_TRAVELABLE));
 	}
 
 	@Override
@@ -261,6 +265,7 @@ public class RocketEntity extends IVehicleEntity implements HasCustomInventorySc
 		this.getEntityData().set(START_TIMER, compound.getInt("start_timer"));
 		this.getEntityData().set(FUEL_BUCKET_NEEDED, compound.getInt("fuel_capacity"));
 		this.getEntityData().set(FUEL_USAGE, compound.getInt("fuel_usage"));
+		this.getEntityData().set(MAX_DISTANCE_TRAVELABLE, (long) compound.getDouble(BeyondEarth.MODID + ":rocket_distance"));
 	}
 
 	@Override

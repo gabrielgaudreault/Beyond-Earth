@@ -24,7 +24,7 @@ public class PlanetSelectionMenu {
         public GuiContainer(int id, Inventory inv, FriendlyByteBuf extraData) {
             super(ContainerRegistry.PLANET_SELECTION_GUI.get(), id);
             this.player = inv.player;
-            distance = this.player.getPersistentData().getInt(BeyondEarth.MODID + ":rocket_distance");
+            distance = this.player.getPersistentData().getDouble(BeyondEarth.MODID + ":rocket_distance");
         }
 
         public double getDistance() {
