@@ -1,9 +1,13 @@
 package net.mrscauthd.beyond_earth.common.effects;
 
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
 import net.mrscauthd.beyond_earth.common.registries.DamageSourceRegistry;
+
+import java.util.Random;
+import java.util.random.RandomGenerator;
 
 public class RadiationEffect extends MobEffect {
     public RadiationEffect(MobEffectCategory pCategory, int pColor) {
@@ -12,9 +16,8 @@ public class RadiationEffect extends MobEffect {
 
     @Override
     public void applyEffectTick(LivingEntity pLivingEntity, int pAmplifier) {
-
-        if (pLivingEntity.getHealth() > 1.0F) {
-            pLivingEntity.hurt(pLivingEntity.damageSources().magic(), 1.0F);
+        if ((new Random()).nextInt(2) == 0) {
+            pLivingEntity.hurt(DamageSourceRegistry.of(pLivingEntity.level(), DamageSourceRegistry.DAMAGE_SOURCE_RADIATIONS), 1.0F);
         }
     }
 

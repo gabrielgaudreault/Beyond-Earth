@@ -50,7 +50,7 @@ public class FlagBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
 	}
 
 	@Override
-	public RenderShape getRenderShape(BlockState p_49232_) {
+	public RenderShape getRenderShape(BlockState state) {
 		return RenderShape.MODEL;
 	}
 
@@ -130,8 +130,8 @@ public class FlagBlock extends BaseEntityBlock implements SimpleWaterloggedBlock
 	}
 
 	@Override
-	public BlockEntity newBlockEntity(BlockPos p_153215_, BlockState p_153216_) {
-		return new FlagBlockEntity(p_153215_, p_153216_);
+	public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+		return new FlagBlockEntity(pos, state);
 	}
 
 	@Override

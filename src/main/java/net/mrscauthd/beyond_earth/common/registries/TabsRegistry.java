@@ -107,6 +107,8 @@ public class TabsRegistry {
                 builder.accept(ItemsRegistry.RAW_DESH.get());
                 builder.accept(ItemsRegistry.RAW_OSTRUM.get());
                 builder.accept(ItemsRegistry.RAW_CALORITE.get());
+                builder.accept(ItemsRegistry.RAW_URANIUM.get());
+                builder.accept(ItemsRegistry.URANIUM_INGOT.get());
             }).build());
 
     public static RegistryObject<CreativeModeTab> GLOBES = CREATIVE_MOD_TAB.register("tab_globes", () -> CreativeModeTab.builder()
@@ -204,6 +206,9 @@ public class TabsRegistry {
                 builder.accept(ItemsRegistry.GLACIO_WOOD_SLAB_ITEM.get());
                 builder.accept(ItemsRegistry.PERMAFROST_GRASS_ITEM.get());
                 builder.accept(ItemsRegistry.PERMAFROST_DIRT_ITEM.get());
+                builder.accept(ItemsRegistry.MERCURY_URANIUM_ORE_ITEM.get());
+                builder.accept(ItemsRegistry.RAW_URANIUM_BLOCK.get());
+                builder.accept(ItemsRegistry.URANIUM_BLOCK.get());
             }).build());
 
     public static RegistryObject<CreativeModeTab> SPAWN_EGGS = CREATIVE_MOD_TAB.register("tab_spawn_eggs", () -> CreativeModeTab.builder()
