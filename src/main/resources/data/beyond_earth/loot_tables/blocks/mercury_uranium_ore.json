@@ -38,7 +38,7 @@
                   "function": "minecraft:explosion_decay"
                 }
               ],
-              "name": "minecraft:raw_uranium"
+              "name": "beyond_earth:raw_uranium"
             }
           ]
         }

@@ -8,6 +8,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.mrscauthd.beyond_earth.common.registries.MobEffectsRegistry;
+import net.mrscauthd.beyond_earth.common.registries.TagRegistry;
 import net.mrscauthd.beyond_earth.common.util.Methods;
 
 import java.util.List;
@@ -23,9 +24,8 @@ public class UraniumBaseBlockEntity extends BlockEntity  {
 
         List<LivingEntity> entities = this.level.getEntitiesOfClass(LivingEntity.class, area);
         for (LivingEntity entity : entities) {
-            if(!Methods.isLivingInJetSuit(entity)) {
+            if(!Methods.isLivingInJetSuit(entity) && !entity.getType().is(TagRegistry.ENTITY_RADIATION_INVULNERABLE_TAG)) {
                 entity.addEffect(new MobEffectInstance(MobEffectsRegistry.RADIATION.get(), 100));
-
             }
         }
     }

@@ -40,6 +40,7 @@
     "beyond_earth:mercury_stone_bricks",
     "beyond_earth:mercury_stone_brick_slab",
     "beyond_earth:mercury_stone_brick_stairs",
+    "beyond_earth:mercury_uranium_ore",
     "beyond_earth:cracked_mercury_stone_bricks",
 	
     "beyond_earth:venus_sandstone_bricks",
@@ -76,8 +77,13 @@
     "beyond_earth:cracked_glacio_stone_bricks",
     "beyond_earth:glacio_stone_brick_slab",
     "beyond_earth:glacio_stone_brick_stairs",
+    "beyond_earth:glacio_uranium_ore",
+
     "beyond_earth:glacio_stone",
     "beyond_earth:permafrost",
+
+    "beyond_earth:raw_uranium_block",
+    "beyond_earth:uranium_block",
 
     "beyond_earth:fuel_refinery",
     "beyond_earth:compressor",

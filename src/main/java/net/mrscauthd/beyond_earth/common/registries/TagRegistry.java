@@ -18,6 +18,8 @@ public class TagRegistry {
     public static final TagKey<EntityType<?>> ENTITY_PLANET_FIRE_TAG = TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation(BeyondEarth.MODID, "planet_fire"));
     public static final TagKey<EntityType<?>> ENTITY_VENUS_RAIN_TAG = TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation(BeyondEarth.MODID, "venus_rain"));
 
+    public static final TagKey<EntityType<?>> ENTITY_RADIATION_INVULNERABLE_TAG = TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation(BeyondEarth.MODID, "radiations_invulnerable"));
+
     /** FLUIDS */
     public static final TagKey<Fluid> FLUID_VEHICLE_FUEL_TAG = TagKey.create(Registries.FLUID, new ResourceLocation(BeyondEarth.MODID, "vehicle_fuel"));
     public static final TagKey<Fluid> FLUID_OIL_FLUID_TAG = TagKey.create(Registries.FLUID, new ResourceLocation(BeyondEarth.MODID, "oil"));
