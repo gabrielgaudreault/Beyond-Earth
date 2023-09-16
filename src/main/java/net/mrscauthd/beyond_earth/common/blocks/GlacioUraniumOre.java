@@ -8,24 +8,25 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.mrscauthd.beyond_earth.common.blocks.entities.uranium.UraniumOreEntity;
+import net.mrscauthd.beyond_earth.common.blocks.entities.uranium.GlacioUraniumOreEntity;
+import net.mrscauthd.beyond_earth.common.blocks.entities.uranium.MercuryUraniumOreEntity;
 import org.jetbrains.annotations.Nullable;
 
-public class UraniumOre extends BaseEntityBlock {
-    public UraniumOre(Properties pProperties) {
+public class GlacioUraniumOre extends BaseEntityBlock {
+    public GlacioUraniumOre(Properties pProperties) {
         super(pProperties);
     }
 
     @Nullable
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return new UraniumOreEntity(pos, state);
+        return new GlacioUraniumOreEntity(pos, state);
     }
 
     @Override
     public <T2 extends BlockEntity> BlockEntityTicker<T2> getTicker(Level level, BlockState state, BlockEntityType<T2> type) {
         return (l, p, s, e) -> {
-            if (e instanceof UraniumOreEntity entity) {
+            if (e instanceof GlacioUraniumOreEntity entity) {
                 entity.tick();
             }
         };
