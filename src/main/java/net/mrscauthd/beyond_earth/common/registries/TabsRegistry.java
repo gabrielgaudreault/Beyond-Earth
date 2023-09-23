@@ -38,9 +38,6 @@ public class TabsRegistry {
                 builder.accept(ItemsRegistry.CHEESE.get());
                 builder.accept(ItemsRegistry.FUEL_BUCKET.get());
                 builder.accept(ItemsRegistry.OIL_BUCKET.get());
-                builder.accept(ItemsRegistry.BASIC_FUEL_UPGRADE.get());
-                builder.accept(ItemsRegistry.ADVANCED_FUEL_UPGRADE.get());
-                builder.accept(ItemsRegistry.HYDROGEN_MOTOR_UPGRADE.get());
             }).build());
 
     public static RegistryObject<CreativeModeTab> MACHINES = CREATIVE_MOD_TAB.register("tab_machines", () -> CreativeModeTab.builder()
@@ -82,6 +79,9 @@ public class TabsRegistry {
                 builder.accept(ItemsRegistry.OSTRUM_TANK.get());
                 builder.accept(ItemsRegistry.CALORITE_TANK.get());
                 builder.accept(ItemsRegistry.GLACIO_TREE_SAPLING_ITEM.get());
+                builder.accept(ItemsRegistry.BASIC_FUEL_UPGRADE.get());
+                builder.accept(ItemsRegistry.ADVANCED_FUEL_UPGRADE.get());
+                builder.accept(ItemsRegistry.HYDROGEN_MOTOR_UPGRADE.get());
             }).build());
 
     public static RegistryObject<CreativeModeTab> MATERIALS = CREATIVE_MOD_TAB.register("tab_materials", () -> CreativeModeTab.builder()
