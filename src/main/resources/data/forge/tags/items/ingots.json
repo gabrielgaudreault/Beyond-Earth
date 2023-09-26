@@ -4,6 +4,8 @@
     "#forge:ingots/desh",
     "#forge:ingots/ostrum",
     "#forge:ingots/calorite",
-    "#forge:ingots/steel"
+    "#forge:ingots/steel",
+    "#forge:ingots/uranium"
+
   ]
 }

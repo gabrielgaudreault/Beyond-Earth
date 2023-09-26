@@ -10,11 +10,13 @@
     "beyond_earth:mars_diamond_ore",
     "beyond_earth:mars_ice_shard_ore",
     "beyond_earth:mercury_iron_ore",
+    "beyond_earth:mercury_uranium_ore",
     "beyond_earth:venus_gold_ore",
     "beyond_earth:venus_coal_ore",
     "beyond_earth:venus_diamond_ore",
     "beyond_earth:venus_calorite_ore",
     "beyond_earth:glacio_lapis_ore",
-    "beyond_earth:glacio_ice_shard_ore"
+    "beyond_earth:glacio_ice_shard_ore",
+    "beyond_earth:glacio_uranium_ore"
   ]
 }
