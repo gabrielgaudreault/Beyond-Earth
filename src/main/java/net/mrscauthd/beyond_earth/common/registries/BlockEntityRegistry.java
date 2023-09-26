@@ -7,8 +7,9 @@ import net.minecraftforge.registries.RegistryObject;
 import net.mrscauthd.beyond_earth.BeyondEarth;
 import net.mrscauthd.beyond_earth.common.blocks.entities.FlagBlockEntity;
 import net.mrscauthd.beyond_earth.common.blocks.entities.GlobeTileEntity;
+import net.mrscauthd.beyond_earth.common.blocks.entities.uranium.GlacioUraniumOreEntity;
 import net.mrscauthd.beyond_earth.common.blocks.entities.uranium.UraniumBlockEntity;
-import net.mrscauthd.beyond_earth.common.blocks.entities.uranium.UraniumOreEntity;
+import net.mrscauthd.beyond_earth.common.blocks.entities.uranium.MercuryUraniumOreEntity;
 import net.mrscauthd.beyond_earth.common.blocks.entities.machines.*;
 import net.mrscauthd.beyond_earth.common.blocks.entities.uranium.RawUraniumBlockEntity;
 
@@ -33,8 +34,9 @@ public class BlockEntityRegistry {
     public static final RegistryObject<BlockEntityType<FlagBlockEntity>> FLAG_BLOCK_ENTITY = BLOCK_ENTITIES.register("flag", () -> BlockEntityType.Builder.of(FlagBlockEntity::new, BlockRegistry.FLAG_BLOCK.get()).build(null));
 
     /** BLOCK ENTITIES (Uranium) */
-    public static final RegistryObject<BlockEntityType<UraniumOreEntity>> URANIUM_ORE_BLOCK_ENTITY = BLOCK_ENTITIES.register("mercury_uranium_ore", () -> BlockEntityType.Builder.of(UraniumOreEntity::new, BlockRegistry.MERCURY_URANIUM_ORE.get()).build(null));
+    public static final RegistryObject<BlockEntityType<MercuryUraniumOreEntity>> MERCURY_URANIUM_ORE_BLOCK_ENTITY = BLOCK_ENTITIES.register("mercury_uranium_ore", () -> BlockEntityType.Builder.of(MercuryUraniumOreEntity::new, BlockRegistry.MERCURY_URANIUM_ORE.get()).build(null));
     public static final RegistryObject<BlockEntityType<RawUraniumBlockEntity>> URANIUM_RAW_BLOCK_ENTITY = BLOCK_ENTITIES.register("raw_uranium_block", () -> BlockEntityType.Builder.of(RawUraniumBlockEntity::new, BlockRegistry.RAW_URANIUM_BLOCK.get()).build(null));
     public static final RegistryObject<BlockEntityType<UraniumBlockEntity>> URANIUM_BLOCK_ENTITY = BLOCK_ENTITIES.register("uranium_block", () -> BlockEntityType.Builder.of(UraniumBlockEntity::new, BlockRegistry.URANIUM_BLOCK.get()).build(null));
+    public static final RegistryObject<BlockEntityType<GlacioUraniumOreEntity>> GLACIO_URANIUM_ORE_BLOCK_ENTITY = BLOCK_ENTITIES.register("glacio_uranium_ore", () -> BlockEntityType.Builder.of(GlacioUraniumOreEntity::new, BlockRegistry.GLACIO_URANIUM_ORE.get()).build(null));
 
 }
