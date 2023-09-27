@@ -27,6 +27,7 @@ import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 import net.minecraftforge.event.entity.player.PlayerContainerEvent;
+import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.network.PacketDistributor;
@@ -184,7 +185,7 @@ public class Events {
         Entity entity = ((EntityHitResult) event.getRayTraceResult()).getEntity();
 
         if (Methods.isVehicle(entity)) {
-            event.setCanceled(true);
+            ((Event) event).setCanceled(true);
         }
     }
 
