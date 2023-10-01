@@ -207,8 +207,8 @@ public class TabsRegistry {
                 builder.accept(ItemsRegistry.PERMAFROST_GRASS_ITEM.get());
                 builder.accept(ItemsRegistry.PERMAFROST_DIRT_ITEM.get());
                 builder.accept(ItemsRegistry.MERCURY_URANIUM_ORE_ITEM.get());
-                builder.accept(ItemsRegistry.RAW_URANIUM_BLOCK.get());
-                builder.accept(ItemsRegistry.URANIUM_BLOCK.get());
+                builder.accept(ItemsRegistry.RAW_URANIUM_BLOCK_ITEM.get());
+                builder.accept(ItemsRegistry.URANIUM_BLOCK_ITEM.get());
             }).build());
 
     public static RegistryObject<CreativeModeTab> SPAWN_EGGS = CREATIVE_MOD_TAB.register("tab_spawn_eggs", () -> CreativeModeTab.builder()

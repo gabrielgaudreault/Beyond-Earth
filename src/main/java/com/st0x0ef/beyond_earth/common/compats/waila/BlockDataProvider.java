@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import com.st0x0ef.beyond_earth.common.compats.mekanism.MekanismCompat;
+import com.st0x0ef.beyond_earth.common.compats.mekanism.MekanismHelper;
+import mcjty.theoneprobe.api.IElement;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import com.st0x0ef.beyond_earth.BeyondEarth;

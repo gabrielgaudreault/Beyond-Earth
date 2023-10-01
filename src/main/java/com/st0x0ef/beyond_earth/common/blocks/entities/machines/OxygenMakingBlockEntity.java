@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import com.st0x0ef.beyond_earth.common.blocks.entities.machines.gauge.GaugeValueHelper;
+import com.st0x0ef.beyond_earth.common.compats.mekanism.MekanismCompat;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -65,6 +67,10 @@ public abstract class OxygenMakingBlockEntity extends AbstractMachineBlockEntity
     @Override
     public List<IGaugeValue> getDisplayGaugeValues() {
         List<IGaugeValue> list = super.getDisplayGaugeValues();
+
+        if (!MekanismCompat.LOADED) {
+            list.add(GaugeValueHelper.getOxygen(this.getOutputTank()));
+        }
 
         return list;
     }

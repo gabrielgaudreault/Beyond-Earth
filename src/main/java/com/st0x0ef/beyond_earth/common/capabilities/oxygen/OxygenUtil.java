@@ -1,5 +1,7 @@
 package com.st0x0ef.beyond_earth.common.capabilities.oxygen;
 
+import com.st0x0ef.beyond_earth.common.compats.mekanism.MekanismCompat;
+import com.st0x0ef.beyond_earth.common.compats.mekanism.MekanismHelper;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
@@ -15,6 +17,8 @@ public class OxygenUtil {
             return LazyOptional.empty();
         } else if (capability == OxygenProvider.OXYGEN) {
             return LazyOptional.of(oxygenStorage).cast();
+        } else if (MekanismCompat.LOADED && capability == MekanismHelper.getGasHandlerCapability()) {
+            return LazyOptional.of(oxygenStorage).lazyMap(MekanismHelper::getOxygenGasAdapter).cast();
         }
 
         return LazyOptional.empty();
@@ -22,6 +26,12 @@ public class OxygenUtil {
 
     public static IOxygenStorage getItemStackOxygenStorage(ItemStack itemStack) {
         IOxygenStorage oxygenStorage = itemStack.getCapability(OxygenProvider.OXYGEN).orElse(null);
+
+        if (MekanismCompat.LOADED) {
+            IOxygenStorage adapter = MekanismHelper.getItemStackOxygenAdapter(itemStack);
+
+            return adapter;
+        }
 
         return oxygenStorage;
     }

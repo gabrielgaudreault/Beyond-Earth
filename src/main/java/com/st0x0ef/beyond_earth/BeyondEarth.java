@@ -1,5 +1,6 @@
 package com.st0x0ef.beyond_earth;
 
+import com.st0x0ef.beyond_earth.common.world.ModPlacedFeature;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModLoadingContext;

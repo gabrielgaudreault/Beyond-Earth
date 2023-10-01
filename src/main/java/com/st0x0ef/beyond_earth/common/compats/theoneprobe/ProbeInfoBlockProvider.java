@@ -1,9 +1,8 @@
 package com.st0x0ef.beyond_earth.common.compats.theoneprobe;
 
-import mcjty.theoneprobe.api.IProbeHitData;
-import mcjty.theoneprobe.api.IProbeInfo;
-import mcjty.theoneprobe.api.IProbeInfoProvider;
-import mcjty.theoneprobe.api.ProbeMode;
+import com.st0x0ef.beyond_earth.common.compats.mekanism.MekanismCompat;
+import com.st0x0ef.beyond_earth.common.compats.mekanism.MekanismHelper;
+import mcjty.theoneprobe.api.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -14,6 +13,7 @@ import com.st0x0ef.beyond_earth.common.blocks.entities.machines.AbstractMachineB
 import com.st0x0ef.beyond_earth.common.blocks.entities.machines.gauge.IGaugeValuesProvider;
 
 import java.util.Collection;
+import java.util.List;
 
 public class ProbeInfoBlockProvider implements IProbeInfoProvider {
 
@@ -31,12 +31,16 @@ public class ProbeInfoBlockProvider implements IProbeInfoProvider {
 			if (probeMode != ProbeMode.EXTENDED) {
 				machineBlockEntity.getFluidHandlers().values().stream().map(machineBlockEntity::getFluidHandlerGaugeValues).flatMap(Collection::stream).forEach(g -> probeInfo.element(new GaugeValueElement(g)));
 			}
+
+			if (MekanismCompat.LOADED) {
+				List<? extends IElement> elements = MekanismHelper.createGasGaugeDataElement(machineBlockEntity.getCapability(MekanismHelper.getGasHandlerCapability()).orElse(null));
+				elements.forEach(element -> probeInfo.element(element));
+			}
 		}
 
 		if (blockEntity instanceof IGaugeValuesProvider provider) {
 			provider.getDisplayGaugeValues().forEach(g -> probeInfo.element(new GaugeValueElement(g)));
 		}
-
 	}
 
 	@Override

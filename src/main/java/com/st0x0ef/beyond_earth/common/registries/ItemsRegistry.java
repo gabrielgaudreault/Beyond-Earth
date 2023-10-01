@@ -236,8 +236,8 @@ public class ItemsRegistry {
 
     /** URANIUM */
     // Blocks
-    public static final RegistryObject<BlockItem> URANIUM_BLOCK = ITEMS.register("uranium_block", () -> new UraniumBlockItem(BlockRegistry.URANIUM_BLOCK.get(), new Item.Properties()));
-    public static final RegistryObject<BlockItem> RAW_URANIUM_BLOCK = ITEMS.register("raw_uranium_block", () -> new UraniumBlockItem(BlockRegistry.RAW_URANIUM_BLOCK.get(), new Item.Properties()));
+    public static final RegistryObject<BlockItem> URANIUM_BLOCK_ITEM = ITEMS.register("uranium_block", () -> new UraniumBlockItem(BlockRegistry.URANIUM_BLOCK.get(), new Item.Properties()));
+    public static final RegistryObject<BlockItem> RAW_URANIUM_BLOCK_ITEM = ITEMS.register("raw_uranium_block", () -> new UraniumBlockItem(BlockRegistry.RAW_URANIUM_BLOCK.get(), new Item.Properties()));
 
     //Items
     public static final RegistryObject<RadioactiveItem> RAW_URANIUM = ITEMS.register("raw_uranium", () -> new RadioactiveItem(new Item.Properties()));
