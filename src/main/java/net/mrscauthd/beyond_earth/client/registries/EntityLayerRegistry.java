@@ -10,6 +10,7 @@ import net.mrscauthd.beyond_earth.client.renderers.armors.SpaceSuitModel;
 import net.mrscauthd.beyond_earth.client.renderers.entities.alien.AlienModel;
 import net.mrscauthd.beyond_earth.client.renderers.entities.alienzombie.AlienZombieModel;
 import net.mrscauthd.beyond_earth.client.renderers.entities.flag.FlagHeadModel;
+import net.mrscauthd.beyond_earth.client.renderers.entities.glacianram.GlacianRamModel;
 import net.mrscauthd.beyond_earth.client.renderers.entities.globe.GlobeModel;
 import net.mrscauthd.beyond_earth.client.renderers.entities.lander.LanderModel;
 import net.mrscauthd.beyond_earth.client.renderers.entities.martianraptor.MartianRaptorModel;
@@ -34,6 +35,7 @@ public class EntityLayerRegistry {
         event.registerLayerDefinition(PygroModel.LAYER_LOCATION, PygroModel::createBodyLayer);
         event.registerLayerDefinition(MoglerModel.LAYER_LOCATION, MoglerModel::createBodyLayer);
         event.registerLayerDefinition(MartianRaptorModel.LAYER_LOCATION, MartianRaptorModel::createBodyLayer);
+        event.registerLayerDefinition(GlacianRamModel.LAYER_LOCATION, GlacianRamModel::createBodyLayer);
 
         /** VEHICLES */
         event.registerLayerDefinition(RocketTier1Model.LAYER_LOCATION, RocketTier1Model::createBodyLayer);

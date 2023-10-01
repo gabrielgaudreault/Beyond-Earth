@@ -10,6 +10,7 @@ import net.mrscauthd.beyond_earth.BeyondEarth;
 import net.mrscauthd.beyond_earth.client.renderers.entities.alien.AlienRenderer;
 import net.mrscauthd.beyond_earth.client.renderers.entities.alienzombie.AlienZombieRenderer;
 import net.mrscauthd.beyond_earth.client.renderers.entities.flag.FlagHeadRenderer;
+import net.mrscauthd.beyond_earth.client.renderers.entities.glacianram.GlacianRamRenderer;
 import net.mrscauthd.beyond_earth.client.renderers.entities.globe.GlobeBlockRenderer;
 import net.mrscauthd.beyond_earth.client.renderers.entities.lander.LanderRenderer;
 import net.mrscauthd.beyond_earth.client.renderers.entities.martianraptor.MartianRaptorRenderer;
@@ -18,9 +19,6 @@ import net.mrscauthd.beyond_earth.client.renderers.entities.pygro.PygroModel;
 import net.mrscauthd.beyond_earth.client.renderers.entities.pygro.PygroRenderer;
 import net.mrscauthd.beyond_earth.client.renderers.entities.pygrobrute.PygroBruteRenderer;
 import net.mrscauthd.beyond_earth.client.renderers.entities.rockettier1.RocketTier1Renderer;
-import net.mrscauthd.beyond_earth.client.renderers.entities.rockettier2.RocketTier2Renderer;
-import net.mrscauthd.beyond_earth.client.renderers.entities.rockettier3.RocketTier3Renderer;
-import net.mrscauthd.beyond_earth.client.renderers.entities.rockettier4.RocketTier4Renderer;
 import net.mrscauthd.beyond_earth.client.renderers.entities.rover.RoverRenderer;
 import net.mrscauthd.beyond_earth.client.renderers.entities.starcrawler.StarCrawlerRenderer;
 import net.mrscauthd.beyond_earth.client.sounds.TickableBeepSound;
@@ -53,6 +51,7 @@ public class EntityRendererRegistry {
         event.registerEntityRenderer(EntityRegistry.PYGRO_BRUTE.get(), (p_174068_) -> new PygroBruteRenderer(p_174068_, PygroModel.LAYER_LOCATION, ModelLayers.PIGLIN_BRUTE_INNER_ARMOR, ModelLayers.PIGLIN_BRUTE_OUTER_ARMOR));
         event.registerEntityRenderer(EntityRegistry.MOGLER.get(), MoglerRenderer::new);
         event.registerEntityRenderer(EntityRegistry.MARTIAN_RAPTOR.get(), MartianRaptorRenderer::new);
+        event.registerEntityRenderer(EntityRegistry.GLACIAN_RAM.get(), GlacianRamRenderer::new);
 
         /** PROJECT TILES */
         event.registerEntityRenderer(EntityRegistry.ICE_SPIT_ENTITY.get(), renderManager -> new ThrownItemRenderer(renderManager, 1, true));

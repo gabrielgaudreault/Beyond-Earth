@@ -3,6 +3,7 @@ package net.mrscauthd.beyond_earth.common.registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.entity.animal.Sheep;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -23,6 +24,7 @@ public class EntityRegistry {
     public static final RegistryObject<EntityType<PygroBruteEntity>> PYGRO_BRUTE = ENTITIES.register("pygro_brute", () -> EntityType.Builder.of(PygroBruteEntity::new, MobCategory.MONSTER).fireImmune().sized(0.6f, 1.8f).build(new ResourceLocation(BeyondEarth.MODID, "pygro_brute").toString()));
     public static final RegistryObject<EntityType<MoglerEntity>> MOGLER = ENTITIES.register("mogler", () -> EntityType.Builder.of(MoglerEntity::new, MobCategory.MONSTER).sized(1.4f, 1.4f).build(new ResourceLocation(BeyondEarth.MODID, "mogler").toString()));
     public static final RegistryObject<EntityType<MartianRaptor>> MARTIAN_RAPTOR = ENTITIES.register("martian_raptor", () -> EntityType.Builder.of(MartianRaptor::new, MobCategory.MONSTER).sized(0.75f, 2.0f).build(new ResourceLocation(BeyondEarth.MODID, "martian_raptor").toString()));
+    public static final RegistryObject<EntityType<GlacianRam>> GLACIAN_RAM = ENTITIES.register("glacian_ram", () -> EntityType.Builder.of(GlacianRam::new, MobCategory.CREATURE).sized(0.6f, 1f).clientTrackingRange(10).build(new ResourceLocation(BeyondEarth.MODID, "glacian_ram").toString()));
 
 
     /** VEHICLE ENTITIES */
