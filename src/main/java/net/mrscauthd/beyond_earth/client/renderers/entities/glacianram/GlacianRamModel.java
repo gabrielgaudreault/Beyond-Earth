@@ -72,12 +72,12 @@ public class GlacianRamModel<T extends GlacianRam> extends QuadrupedModel<T> {
     public void setupAnim(T pEntity, float pLimbSwing, float pLimbSwingAmount, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch) {
         super.setupAnim(pEntity, pLimbSwing, pLimbSwingAmount, pAgeInTicks, pNetHeadYaw + (this.young ? 0.0f : 180.0f), pHeadPitch);
 
-        this.head.xRot = pHeadPitch * ((float)Math.PI / 180F);
-        this.head.yRot = pNetHeadYaw * ((float)Math.PI / 180F);
-        this.rightHindLeg.xRot = Mth.cos(pLimbSwing * 0.6662F) * 1.2F * pLimbSwingAmount;
-        this.leftHindLeg.xRot = Mth.cos(pLimbSwing * 0.6662F + (float)Math.PI) * 1.2F * pLimbSwingAmount;
-        this.rightFrontLeg.xRot = Mth.cos(pLimbSwing * 0.6662F + (float)Math.PI) * 1.2F * pLimbSwingAmount;
-        this.leftFrontLeg.xRot = Mth.cos(pLimbSwing * 0.6662F) * 1.2F * pLimbSwingAmount;
+        this.head.xRot = pHeadPitch * ((float)Math.PI / 400F);
+        this.head.yRot = pNetHeadYaw * ((float)Math.PI / 140F);
+        this.rightHindLeg.xRot = Mth.cos(pLimbSwing * 0.6662F) * 1.4F * pLimbSwingAmount;
+        this.leftHindLeg.xRot = Mth.cos(pLimbSwing * 0.6662F + (float)Math.PI) * 1.4F * pLimbSwingAmount;
+        this.rightFrontLeg.xRot = Mth.cos(pLimbSwing * 0.6662F + (float)Math.PI) * 1.4F * pLimbSwingAmount;
+        this.leftFrontLeg.xRot = Mth.cos(pLimbSwing * 0.6662F) * 1.4F * pLimbSwingAmount;
 
 
     }
