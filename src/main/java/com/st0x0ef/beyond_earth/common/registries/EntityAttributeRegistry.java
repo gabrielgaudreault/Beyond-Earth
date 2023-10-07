@@ -20,5 +20,7 @@ public class EntityAttributeRegistry {
         event.put(EntityRegistry.MARTIAN_RAPTOR.get(), MartianRaptor.setCustomAttributes().build());
         event.put(EntityRegistry.ALIEN_ZOMBIE.get(), AlienZombieEntity.setCustomAttributes().build());
         event.put(EntityRegistry.STAR_CRAWLER.get(), StarCrawlerEntity.setCustomAttributes().build());
+        event.put(EntityRegistry.GLACIAN_RAM.get(), GlacianRam.setCustomAttributes().build());
+
     }
 }

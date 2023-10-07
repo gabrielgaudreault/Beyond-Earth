@@ -50,6 +50,7 @@ public class EntityRendererRegistry {
         event.registerEntityRenderer(EntityRegistry.PYGRO_BRUTE.get(), (p_174068_) -> new PygroBruteRenderer(p_174068_, PygroModel.LAYER_LOCATION, ModelLayers.PIGLIN_BRUTE_INNER_ARMOR, ModelLayers.PIGLIN_BRUTE_OUTER_ARMOR));
         event.registerEntityRenderer(EntityRegistry.MOGLER.get(), MoglerRenderer::new);
         event.registerEntityRenderer(EntityRegistry.MARTIAN_RAPTOR.get(), MartianRaptorRenderer::new);
+        event.registerEntityRenderer(EntityRegistry.GLACIAN_RAM.get(), GlacianRamRenderer::new);
 
         /** PROJECT TILES */
         event.registerEntityRenderer(EntityRegistry.ICE_SPIT_ENTITY.get(), renderManager -> new ThrownItemRenderer(renderManager, 1, true));

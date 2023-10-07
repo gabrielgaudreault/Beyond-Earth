@@ -34,6 +34,7 @@ public class EntityLayerRegistry {
         event.registerLayerDefinition(PygroModel.LAYER_LOCATION, PygroModel::createBodyLayer);
         event.registerLayerDefinition(MoglerModel.LAYER_LOCATION, MoglerModel::createBodyLayer);
         event.registerLayerDefinition(MartianRaptorModel.LAYER_LOCATION, MartianRaptorModel::createBodyLayer);
+        event.registerLayerDefinition(GlacianRamModel.LAYER_LOCATION, GlacianRamModel::createBodyLayer);
 
         /** VEHICLES */
         event.registerLayerDefinition(RocketTier1Model.LAYER_LOCATION, RocketTier1Model::createBodyLayer);
