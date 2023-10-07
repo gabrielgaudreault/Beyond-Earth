@@ -1,7 +1,9 @@
 package net.mrscauthd.beyond_earth.client.renderers.entities.glacianram;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.minecraft.client.animation.definitions.WardenAnimation;
 import net.minecraft.client.model.QuadrupedModel;
+import net.minecraft.client.model.WardenModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -78,8 +80,6 @@ public class GlacianRamModel<T extends GlacianRam> extends QuadrupedModel<T> {
         this.leftHindLeg.xRot = Mth.cos(pLimbSwing * 0.6662F + (float)Math.PI) * 1.4F * pLimbSwingAmount;
         this.rightFrontLeg.xRot = Mth.cos(pLimbSwing * 0.6662F + (float)Math.PI) * 1.4F * pLimbSwingAmount;
         this.leftFrontLeg.xRot = Mth.cos(pLimbSwing * 0.6662F) * 1.4F * pLimbSwingAmount;
-
-
     }
 
     @Override
