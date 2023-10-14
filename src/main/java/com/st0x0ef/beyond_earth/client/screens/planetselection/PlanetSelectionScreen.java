@@ -609,7 +609,7 @@ public class PlanetSelectionScreen extends Screen implements MenuAccess<PlanetSe
     }
 
     public boolean canGoOn(Planet planet) {
-        return planet.distanceFromEarth <= this.menu.getDistance();
+        return planet.distanceFromEarth <= this.menu.getMaxDistanceTravelable();
     }
 
     /**

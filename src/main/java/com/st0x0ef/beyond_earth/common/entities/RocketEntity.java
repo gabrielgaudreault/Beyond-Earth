@@ -69,8 +69,8 @@ import java.util.Set;
 
 public class RocketEntity extends IVehicleEntity implements HasCustomInventoryScreen, IGaugeValuesProvider {
 	public static final int DEFAULT_FUEL_BUCKETS = 3;
-	public static final long DEFAULT_DISTANCE_TRAVELABLE = 13500000;
-	public static final int DEFAULT_FUEL_USAGE = 3;
+	public static final long DEFAULT_DISTANCE_TRAVELABLE = 41000000;
+	public static final int DEFAULT_FUEL_USAGE = 1000000;
 
 	public static final EntityDataAccessor<Boolean> ROCKET_START = SynchedEntityData.defineId(RocketEntity.class, EntityDataSerializers.BOOLEAN);
 	public static final EntityDataAccessor<Integer> FUEL = SynchedEntityData.defineId(RocketEntity.class, EntityDataSerializers.INT);
@@ -90,12 +90,13 @@ public class RocketEntity extends IVehicleEntity implements HasCustomInventorySc
 	}
 
 	public double getRocketSpeed() {
-		return 0.64;
+		return Methods.clamp(0.65 * this.getEntityData().get(FUEL_USAGE) / (DEFAULT_FUEL_USAGE), 0.7, 1.5);
 	}
 
 	public double getMaxDistanceTravelable() {
-		return this.getEntityData().get(FUEL_BUCKET_NEEDED);
-		/** return (double) (DEFAULT_DISTANCE_TRAVELABLE * this.getEntityData().get(FUEL_BUCKET_NEEDED)) / this.getEntityData().get(FUEL_USAGE); */
+		long maxDistance = (DEFAULT_DISTANCE_TRAVELABLE + (long) this.getEntityData().get(FUEL_BUCKET_NEEDED) * this.getEntityData().get(FUEL_USAGE));
+		this.getEntityData().set(MAX_DISTANCE_TRAVELABLE, maxDistance);
+		return (double) maxDistance;
 	}
 
 	public int getBucketsOfFull() {
@@ -356,7 +357,10 @@ public class RocketEntity extends IVehicleEntity implements HasCustomInventorySc
 		if (this.entityData.get(ROCKET_START)) {
 			this.spawnParticle();
 			this.startTimerAndFlyMovement();
-			this.openPlanetSelectionMenu();
+
+			if (this.getY() > 600) {
+				this.openPlanetSelectionMenu();
+			}
 		}
 	}
 
@@ -479,43 +483,40 @@ public class RocketEntity extends IVehicleEntity implements HasCustomInventorySc
 	public void openPlanetSelectionMenu() {
 		Player player = this.getFirstPlayerPassenger();
 
-		if (this.getY() > 600) {
-			if (player != null) {
+		if (player != null) {
 
-				if (player.hasContainerOpen()) {
-					player.closeContainer();
-				}
+			if (player.hasContainerOpen()) {
+				return;
+			}
 
-				player.getPersistentData().putDouble("beyond_earth:rocket_distance", this.getMaxDistanceTravelable());
-				player.getPersistentData().putBoolean("beyond_earth:planet_selection_menu_open", true);
+			player.getPersistentData().putDouble(BeyondEarth.MODID + ":rocket_distance", this.getMaxDistanceTravelable());
+			player.getPersistentData().putBoolean(BeyondEarth.MODID + ":planet_selection_menu_open", true);
 
-				/** SAVE ITEMS IN THE PLAYER */
-				ListTag tag = new ListTag();
+			/** SAVE ITEMS IN THE PLAYER */
+			ListTag tag = new ListTag();
 
-				tag.add(new ItemStack(this.getRocketItem().getItem()).save(new CompoundTag()));
+			tag.add(new ItemStack(this.getRocketItem().getItem()).save(new CompoundTag()));
 
-				for (int i = 0; i <= this.getInventory().getSlots() - 1; i++) {
-					tag.add(this.getInventory().getStackInSlot(i).save(new CompoundTag()));
-				}
+			for (int i = 0; i <= this.getInventory().getSlots() - 1; i++) {
+				tag.add(this.getInventory().getStackInSlot(i).save(new CompoundTag()));
+			}
 
-				player.getPersistentData().put(BeyondEarth.MODID + ":rocket_item_list", tag);
-				player.setNoGravity(true);
+			player.getPersistentData().put(BeyondEarth.MODID + ":rocket_item_list", tag);
+			player.setNoGravity(true);
 
-				/** STOP ROCKET SOUND */
-				if (player instanceof ServerPlayer serverPlayer) {
-					Methods.stopSound(serverPlayer, SoundRegistry.ROCKET_SOUND.getId(), SoundSource.NEUTRAL);
-				}
+			/** STOP ROCKET SOUND */
+			if (player instanceof ServerPlayer serverPlayer) {
+				Methods.stopSound(serverPlayer, SoundRegistry.ROCKET_SOUND.getId(), SoundSource.NEUTRAL);
+			}
 
-				MinecraftForge.EVENT_BUS.post(new SetPlanetSelectionMenuNeededNbtEvent(player, this));
+			MinecraftForge.EVENT_BUS.post(new SetPlanetSelectionMenuNeededNbtEvent(player, this));
 
-				if (!this.level().isClientSide) {
-					this.remove(RemovalReason.DISCARDED);
-				}
-			} else {
-				if (!this.level().isClientSide) {
-					this.level().explode(this, this.getX(), this.getBoundingBox().maxY, this.getZ(), 10, false, Level.ExplosionInteraction.TNT);
-					this.remove(RemovalReason.DISCARDED);
-				}
+			//if (!this.level().isClientSide) {
+			//	this.remove(RemovalReason.DISCARDED);
+			//}
+		} else {
+			if (!this.level().isClientSide) {
+				this.remove(RemovalReason.DISCARDED);
 			}
 		}
 	}

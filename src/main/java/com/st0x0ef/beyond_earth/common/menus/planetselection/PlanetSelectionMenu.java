@@ -24,11 +24,11 @@ public class PlanetSelectionMenu {
         public GuiContainer(int id, Inventory inv, FriendlyByteBuf extraData) {
             super(ContainerRegistry.PLANET_SELECTION_GUI.get(), id);
             this.player = inv.player;
-            distance = this.player.getPersistentData().getDouble(BeyondEarth.MODID + ":rocket_distance");
+            this.distance = extraData.readDouble();
         }
 
-        public double getDistance() {
-            return distance;
+        public double getMaxDistanceTravelable() {
+            return this.distance;
         }
 
         public ItemStack quickMoveStack(Player player, int p_219988_) {
@@ -41,7 +41,7 @@ public class PlanetSelectionMenu {
         }
 
         public Player getPlayer() {
-            return player;
+            return this.player;
         }
     }
 }

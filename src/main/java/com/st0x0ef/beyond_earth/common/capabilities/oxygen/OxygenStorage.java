@@ -1,7 +1,10 @@
 package com.st0x0ef.beyond_earth.common.capabilities.oxygen;
 
+import com.st0x0ef.beyond_earth.common.util.Methods;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.Mth;
+
+import java.lang.reflect.Method;
 
 public class OxygenStorage implements IOxygenStorage {
     private int oxygen;
@@ -16,7 +19,7 @@ public class OxygenStorage implements IOxygenStorage {
     public OxygenStorage(IOxygenStorageHolder holder, int capacity, int oxygen) {
         this.listener = holder;
         this.capacity = capacity;
-        this.oxygen = Math.max(0, Math.min(capacity, oxygen));
+        this.oxygen = Methods.clamp(oxygen, 0, capacity);
     }
 
     public OxygenStorage(IOxygenStorageHolder listener) {

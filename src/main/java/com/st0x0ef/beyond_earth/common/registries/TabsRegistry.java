@@ -42,7 +42,7 @@ public class TabsRegistry {
 
     public static RegistryObject<CreativeModeTab> MACHINES = CREATIVE_MOD_TAB.register("tab_machines", () -> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup.tab_machines"))
-            .icon(() -> new ItemStack(ItemsRegistry.NASA_WORKBENCH_ITEM.get()))
+            .icon(() -> new ItemStack(ItemsRegistry.ROCKET_UPGRADER_ITEM.get()))
             .withTabsBefore(DEFAULT.getId())
             .displayItems((feature, builder) -> {
                 builder.accept(ItemsRegistry.NASA_WORKBENCH_ITEM.get());

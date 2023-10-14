@@ -1,5 +1,6 @@
 package com.st0x0ef.beyond_earth.common.events.forge;
 
+import com.st0x0ef.beyond_earth.BeyondEarth;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import com.st0x0ef.beyond_earth.common.entities.RocketEntity;

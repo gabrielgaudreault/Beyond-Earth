@@ -41,7 +41,7 @@ public class ClientEvents {
     @SubscribeEvent
     public static void playSounds(PlaySoundEvent event) {
         Minecraft mc = Minecraft.getInstance();
-        Player player = mc.player;
+        LocalPlayer player = mc.player;
         SoundInstance instance = event.getSound();
 
         if (instance == null || player == null) {
@@ -52,7 +52,7 @@ public class ClientEvents {
 
         /** JET SUIT FLY SOUND */
         if (Methods.isLivingInJetSuit(player) && instance instanceof ElytraOnPlayerSoundInstance) {
-            mc.getSoundManager().play(new TickableJetSuitFlySound((LocalPlayer) player));
+            mc.getSoundManager().play(new TickableJetSuitFlySound(player));
         }
 
         /** SPACE SOUND SYSTEM */

@@ -62,12 +62,12 @@ public class RocketUpgraderBlockEntity extends AbstractMachineBlockEntity {
 
             if (output.getItem() instanceof RocketItem rocket) {
                 if (upgrade_input.getItem() instanceof RocketUpgradeItem upgrade) {
-                    rocket.fuelCapacityModifier = upgrade.getFuelCapacityModifier();
-                    rocket.fuelUsageModifier = upgrade.getFuelUsageModifier();
+                    rocket.fuelCapacityModifier = upgrade.getFuelCapacityModifier() > 0 ? upgrade.getFuelCapacityModifier() : rocket.fuelCapacityModifier;
+                    rocket.fuelUsageModifier = upgrade.getFuelUsageModifier() > 0 ? upgrade.getFuelUsageModifier() : rocket.fuelUsageModifier;
                     output = rocket.asItem().getDefaultInstance();
 
                     output.getOrCreateTag().putInt("fuelCapacityModifier", rocket.fuelCapacityModifier);
-                    output.getOrCreateTag().putInt("fuelUsageModifier", RocketEntity.DEFAULT_FUEL_USAGE + rocket.fuelUsageModifier);
+                    output.getOrCreateTag().putInt("fuelUsageModifier", rocket.fuelUsageModifier);
 
                     this.removeItem(getSlotUpgradeInput(), 1);
                     this.removeItem(getSlotRocketInput(), 1);

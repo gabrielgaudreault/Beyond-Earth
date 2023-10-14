@@ -63,8 +63,7 @@ public class Events {
             Methods.setJetSuitHoverPose(player);
 
             /** DISABLE KICK BY FLYING IF IN PLANET GUI */
-            Methods.disableFlyAntiCheat(player,
-                    player.getPersistentData().getBoolean(BeyondEarth.MODID + ":planet_selection_menu_open"));
+            Methods.disableFlyAntiCheat(player, player.getPersistentData().getBoolean(BeyondEarth.MODID + ":planet_selection_menu_open"));
         }
     }
 
@@ -191,17 +190,15 @@ public class Events {
 
     @SubscribeEvent
     public static void livingDeath(LivingDeathEvent event) {
-
         LivingEntity entity = event.getEntity();
 
         /** RESET PLANET GUI PARAMETERS */
-        if (entity instanceof Player player
-                && entity.getPersistentData().getBoolean("beyond_earth:planet_selection_menu_open")) {
-
+        if (entity instanceof Player player && entity.getPersistentData().getBoolean("beyond_earth:planet_selection_menu_open")) {
             player.closeContainer();
             Methods.resetPlanetSelectionMenuNeededNbt(player);
             player.setNoGravity(false);
         }
+
         // TODO : READ THIS
         /** JET SUIT EXPLODE */
         /**if (Methods.isLivingInJetSuit(entity) && entity.isFallFlying()

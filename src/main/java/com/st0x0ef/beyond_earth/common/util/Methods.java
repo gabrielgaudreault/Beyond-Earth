@@ -359,9 +359,8 @@ public class Methods {
     }
 
     public static void openPlanetGui(Player player) {
-        if (!(player.containerMenu instanceof PlanetSelectionMenu.GuiContainer) && player.getPersistentData().getBoolean(BeyondEarth.MODID + ":planet_selection_menu_open")) {
+        if (!player.hasContainerOpen() && player.getPersistentData().getBoolean(BeyondEarth.MODID + ":planet_selection_menu_open")) {
             if (player instanceof ServerPlayer serverPlayer) {
-
                 /** OPEN MENU */
                 NetworkHooks.openScreen(serverPlayer, new MenuProvider() {
                     @Override
@@ -420,4 +419,11 @@ public class Methods {
         }
     }
 
+    public static int clamp(int value, int min, int max) {
+        return Math.max(min, Math.min(max, value));
+    }
+
+    public static double clamp(double value, double min, double max) {
+        return Math.max(min, Math.min(max, value));
+    }
 }

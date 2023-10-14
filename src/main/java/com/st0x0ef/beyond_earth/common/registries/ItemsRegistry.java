@@ -66,7 +66,7 @@ public class ItemsRegistry {
     /** ROCKET UPGRADE */
     public static final RegistryObject<Item> BASIC_FUEL_UPGRADE = ITEMS.register("basic_fuel_upgrade", () -> new RocketUpgradeItem(new Item.Properties(), 1, 0));
     public static final RegistryObject<Item> ADVANCED_FUEL_UPGRADE = ITEMS.register("advanced_fuel_upgrade", () -> new RocketUpgradeItem(new Item.Properties(), 3, 0));
-    public static final RegistryObject<Item> HYDROGEN_MOTOR_UPGRADE = ITEMS.register("hydrogen_motor_upgrade", () -> new RocketUpgradeItem(new Item.Properties(), 0, -2));
+    public static final RegistryObject<Item> HYDROGEN_MOTOR_UPGRADE = ITEMS.register("hydrogen_motor_upgrade", () -> new RocketUpgradeItem(new Item.Properties(), 0, 10000000));
 
 
     /** NORMAL ITEMS */
