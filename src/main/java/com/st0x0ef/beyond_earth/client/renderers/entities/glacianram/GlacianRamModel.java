@@ -1,6 +1,8 @@
-package net.mrscauthd.beyond_earth.client.renderers.entities.glacianram;
+package com.st0x0ef.beyond_earth.client.renderers.entities.glacianram;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.st0x0ef.beyond_earth.BeyondEarth;
+import com.st0x0ef.beyond_earth.common.entities.GlacianRam;
 import net.minecraft.client.animation.definitions.WardenAnimation;
 import net.minecraft.client.model.QuadrupedModel;
 import net.minecraft.client.model.WardenModel;
@@ -12,8 +14,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.mrscauthd.beyond_earth.BeyondEarth;
-import net.mrscauthd.beyond_earth.common.entities.GlacianRam;
 
 @OnlyIn(Dist.CLIENT)
 public class GlacianRamModel<T extends GlacianRam> extends QuadrupedModel<T> {

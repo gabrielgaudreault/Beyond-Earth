@@ -1,5 +1,6 @@
 package com.st0x0ef.beyond_earth.client.registries;
 
+import com.st0x0ef.beyond_earth.client.renderers.entities.glacianram.GlacianRamRenderer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;

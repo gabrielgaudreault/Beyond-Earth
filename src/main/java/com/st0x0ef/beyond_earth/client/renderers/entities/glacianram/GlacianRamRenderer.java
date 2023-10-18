@@ -1,13 +1,13 @@
-package net.mrscauthd.beyond_earth.client.renderers.entities.glacianram;
+package com.st0x0ef.beyond_earth.client.renderers.entities.glacianram;
 
+import com.st0x0ef.beyond_earth.BeyondEarth;
+import com.st0x0ef.beyond_earth.common.entities.GlacianRam;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.mrscauthd.beyond_earth.BeyondEarth;
-import net.mrscauthd.beyond_earth.common.entities.GlacianRam;
 
 @OnlyIn(Dist.CLIENT)
 public class GlacianRamRenderer extends MobRenderer<GlacianRam, EntityModel<GlacianRam>> {

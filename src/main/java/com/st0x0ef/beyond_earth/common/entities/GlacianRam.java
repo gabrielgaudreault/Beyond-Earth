@@ -1,5 +1,6 @@
-package net.mrscauthd.beyond_earth.common.entities;
+package com.st0x0ef.beyond_earth.common.entities;
 
+import com.st0x0ef.beyond_earth.common.registries.EntityRegistry;
 import net.minecraft.client.animation.definitions.WardenAnimation;
 import net.minecraft.client.renderer.entity.GoatRenderer;
 import net.minecraft.server.level.ServerLevel;
@@ -16,7 +17,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
-import net.mrscauthd.beyond_earth.common.registries.EntityRegistry;
 import org.jetbrains.annotations.Nullable;
 
 public class GlacianRam extends Goat {
