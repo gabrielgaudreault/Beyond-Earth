@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "beyond_earth:item/fuel_upgrade"
+    "layer0": "beyond_earth:item/uranium_motor_upgrade"
   }
 }

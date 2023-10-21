@@ -69,7 +69,7 @@ import java.util.Set;
 
 public class RocketEntity extends IVehicleEntity implements HasCustomInventoryScreen, IGaugeValuesProvider {
 	public static final int DEFAULT_FUEL_BUCKETS = 3;
-	public static final long DEFAULT_DISTANCE_TRAVELABLE = 41000000;
+	public static final long DEFAULT_DISTANCE_TRAVELABLE = 38000000;
 	public static final int DEFAULT_FUEL_USAGE = 1000000;
 
 	public static final EntityDataAccessor<Boolean> ROCKET_START = SynchedEntityData.defineId(RocketEntity.class, EntityDataSerializers.BOOLEAN);
@@ -94,7 +94,7 @@ public class RocketEntity extends IVehicleEntity implements HasCustomInventorySc
 	}
 
 	public double getMaxDistanceTravelable() {
-		long maxDistance = (DEFAULT_DISTANCE_TRAVELABLE + (long) this.getEntityData().get(FUEL_BUCKET_NEEDED) * this.getEntityData().get(FUEL_USAGE));
+		long maxDistance = DEFAULT_DISTANCE_TRAVELABLE + (long) this.getEntityData().get(FUEL_BUCKET_NEEDED) * this.getEntityData().get(FUEL_USAGE);
 		this.getEntityData().set(MAX_DISTANCE_TRAVELABLE, maxDistance);
 		return (double) maxDistance;
 	}
@@ -510,24 +510,15 @@ public class RocketEntity extends IVehicleEntity implements HasCustomInventorySc
 			}
 
 			MinecraftForge.EVENT_BUS.post(new SetPlanetSelectionMenuNeededNbtEvent(player, this));
-
-			//if (!this.level().isClientSide) {
-			//	this.remove(RemovalReason.DISCARDED);
-			//}
-		} else {
-			if (!this.level().isClientSide) {
-				this.remove(RemovalReason.DISCARDED);
-			}
 		}
+
+		this.destroyRocket(false);
 	}
 
 	public void rocketExplosion() {
 		if (this.entityData.get(START_TIMER) == 200) {
 			if (this.getDeltaMovement().y < -0.07) {
-				if (!this.level().isClientSide) {
-					this.level().explode(this, this.getX(), this.getBoundingBox().maxY, this.getZ(), 10, true, Level.ExplosionInteraction.TNT);
-					this.remove(RemovalReason.DISCARDED);
-				}
+				destroyRocket(true);
 			}
 		}
 	}
@@ -542,6 +533,15 @@ public class RocketEntity extends IVehicleEntity implements HasCustomInventorySc
 					entity.setSecondsOnFire(15);
 				}
 			}
+		}
+	}
+
+	private void destroyRocket(boolean explode) {
+		if (!this.level().isClientSide) {
+			if (explode) {
+				this.level().explode(this, this.getX(), this.getBoundingBox().maxY, this.getZ(), 10, true, Level.ExplosionInteraction.TNT);
+			}
+			this.remove(RemovalReason.DISCARDED);
 		}
 	}
 }

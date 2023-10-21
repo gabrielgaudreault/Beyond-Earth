@@ -307,7 +307,7 @@ public class Planets {
 
             // This is done here for when registered via data. When manually registered, we
             // don't have moons yet, so this is just empty.
-            moons.forEach(m -> m.register());
+            moons.forEach(Planet::register);
 
             // Sort moons by distance.
             moons.sort(null);
@@ -316,7 +316,7 @@ public class Planets {
         @Override
         protected void init() {
             super.init();
-            moons.forEach(moon -> moon.init());
+            moons.forEach(Planet::init);
         }
     }
 
@@ -330,13 +330,13 @@ public class Planets {
         public void register() {
             STARS.put(name, this);
             ORDERED_STARS.add(this);
-            this.planets.forEach(p -> p.register());
+            this.planets.forEach(Planet::register);
         }
 
         @Override
         protected void init() {
             super.init();
-            planets.forEach(planet -> planet.init());
+            planets.forEach(Planet::init);
         }
     }
 
