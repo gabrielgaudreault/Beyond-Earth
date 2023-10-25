@@ -82,6 +82,7 @@ public class TabsRegistry {
                 builder.accept(ItemsRegistry.BASIC_FUEL_UPGRADE.get());
                 builder.accept(ItemsRegistry.ADVANCED_FUEL_UPGRADE.get());
                 builder.accept(ItemsRegistry.HYDROGEN_MOTOR_UPGRADE.get());
+                builder.accept(ItemsRegistry.URANIUM_MOTOR_UPGRADE.get());
             }).build());
 
     public static RegistryObject<CreativeModeTab> MATERIALS = CREATIVE_MOD_TAB.register("tab_materials", () -> CreativeModeTab.builder()
