@@ -55,6 +55,7 @@ public abstract class ISpaceArmor extends ArmorItem {
             return new OxygenProvider(stack, this.getOxygenCapacity());
         }
 
+        @SuppressWarnings("removal")
         @Override
         public void onArmorTick(ItemStack stack, Level level, Player player) {
             super.onArmorTick(stack, level, player);
@@ -75,6 +76,7 @@ public abstract class ISpaceArmor extends ArmorItem {
             list.add(GaugeTextHelper.buildFuelStorageTooltip(GaugeValueHelper.getFuel(fuel, capacity), ChatFormatting.GRAY));
         }
 
+        @SuppressWarnings("removal")
         @Override
         public void onArmorTick(ItemStack stack, Level level, Player player) {
             super.onArmorTick(stack, level, player);

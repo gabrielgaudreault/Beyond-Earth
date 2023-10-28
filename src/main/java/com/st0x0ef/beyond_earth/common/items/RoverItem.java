@@ -25,7 +25,7 @@ import com.st0x0ef.beyond_earth.common.blocks.entities.machines.gauge.GaugeValue
 import com.st0x0ef.beyond_earth.common.config.Config;
 import com.st0x0ef.beyond_earth.common.entities.RoverEntity;
 import com.st0x0ef.beyond_earth.common.registries.EntityRegistry;
-import com.st0x0ef.beyond_earth.common.util.FluidUtil2;
+import com.st0x0ef.beyond_earth.common.util.FluidUtils;
 import com.st0x0ef.beyond_earth.client.registries.ItemRendererRegistry;
 
 import java.util.List;
@@ -43,7 +43,7 @@ public class RoverItem extends VehicleItem {
         super.appendHoverText(itemStack, level, list, tooltipFlag);
 
         int fuel = itemStack.getOrCreateTag().getInt(FUEL_TAG);
-        int capacity = Config.ROVER_FUEL_BUCKETS.get() * FluidUtil2.BUCKET_SIZE;
+        int capacity = Config.ROVER_FUEL_BUCKETS.get() * FluidUtils.BUCKET_SIZE;
         list.add(GaugeTextHelper.buildFuelStorageTooltip(GaugeValueHelper.getFuel(fuel, capacity), ChatFormatting.GRAY));
     }
 

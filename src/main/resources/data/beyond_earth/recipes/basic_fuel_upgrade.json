@@ -1,0 +1,24 @@
+{
+  "group": "beyond_earth",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "s s",
+    "sbs",
+    "sds"
+  ],
+  "key": {
+    "s": {
+      "item": "beyond_earth:steel_ingot"
+    },
+    "d": {
+      "item": "beyond_earth:desh_ingot"
+    },
+    "b": {
+      "item": "minecraft:bucket"
+    }
+  },
+  "result": {
+    "item": "beyond_earth:basic_fuel_upgrade",
+    "count": 1
+  }
+}

@@ -32,7 +32,7 @@ import com.st0x0ef.beyond_earth.common.entities.RocketEntity;
 import com.st0x0ef.beyond_earth.common.events.forge.PlaceRocketEvent;
 import com.st0x0ef.beyond_earth.common.registries.EntityRegistry;
 import com.st0x0ef.beyond_earth.client.registries.ItemRendererRegistry;
-import com.st0x0ef.beyond_earth.common.util.FluidUtil2;
+import com.st0x0ef.beyond_earth.common.util.FluidUtils;
 
 import java.util.List;
 import java.util.function.Consumer;
@@ -141,7 +141,7 @@ public class RocketItem extends VehicleItem {
         super.appendHoverText(itemstack, level, list, flag);
 
         int fuel = itemstack.getOrCreateTag().getInt(FUEL_TAG);
-        int capacity = this.getFuelBuckets() * FluidUtil2.BUCKET_SIZE;
+        int capacity = this.getFuelBuckets() * FluidUtils.BUCKET_SIZE;
         list.add(GaugeTextHelper.buildFuelStorageTooltip(GaugeValueHelper.getFuel(fuel, capacity), ChatFormatting.GRAY));
 
         list.add(Component.literal("Fuel Capacity Modifier : " + fuelCapacityModifier));

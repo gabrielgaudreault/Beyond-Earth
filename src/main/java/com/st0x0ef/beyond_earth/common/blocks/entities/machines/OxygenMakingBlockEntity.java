@@ -29,7 +29,7 @@ import com.st0x0ef.beyond_earth.common.capabilities.oxygen.OxygenUtil;
 import com.st0x0ef.beyond_earth.common.data.recipes.BeyondEarthRecipeType;
 import com.st0x0ef.beyond_earth.common.data.recipes.OxygenMakingRecipeAbstract;
 import com.st0x0ef.beyond_earth.common.menus.nasaworkbench.StackCacher;
-import com.st0x0ef.beyond_earth.common.util.FluidUtil2;
+import com.st0x0ef.beyond_earth.common.util.FluidUtils;
 
 public abstract class OxygenMakingBlockEntity extends AbstractMachineBlockEntity {
     public static final ResourceLocation TANK_INPUT = new ResourceLocation(BeyondEarth.MODID, "input");
@@ -134,12 +134,12 @@ public abstract class OxygenMakingBlockEntity extends AbstractMachineBlockEntity
     }
 
     protected void drainSources() {
-        FluidUtil2.drainSource(this.getItemHandler(), this.getInputSourceSlot(), this.getInputTank(),
+        FluidUtils.drainSource(this.getItemHandler(), this.getInputSourceSlot(), this.getInputTank(),
                 this.getTransferPerTick());
     }
 
     protected void fillSinks() {
-        FluidUtil2.fillSink(this.getItemHandler(), this.getInputSinkSlot(), this.getInputTank(),
+        FluidUtils.fillSink(this.getItemHandler(), this.getInputSinkSlot(), this.getInputTank(),
                 this.getTransferPerTick());
     }
 
@@ -168,10 +168,10 @@ public abstract class OxygenMakingBlockEntity extends AbstractMachineBlockEntity
     @Override
     protected boolean onCanPlaceItemThroughFace(int index, ItemStack stack, Direction direction) {
         if (index == this.getInputSourceSlot()) {
-            return FluidUtil2.canDrain(stack);
+            return FluidUtils.canDrain(stack);
         } else if (index == this.getInputSinkSlot()) {
             FluidTank tank = this.slotToFluidTank(index);
-            return FluidUtil2.canFill(stack, tank.getFluid().getFluid());
+            return FluidUtils.canFill(stack, tank.getFluid().getFluid());
         }
 
         return super.onCanPlaceItemThroughFace(index, stack, direction);
@@ -180,10 +180,10 @@ public abstract class OxygenMakingBlockEntity extends AbstractMachineBlockEntity
     @Override
     public boolean canTakeItemThroughFace(int index, ItemStack stack, Direction direction) {
         if (index == this.getInputSourceSlot()) {
-            return !FluidUtil2.canDrain(stack);
+            return !FluidUtils.canDrain(stack);
         } else if (index == this.getInputSinkSlot()) {
             FluidTank tank = this.slotToFluidTank(index);
-            return !FluidUtil2.canFill(stack, tank.getFluid().getFluid());
+            return !FluidUtils.canFill(stack, tank.getFluid().getFluid());
         }
 
         return super.canTakeItemThroughFace(index, stack, direction);

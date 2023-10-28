@@ -36,9 +36,9 @@ public class BeyondEarth {
 		BlockEntityRegistry.BLOCK_ENTITIES.register(bus);
 		PaintingRegistry.PAINTINGS.register(bus);
 		SensorRegistry.SENSOR.register(bus);
-                RecipeSerializersRegistry.RECIPE_SERIALIZERS.register(bus);
-                RecipeTypeRegistry.RECIPE_TYPES.register(bus);
-                RocketPartsRegistry.ROCKET_PARTS.register(bus);
+		RecipeSerializersRegistry.RECIPE_SERIALIZERS.register(bus);
+		RecipeTypeRegistry.RECIPE_TYPES.register(bus);
+		RocketPartsRegistry.ROCKET_PARTS.register(bus);
 		SoundRegistry.SOUNDS.register(bus);
 		ParticleRegistry.PARTICLES.register(bus);
 		ContainerRegistry.CONTAINERS.register(bus);
