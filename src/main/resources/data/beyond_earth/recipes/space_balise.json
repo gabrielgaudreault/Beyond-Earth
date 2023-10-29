@@ -1,0 +1,21 @@
+{
+  "group": "beyond_earth",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " n ",
+    "ncn",
+    " n "
+  ],
+  "key": {
+    "n": {
+      "tag": "beyond_earth:calorite_nugget"
+    },
+    "c": {
+      "item": "minecraft:recovery_compass"
+    }
+  },
+  "result": {
+    "item": "beyond_earth:space_balise",
+    "count": 1
+  }
+}

@@ -302,6 +302,9 @@
   "message.beyond_earth.no_fuel": "§cNO FUEL! §7Fill the Rocket with §cFuel§7. (§6Sneak and Right Click§7)",
   "message.beyond_earth.hold_key": "§7Hold Key",
   "message.beyond_earth.speed": "%s Speed",
+  "message.beyond_earth.space_balise.no_launch_pad": "You haven't setup any launch pad coord ",
+  "message.beyond_earth.space_balise.right_click": "Right click on a launch pad with this item in your hand to setup it",
+  "message.beyond_earth.space_balise.launch_pad_coordinates": "Launch pad found at ",
   
 
   "gui.beyond_earth.oxygen_bubble_distributor.workingarea.text": "Working Area: %1$sx%2$sx%3$s",

@@ -1,13 +1,5 @@
 package com.st0x0ef.beyond_earth.client.registries;
 
-import com.st0x0ef.beyond_earth.client.renderers.entities.glacianram.GlacianRamRenderer;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.geom.ModelLayers;
-import net.minecraft.client.renderer.entity.ThrownItemRenderer;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.EntityRenderersEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 import com.st0x0ef.beyond_earth.BeyondEarth;
 import com.st0x0ef.beyond_earth.client.renderers.entities.alien.AlienRenderer;
 import com.st0x0ef.beyond_earth.client.renderers.entities.alienzombie.AlienZombieRenderer;
@@ -27,6 +19,13 @@ import com.st0x0ef.beyond_earth.client.sounds.TickableLandingSound;
 import com.st0x0ef.beyond_earth.common.entities.LanderEntity;
 import com.st0x0ef.beyond_earth.common.registries.BlockEntityRegistry;
 import com.st0x0ef.beyond_earth.common.registries.EntityRegistry;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.geom.ModelLayers;
+import net.minecraft.client.renderer.entity.ThrownItemRenderer;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.EntityRenderersEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = BeyondEarth.MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class EntityRendererRegistry {
@@ -46,8 +45,8 @@ public class EntityRendererRegistry {
         event.registerEntityRenderer(EntityRegistry.ALIEN.get(), AlienRenderer::new);
         event.registerEntityRenderer(EntityRegistry.ALIEN_ZOMBIE.get(), AlienZombieRenderer::new);
         event.registerEntityRenderer(EntityRegistry.STAR_CRAWLER.get(), StarCrawlerRenderer::new);
-        event.registerEntityRenderer(EntityRegistry.PYGRO.get(), (p_174068_) -> new PygroRenderer(p_174068_, PygroModel.LAYER_LOCATION, ModelLayers.PIGLIN_INNER_ARMOR, ModelLayers.PIGLIN_OUTER_ARMOR));
-        event.registerEntityRenderer(EntityRegistry.PYGRO_BRUTE.get(), (p_174068_) -> new PygroBruteRenderer(p_174068_, PygroModel.LAYER_LOCATION, ModelLayers.PIGLIN_BRUTE_INNER_ARMOR, ModelLayers.PIGLIN_BRUTE_OUTER_ARMOR));
+        event.registerEntityRenderer(EntityRegistry.PYGRO.get(), (context) -> new PygroRenderer(context, PygroModel.LAYER_LOCATION, ModelLayers.PIGLIN_INNER_ARMOR, ModelLayers.PIGLIN_OUTER_ARMOR));
+        event.registerEntityRenderer(EntityRegistry.PYGRO_BRUTE.get(), (context) -> new PygroBruteRenderer(context, PygroModel.LAYER_LOCATION, ModelLayers.PIGLIN_BRUTE_INNER_ARMOR, ModelLayers.PIGLIN_BRUTE_OUTER_ARMOR));
         event.registerEntityRenderer(EntityRegistry.MOGLER.get(), MoglerRenderer::new);
         event.registerEntityRenderer(EntityRegistry.MARTIAN_RAPTOR.get(), MartianRaptorRenderer::new);
 

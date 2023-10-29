@@ -91,6 +91,7 @@ public class ItemsRegistry {
     public static final RegistryObject<Item> OSTRUM_TANK = ITEMS.register("ostrum_tank", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> CALORITE_TANK = ITEMS.register("calorite_tank", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> ROCKET_FIN = ITEMS.register("rocket_fin", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> SPACE_BALISE = ITEMS.register("space_balise", () -> new SpaceBaliseItem(new Item.Properties().stacksTo(1)));
 
     // INGOTS
     public static final RegistryObject<Item> STEEL_INGOT = ITEMS.register("steel_ingot", () -> new Item(new Item.Properties()));

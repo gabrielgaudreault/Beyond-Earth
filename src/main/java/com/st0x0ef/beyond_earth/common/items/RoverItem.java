@@ -33,6 +33,7 @@ import java.util.function.Consumer;
 
 public class RoverItem extends VehicleItem {
     public static String FUEL_TAG = BeyondEarth.MODID + ":fuel";
+    public int fuelCapacityModifier = 0;
 
     public RoverItem(Properties properties) {
         super(properties);
@@ -43,8 +44,10 @@ public class RoverItem extends VehicleItem {
         super.appendHoverText(itemStack, level, list, tooltipFlag);
 
         int fuel = itemStack.getOrCreateTag().getInt(FUEL_TAG);
-        int capacity = Config.ROVER_FUEL_BUCKETS.get() * FluidUtils.BUCKET_SIZE;
+        int capacity = (RoverEntity.DEFAULT_FUEL_BUCKETS + fuelCapacityModifier) * FluidUtils.BUCKET_SIZE;
         list.add(GaugeTextHelper.buildFuelStorageTooltip(GaugeValueHelper.getFuel(fuel, capacity), ChatFormatting.GRAY));
+
+        list.add(Component.literal("Fuel Capacity Modifier : " + fuelCapacityModifier));
     }
 
     @Override
@@ -91,6 +94,7 @@ public class RoverItem extends VehicleItem {
                 world.addFreshEntity(rover);
 
                 rover.getEntityData().set(RoverEntity.FUEL, itemStack.getOrCreateTag().getInt(FUEL_TAG));
+                rover.getEntityData().set(RoverEntity.FUEL_CAPACITY, itemStack.getOrCreateTag().getInt("fuelCapacityModifier") + RoverEntity.DEFAULT_FUEL_BUCKETS);
 
                 if (!player.getAbilities().instabuild) {
                     player.setItemInHand(hand, ItemStack.EMPTY);

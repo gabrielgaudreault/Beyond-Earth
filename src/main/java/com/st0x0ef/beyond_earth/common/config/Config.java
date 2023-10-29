@@ -68,8 +68,6 @@ public class Config {
         public static final ForgeConfigSpec.ConfigValue<Integer> WATER_PUMP_TANK_TRANSFER;
         public static final ForgeConfigSpec.ConfigValue<Integer> WATER_PUMP_WORK_INTERVAL;
 
-        public static final ForgeConfigSpec.ConfigValue<Integer> ROVER_FUEL_BUCKETS;
-
         public static final ForgeConfigSpec.ConfigValue<Boolean> WATER_TO_ICE_MOON;
         public static final ForgeConfigSpec.ConfigValue<Boolean> WATER_TO_ICE_GLACIO;
 
@@ -157,24 +155,6 @@ public class Config {
                 BUILDER.pop();
                 
                 BUILDER.pop();
-		
-            /** Vehicles */
-            BUILDER.push("Vehicles");
-
-            BUILDER.push("Rover");
-            ROVER_FUEL_BUCKETS = BUILDER.comment("Set required buckets for fuel full, default: " + RoverEntity.DEFAULT_FUEL_BUCKETS + " buckets").define("FuelBuckets", RoverEntity.DEFAULT_FUEL_BUCKETS);
-            BUILDER.pop();
-
-            BUILDER.pop();
-            /** End of Vehicles */
-
-            /** Steel Management */
-            //TODO : REWORK STEEL_MANAGEMENT
-               /** BUILDER.push("Steel");
-
-                STEEL_MANAGEMENT = BUILDER.comment("Management Steel Items", "0: Default, Nothing special, Use steel items as-is", "1: Iron Ingot can't blasting into be steel ingot", "2: Additionally, Steel Block and Ingot and Nugget are can't conversion to each shape", "    And hide Steel Block, Ingot, Nugget in JEI").defineInRange("Steel Management", 0, 0, 2);
-
-                BUILDER.pop();*/
 
             /** Water to ice */
             BUILDER.push("Water to Ice");

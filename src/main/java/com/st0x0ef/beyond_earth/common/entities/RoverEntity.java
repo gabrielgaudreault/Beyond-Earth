@@ -64,6 +64,7 @@ import java.util.Set;
 
 public class RoverEntity extends IVehicleEntity implements IGaugeValuesProvider {
     private double speed = 0;
+    private int fuelCapacityModifier = 0;
 
     public float flyingSpeed = 0.02F;
     public float animationSpeedOld;
@@ -74,6 +75,7 @@ public class RoverEntity extends IVehicleEntity implements IGaugeValuesProvider 
 
     public static final EntityDataAccessor<Integer> FUEL = SynchedEntityData.defineId(RoverEntity.class, EntityDataSerializers.INT);
 
+    public static final EntityDataAccessor<Integer> FUEL_CAPACITY = SynchedEntityData.defineId(RoverEntity.class, EntityDataSerializers.INT);
     public static final EntityDataAccessor<Boolean> FORWARD = SynchedEntityData.defineId(RoverEntity.class, EntityDataSerializers.BOOLEAN);
 
     public static final int DEFAULT_FUEL_BUCKETS = 3;
@@ -81,11 +83,12 @@ public class RoverEntity extends IVehicleEntity implements IGaugeValuesProvider 
     public RoverEntity(EntityType<?> type, Level worldIn) {
         super(type, worldIn);
         this.entityData.define(FUEL, 0);
+        this.entityData.define(FUEL_CAPACITY, DEFAULT_FUEL_BUCKETS);
         this.entityData.define(FORWARD, false);
     }
 
     public int getFuelCapacity() {
-        return Config.ROVER_FUEL_BUCKETS.get() * FluidUtils.BUCKET_SIZE;
+        return (DEFAULT_FUEL_BUCKETS + fuelCapacityModifier) * FluidUtils.BUCKET_SIZE;
     }
     
     public IGaugeValue getFuelGauge() {
@@ -266,6 +269,7 @@ public class RoverEntity extends IVehicleEntity implements IGaugeValuesProvider 
         compound.put("InventoryCustom", inventory.serializeNBT());
 
         compound.putInt("fuel", this.getEntityData().get(FUEL));
+        compound.putInt("fuel_capacity", this.getEntityData().get(FUEL_CAPACITY));
         compound.putBoolean("forward", this.getEntityData().get(FORWARD));
     }
 
@@ -276,8 +280,9 @@ public class RoverEntity extends IVehicleEntity implements IGaugeValuesProvider 
             inventory.deserializeNBT((CompoundTag) inventoryCustom);
         }
 
-        this.entityData.set(FUEL, compound.getInt("fuel"));
-        this.entityData.set(FORWARD, compound.getBoolean("forward"));
+        this.getEntityData().set(FUEL, compound.getInt("fuel"));
+        this.getEntityData().set(FUEL_CAPACITY, compound.getInt("fuel_capacity"));
+        this.getEntityData().set(FORWARD, compound.getBoolean("forward"));
     }
 
     public Player getFirstPlayerPassenger() {
@@ -368,7 +373,7 @@ public class RoverEntity extends IVehicleEntity implements IGaugeValuesProvider 
         //Fuel Load up
         if (this.inventory.getStackInSlot(0).getItem() instanceof BucketItem) {
             if (((BucketItem) this.getInventory().getStackInSlot(0).getItem()).getFluid().is(TagRegistry.FLUID_VEHICLE_FUEL_TAG)) {
-                if (this.entityData.get(FUEL) + FluidUtils.BUCKET_SIZE <= Config.ROVER_FUEL_BUCKETS.get() * FluidUtils.BUCKET_SIZE) {
+                if (this.entityData.get(FUEL) + FluidUtils.BUCKET_SIZE <= getFuelCapacity()) {
                     this.getEntityData().set(FUEL, (this.getEntityData().get(FUEL) + FluidUtils.BUCKET_SIZE));
                     this.inventory.setStackInSlot(0, new ItemStack(Items.BUCKET));
                 }

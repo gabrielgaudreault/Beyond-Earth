@@ -1,16 +1,17 @@
 package com.st0x0ef.beyond_earth;
 
-import com.st0x0ef.beyond_earth.common.world.ModPlacedFeature;
+import com.st0x0ef.beyond_earth.common.config.Config;
+import com.st0x0ef.beyond_earth.common.registries.*;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import com.st0x0ef.beyond_earth.common.config.Config;
-import com.st0x0ef.beyond_earth.common.registries.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.awt.*;
 
 @Mod(BeyondEarth.MODID)
 public class BeyondEarth {
@@ -48,5 +49,7 @@ public class BeyondEarth {
 		MobEffectsRegistry.MOB_EFFECTS.register(bus);
 
 		MinecraftForge.EVENT_BUS.register(this);
+
+		LOGGER.info("Beyond Earth Started Successfully!");
 	}
 }

@@ -2,6 +2,7 @@ package com.st0x0ef.beyond_earth.common.blocks.entities.machines;
 
 import java.util.List;
 
+import com.st0x0ef.beyond_earth.common.items.RoverItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.entity.player.Inventory;
@@ -32,7 +33,7 @@ public class RocketUpgraderBlockEntity extends AbstractMachineBlockEntity {
             return stack.is(TagRegistry.ROCKET_UPGRADE_TAG);
         }
         else if (index == this.getSlotRocketInput()) {
-            return stack.is(ItemsRegistry.ROCKET_ITEM.get());
+            return stack.is(ItemsRegistry.ROCKET_ITEM.get()) || stack.is(ItemsRegistry.ROCKET_ITEM.get());
         }
         else if (index == this.getSlotOutput()) {
             return false;
@@ -68,6 +69,19 @@ public class RocketUpgraderBlockEntity extends AbstractMachineBlockEntity {
 
                     output.getOrCreateTag().putInt("fuelCapacityModifier", rocket.fuelCapacityModifier);
                     output.getOrCreateTag().putInt("fuelUsageModifier", rocket.fuelUsageModifier);
+
+                    this.removeItem(getSlotUpgradeInput(), 1);
+                    this.removeItem(getSlotRocketInput(), 1);
+                    this.setItem(getSlotOutput(), output);
+                }
+            }
+
+            if (output.getItem() instanceof RoverItem rover) {
+                if (upgrade_input.getItem() instanceof RocketUpgradeItem upgrade) {
+                    rover.fuelCapacityModifier = upgrade.getFuelCapacityModifier() > 0 ? upgrade.getFuelCapacityModifier() : rover.fuelCapacityModifier;
+                    output = rover.asItem().getDefaultInstance();
+
+                    output.getOrCreateTag().putInt("fuelCapacityModifier", rover.fuelCapacityModifier);
 
                     this.removeItem(getSlotUpgradeInput(), 1);
                     this.removeItem(getSlotRocketInput(), 1);

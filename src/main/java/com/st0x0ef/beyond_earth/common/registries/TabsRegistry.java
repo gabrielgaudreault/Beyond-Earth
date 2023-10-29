@@ -38,6 +38,7 @@ public class TabsRegistry {
                 builder.accept(ItemsRegistry.CHEESE.get());
                 builder.accept(ItemsRegistry.FUEL_BUCKET.get());
                 builder.accept(ItemsRegistry.OIL_BUCKET.get());
+                builder.accept(ItemsRegistry.SPACE_BALISE.get());
             }).build());
 
     public static RegistryObject<CreativeModeTab> MACHINES = CREATIVE_MOD_TAB.register("tab_machines", () -> CreativeModeTab.builder()
