@@ -9,7 +9,7 @@ plugins {
 }
 
 version = "${mc_version}-${mod_version}"
-group = "net.mrscauthd.beyond_earth"
+group = "com.st0x0ef.beyond_earth"
 archivesBaseName = "Beyond-Earth"
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
@@ -113,11 +113,11 @@ jar {
     manifest {
         attributes([
                 "Specification-Title"     : "beyond_earth",
-                "Specification-Vendor"    : "MrScautHD",
+                "Specification-Vendor"    : "St0x0ef",
                 "Specification-Version"   : "1",
                 "Implementation-Title"    : project.name,
                 "Implementation-Version"  : "${archiveVersion}",
-                "Implementation-Vendor"   : "MrScautHD",
+                "Implementation-Vendor"   : "St0x0ef",
                 "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
                 "MixinConfigs"            : "beyond_earth.mixin.json"
         ])

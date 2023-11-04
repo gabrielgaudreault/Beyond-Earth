@@ -1,7 +1,7 @@
 {
   "type": "minecraft:smithing",
   "base": {
-    "item": "beyond_earth:space_helmet"
+    "item": "beyond_earth:jet_helmet"
   },
   "addition": {
     "item": "minecraft:netherite_ingot"
