@@ -3,6 +3,10 @@ package com.st0x0ef.beyond_earth.client.renderers.sky;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.Axis;
+import com.st0x0ef.beyond_earth.client.renderers.sky.helper.SkyHelper;
+import com.st0x0ef.beyond_earth.client.renderers.sky.helper.StarHelper;
+import com.st0x0ef.beyond_earth.common.util.Planets;
+import com.st0x0ef.beyond_earth.common.util.Planets.Planet;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
@@ -10,16 +14,14 @@ import net.minecraft.client.renderer.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.material.FogType;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import com.st0x0ef.beyond_earth.client.renderers.sky.helper.SkyHelper;
-import com.st0x0ef.beyond_earth.client.renderers.sky.helper.StarHelper;
-import com.st0x0ef.beyond_earth.common.util.Planets;
-import com.st0x0ef.beyond_earth.common.util.Planets.Planet;
 import org.apache.commons.lang3.tuple.Triple;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Matrix4f;
@@ -109,81 +111,56 @@ public class PlanetSky extends DimensionSpecialEffects {
     }
 
     @Override
-    public boolean renderSky(ClientLevel level, int ticks, float partialTick, PoseStack poseStack, Camera camera,
-                             Matrix4f projectionMatrix, boolean isFoggy, Runnable setupFog) {
-
-        if (planet == null)
-            return false;
-
+    public boolean renderSky(ClientLevel level, int ticks, float partialTick, PoseStack poseStack, Camera camera, Matrix4f projectionMatrix, boolean isFoggy, Runnable setupFog) {
+        /** DEFAULT VARIABLES */
+        BufferBuilder bufferBuilder = Tesselator.getInstance().getBuilder();
         Minecraft mc = Minecraft.getInstance();
+        Matrix4f matrix4f = poseStack.last().pose();
+        ShaderInstance shaderInstance = RenderSystem.getShader();
+        float dayTime = level.getTimeOfDay(partialTick);
+        float worldTime = level.getDayTime() + partialTick;
+        float dayAngle = dayTime * 360f % 360f;
+        float skyLight = 1 - 2 * Math.abs(dayTime - 0.5f);
 
-        setupFog.run();
-        if (!isFoggy) {
-            FogType fogtype = camera.getFluidInCamera();
-            if (fogtype != FogType.POWDER_SNOW && fogtype != FogType.LAVA
-                    && !mc.levelRenderer.doesMobEffectBlockSky(camera)) {
-
-                /** SKY COLOR */
-                Vec3 vec3 = mc.level.getSkyColor(mc.gameRenderer.getMainCamera().getPosition(), partialTick);
-                float r = (float) vec3.x;
-                float g = (float) vec3.y;
-                float b = (float) vec3.z;
-
-                /** DEFAULT VARIABLES */
-                BufferBuilder bufferBuilder = Tesselator.getInstance().getBuilder();
-                ShaderInstance shaderInstance = RenderSystem.getShader();
-                Matrix4f matrix4f = poseStack.last().pose();
-
-                // This number goes from 0-1, where it is 0 at noon, and 1 directly before noon.
-                float dayTime = level.getTimeOfDay(partialTick);
-                // We use a more precise timer for moons, so they move more smoothly in the sky.
-                float worldTime = level.getDayTime() + partialTick;
-                // This converts this day time into an angle, with noon being 0 degrees.
-                float dayAngle = dayTime * 360f % 360f;
-                // This is an amount of brightness for the sky, assuming brightest at noon.
-                float skyLight = 1 - 2 * Math.abs(dayTime - 0.5f);
-
-                /** SET FOG COLOR */
-                FogRenderer.levelFogColor();
-
-                /** ENABLE DEPTH MASK */
-                RenderSystem.depthMask(false);
-
-                /** DRAW SKY */
-                RenderSystem.setShaderColor(r, g, b, 1.0F);
-                SkyHelper.drawSky(mc, matrix4f, projectionMatrix, shaderInstance);
-
-                /** SUN RISE COLOR */
-                SkyHelper.setupSunRiseColor(poseStack, bufferBuilder, partialTick, mc, true);
-
-                /** STARS */
-                float rainLevel = 1.0F - mc.level.getRainLevel(partialTick);
-                float starLight = mc.level.getStarBrightness(partialTick) * rainLevel;
-
-                if (starLight > 0.0F) {
-                    matrix4f = SkyHelper.setMatrixRot(poseStack,
-                            Triple.of(Axis.YP.rotationDegrees(-90), Axis.XP.rotationDegrees(dayAngle), null));
-                    RenderSystem.setShaderColor(starLight, starLight, starLight, starLight);
-                    SkyHelper.drawStars(starBuffer, matrix4f, projectionMatrix, GameRenderer.getPositionColorShader(),
-                            setupFog, true);
-                }
-
-                // Update this incase something changed with configs/etc
-                planet = Planets.getLocationForPlanet(level);
-                // Now render this planet, as well as parents and siblings.
-                SkyHelper.drawPlanetsAndParents(poseStack, bufferBuilder, camera, dayAngle, skyLight, worldTime,
-                        planet);
-
-                /** CUT OFF SKY SYSTEM */
-                SkyHelper.drawDarkSky(mc, poseStack, projectionMatrix, shaderInstance, partialTick);
-
-                /** SHADER COLOR */
-                SkyHelper.setupShaderColor(mc, r, g, b);
-
-                /** DISABLE DEPTH MASK */
-                RenderSystem.depthMask(true);
-            }
+        FogType cameraSubmersionType = camera.getFluidInCamera();
+        if (cameraSubmersionType.equals(FogType.POWDER_SNOW) || cameraSubmersionType.equals(FogType.LAVA) || mc.levelRenderer.doesMobEffectBlockSky(camera)) {
+            return false;
         }
+
+        /** SKY COLOR */
+        Vec3 vec3 = mc.level.getSkyColor(mc.gameRenderer.getMainCamera().getPosition(), partialTick);
+        float r = (float) vec3.x;
+        float g = (float) vec3.y;
+        float b = (float) vec3.z;
+
+        FogRenderer.levelFogColor();
+        RenderSystem.depthMask(false);
+
+        RenderSystem.setShaderColor(r, g, b, 1.0f);
+        SkyHelper.drawSky(mc, matrix4f, projectionMatrix, shaderInstance);
+        VertexBuffer.unbind();
+        RenderSystem.enableBlend();
+        RenderSystem.defaultBlendFunc();
+
+        /** STARS */
+        float rainLevel = 1.0F - mc.level.getRainLevel(partialTick);
+        float starLight = mc.level.getStarBrightness(partialTick) * rainLevel;
+
+        if (starLight > 0.0F) {
+            matrix4f = SkyHelper.setMatrixRot(poseStack,
+                    Triple.of(Axis.YP.rotationDegrees(-90), Axis.XP.rotationDegrees(dayAngle), null));
+            RenderSystem.setShaderColor(starLight, starLight, starLight, starLight);
+            SkyHelper.drawStars(starBuffer, matrix4f, projectionMatrix, GameRenderer.getPositionColorShader(),
+                    setupFog, true);
+        }
+
+        /** PLANETS */
+        planet = Planets.getLocationForPlanet(level);
+        SkyHelper.drawPlanetsAndParents(poseStack, bufferBuilder, camera, dayAngle, skyLight, worldTime, planet);
+
+        SkyHelper.setupShaderColor(mc, r, g, b);
+        RenderSystem.depthMask(true);
+        RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
 
         return true;
     }
