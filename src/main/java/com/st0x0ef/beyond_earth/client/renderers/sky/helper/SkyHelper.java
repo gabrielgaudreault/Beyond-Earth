@@ -199,13 +199,7 @@ public class SkyHelper {
                     renderLater);
     }
 
-    public static void drawPlanetsAndParents(PoseStack poseStack, BufferBuilder bufferBuilder, Camera camera,
-            float dayAngle, float skyLight, float worldTime, Planet planet) {
-        drawPlanetsAndParents(poseStack, bufferBuilder, camera, dayAngle, skyLight, worldTime, planet, 1, true);
-    }
-
-    public static void drawPlanetsAndParents(PoseStack poseStack, BufferBuilder bufferBuilder, Camera camera,
-            float dayAngle, float skyLight, float worldTime, Planet planet, int parentDepth, boolean includeMoons) {
+    public static void drawPlanetsAndParents(PoseStack poseStack, BufferBuilder bufferBuilder, Camera camera, float dayAngle, float skyLight, float worldTime, Planet planet, int parentDepth, boolean includeMoons) {
         if (planet != null) {
             Object2ObjectArrayMap<Planet, float[]> renderAfterSun = new Object2ObjectArrayMap<>();
             CelestialBody parent = planet._parent;
@@ -449,20 +443,6 @@ public class SkyHelper {
         mc.levelRenderer.skyBuffer.bind();
         mc.levelRenderer.skyBuffer.drawWithShader(matrix4f, projectionMatrix, shaderInstance);
         VertexBuffer.unbind();
-    }
-
-    public static void drawDarkSky(Minecraft mc, PoseStack poseStack, Matrix4f projectionMatrix,
-            ShaderInstance shaderInstance, float partialTick) {
-        RenderSystem.setShaderColor(0.0F, 0.0F, 0.0F, 1.0F);
-        double d0 = mc.player.getEyePosition(partialTick).y - mc.level.getLevelData().getHorizonHeight(mc.level);
-        if (d0 < 0.0D) {
-            poseStack.pushPose();
-            poseStack.translate(0.0D, 12.0D, 0.0D);
-            mc.levelRenderer.darkBuffer.bind();
-            mc.levelRenderer.darkBuffer.drawWithShader(poseStack.last().pose(), projectionMatrix, shaderInstance);
-            VertexBuffer.unbind();
-            poseStack.popPose();
-        }
     }
 
     public static void setupRainSize(float[] rainSizeX, float[] rainSizeZ) {

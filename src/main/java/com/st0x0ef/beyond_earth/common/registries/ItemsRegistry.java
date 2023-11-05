@@ -64,10 +64,10 @@ public class ItemsRegistry {
     public static final RegistryObject<Item> FLAG_ITEM = ITEMS.register("flag", () -> new DoubleHighBlockItem(BlockRegistry.FLAG_BLOCK.get(), new Item.Properties()));
 
     /** ROCKET UPGRADE */
-    public static final RegistryObject<Item> BASIC_FUEL_UPGRADE = ITEMS.register("basic_fuel_upgrade", () -> new RocketUpgradeItem(new Item.Properties(), 1, 0));
-    public static final RegistryObject<Item> ADVANCED_FUEL_UPGRADE = ITEMS.register("advanced_fuel_upgrade", () -> new RocketUpgradeItem(new Item.Properties(), 3, 0));
-    public static final RegistryObject<Item> HYDROGEN_MOTOR_UPGRADE = ITEMS.register("hydrogen_motor_upgrade", () -> new RocketUpgradeItem(new Item.Properties(), 0, 10000000));
-    public static final RegistryObject<Item> URANIUM_MOTOR_UPGRADE = ITEMS.register("uranium_motor_upgrade", () -> new RocketUpgradeItem(new Item.Properties(), 0, 1000000000));
+    public static final RegistryObject<Item> BASIC_FUEL_UPGRADE = ITEMS.register("basic_fuel_upgrade", () -> new VehicleUpgradeItem(new Item.Properties(), 1, 0));
+    public static final RegistryObject<Item> ADVANCED_FUEL_UPGRADE = ITEMS.register("advanced_fuel_upgrade", () -> new VehicleUpgradeItem(new Item.Properties(), 3, 0));
+    public static final RegistryObject<Item> HYDROGEN_MOTOR_UPGRADE = ITEMS.register("hydrogen_motor_upgrade", () -> new VehicleUpgradeItem(new Item.Properties(), 0, 10000000));
+    public static final RegistryObject<Item> URANIUM_MOTOR_UPGRADE = ITEMS.register("uranium_motor_upgrade", () -> new VehicleUpgradeItem(new Item.Properties(), 0, 1000000000));
 
 
     /** NORMAL ITEMS */
@@ -135,7 +135,7 @@ public class ItemsRegistry {
     public static final RegistryObject<BlockItem> OXYGEN_LOADER_ITEM = ITEMS.register("oxygen_loader", () -> new BlockItem(BlockRegistry.OXYGEN_LOADER_BLOCK.get(), new Item.Properties()));
     public static final RegistryObject<BlockItem> OXYGEN_BUBBLE_DISTRIBUTOR_ITEM = ITEMS.register("oxygen_bubble_distributor", () -> new BlockItem(BlockRegistry.OXYGEN_BUBBLE_DISTRIBUTOR_BLOCK.get(), new Item.Properties()));
     public static final RegistryObject<BlockItem> WATER_PUMP_ITEM = ITEMS.register("water_pump", () -> new BlockItem(BlockRegistry.WATER_PUMP_BLOCK.get(), new Item.Properties()));
-    public static final RegistryObject<BlockItem> ROCKET_UPGRADER_ITEM = ITEMS.register("rocket_upgrader", () -> new BlockItem(BlockRegistry.ROCKET_UPGRADER_BLOCK.get(), new Item.Properties()));
+    public static final RegistryObject<BlockItem> VEHICLE_UPGRADER_ITEM = ITEMS.register("vehicle_upgrader", () -> new BlockItem(BlockRegistry.VEHICLE_UPGRADER_BLOCK.get(), new Item.Properties()));
 
 
     // NORMAL BLOCK ITEMS

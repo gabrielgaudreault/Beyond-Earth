@@ -9,22 +9,21 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
-import com.st0x0ef.beyond_earth.common.entities.RocketEntity;
 import com.st0x0ef.beyond_earth.common.items.RocketItem;
-import com.st0x0ef.beyond_earth.common.items.RocketUpgradeItem;
-import com.st0x0ef.beyond_earth.common.menus.RocketUpgraderMenu;
+import com.st0x0ef.beyond_earth.common.items.VehicleUpgradeItem;
+import com.st0x0ef.beyond_earth.common.menus.VehicleUpgraderMenu;
 import com.st0x0ef.beyond_earth.common.registries.BlockEntityRegistry;
 import com.st0x0ef.beyond_earth.common.registries.ItemsRegistry;
 import com.st0x0ef.beyond_earth.common.registries.TagRegistry;
 
-public class RocketUpgraderBlockEntity extends AbstractMachineBlockEntity {
+public class VehicleUpgraderBlockEntity extends AbstractMachineBlockEntity {
 
     public static final int SLOT_UPGRADE_INPUT = 0;
-    public static final int SLOT_ROCKET_INPUT = 1;
+    public static final int SLOT_VEHICLE_INPUT = 1;
     public static final int SLOT_OUTPUT = 2;
 
-    public RocketUpgraderBlockEntity(BlockPos pos, BlockState state) {
-        super(BlockEntityRegistry.ROCKET_UPGRADER_BLOCK_ENTITY.get(), pos, state);
+    public VehicleUpgraderBlockEntity(BlockPos pos, BlockState state) {
+        super(BlockEntityRegistry.VEHICLE_UPGRADER_BLOCK_ENTITY.get(), pos, state);
     }
 
     @Override
@@ -32,7 +31,7 @@ public class RocketUpgraderBlockEntity extends AbstractMachineBlockEntity {
         if (index == this.getSlotUpgradeInput()) {
             return stack.is(TagRegistry.ROCKET_UPGRADE_TAG);
         }
-        else if (index == this.getSlotRocketInput()) {
+        else if (index == this.getSlotVehicleInput()) {
             return stack.is(ItemsRegistry.ROCKET_ITEM.get()) || stack.is(ItemsRegistry.ROCKET_ITEM.get());
         }
         else if (index == this.getSlotOutput()) {
@@ -44,7 +43,7 @@ public class RocketUpgraderBlockEntity extends AbstractMachineBlockEntity {
 
     @Override
     public boolean canTakeItemThroughFace(int index, ItemStack stack, Direction direction) {
-        if (index == this.getSlotRocketInput() || index == this.getSlotUpgradeInput()) {
+        if (index == this.getSlotVehicleInput() || index == this.getSlotUpgradeInput()) {
             return false;
         } else if (index == this.getSlotOutput()) {
             return true;
@@ -56,13 +55,13 @@ public class RocketUpgraderBlockEntity extends AbstractMachineBlockEntity {
     @Override
     protected void tickProcessing() {
         ItemStack upgrade_input = this.getItem(getSlotUpgradeInput());
-        ItemStack rocket_input = this.getItem(getSlotRocketInput());
+        ItemStack rocket_input = this.getItem(getSlotVehicleInput());
 
         if (!upgrade_input.isEmpty() && !rocket_input.isEmpty() && hasSpaceInOutput()) {
             ItemStack output = rocket_input.copy();
 
             if (output.getItem() instanceof RocketItem rocket) {
-                if (upgrade_input.getItem() instanceof RocketUpgradeItem upgrade) {
+                if (upgrade_input.getItem() instanceof VehicleUpgradeItem upgrade) {
                     rocket.fuelCapacityModifier = upgrade.getFuelCapacityModifier() > 0 ? upgrade.getFuelCapacityModifier() : rocket.fuelCapacityModifier;
                     rocket.fuelUsageModifier = upgrade.getFuelUsageModifier() > 0 ? upgrade.getFuelUsageModifier() : rocket.fuelUsageModifier;
                     output = rocket.asItem().getDefaultInstance();
@@ -71,20 +70,20 @@ public class RocketUpgraderBlockEntity extends AbstractMachineBlockEntity {
                     output.getOrCreateTag().putInt("fuelUsageModifier", rocket.fuelUsageModifier);
 
                     this.removeItem(getSlotUpgradeInput(), 1);
-                    this.removeItem(getSlotRocketInput(), 1);
+                    this.removeItem(getSlotVehicleInput(), 1);
                     this.setItem(getSlotOutput(), output);
                 }
             }
 
             if (output.getItem() instanceof RoverItem rover) {
-                if (upgrade_input.getItem() instanceof RocketUpgradeItem upgrade) {
+                if (upgrade_input.getItem() instanceof VehicleUpgradeItem upgrade) {
                     rover.fuelCapacityModifier = upgrade.getFuelCapacityModifier() > 0 ? upgrade.getFuelCapacityModifier() : rover.fuelCapacityModifier;
                     output = rover.asItem().getDefaultInstance();
 
                     output.getOrCreateTag().putInt("fuelCapacityModifier", rover.fuelCapacityModifier);
 
                     this.removeItem(getSlotUpgradeInput(), 1);
-                    this.removeItem(getSlotRocketInput(), 1);
+                    this.removeItem(getSlotVehicleInput(), 1);
                     this.setItem(getSlotOutput(), output);
                 }
             }
@@ -99,14 +98,14 @@ public class RocketUpgraderBlockEntity extends AbstractMachineBlockEntity {
     @Override
     protected void getSlotsForFace(Direction direction, List<Integer> slots) {
         super.getSlotsForFace(direction, slots);
-        slots.add(this.getSlotRocketInput());
+        slots.add(this.getSlotVehicleInput());
         slots.add(this.getSlotUpgradeInput());
         slots.add(this.getSlotOutput());
     }
 
     @Override
     public AbstractContainerMenu createMenu(int id, Inventory inventory) {
-        return new RocketUpgraderMenu.GuiContainer(id, inventory, this);
+        return new VehicleUpgraderMenu.GuiContainer(id, inventory, this);
     }
 
     @Override
@@ -114,8 +113,8 @@ public class RocketUpgraderBlockEntity extends AbstractMachineBlockEntity {
         return super.getInitialInventorySize() + 3;
     }
 
-    public int getSlotRocketInput() {
-        return SLOT_ROCKET_INPUT;
+    public int getSlotVehicleInput() {
+        return SLOT_VEHICLE_INPUT;
     }
     public int getSlotUpgradeInput() {
         return SLOT_UPGRADE_INPUT;

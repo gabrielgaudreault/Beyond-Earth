@@ -117,6 +117,7 @@ public class PlanetSky extends DimensionSpecialEffects {
         Minecraft mc = Minecraft.getInstance();
         Matrix4f matrix4f = poseStack.last().pose();
         ShaderInstance shaderInstance = RenderSystem.getShader();
+
         float dayTime = level.getTimeOfDay(partialTick);
         float worldTime = level.getDayTime() + partialTick;
         float dayAngle = dayTime * 360f % 360f;
@@ -156,7 +157,7 @@ public class PlanetSky extends DimensionSpecialEffects {
 
         /** PLANETS */
         planet = Planets.getLocationForPlanet(level);
-        SkyHelper.drawPlanetsAndParents(poseStack, bufferBuilder, camera, dayAngle, skyLight, worldTime, planet);
+        SkyHelper.drawPlanetsAndParents(poseStack, bufferBuilder, camera, dayAngle, skyLight, worldTime, planet, 1, true);
 
         SkyHelper.setupShaderColor(mc, r, g, b);
         RenderSystem.depthMask(true);
