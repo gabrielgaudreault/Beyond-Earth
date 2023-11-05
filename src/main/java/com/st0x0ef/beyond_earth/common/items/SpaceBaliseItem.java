@@ -71,7 +71,7 @@ public class SpaceBaliseItem extends Item {
             coordsSet = false;
         }
         else {
-            player.sendSystemMessage(Component.translatable("message.beyond_earth.space_balise.launch_pad_coordinates").append(String.valueOf(baliseX)).append(String.valueOf(baliseY)).append(String.valueOf(baliseZ)).append(baliseLevel));
+            player.sendSystemMessage(Component.translatable("message.beyond_earth.space_balise.launch_pad_coordinates", baliseX, baliseY, baliseZ, baliseLevel));
 
         }
 
@@ -84,7 +84,7 @@ public class SpaceBaliseItem extends Item {
             tooltipComponents.add(Component.translatable("message.beyond_earth.space_balise.right_click"));
 
         } else {
-            tooltipComponents.add(Component.translatable("message.beyond_earth.space_balise.launch_pad_coordinates").append(String.valueOf(baliseX)).append(String.valueOf(baliseY)).append(String.valueOf(baliseZ)).append(baliseLevel));
+            tooltipComponents.add(Component.translatable("message.beyond_earth.space_balise.launch_pad_coordinates", baliseX, baliseY, baliseZ, baliseLevel));
         }
     }
 }
