@@ -1,5 +1,6 @@
 package com.st0x0ef.beyond_earth.common.events;
 
+import com.st0x0ef.beyond_earth.common.util.*;
 import net.minecraft.core.NonNullList;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResultHolder;
@@ -22,10 +23,7 @@ import net.minecraftforge.event.OnDatapackSyncEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
-import net.minecraftforge.event.entity.living.LivingAttackEvent;
-import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.event.entity.living.LivingEvent;
-import net.minecraftforge.event.entity.living.LivingFallEvent;
+import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.entity.player.PlayerContainerEvent;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -42,11 +40,6 @@ import com.st0x0ef.beyond_earth.common.events.forge.ItemEntityTickAtEndEvent;
 import com.st0x0ef.beyond_earth.common.events.forge.LivingSprintingEvent;
 import com.st0x0ef.beyond_earth.common.events.forge.TryStartFallFlyingEvent;
 import com.st0x0ef.beyond_earth.common.registries.*;
-import com.st0x0ef.beyond_earth.common.util.EntityGravity;
-import com.st0x0ef.beyond_earth.common.util.ItemGravity;
-import com.st0x0ef.beyond_earth.common.util.Methods;
-import com.st0x0ef.beyond_earth.common.util.OxygenSystem;
-import com.st0x0ef.beyond_earth.common.util.Planets;
 
 @Mod.EventBusSubscriber(modid = BeyondEarth.MODID)
 public class Events {
