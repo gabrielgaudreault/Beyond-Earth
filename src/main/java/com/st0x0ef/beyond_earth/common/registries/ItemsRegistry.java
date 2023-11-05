@@ -249,4 +249,6 @@ public class ItemsRegistry {
     /** BUCKET ITEMS */
     public static final RegistryObject<BucketItem> FUEL_BUCKET = ITEMS.register("fuel_bucket", () -> new ModifiedBucketItem(FluidRegistry.FUEL_STILL, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1), true));
     public static final RegistryObject<BucketItem> OIL_BUCKET = ITEMS.register("oil_bucket", () -> new ModifiedBucketItem(FluidRegistry.OIL_STILL, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1), false));
+    public static final RegistryObject<BucketItem> HYDROGEN_BUCKET = ITEMS.register("hydrogen_bucket", () -> new ModifiedBucketItem(FluidRegistry.HYDROGEN_STILL, new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(1), false));
+
 }
