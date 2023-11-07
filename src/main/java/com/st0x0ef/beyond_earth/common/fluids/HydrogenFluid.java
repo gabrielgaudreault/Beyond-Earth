@@ -81,7 +81,7 @@ public class HydrogenFluid extends FlowingFluid {
 
     @Override
     protected BlockState createLegacyBlock(FluidState p_76136_) {
-        return BlockRegistry.OIL_BLOCK.get().defaultBlockState().setValue(LiquidBlock.LEVEL, Integer.valueOf(getLegacyLevel(p_76136_)));
+        return BlockRegistry.HYDROGEN_BLOCK.get().defaultBlockState().setValue(LiquidBlock.LEVEL, Integer.valueOf(getLegacyLevel(p_76136_)));
     }
 
     @Override
@@ -110,7 +110,7 @@ public class HydrogenFluid extends FlowingFluid {
 
     @Override
     protected boolean canBeReplacedWith(FluidState p_76127_, BlockGetter p_76128_, BlockPos p_76129_, Fluid p_76130_, Direction p_76131_) {
-        return p_76131_ == Direction.DOWN && p_76127_.getFluidType() != FluidTypeRegistry.OIL_TYPE.get();
+        return p_76131_ == Direction.DOWN && p_76127_.getFluidType() != FluidTypeRegistry.HYDROGEN_TYPE.get();
     }
 
     @Override
@@ -125,7 +125,7 @@ public class HydrogenFluid extends FlowingFluid {
 
     @Override
     public FluidType getFluidType() {
-        return FluidTypeRegistry.OIL_TYPE.get();
+        return FluidTypeRegistry.HYDROGEN_TYPE.get();
     }
 
     public static class Flowing extends HydrogenFluid {

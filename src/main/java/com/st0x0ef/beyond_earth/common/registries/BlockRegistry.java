@@ -158,4 +158,8 @@ public class BlockRegistry {
 
     //OIL
     public static final RegistryObject<LiquidBlock> OIL_BLOCK = BLOCKS.register("oil", () -> new LiquidBlock(FluidRegistry.OIL_STILL, BlockBehaviour.Properties.of().mapColor(MapColor.WATER).noCollission().strength(100f).noLootTable()));
+
+    //HYDROGEN
+    public static final RegistryObject<LiquidBlock> HYDROGEN_BLOCK = BLOCKS.register("hydrogen", () -> new LiquidBlock(FluidRegistry.HYDROGEN_STILL, BlockBehaviour.Properties.of().mapColor(MapColor.WATER).noCollission().strength(100f).noLootTable()));
+
 }
