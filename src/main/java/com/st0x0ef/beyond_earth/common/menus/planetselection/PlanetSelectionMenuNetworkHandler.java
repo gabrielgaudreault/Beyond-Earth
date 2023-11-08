@@ -3,6 +3,7 @@ package com.st0x0ef.beyond_earth.common.menus.planetselection;
 import java.util.function.Supplier;
 
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.Level;
@@ -56,9 +57,22 @@ public class PlanetSelectionMenuNetworkHandler extends PlanetSelectionMenuNetwor
             boolean isStation = Planets.STATION_ID_MAPS.containsKey(message.integer);
             if (isStation) {
                 ResourceKey<Level> dest = Planets.STATION_ID_MAPS.get(message.integer);
-                message.defaultOptions(player);
-                message.deleteItems(player);
-                Methods.createLanderAndTeleportTo(player, dest, 700, true);
+                if(Methods.canPlaceStation(player.getServer().getLevel(dest), player)) {
+                    message.defaultOptions(player);
+                    message.deleteItems(player);
+                    Methods.createLanderAndTeleportTo(player, dest, 700, true);
+                } else {
+                    //TODO : ADD SOMETHING TO TELL THE PLAYER HE CAN'T PLACE SPACE STATION HERE
+                    player.closeContainer();
+
+                    try {
+                        player.displayClientMessage(Component.literal("test"), true);
+                        Thread.sleep(9000);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                    Methods.openPlanetGui(player);
+                }
             }
         });
 

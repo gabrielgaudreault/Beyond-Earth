@@ -326,7 +326,7 @@ public class PlanetSelectionScreen extends Screen implements MenuAccess<PlanetSe
 
         // Space station teleport buttons
         ModifiedButton stationButton = PlanetSelectionScreenHelper.addHandlerButton(this, 125, 3, 75, 20,
-                this.canPlaceStation(planet), false, true, NetworkRegistry.PACKET_HANDLER,
+                this.spaceStationItemList, false, true, NetworkRegistry.PACKET_HANDLER,
                 PlanetSelectionScreenHelper.getNetworkHandler(planet.stationID),
                 ModifiedButton.ButtonTypes.PLANET_SPACE_STATION_CATEGORY, buttonText, LARGE_BUTTON_TEXTURE,
                 ModifiedButton.ColorTypes.GREEN, SPACE_STATION_TEXT);
@@ -614,13 +614,6 @@ public class PlanetSelectionScreen extends Screen implements MenuAccess<PlanetSe
     public boolean canGoOn(Planet planet) {
         return planet.distanceFromEarth <= this.menu.getMaxDistanceTravelable();
     }
-
-    public boolean canPlaceStation(Planet planet) {
-        Player player = this.menu.getPlayer();
-        return this.spaceStationItemList && Methods.canPlaceStation(player.getServer().getLevel(planet.planet), player);
-    }
-
-
 
     /**
      * USE THIS METHOD TO ADD A OWN BUTTON SYSTEM (YOU SHOULD USE THE

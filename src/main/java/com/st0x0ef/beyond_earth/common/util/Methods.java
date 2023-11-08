@@ -23,11 +23,11 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
 import net.minecraft.world.level.portal.PortalInfo;
-import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.ITeleporter;
@@ -52,6 +52,7 @@ import com.st0x0ef.beyond_earth.common.registries.ItemsRegistry;
 import com.st0x0ef.beyond_earth.common.registries.TagRegistry;
 import com.st0x0ef.beyond_earth.common.util.Planets.Planet;
 
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Function;
 
@@ -349,30 +350,25 @@ public class Methods {
         StructureTemplate structureTemplate = serverLevel.getStructureManager().getOrCreate(SPACE_STATION);
         BlockPos pos = new BlockPos((int)player.getX() - (structureTemplate.getSize().getX() / 2), 100, (int)player.getZ() - (structureTemplate.getSize().getZ() / 2));
 
-        if(canPlaceStation(serverLevel, player)) BeyondEarth.LOGGER.debug("CAN PLACE STATION");
-
         structureTemplate.placeInWorld(serverLevel, pos, pos, new StructurePlaceSettings(), serverLevel.random, 2);
     }
 
     public static boolean canPlaceStation(ServerLevel serverLevel, Player player) {
         StructureTemplate structureTemplate = serverLevel.getStructureManager().getOrCreate(SPACE_STATION);
-        BlockPos pos = new BlockPos((int)player.getX() - (structureTemplate.getSize().getX() / 2), 100, (int)player.getZ() - (structureTemplate.getSize().getZ() / 2));
+        BlockPos structurePos = new BlockPos((int)player.getX() - (structureTemplate.getSize().getX() / 2), 100, (int)player.getZ() - (structureTemplate.getSize().getZ() / 2));
 
-        AABB aabb = new AABB(pos);
-        aabb.inflate(structureTemplate.getSize().getX(), structureTemplate.getSize().getY(), structureTemplate.getSize().getZ());
-        AtomicInteger blocks = new AtomicInteger();
-
-        serverLevel.getBlockStatesIfLoaded(aabb).forEach(blockState -> {
-            if (!blockState.is(TagRegistry.SPACE_STATION_CAN_SPAWN_ON)) {
-                blocks.addAndGet(1);
+        for (double x = structurePos.getX(); x < structurePos.getX() + 32; x++) {
+            for (double y = structurePos.getY(); y < structurePos.getY() + 31; y++) {
+                for (double z = structurePos.getY(); z < structurePos.getZ() + 32; z++) {
+                    BlockPos pos = new BlockPos((int) x, (int) y, (int) z);
+                    Block block = serverLevel.getBlockState(pos).getBlock();
+                    if (!block.defaultBlockState().is(TagRegistry.SPACE_STATION_CAN_SPAWN_ON)) {
+                        return false;
+                    }
+                }
             }
-        });
-
-        if (blocks.get() == 0) {
-            return true;
         }
-
-        return false;
+        return true;
     }
 
     public static void resetPlanetSelectionMenuNeededNbt(Player player) {
