@@ -10,14 +10,14 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import com.st0x0ef.beyond_earth.BeyondEarth;
-import com.st0x0ef.beyond_earth.common.menus.RocketUpgraderMenu;
+import com.st0x0ef.beyond_earth.common.menus.VehicleUpgraderMenu;
 
 @OnlyIn(Dist.CLIENT)
-public class RocketUpgraderScreen extends AbstractContainerScreen<RocketUpgraderMenu.GuiContainer> {
+public class VehicleUpgraderScreen extends AbstractContainerScreen<VehicleUpgraderMenu.GuiContainer> {
 
-    public static final ResourceLocation texture = new ResourceLocation(BeyondEarth.MODID, "textures/gui/rocket_upgrader.png");
+    public static final ResourceLocation texture = new ResourceLocation(BeyondEarth.MODID, "textures/gui/vehicle_upgrader.png");
 
-    public RocketUpgraderScreen(RocketUpgraderMenu.GuiContainer container, Inventory inventory, Component text) {
+    public VehicleUpgraderScreen(VehicleUpgraderMenu.GuiContainer container, Inventory inventory, Component text) {
         super(container, inventory, text);
         this.imageWidth = 177;
         this.imageHeight = 224;

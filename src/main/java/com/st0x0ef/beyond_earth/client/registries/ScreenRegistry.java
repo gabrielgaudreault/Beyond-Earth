@@ -1,5 +1,6 @@
 package com.st0x0ef.beyond_earth.client.registries;
 
+import com.st0x0ef.beyond_earth.common.menus.VehicleUpgraderMenu;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -26,7 +27,7 @@ public class ScreenRegistry {
         MenuScreens.register(ContainerRegistry.SOLAR_PANEL_GUI.get(), SolarPanelScreen::new);
         MenuScreens.register(ContainerRegistry.WATER_PUMP_GUI.get(), WaterPumpScreen::new);
         MenuScreens.register(ContainerRegistry.OXYGEN_BUBBLE_DISTRIBUTOR_GUI.get(), OxygenDistributorScreen::new);
-        MenuScreens.register(ContainerRegistry.ROCKET_UPGRADER_GUI.get(), RocketUpgraderScreen::new);
+        MenuScreens.register(ContainerRegistry.VEHICLE_UPGRADER_GUI.get(), VehicleUpgraderScreen::new);
 
         MenuScreens.register(ContainerRegistry.PLANET_SELECTION_GUI.get(), PlanetSelectionScreen::new);
     }

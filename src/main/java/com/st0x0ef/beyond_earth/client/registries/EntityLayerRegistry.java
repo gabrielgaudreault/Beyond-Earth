@@ -1,10 +1,5 @@
 package com.st0x0ef.beyond_earth.client.registries;
 
-import com.st0x0ef.beyond_earth.client.renderers.entities.glacianram.GlacianRamModel;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.EntityRenderersEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 import com.st0x0ef.beyond_earth.BeyondEarth;
 import com.st0x0ef.beyond_earth.client.renderers.armors.JetSuitModel;
 import com.st0x0ef.beyond_earth.client.renderers.armors.SpaceSuitModel;
@@ -22,6 +17,10 @@ import com.st0x0ef.beyond_earth.client.renderers.entities.rockettier3.RocketTier
 import com.st0x0ef.beyond_earth.client.renderers.entities.rockettier4.RocketTier4Model;
 import com.st0x0ef.beyond_earth.client.renderers.entities.rover.RoverModel;
 import com.st0x0ef.beyond_earth.client.renderers.entities.starcrawler.StarCrawlerModel;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.EntityRenderersEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = BeyondEarth.MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class EntityLayerRegistry {
@@ -35,7 +34,6 @@ public class EntityLayerRegistry {
         event.registerLayerDefinition(PygroModel.LAYER_LOCATION, PygroModel::createBodyLayer);
         event.registerLayerDefinition(MoglerModel.LAYER_LOCATION, MoglerModel::createBodyLayer);
         event.registerLayerDefinition(MartianRaptorModel.LAYER_LOCATION, MartianRaptorModel::createBodyLayer);
-        event.registerLayerDefinition(GlacianRamModel.LAYER_LOCATION, GlacianRamModel::createBodyLayer);
 
         /** VEHICLES */
         event.registerLayerDefinition(RocketTier1Model.LAYER_LOCATION, RocketTier1Model::createBodyLayer);

@@ -1,5 +1,6 @@
 package com.st0x0ef.beyond_earth.common.registries;
 
+import com.st0x0ef.beyond_earth.common.fluids.HydrogenFluid;
 import net.minecraft.world.level.material.FlowingFluid;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.registries.DeferredRegister;
@@ -20,4 +21,9 @@ public class FluidRegistry {
     /** OIL FLUIDS */
     public static final RegistryObject<FlowingFluid> FLOWING_OIL = FLUIDS.register("flowing_oil", () -> new OilFluid.Flowing());
     public static final RegistryObject<FlowingFluid> OIL_STILL = FLUIDS.register("oil", () -> new OilFluid.Source());
+
+    /** HYDROGEN FLUIDS */
+    public static final RegistryObject<FlowingFluid> FLOWING_HYDROGEN = FLUIDS.register("flowing_hydrogen", () -> new HydrogenFluid.Flowing());
+    public static final RegistryObject<FlowingFluid> HYDROGEN_STILL = FLUIDS.register("hydrogen", () -> new HydrogenFluid.Source());
+
 }

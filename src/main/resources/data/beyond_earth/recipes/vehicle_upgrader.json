@@ -1,0 +1,16 @@
+{
+  "group": "beyond_earth",
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "beyond_earth:nasa_workbench"
+    },
+    {
+      "item": "minecraft:smithing_table"
+    }
+  ],
+  "result": {
+    "item": "beyond_earth:vehicle_upgrader",
+    "count": 1
+  }
+}

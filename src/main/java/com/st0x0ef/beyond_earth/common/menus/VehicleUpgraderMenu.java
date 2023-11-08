@@ -9,36 +9,36 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.network.IContainerFactory;
-import com.st0x0ef.beyond_earth.common.blocks.entities.machines.RocketUpgraderBlockEntity;
+import com.st0x0ef.beyond_earth.common.blocks.entities.machines.VehicleUpgraderBlockEntity;
 import com.st0x0ef.beyond_earth.common.menus.helper.MenuHelper;
 import com.st0x0ef.beyond_earth.common.registries.ContainerRegistry;
 
-public class RocketUpgraderMenu {
+public class VehicleUpgraderMenu {
 
     public static class GuiContainerFactory implements IContainerFactory<GuiContainer> {
         public GuiContainer create(int id, Inventory inv, FriendlyByteBuf extraData) {
             BlockPos pos = extraData.readBlockPos();
-            RocketUpgraderBlockEntity blockEntity = (RocketUpgraderBlockEntity) inv.player.level().getBlockEntity(pos);
+            VehicleUpgraderBlockEntity blockEntity = (VehicleUpgraderBlockEntity) inv.player.level().getBlockEntity(pos);
             return new GuiContainer(id, inv, blockEntity);
         }
     }
 
     public static class GuiContainer extends AbstractContainerMenu {
-        private final RocketUpgraderBlockEntity blockEntity;
+        private final VehicleUpgraderBlockEntity blockEntity;
 
-        public GuiContainer(int id, Inventory inv, RocketUpgraderBlockEntity blockEntity) {
-            super(ContainerRegistry.ROCKET_UPGRADER_GUI.get(), id);
+        public GuiContainer(int id, Inventory inv, VehicleUpgraderBlockEntity blockEntity) {
+            super(ContainerRegistry.VEHICLE_UPGRADER_GUI.get(), id);
             this.blockEntity = blockEntity;
 
             IItemHandlerModifiable internal = blockEntity.getItemHandler();
-            this.addSlot(new SlotItemHandler(internal, RocketUpgraderBlockEntity.SLOT_UPGRADE_INPUT, 21, 56));
-            this.addSlot(new SlotItemHandler(internal, RocketUpgraderBlockEntity.SLOT_ROCKET_INPUT, 68, 56));
-            this.addSlot(new SlotItemHandler(internal, RocketUpgraderBlockEntity.SLOT_OUTPUT, 132, 56));
+            this.addSlot(new SlotItemHandler(internal, VehicleUpgraderBlockEntity.SLOT_UPGRADE_INPUT, 21, 56));
+            this.addSlot(new SlotItemHandler(internal, VehicleUpgraderBlockEntity.SLOT_VEHICLE_INPUT, 68, 56));
+            this.addSlot(new SlotItemHandler(internal, VehicleUpgraderBlockEntity.SLOT_OUTPUT, 132, 56));
 
             MenuHelper.createInventorySlots(inv, this::addSlot, 8, 142);
         }
 
-        public RocketUpgraderBlockEntity getBlockEntity() {
+        public VehicleUpgraderBlockEntity getBlockEntity() {
             return this.blockEntity;
         }
 

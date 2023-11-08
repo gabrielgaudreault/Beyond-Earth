@@ -17,6 +17,7 @@ public class FluidInteractRegistry {
         event.enqueueWork(() -> {
             addInteraction(FluidTypeRegistry.FUEL_TYPE.get());
             addInteraction(FluidTypeRegistry.OIL_TYPE.get());
+            addInteraction(FluidTypeRegistry.HYDROGEN_TYPE.get());
         });
     }
 

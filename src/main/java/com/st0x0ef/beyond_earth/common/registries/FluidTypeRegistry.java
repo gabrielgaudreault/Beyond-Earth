@@ -1,5 +1,6 @@
 package com.st0x0ef.beyond_earth.common.registries;
 
+import com.st0x0ef.beyond_earth.common.fluids.types.HydrogenFluidType;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraftforge.common.SoundActions;
 import net.minecraftforge.fluids.FluidType;
@@ -37,4 +38,19 @@ public class FluidTypeRegistry {
             .sound(SoundActions.FLUID_VAPORIZE, SoundEvents.FIRE_EXTINGUISH)
             .canHydrate(true)
     ));
+
+    public static final RegistryObject<FluidType> HYDROGEN_TYPE = FLUID_TYPES.register("hydrogen", () -> new HydrogenFluidType(FluidType.Properties.create()
+            .descriptionId("block." + BeyondEarth.MODID + ".hydrogen")
+            .fallDistanceModifier(1F)
+            .density(3000)
+            .viscosity(3000)
+            .canSwim(false)
+            .canExtinguish(true)
+            .supportsBoating(true)
+            .sound(SoundActions.BUCKET_FILL, SoundEvents.BUCKET_FILL)
+            .sound(SoundActions.BUCKET_EMPTY, SoundEvents.BUCKET_EMPTY)
+            .sound(SoundActions.FLUID_VAPORIZE, SoundEvents.FIRE_EXTINGUISH)
+            .canHydrate(true)
+    ));
+
 }

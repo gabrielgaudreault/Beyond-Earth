@@ -30,6 +30,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.material.WaterFluid;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
@@ -51,7 +52,7 @@ import com.st0x0ef.beyond_earth.common.keybinds.KeyVariables;
 import com.st0x0ef.beyond_earth.common.menus.RoverMenu;
 import com.st0x0ef.beyond_earth.common.registries.ItemsRegistry;
 import com.st0x0ef.beyond_earth.common.registries.TagRegistry;
-import com.st0x0ef.beyond_earth.common.util.FluidUtil2;
+import com.st0x0ef.beyond_earth.common.util.FluidUtils;
 import com.st0x0ef.beyond_earth.common.util.Methods;
 
 import javax.annotation.Nonnull;
@@ -63,17 +64,18 @@ import java.util.Set;
 
 public class RoverEntity extends IVehicleEntity implements IGaugeValuesProvider {
     private double speed = 0;
+    private int fuelCapacityModifier = 0;
 
     public float flyingSpeed = 0.02F;
     public float animationSpeedOld;
     public float animationSpeed;
     public float animationPosition;
 
-    private final float FUEL_USE_TICK = 8;
     private float FUEL_TIMER = 0;
 
     public static final EntityDataAccessor<Integer> FUEL = SynchedEntityData.defineId(RoverEntity.class, EntityDataSerializers.INT);
 
+    public static final EntityDataAccessor<Integer> FUEL_CAPACITY = SynchedEntityData.defineId(RoverEntity.class, EntityDataSerializers.INT);
     public static final EntityDataAccessor<Boolean> FORWARD = SynchedEntityData.defineId(RoverEntity.class, EntityDataSerializers.BOOLEAN);
 
     public static final int DEFAULT_FUEL_BUCKETS = 3;
@@ -81,11 +83,12 @@ public class RoverEntity extends IVehicleEntity implements IGaugeValuesProvider 
     public RoverEntity(EntityType<?> type, Level worldIn) {
         super(type, worldIn);
         this.entityData.define(FUEL, 0);
+        this.entityData.define(FUEL_CAPACITY, DEFAULT_FUEL_BUCKETS);
         this.entityData.define(FORWARD, false);
     }
 
     public int getFuelCapacity() {
-        return Config.ROVER_FUEL_BUCKETS.get() * FluidUtil2.BUCKET_SIZE;
+        return (DEFAULT_FUEL_BUCKETS + fuelCapacityModifier) * FluidUtils.BUCKET_SIZE;
     }
     
     public IGaugeValue getFuelGauge() {
@@ -110,7 +113,7 @@ public class RoverEntity extends IVehicleEntity implements IGaugeValuesProvider 
     }
 
     @Override
-    public void push(Entity p_21294_) {
+    public void push(Entity entity) {
     }
 
     @Deprecated
@@ -126,8 +129,8 @@ public class RoverEntity extends IVehicleEntity implements IGaugeValuesProvider 
 
     @OnlyIn(Dist.CLIENT)
     @Override
-    public void onPassengerTurned(Entity p_20320_) {
-        this.applyYawToEntity(p_20320_);
+    public void onPassengerTurned(Entity entity) {
+        this.applyYawToEntity(entity);
     }
 
     @Override
@@ -154,7 +157,6 @@ public class RoverEntity extends IVehicleEntity implements IGaugeValuesProvider 
                     Vec3 vector3d1 = Vec3.upFromBottomCenterOf(blockpos, d3);
 
                     for(Pose pose : livingEntity.getDismountPoses()) {
-                        AABB axisalignedbb = livingEntity.getLocalBoundsForPose(pose);
                         if (DismountHelper.isBlockFloorValid(this.level().getBlockFloorHeight(blockpos))) {
                             livingEntity.setPose(pose);
                             return vector3d1;
@@ -267,6 +269,7 @@ public class RoverEntity extends IVehicleEntity implements IGaugeValuesProvider 
         compound.put("InventoryCustom", inventory.serializeNBT());
 
         compound.putInt("fuel", this.getEntityData().get(FUEL));
+        compound.putInt("fuel_capacity", this.getEntityData().get(FUEL_CAPACITY));
         compound.putBoolean("forward", this.getEntityData().get(FORWARD));
     }
 
@@ -277,8 +280,9 @@ public class RoverEntity extends IVehicleEntity implements IGaugeValuesProvider 
             inventory.deserializeNBT((CompoundTag) inventoryCustom);
         }
 
-        this.entityData.set(FUEL, compound.getInt("fuel"));
-        this.entityData.set(FORWARD, compound.getBoolean("forward"));
+        this.getEntityData().set(FUEL, compound.getInt("fuel"));
+        this.getEntityData().set(FUEL_CAPACITY, compound.getInt("fuel_capacity"));
+        this.getEntityData().set(FORWARD, compound.getBoolean("forward"));
     }
 
     public Player getFirstPlayerPassenger() {
@@ -369,22 +373,14 @@ public class RoverEntity extends IVehicleEntity implements IGaugeValuesProvider 
         //Fuel Load up
         if (this.inventory.getStackInSlot(0).getItem() instanceof BucketItem) {
             if (((BucketItem) this.getInventory().getStackInSlot(0).getItem()).getFluid().is(TagRegistry.FLUID_VEHICLE_FUEL_TAG)) {
-                if (this.entityData.get(FUEL) + FluidUtil2.BUCKET_SIZE <= Config.ROVER_FUEL_BUCKETS.get() * FluidUtil2.BUCKET_SIZE) {
-                    this.getEntityData().set(FUEL, (this.getEntityData().get(FUEL) + FluidUtil2.BUCKET_SIZE));
+                if (this.entityData.get(FUEL) + FluidUtils.BUCKET_SIZE <= getFuelCapacity()) {
+                    this.getEntityData().set(FUEL, (this.getEntityData().get(FUEL) + FluidUtils.BUCKET_SIZE));
                     this.inventory.setStackInSlot(0, new ItemStack(Items.BUCKET));
                 }
             }
         }
 
-        if (this.getPassengers().isEmpty()) {
-            return;
-        }
-
-        if (!(this.getPassengers().get(0) instanceof Player passanger)) {
-            return;
-        }
-
-        if (this.isEyeInFluid(FluidTags.WATER)) {
+        if (this.getPassengers().isEmpty() || !(this.getPassengers().get(0) instanceof Player passanger) || this.isInWater()) {
             return;
         }
 
@@ -392,6 +388,7 @@ public class RoverEntity extends IVehicleEntity implements IGaugeValuesProvider 
 
         passanger.resetFallDistance();
 
+        float FUEL_USE_TICK = 8;
         if (passanger.zza > 0.01 && this.getEntityData().get(FUEL) != 0) {
 
             if (FUEL_TIMER > FUEL_USE_TICK) {

@@ -58,7 +58,7 @@ import com.st0x0ef.beyond_earth.common.registries.ItemsRegistry;
 import com.st0x0ef.beyond_earth.common.registries.ParticleRegistry;
 import com.st0x0ef.beyond_earth.common.registries.SoundRegistry;
 import com.st0x0ef.beyond_earth.common.registries.TagRegistry;
-import com.st0x0ef.beyond_earth.common.util.FluidUtil2;
+import com.st0x0ef.beyond_earth.common.util.FluidUtils;
 import com.st0x0ef.beyond_earth.common.util.Methods;
 
 import javax.annotation.Nonnull;
@@ -118,24 +118,24 @@ public class RocketEntity extends IVehicleEntity implements HasCustomInventorySc
 	}
 
 	public void spawnParticle() {
-		Vec3 vec = this.getDeltaMovement();
+		if (this.level() instanceof ServerLevel level) {
+			Vec3 vec = this.getDeltaMovement();
 
-		if (this.level() instanceof ServerLevel) {
 			if (this.entityData.get(START_TIMER) == 200) {
-				for (ServerPlayer p : ((ServerLevel) this.level()).getServer().getPlayerList().getPlayers()) {
-					((ServerLevel) this.level()).sendParticles(p, (ParticleOptions) ParticleRegistry.LARGE_FLAME_PARTICLE.get(), true, this.getX() - vec.x, this.getY() - vec.y - 2.2, this.getZ() - vec.z, 20, 0.1, 0.1, 0.1, 0.001);
-					((ServerLevel) this.level()).sendParticles(p, (ParticleOptions) ParticleRegistry.LARGE_SMOKE_PARTICLE.get(), true, this.getX() - vec.x, this.getY() - vec.y - 3.2, this.getZ() - vec.z, 10, 0.1, 0.1, 0.1, 0.04);
+				for (ServerPlayer player : level.getServer().getPlayerList().getPlayers()) {
+					level.sendParticles(player, (ParticleOptions) ParticleRegistry.LARGE_FLAME_PARTICLE.get(), true, this.getX() - vec.x, this.getY() - vec.y - 2.2, this.getZ() - vec.z, 20, 0.1, 0.1, 0.1, 0.001);
+					level.sendParticles(player, (ParticleOptions) ParticleRegistry.LARGE_SMOKE_PARTICLE.get(), true, this.getX() - vec.x, this.getY() - vec.y - 3.2, this.getZ() - vec.z, 10, 0.1, 0.1, 0.1, 0.04);
 				}
 			} else {
-				for (ServerPlayer p : ((ServerLevel) this.level()).getServer().getPlayerList().getPlayers()) {
-					((ServerLevel) this.level()).sendParticles(p, ParticleTypes.CAMPFIRE_COSY_SMOKE, true, this.getX() - vec.x, this.getY() - vec.y - 0.1, this.getZ() - vec.z, 6, 0.1, 0.1, 0.1, 0.023);
+				for (ServerPlayer player : level.getServer().getPlayerList().getPlayers()) {
+					level.sendParticles(player, ParticleTypes.CAMPFIRE_COSY_SMOKE, true, this.getX() - vec.x, this.getY() - vec.y - 0.1, this.getZ() - vec.z, 6, 0.1, 0.1, 0.1, 0.023);
 				}
 			}
 		}
 	}
 
 	public int getFuelCapacity() {
-		return this.getBucketsOfFull() * FluidUtil2.BUCKET_SIZE;
+		return this.getBucketsOfFull() * FluidUtils.BUCKET_SIZE;
 	}
 
 	public IGaugeValue getFuelGauge() {
@@ -369,12 +369,12 @@ public class RocketEntity extends IVehicleEntity implements HasCustomInventorySc
 		ItemStack slotItem1 = this.getInventory().getStackInSlot(1);
 
 		if (slotItem0.getItem() instanceof BucketItem) {
-			if (((BucketItem) slotItem0.getItem()).getFluid().is(TagRegistry.FLUID_VEHICLE_FUEL_TAG) && this.entityData.get(FUEL) + FluidUtil2.BUCKET_SIZE <= this.getFuelCapacity()) {
+			if (((BucketItem) slotItem0.getItem()).getFluid().is(TagRegistry.FLUID_VEHICLE_FUEL_TAG) && this.entityData.get(FUEL) + FluidUtils.BUCKET_SIZE <= this.getFuelCapacity()) {
 				if (slotItem1.getCount() != slotItem1.getMaxStackSize()) {
 					this.getInventory().extractItem(0, 1, false);
 					this.getInventory().insertItem(1, new ItemStack(Items.BUCKET), false);
 
-					this.getEntityData().set(FUEL, this.entityData.get(FUEL) + FluidUtil2.BUCKET_SIZE);
+					this.getEntityData().set(FUEL, this.entityData.get(FUEL) + FluidUtils.BUCKET_SIZE);
 				}
 			}
 		}
@@ -382,7 +382,6 @@ public class RocketEntity extends IVehicleEntity implements HasCustomInventorySc
 
 	public Player getFirstPlayerPassenger() {
 		if (!this.getPassengers().isEmpty() && this.getPassengers().get(0) instanceof Player player) {
-
 			return player;
 		}
 

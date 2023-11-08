@@ -16,11 +16,11 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import com.st0x0ef.beyond_earth.common.blocks.entities.machines.RocketUpgraderBlockEntity;
+import com.st0x0ef.beyond_earth.common.blocks.entities.machines.VehicleUpgraderBlockEntity;
 
-public class RocketUpgraderBlock extends AbstractMachineBlock<RocketUpgraderBlockEntity> implements SimpleWaterloggedBlock {
+public class VehicleUpgraderBlock extends AbstractMachineBlock<VehicleUpgraderBlockEntity> implements SimpleWaterloggedBlock {
 
-    public RocketUpgraderBlock(Properties properties) {
+    public VehicleUpgraderBlock(Properties properties) {
         super(properties);
     }
 
@@ -76,7 +76,7 @@ public class RocketUpgraderBlock extends AbstractMachineBlock<RocketUpgraderBloc
     }
 
     @Override
-    public RocketUpgraderBlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return new RocketUpgraderBlockEntity(pos, state);
+    public VehicleUpgraderBlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+        return new VehicleUpgraderBlockEntity(pos, state);
     }
 }

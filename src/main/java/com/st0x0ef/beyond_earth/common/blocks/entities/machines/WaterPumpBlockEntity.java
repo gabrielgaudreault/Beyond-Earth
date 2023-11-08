@@ -30,7 +30,7 @@ import com.st0x0ef.beyond_earth.common.capabilities.fluid.FluidHandlerWrapper;
 import com.st0x0ef.beyond_earth.common.config.Config;
 import com.st0x0ef.beyond_earth.common.menus.WaterPumpMenu;
 import com.st0x0ef.beyond_earth.common.registries.BlockEntityRegistry;
-import com.st0x0ef.beyond_earth.common.util.FluidUtil2;
+import com.st0x0ef.beyond_earth.common.util.FluidUtils;
 
 public class WaterPumpBlockEntity extends AbstractMachineBlockEntity {
     public static final int DEFAULT_ENERGY_USAGE = 1;
@@ -171,7 +171,7 @@ public class WaterPumpBlockEntity extends AbstractMachineBlockEntity {
 
     protected Predicate<FluidStack> getInitialTankValidator(ResourceLocation name) {
         Fluid fluid = this.getTankFluid(name);
-        return fluid != null ? fs -> FluidUtil2.isSame(fs, fluid) : null;
+        return fluid != null ? fs -> FluidUtils.isSame(fs, fluid) : null;
     }
 
     protected Fluid getTankFluid(ResourceLocation name) {

@@ -60,6 +60,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ItemsRegistry.OIL_BUCKET.get());
         basicItem(ItemsRegistry.URANIUM_INGOT.get());
         basicItem(ItemsRegistry.RAW_URANIUM.get());
+        basicItem(ItemsRegistry.SPACE_BALISE.get());
 
         /** HANDHELD MODELS */
         handheldModel(ItemsRegistry.IRON_ROD);

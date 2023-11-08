@@ -18,8 +18,7 @@ import com.st0x0ef.beyond_earth.common.util.Rectangle2d;
 @OnlyIn(Dist.CLIENT)
 public class CoalGeneratorScreen extends AbstractContainerScreen<CoalGeneratorMenu.GuiContainer> {
 
-    public static final ResourceLocation TEXTURE = new ResourceLocation(BeyondEarth.MODID,
-            "textures/gui/coal_generator.png");
+    public static final ResourceLocation TEXTURE = new ResourceLocation(BeyondEarth.MODID, "textures/gui/coal_generator.png");
 
     public static final int FIRE_LEFT = 81;
     public static final int FIRE_TOP = 47;

@@ -16,7 +16,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidTank;
 import com.st0x0ef.beyond_earth.BeyondEarth;
 import com.st0x0ef.beyond_earth.common.capabilities.oxygen.OxygenStorage;
-import com.st0x0ef.beyond_earth.common.util.FluidUtil2;
+import com.st0x0ef.beyond_earth.common.util.FluidUtils;
 import com.st0x0ef.beyond_earth.common.util.Rectangle2d;
 import org.joml.Matrix4f;
 
@@ -138,7 +138,7 @@ public class GuiHelper {
     }
 
     public static void drawFluid(GuiGraphics graphics, int left, int top, int width, int height, FluidStack stack) {
-        Fluid fluid = FluidUtil2.getFluid(stack);
+        Fluid fluid = FluidUtils.getFluid(stack);
 
         if (fluid == Fluids.EMPTY
                 || !(fluid.getFluidType().getRenderPropertiesInternal() instanceof IClientFluidTypeExtensions props)) {
@@ -166,7 +166,7 @@ public class GuiHelper {
 
     public static void drawFluidHorizontal(GuiGraphics graphics, int left, int top, int width, int height,
             FluidStack stack, int capacity) {
-        Fluid fluid = FluidUtil2.getFluid(stack);
+        Fluid fluid = FluidUtils.getFluid(stack);
 
         if (fluid == Fluids.EMPTY) {
             return;
@@ -178,7 +178,7 @@ public class GuiHelper {
 
     public static void drawFluidVertical(GuiGraphics graphics, int left, int top, int width, int height,
             FluidStack stack, int capacity) {
-        Fluid fluid = FluidUtil2.getFluid(stack);
+        Fluid fluid = FluidUtils.getFluid(stack);
 
         if (fluid == Fluids.EMPTY) {
             return;

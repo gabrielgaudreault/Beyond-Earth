@@ -20,7 +20,7 @@ import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.registries.ForgeRegistries;
 
-public class FluidUtil2 {
+public class FluidUtils {
 
         public static final int BUCKET_SIZE = 1000;
         private static final Map<Item, Fluid> fluidCacheds = new HashMap<>();
@@ -29,7 +29,7 @@ public class FluidUtil2 {
                 if (item == Items.AIR) {
                         return Fluids.EMPTY;
                 }
-                return fluidCacheds.computeIfAbsent(item, FluidUtil2::findBucketFluidInternal);
+                return fluidCacheds.computeIfAbsent(item, FluidUtils::findBucketFluidInternal);
         }
 
         private static Fluid findBucketFluidInternal(Item item) {
@@ -235,7 +235,7 @@ public class FluidUtil2 {
 
         public static boolean fillSinkBucket(IItemHandlerModifiable itemHandler, int sinkItemSlot, IFluidHandler source, ItemStack itemStack) {
                 if (itemStack.getItem() == Items.BUCKET) {
-                        int size = FluidUtil2.BUCKET_SIZE;
+                        int size = FluidUtils.BUCKET_SIZE;
                         FluidStack fluidStack = source.drain(size, FluidAction.SIMULATE);
 
                         if (fluidStack.getAmount() == size) {
@@ -258,10 +258,10 @@ public class FluidUtil2 {
 
         public static boolean drainSourceBucket(IItemHandlerModifiable itemHandler, int itemSlot, IFluidHandler sink, ItemStack sourceItemStack) {
                 Item sourceItem = sourceItemStack.getItem();
-                Fluid sourceFluid = FluidUtil2.findBucketFluid(sourceItem);
+                Fluid sourceFluid = FluidUtils.findBucketFluid(sourceItem);
 
                 if (sourceFluid != Fluids.EMPTY) {
-                        FluidStack fluidStack = new FluidStack(sourceFluid, FluidUtil2.BUCKET_SIZE);
+                        FluidStack fluidStack = new FluidStack(sourceFluid, FluidUtils.BUCKET_SIZE);
 
                         if (sink.fill(fluidStack, FluidAction.SIMULATE) == fluidStack.getAmount()) {
                                 sink.fill(fluidStack, FluidAction.EXECUTE);
@@ -286,7 +286,7 @@ public class FluidUtil2 {
                 }
         }
 
-        private FluidUtil2() {
+        private FluidUtils() {
 
         }
 }

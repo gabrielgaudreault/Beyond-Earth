@@ -34,7 +34,7 @@ import com.st0x0ef.beyond_earth.common.menus.FuelRefineryMenu;
 import com.st0x0ef.beyond_earth.common.menus.nasaworkbench.StackCacher;
 import com.st0x0ef.beyond_earth.common.registries.BlockEntityRegistry;
 import com.st0x0ef.beyond_earth.common.registries.RecipeTypeRegistry;
-import com.st0x0ef.beyond_earth.common.util.FluidUtil2;
+import com.st0x0ef.beyond_earth.common.util.FluidUtils;
 
 public class FuelRefineryBlockEntity extends AbstractMachineBlockEntity {
 
@@ -150,15 +150,15 @@ public class FuelRefineryBlockEntity extends AbstractMachineBlockEntity {
     protected void drainSources() {
         IItemHandlerModifiable itemHandler = this.getItemHandler();
         int transferPerTick = this.getTransferPerTick();
-        FluidUtil2.drainSource(itemHandler, this.getInputSourceSlot(), this.getInputTank(), transferPerTick);
-        FluidUtil2.drainSource(itemHandler, this.getOutputSourceSlot(), this.getOutputTank(), transferPerTick);
+        FluidUtils.drainSource(itemHandler, this.getInputSourceSlot(), this.getInputTank(), transferPerTick);
+        FluidUtils.drainSource(itemHandler, this.getOutputSourceSlot(), this.getOutputTank(), transferPerTick);
     }
 
     protected void fillSinks() {
         IItemHandlerModifiable itemHandler = this.getItemHandler();
         int transferPerTick = this.getTransferPerTick();
-        FluidUtil2.fillSink(itemHandler, this.getInputSinkSlot(), this.getInputTank(), transferPerTick);
-        FluidUtil2.fillSink(itemHandler, this.getOutputSinkSlot(), this.getOutputTank(), transferPerTick);
+        FluidUtils.fillSink(itemHandler, this.getInputSinkSlot(), this.getInputTank(), transferPerTick);
+        FluidUtils.fillSink(itemHandler, this.getOutputSinkSlot(), this.getOutputTank(), transferPerTick);
     }
 
     @Override
@@ -184,10 +184,10 @@ public class FuelRefineryBlockEntity extends AbstractMachineBlockEntity {
     @Override
     protected boolean onCanPlaceItemThroughFace(int index, ItemStack stack, Direction direction) {
         if (this.isSourceSlot(index)) {
-            return FluidUtil2.canDrain(stack);
+            return FluidUtils.canDrain(stack);
         } else if (this.isSinkSlot(index)) {
             FluidTank tank = this.slotToTank(index);
-            return FluidUtil2.canFill(stack, tank.getFluid().getFluid());
+            return FluidUtils.canFill(stack, tank.getFluid().getFluid());
         }
 
         return super.onCanPlaceItemThroughFace(index, stack, direction);
@@ -196,10 +196,10 @@ public class FuelRefineryBlockEntity extends AbstractMachineBlockEntity {
     @Override
     public boolean canTakeItemThroughFace(int index, ItemStack stack, Direction direction) {
         if (this.isSourceSlot(index)) {
-            return !FluidUtil2.canDrain(stack);
+            return !FluidUtils.canDrain(stack);
         } else if (this.isSinkSlot(index)) {
             FluidTank tank = this.slotToTank(index);
-            return !FluidUtil2.canFill(stack, tank.getFluid().getFluid());
+            return !FluidUtils.canFill(stack, tank.getFluid().getFluid());
         }
 
         return super.canTakeItemThroughFace(index, stack, direction);

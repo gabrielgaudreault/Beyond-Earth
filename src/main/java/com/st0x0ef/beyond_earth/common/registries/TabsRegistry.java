@@ -38,11 +38,13 @@ public class TabsRegistry {
                 builder.accept(ItemsRegistry.CHEESE.get());
                 builder.accept(ItemsRegistry.FUEL_BUCKET.get());
                 builder.accept(ItemsRegistry.OIL_BUCKET.get());
+                builder.accept(ItemsRegistry.HYDROGEN_BUCKET.get());
+                builder.accept(ItemsRegistry.SPACE_BALISE.get());
             }).build());
 
     public static RegistryObject<CreativeModeTab> MACHINES = CREATIVE_MOD_TAB.register("tab_machines", () -> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup.tab_machines"))
-            .icon(() -> new ItemStack(ItemsRegistry.ROCKET_UPGRADER_ITEM.get()))
+            .icon(() -> new ItemStack(ItemsRegistry.VEHICLE_UPGRADER_ITEM.get()))
             .withTabsBefore(DEFAULT.getId())
             .displayItems((feature, builder) -> {
                 builder.accept(ItemsRegistry.NASA_WORKBENCH_ITEM.get());
@@ -53,7 +55,7 @@ public class TabsRegistry {
                 builder.accept(ItemsRegistry.OXYGEN_LOADER_ITEM.get());
                 builder.accept(ItemsRegistry.OXYGEN_BUBBLE_DISTRIBUTOR_ITEM.get());
                 builder.accept(ItemsRegistry.WATER_PUMP_ITEM.get());
-                builder.accept(ItemsRegistry.ROCKET_UPGRADER_ITEM.get());
+                builder.accept(ItemsRegistry.VEHICLE_UPGRADER_ITEM.get());
             }).build());
 
     public static RegistryObject<CreativeModeTab> BASICS = CREATIVE_MOD_TAB.register("tab_basics", () -> CreativeModeTab.builder()

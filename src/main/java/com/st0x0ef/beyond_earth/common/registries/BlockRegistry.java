@@ -33,7 +33,7 @@ public class BlockRegistry {
     public static final RegistryObject<Block> NASA_WORKBENCH_BLOCK = BLOCKS.register("nasa_workbench", () -> new NASAWorkbenchBlock(BlockBehaviour.Properties.of().mapColor(MapColor.METAL).sound(SoundType.METAL).strength(5f, 1f).requiresCorrectToolForDrops().noOcclusion().isRedstoneConductor((bs, br, bp) -> false)));
     public static final RegistryObject<Block> OXYGEN_BUBBLE_DISTRIBUTOR_BLOCK = BLOCKS.register("oxygen_bubble_distributor", () -> new OxygenDistributorBlock(BlockBehaviour.Properties.of().mapColor(MapColor.METAL).sound(SoundType.METAL).strength(5f, 1f).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> WATER_PUMP_BLOCK = BLOCKS.register("water_pump", () -> new WaterPump(BlockBehaviour.Properties.of().mapColor(MapColor.METAL).sound(SoundType.METAL).noOcclusion().strength(5f, 1f).requiresCorrectToolForDrops()));
-    public static final RegistryObject<Block> ROCKET_UPGRADER_BLOCK = BLOCKS.register("rocket_upgrader", () -> new RocketUpgraderBlock(BlockBehaviour.Properties.of().mapColor(MapColor.METAL).sound(SoundType.METAL).strength(5f, 1f).requiresCorrectToolForDrops().noOcclusion().isRedstoneConductor((bs, br, bp) -> false)));
+    public static final RegistryObject<Block> VEHICLE_UPGRADER_BLOCK = BLOCKS.register("vehicle_upgrader", () -> new VehicleUpgraderBlock(BlockBehaviour.Properties.of().mapColor(MapColor.METAL).sound(SoundType.METAL).strength(5f, 1f).requiresCorrectToolForDrops().noOcclusion().isRedstoneConductor((bs, br, bp) -> false)));
 
 
     /** GLOBE BLOCKS */
@@ -158,4 +158,8 @@ public class BlockRegistry {
 
     //OIL
     public static final RegistryObject<LiquidBlock> OIL_BLOCK = BLOCKS.register("oil", () -> new LiquidBlock(FluidRegistry.OIL_STILL, BlockBehaviour.Properties.of().mapColor(MapColor.WATER).noCollission().strength(100f).noLootTable()));
+
+    //HYDROGEN
+    public static final RegistryObject<LiquidBlock> HYDROGEN_BLOCK = BLOCKS.register("hydrogen", () -> new LiquidBlock(FluidRegistry.HYDROGEN_STILL, BlockBehaviour.Properties.of().mapColor(MapColor.WATER).noCollission().strength(100f).noLootTable()));
+
 }
