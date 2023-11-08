@@ -78,7 +78,7 @@ public abstract class OxygenMakingBlockEntity extends AbstractMachineBlockEntity
     @Override
     protected void createFluidHandlers(NamedComponentRegistry<IFluidHandler> registry) {
         super.createFluidHandlers(registry);
-        this.inputTank = (FluidTank) registry.computeIfAbsent(this.getInputTankName(), k -> this.creatFluidTank(k));
+        this.inputTank = (FluidTank) registry.computeIfAbsent(this.getInputTankName(), this::creatFluidTank);
         this.outputTank = this.createOxygenTank(this.getOutputTankName());
     }
 
@@ -97,12 +97,7 @@ public abstract class OxygenMakingBlockEntity extends AbstractMachineBlockEntity
     }
 
     protected OxygenStorage createOxygenTank(ResourceLocation name) {
-        OxygenStorage storage = new OxygenStorage(new IOxygenStorageHolder() {
-            @Override
-            public void onOxygenChanged(IOxygenStorage oxygenStorage, int oxygenDelta) {
-                OxygenMakingBlockEntity.this.setChanged();
-            }
-        });
+        OxygenStorage storage = new OxygenStorage((oxygenStorage, oxygenDelta) -> OxygenMakingBlockEntity.this.setChanged());
         storage.setMaxCapacity(this.getInitialTankCapacity(name));
         return storage;
     }

@@ -13,7 +13,7 @@ public class RecipeSerializersRegistry {
     /** RECIPES */
     public static final RegistryObject<RecipeSerializer<?>> RECIPE_SERIALIZER_COMPRESSOR = RECIPE_SERIALIZERS.register("compressor", () -> new CompressingRecipeSerializer());
     public static final RegistryObject<RecipeSerializer<?>> RECIPE_SERIALIZER_COAL_GENERATOR = RECIPE_SERIALIZERS.register("coal_generator", () -> new GeneratingRecipeSerializer());
-    public static final RegistryObject<RecipeSerializer<?>> RECIPE_SERIALIZER_OXYGEN_LOADER = RECIPE_SERIALIZERS.register("oxygen_loader", () -> new OxygenLoaderRecipeSerializer());
+    public static final RegistryObject<RecipeSerializer<?>> RECIPE_SERIALIZER_WATER_SEPARATOR = RECIPE_SERIALIZERS.register("water_separator", () -> new WaterSeparatorRecipeSerializer());
     public static final RegistryObject<RecipeSerializer<?>> RECIPE_SERIALIZER_OXYGEN_BUBBLE_DISTRIBUTOR = RECIPE_SERIALIZERS.register("oxygen_bubble_distributor", () -> new OxygenBubbleDistributorRecipeSerializer());
     public static final RegistryObject<RecipeSerializer<?>> RECIPE_SERIALIZER_NASA_WORKBENCH = RECIPE_SERIALIZERS.register("nasa_workbench", () -> new WorkbenchingRecipeSerializer());
     public static final RegistryObject<RecipeSerializer<?>> RECIPE_SERIALIZER_FUEL_REFINERY = RECIPE_SERIALIZERS.register("fuel_refinery", () -> new FuelRefiningRecipeSerializer());

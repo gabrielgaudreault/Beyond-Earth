@@ -2,6 +2,7 @@ package com.st0x0ef.beyond_earth.client.util;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
+import com.st0x0ef.beyond_earth.common.capabilities.hydrogen.HydrogenStorage;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.GameRenderer;
@@ -33,12 +34,17 @@ public class GuiHelper {
             "textures/gui/util/hammer_full.png");
     public static final int HAMMER_WIDTH = 16;
     public static final int HAMMER_HEIGHT = 16;
+    public static final ResourceLocation FLUID_TANK_OVERLAY = new ResourceLocation(BeyondEarth.MODID,
+            "textures/gui/util/fluid_tank_overlay.png");
     public static final ResourceLocation OXYGEN_CONTENT_PATH = new ResourceLocation(BeyondEarth.MODID,
             "textures/gui/util/oxygen.png");
-    public static final ResourceLocation OXYGEN_TANK_PATH = new ResourceLocation(BeyondEarth.MODID,
-            "textures/gui/util/fluid_tank_overlay.png");
     public static final int OXYGEN_TANK_WIDTH = 12;
     public static final int OXYGEN_TANK_HEIGHT = 46;
+
+    public static final ResourceLocation HYDROGEN_CONTENT_PATH = new ResourceLocation(BeyondEarth.MODID,
+            "textures/gui/util/hydrogen.png");
+    public static final int HYDROGEN_TANK_WIDTH = 12;
+    public static final int HYDROGEN_TANK_HEIGHT = 46;
     public static final ResourceLocation ENERGY_PATH = new ResourceLocation(BeyondEarth.MODID,
             "textures/gui/util/energy_full.png");
     public static final int ENERGY_WIDTH = 13;
@@ -93,8 +99,26 @@ public class GuiHelper {
         drawFluidTankOverlay(graphics, left, top);
     }
 
+    public static void drawHydrogenTank(GuiGraphics graphics, int left, int top, HydrogenStorage hydrogenStorage) {
+        drawHydrogenTank(graphics, left, top, hydrogenStorage.getHydrogenStoredRatio());
+    }
+
+    public static void drawHydrogenTank(GuiGraphics graphics, int left, int top, double ratio) {
+        int maxHeight = FLUID_TANK_HEIGHT;
+        int scaledHeight = (int) Math.ceil(maxHeight * ratio);
+        int offset = maxHeight - scaledHeight;
+
+        RenderSystem.setShaderTexture(0, HYDROGEN_CONTENT_PATH);
+        drawTiledSprite(graphics, left, top + offset, HYDROGEN_TANK_WIDTH, scaledHeight, 16, 16, 0.0F, 1.0F, 0.0F, 1.0F);
+        drawFluidTankOverlay(graphics, left, top);
+    }
+
     public static Rectangle2d getOxygenTankBounds(int left, int top) {
         return new Rectangle2d(left, top, OXYGEN_TANK_WIDTH, OXYGEN_TANK_HEIGHT);
+    }
+
+    public static Rectangle2d getHydrogenTankBounds(int left, int top) {
+        return new Rectangle2d(left, top, HYDROGEN_TANK_WIDTH, HYDROGEN_TANK_HEIGHT);
     }
 
     public static void drawEnergy(GuiGraphics graphics, int left, int top, IEnergyStorage energyStorage) {

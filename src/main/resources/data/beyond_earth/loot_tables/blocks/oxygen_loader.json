@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "beyond_earth:oxygen_loader"
+          "name": "beyond_earth:water_separator"
         }
       ],
       "rolls": 1.0

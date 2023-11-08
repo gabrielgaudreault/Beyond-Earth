@@ -1,12 +1,5 @@
 package com.st0x0ef.beyond_earth.common.registries;
 
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.item.*;
-import net.minecraftforge.common.ForgeSpawnEggItem;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
 import com.st0x0ef.beyond_earth.BeyondEarth;
 import com.st0x0ef.beyond_earth.common.armors.JetSuit;
 import com.st0x0ef.beyond_earth.common.armors.NetheriteSpaceSuit;
@@ -15,6 +8,13 @@ import com.st0x0ef.beyond_earth.common.armors.materials.JetSuitMaterial;
 import com.st0x0ef.beyond_earth.common.armors.materials.NetheriteSpaceSuitMaterial;
 import com.st0x0ef.beyond_earth.common.armors.materials.SpaceSuitMaterial;
 import com.st0x0ef.beyond_earth.common.items.*;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.item.*;
+import net.minecraftforge.common.ForgeSpawnEggItem;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 public class ItemsRegistry {
 
@@ -132,7 +132,7 @@ public class ItemsRegistry {
     public static final RegistryObject<BlockItem> COAL_GENERATOR_ITEM = ITEMS.register("coal_generator", () -> new BlockItem(BlockRegistry.COAL_GENERATOR_BLOCK.get(), new Item.Properties()));
     public static final RegistryObject<BlockItem> COMPRESSOR_ITEM = ITEMS.register("compressor", () -> new BlockItem(BlockRegistry.COMPRESSOR_BLOCK.get(), new Item.Properties()));
     public static final RegistryObject<BlockItem> FUEL_REFINERY_ITEM = ITEMS.register("fuel_refinery", () -> new BlockItem(BlockRegistry.FUEL_REFINERY_BLOCK.get(), new Item.Properties()));
-    public static final RegistryObject<BlockItem> OXYGEN_LOADER_ITEM = ITEMS.register("oxygen_loader", () -> new BlockItem(BlockRegistry.OXYGEN_LOADER_BLOCK.get(), new Item.Properties()));
+    public static final RegistryObject<BlockItem> WATER_SEPARATOR_ITEM = ITEMS.register("water_separator", () -> new BlockItem(BlockRegistry.WATER_SEPARATOR_BLOCK.get(), new Item.Properties()));
     public static final RegistryObject<BlockItem> OXYGEN_BUBBLE_DISTRIBUTOR_ITEM = ITEMS.register("oxygen_bubble_distributor", () -> new BlockItem(BlockRegistry.OXYGEN_BUBBLE_DISTRIBUTOR_BLOCK.get(), new Item.Properties()));
     public static final RegistryObject<BlockItem> WATER_PUMP_ITEM = ITEMS.register("water_pump", () -> new BlockItem(BlockRegistry.WATER_PUMP_BLOCK.get(), new Item.Properties()));
     public static final RegistryObject<BlockItem> VEHICLE_UPGRADER_ITEM = ITEMS.register("vehicle_upgrader", () -> new BlockItem(BlockRegistry.VEHICLE_UPGRADER_BLOCK.get(), new Item.Properties()));

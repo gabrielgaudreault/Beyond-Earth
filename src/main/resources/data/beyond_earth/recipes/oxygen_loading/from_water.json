@@ -1,8 +1,9 @@
 {
-	"type": "beyond_earth:oxygen_loader",
+	"type": "beyond_earth:water_separator",
 	"input": {
 		"name": "minecraft:water",
-		"amount": 5
+		"amount": 10
 	},
-	"oxygen": 5
+	"oxygen": 5,
+	"hydrogen": 10
 }

@@ -52,7 +52,7 @@ public class TabsRegistry {
                 builder.accept(ItemsRegistry.COAL_GENERATOR_ITEM.get());
                 builder.accept(ItemsRegistry.COMPRESSOR_ITEM.get());
                 builder.accept(ItemsRegistry.FUEL_REFINERY_ITEM.get());
-                builder.accept(ItemsRegistry.OXYGEN_LOADER_ITEM.get());
+                builder.accept(ItemsRegistry.WATER_SEPARATOR_ITEM.get());
                 builder.accept(ItemsRegistry.OXYGEN_BUBBLE_DISTRIBUTOR_ITEM.get());
                 builder.accept(ItemsRegistry.WATER_PUMP_ITEM.get());
                 builder.accept(ItemsRegistry.VEHICLE_UPGRADER_ITEM.get());

@@ -13,18 +13,18 @@ import net.minecraft.world.level.Level;
 import com.st0x0ef.beyond_earth.common.registries.RecipeSerializersRegistry;
 import com.st0x0ef.beyond_earth.common.registries.RecipeTypeRegistry;
 
-public class OxygenLoaderRecipe extends OxygenMakingRecipeAbstract {
+public class WaterSeparatorRecipe extends OxygenMakingRecipeAbstract {
 
-	public OxygenLoaderRecipe(ResourceLocation id, JsonObject json) {
+	public WaterSeparatorRecipe(ResourceLocation id, JsonObject json) {
 		super(id, json);
 	}
 
-	public OxygenLoaderRecipe(ResourceLocation id, FriendlyByteBuf buffer) {
+	public WaterSeparatorRecipe(ResourceLocation id, FriendlyByteBuf buffer) {
 		super(id, buffer);
 	}
 
-	public OxygenLoaderRecipe(ResourceLocation id, FluidIngredient ingredient, int oxygen) {
-		super(id, ingredient, oxygen);
+	public WaterSeparatorRecipe(ResourceLocation id, FluidIngredient ingredient, int oxygen, int hydrogen) {
+		super(id, ingredient, oxygen, hydrogen);
 	}
 
 	@Override
@@ -44,12 +44,12 @@ public class OxygenLoaderRecipe extends OxygenMakingRecipeAbstract {
 
 	@Override
 	public RecipeSerializer<?> getSerializer() {
-		return RecipeSerializersRegistry.RECIPE_SERIALIZER_OXYGEN_LOADER.get();
+		return RecipeSerializersRegistry.RECIPE_SERIALIZER_WATER_SEPARATOR.get();
 	}
 
 	@Override
 	public RecipeType<?> getType() {
-		return RecipeTypeRegistry.OXYGEN_LOADING.get();
+		return RecipeTypeRegistry.WATER_SEPARATOR.get();
 	}
 
 }

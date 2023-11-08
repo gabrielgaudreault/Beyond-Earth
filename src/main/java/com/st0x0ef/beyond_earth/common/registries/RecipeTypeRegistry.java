@@ -12,7 +12,7 @@ public class RecipeTypeRegistry {
 
     public static final RegistryObject<ItemStackToItemStackRecipeType<CompressingRecipe>> COMPRESSING;
     public static final RegistryObject<BeyondEarthRecipeType<GeneratingRecipe>> COAL_GENERATING;
-    public static final RegistryObject<BeyondEarthRecipeType<OxygenLoaderRecipe>> OXYGEN_LOADING;
+    public static final RegistryObject<BeyondEarthRecipeType<WaterSeparatorRecipe>> WATER_SEPARATOR;
     public static final RegistryObject<BeyondEarthRecipeType<OxygenBubbleDistributorRecipe>> OXYGEN_BUBBLE_DISTRIBUTING;
     public static final RegistryObject<BeyondEarthRecipeType<WorkbenchingRecipe>> NASA_WORKBENCHING;
     public static final RegistryObject<BeyondEarthRecipeType<FuelRefiningRecipe>> FUEL_REFINING;
@@ -29,8 +29,8 @@ public class RecipeTypeRegistry {
                 () -> new ItemStackToItemStackRecipeType<>("compressing"));
         COAL_GENERATING = RECIPE_TYPES.register("coal_generating",
                 () -> new BeyondEarthRecipeType<>("coal_generating"));
-        OXYGEN_LOADING = RECIPE_TYPES.register("oxygen_loading",
-                () -> new BeyondEarthRecipeType<>("oxygen_loading"));
+        WATER_SEPARATOR = RECIPE_TYPES.register("water_separator",
+                () -> new BeyondEarthRecipeType<>("water_separator"));
         OXYGEN_BUBBLE_DISTRIBUTING = RECIPE_TYPES.register("oxygen_bubble_distributing",
                 () -> new BeyondEarthRecipeType<>("oxygen_bubble_distributing"));
         NASA_WORKBENCHING = RECIPE_TYPES.register("nasa_workbenching",

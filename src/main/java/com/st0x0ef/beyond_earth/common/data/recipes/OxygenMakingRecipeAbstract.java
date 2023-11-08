@@ -15,12 +15,14 @@ public abstract class OxygenMakingRecipeAbstract extends BeyondEarthRecipe imple
 
 	private final FluidIngredient input;
 	private final int oxygen;
+	private final int hydrogen;
 
 	public OxygenMakingRecipeAbstract(ResourceLocation id, JsonObject json) {
 		super(id, json);
 
 		this.input = FluidIngredient.deserialize(GsonHelper.getAsJsonObject(json, "input"));
 		this.oxygen = GsonHelper.getAsInt(json, "oxygen");
+		this.hydrogen = GsonHelper.getAsInt(json, "hydrogen");
 	}
 
 	public OxygenMakingRecipeAbstract(ResourceLocation id, FriendlyByteBuf buffer) {
@@ -28,14 +30,15 @@ public abstract class OxygenMakingRecipeAbstract extends BeyondEarthRecipe imple
 
 		this.input = FluidIngredient.read(buffer);
 		this.oxygen = buffer.readInt();
-
+		this.hydrogen = buffer.readInt();
 	}
 
-	public OxygenMakingRecipeAbstract(ResourceLocation id, FluidIngredient ingredient, int oxygen) {
+	public OxygenMakingRecipeAbstract(ResourceLocation id, FluidIngredient ingredient, int oxygen, int hydrogen) {
 		super(id);
 
 		this.input = ingredient;
 		this.oxygen = oxygen;
+		this.hydrogen = hydrogen;
 	}
 
 	@Override
@@ -44,6 +47,7 @@ public abstract class OxygenMakingRecipeAbstract extends BeyondEarthRecipe imple
 
 		this.getInput().write(buffer);
 		buffer.writeInt(this.getOxygen());
+		buffer.writeInt(this.getHydrogen());
 	}
 
 	@Override
@@ -62,6 +66,10 @@ public abstract class OxygenMakingRecipeAbstract extends BeyondEarthRecipe imple
 
 	public int getOxygen() {
 		return this.oxygen;
+	}
+
+	public int getHydrogen() {
+		return this.hydrogen;
 	}
 
 	@Override

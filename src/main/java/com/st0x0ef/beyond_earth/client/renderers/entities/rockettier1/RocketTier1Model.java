@@ -16,7 +16,7 @@ import net.minecraftforge.api.distmarker.Dist;
 
 @OnlyIn(Dist.CLIENT)
 public class RocketTier1Model<T extends RocketEntity> extends EntityModel<T> {
-    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(BeyondEarth.MODID, "rocket_t1"), "main");
+    public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(BeyondEarth.MODID, "rocket"), "main");
     private final ModelPart rocket;
 
     public RocketTier1Model(ModelPart root) {

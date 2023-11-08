@@ -1,5 +1,5 @@
 {
-  "parent": "beyond_earth:block/oxygen_loader",
+  "parent": "beyond_earth:block/water_separator",
   "display": {
     "thirdperson": {
       "rotation": [

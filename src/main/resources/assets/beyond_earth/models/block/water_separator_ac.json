@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "beyond_earth:block/machines/water_separator_bottom",
+    "up": "beyond_earth:block/machines/water_separator_top",
+    "north": "beyond_earth:block/machines/water_separator_front_on",
+    "east": "beyond_earth:block/machines/water_separator_side",
+    "south": "beyond_earth:block/machines/water_separator_side",
+    "west": "beyond_earth:block/machines/water_separator_side",
+    "particle": "beyond_earth:block/machines/water_separator_side"
+  }
+}

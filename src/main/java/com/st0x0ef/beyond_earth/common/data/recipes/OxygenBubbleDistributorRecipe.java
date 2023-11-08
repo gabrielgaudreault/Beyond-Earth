@@ -24,7 +24,7 @@ public class OxygenBubbleDistributorRecipe extends OxygenMakingRecipeAbstract {
 	}
 
 	public OxygenBubbleDistributorRecipe(ResourceLocation id, FluidIngredient ingredient, int oxygen) {
-		super(id, ingredient, oxygen);
+		super(id, ingredient, oxygen, 0);
 	}
 
 	@Override

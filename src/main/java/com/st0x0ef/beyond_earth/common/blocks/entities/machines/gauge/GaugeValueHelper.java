@@ -1,5 +1,6 @@
 package com.st0x0ef.beyond_earth.common.blocks.entities.machines.gauge;
 
+import com.st0x0ef.beyond_earth.common.capabilities.hydrogen.HydrogenStorage;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.energy.IEnergyStorage;
@@ -14,6 +15,8 @@ public class GaugeValueHelper {
 
 	public static final ResourceLocation ENERGY_NAME = new ResourceLocation(BeyondEarth.MODID, "energy");
 	public static final ResourceLocation OXYGEN_NAME = new ResourceLocation(BeyondEarth.MODID, "oxygen");
+
+	public static final ResourceLocation HYDROGEN_NAME = new ResourceLocation(BeyondEarth.MODID, "hydrogen");
 	public static final ResourceLocation FLUID_NAME = new ResourceLocation(BeyondEarth.MODID, "fluid");
 	public static final ResourceLocation FUEL_NAME = new ResourceLocation(BeyondEarth.MODID, "fuel");
 	public static final ResourceLocation BURNTIME_NAME = new ResourceLocation(BeyondEarth.MODID, "burntime");
@@ -21,12 +24,12 @@ public class GaugeValueHelper {
 
 	public static final int ENERGY_COLOR = 0xA0FF404B;
 	public static final int OXYGEN_COLOR = 0xA000FFFF;
+	public static final int HYDROGEN_COLOR = 0x00FFFFFF;
 	public static final int FUEL_COLOR = 0xA099993D;
 	public static final int BURNTIME_COLOR = 0xA0FF3F00;
 	public static final int COOKTIME_COLOR = 0xA0FFFFFF;
 
 	public static final String ENERGY_UNIT = "FE";
-	public static final String OXYGEN_UNIT = "mB";
 	public static final String FLUID_UNIT = "mB";
 
 	public static String makeTranslationKey(ResourceLocation name) {
@@ -82,11 +85,23 @@ public class GaugeValueHelper {
 	}
 
 	public static IGaugeValue getOxygen(int amount, int capacity) {
-		return new GaugeValueSimple(OXYGEN_NAME, amount, capacity, null, OXYGEN_UNIT).color(OXYGEN_COLOR);
+		return new GaugeValueSimple(OXYGEN_NAME, amount, capacity, null, FLUID_UNIT).color(OXYGEN_COLOR);
 	}
 
 	public static IGaugeValue getOxygen(OxygenStorage oxygenStorage) {
 		return getOxygen(oxygenStorage.getOxygen(), oxygenStorage.getMaxCapacity());
+	}
+
+	public static IGaugeValue getHydrogen(int amount) {
+		return getHydrogen(amount, 0);
+	}
+
+	public static IGaugeValue getHydrogen(int amount, int capacity) {
+		return new GaugeValueSimple(HYDROGEN_NAME, amount, capacity, null, FLUID_UNIT).color(HYDROGEN_COLOR);
+	}
+
+	public static IGaugeValue getHydrogen(HydrogenStorage hydrogenStorage) {
+		return getHydrogen(hydrogenStorage.getHydrogen(), hydrogenStorage.getMaxCapacity());
 	}
 
 	public static IGaugeValue getBurnTime(int amount) {

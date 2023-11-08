@@ -15,7 +15,7 @@ import com.st0x0ef.beyond_earth.common.data.recipes.CompressingRecipe;
 import com.st0x0ef.beyond_earth.common.data.recipes.FuelRefiningRecipe;
 import com.st0x0ef.beyond_earth.common.data.recipes.GeneratingRecipe;
 import com.st0x0ef.beyond_earth.common.data.recipes.OxygenBubbleDistributorRecipe;
-import com.st0x0ef.beyond_earth.common.data.recipes.OxygenLoaderRecipe;
+import com.st0x0ef.beyond_earth.common.data.recipes.WaterSeparatorRecipe;
 import com.st0x0ef.beyond_earth.common.data.recipes.WorkbenchingRecipe;
 import com.st0x0ef.beyond_earth.common.jei.categories.CoalGenerator;
 import com.st0x0ef.beyond_earth.common.jei.categories.Compressor;
@@ -38,7 +38,7 @@ public class Jei implements IModPlugin {
     public static final RecipeType<GeneratingRecipe> COAL_TYPE;
     public static final RecipeType<CompressingRecipe> COMPRESS_TYPE;
     public static final RecipeType<FuelRefiningRecipe> REFINE_TYPE;
-    public static final RecipeType<OxygenLoaderRecipe> OXYGEN_LOADER_TYPE;
+    public static final RecipeType<WaterSeparatorRecipe> WATER_SEPARATOR_TYPE;
     public static final RecipeType<OxygenBubbleDistributorRecipe> OXYGEN_BUBBLE_TYPE;
     public static final RecipeType<WorkbenchingRecipe> WORKBENCH_TYPE;
 
@@ -46,7 +46,7 @@ public class Jei implements IModPlugin {
         COAL_TYPE = RecipeType.create(BeyondEarth.MODID, "coal_generator", GeneratingRecipe.class);
         COMPRESS_TYPE = RecipeType.create(BeyondEarth.MODID, "compressor", CompressingRecipe.class);
         REFINE_TYPE = RecipeType.create(BeyondEarth.MODID, "fuel_refining", FuelRefiningRecipe.class);
-        OXYGEN_LOADER_TYPE = RecipeType.create(BeyondEarth.MODID, "oxygen_loading", OxygenLoaderRecipe.class);
+        WATER_SEPARATOR_TYPE = RecipeType.create(BeyondEarth.MODID, "water_separator", WaterSeparatorRecipe.class);
         OXYGEN_BUBBLE_TYPE = RecipeType.create(BeyondEarth.MODID, "oxygen_bubble_distributing",
                 OxygenBubbleDistributorRecipe.class);
         WORKBENCH_TYPE = RecipeType.create(BeyondEarth.MODID, "nasa_workbenching", WorkbenchingRecipe.class);
@@ -84,8 +84,8 @@ public class Jei implements IModPlugin {
                 RecipeTypeRegistry.COMPRESSING.get().getRecipes(Minecraft.getInstance().level));
         register.addRecipes(REFINE_TYPE,
                 RecipeTypeRegistry.FUEL_REFINING.get().getRecipes(Minecraft.getInstance().level));
-        register.addRecipes(OXYGEN_LOADER_TYPE,
-                RecipeTypeRegistry.OXYGEN_LOADING.get().getRecipes(Minecraft.getInstance().level));
+        register.addRecipes(WATER_SEPARATOR_TYPE,
+                RecipeTypeRegistry.WATER_SEPARATOR.get().getRecipes(Minecraft.getInstance().level));
         register.addRecipes(OXYGEN_BUBBLE_TYPE,
                 RecipeTypeRegistry.OXYGEN_BUBBLE_DISTRIBUTING.get().getRecipes(Minecraft.getInstance().level));
         register.addRecipes(WORKBENCH_TYPE,

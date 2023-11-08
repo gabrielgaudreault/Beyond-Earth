@@ -2,13 +2,16 @@
   "group": "beyond_earth",
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "0 2",
+    "012",
     "345",
     "678"
   ],
   "key": {
     "0": {
       "item": "minecraft:lapis_lazuli"
+    },
+    "1": {
+      "item": "beyond_earth:compressed_steel"
     },
     "2": {
       "item": "minecraft:chest"
@@ -26,7 +29,7 @@
       "item": "beyond_earth:wheel"
     },
     "7": {
-      "tag": "forge:ingots/steel"
+      "tag": "beyond_earth:compressed_steel"
     },
     "8": {
       "item": "beyond_earth:wheel"

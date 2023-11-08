@@ -9,43 +9,45 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.network.IContainerFactory;
-import com.st0x0ef.beyond_earth.common.blocks.entities.machines.OxygenLoaderBlockEntity;
+import com.st0x0ef.beyond_earth.common.blocks.entities.machines.WaterSeparatorBlockEntity;
 import com.st0x0ef.beyond_earth.common.blocks.entities.machines.OxygenMakingBlockEntity;
 import com.st0x0ef.beyond_earth.common.menus.helper.MenuHelper;
 import com.st0x0ef.beyond_earth.common.registries.ContainerRegistry;
 
-public class OxygenLoaderMenu {
+public class WaterSeparatorMenu {
 
     public static class GuiContainerFactory implements IContainerFactory<GuiContainer> {
         public GuiContainer create(int id, Inventory inv, FriendlyByteBuf extraData) {
             BlockPos pos = extraData.readBlockPos();
-            OxygenLoaderBlockEntity blockEntity = (OxygenLoaderBlockEntity) inv.player.level().getBlockEntity(pos);
+            WaterSeparatorBlockEntity blockEntity = (WaterSeparatorBlockEntity) inv.player.level().getBlockEntity(pos);
             return new GuiContainer(id, inv, blockEntity);
         }
     }
 
     public static class GuiContainer extends AbstractContainerMenu {
-        private final OxygenLoaderBlockEntity blockEntity;
+        private final WaterSeparatorBlockEntity blockEntity;
 
-        public GuiContainer(int id, Inventory inv, OxygenLoaderBlockEntity blockEntity) {
-            super(ContainerRegistry.OXYGEN_LOADER_GUI.get(), id);
+        public GuiContainer(int id, Inventory inv, WaterSeparatorBlockEntity blockEntity) {
+            super(ContainerRegistry.water_separator_GUI.get(), id);
             this.blockEntity = blockEntity;
 
             IItemHandlerModifiable internal = blockEntity.getItemHandler();
-            this.addSlot(new SlotItemHandler(internal, OxygenMakingBlockEntity.SLOT_INPUT_SOURCE, 12, 22));
-            this.addSlot(new SlotItemHandler(internal, OxygenLoaderBlockEntity.SLOT_OUTPUT_SINK, 127, 52));
-            this.addSlot(new SlotItemHandler(internal, OxygenMakingBlockEntity.SLOT_INPUT_SINK, 12, 52));
-            this.addSlot(new SlotItemHandler(internal, OxygenLoaderBlockEntity.SLOT_OUTPUT_SOURCE, 127, 22));
+            this.addSlot(new SlotItemHandler(internal, OxygenMakingBlockEntity.SLOT_INPUT_SOURCE, 9, 33));
+            this.addSlot(new SlotItemHandler(internal, OxygenMakingBlockEntity.SLOT_INPUT_SINK, 9, 63));
+            this.addSlot(new SlotItemHandler(internal, WaterSeparatorBlockEntity.SLOT_OUTPUT_SINK_O2, 69, 4));
+            this.addSlot(new SlotItemHandler(internal, WaterSeparatorBlockEntity.SLOT_OUTPUT_SOURCE_O2, 95, 4));
+            this.addSlot(new SlotItemHandler(internal, WaterSeparatorBlockEntity.SLOT_OUTPUT_SINK_H2, 127, 4));
+            this.addSlot(new SlotItemHandler(internal, WaterSeparatorBlockEntity.SLOT_OUTPUT_SOURCE_H2, 153, 4));
 
             MenuHelper.createInventorySlots(inv, this::addSlot, 8, 102);
         }
 
-        public OxygenLoaderBlockEntity getBlockEntity() {
+        public WaterSeparatorBlockEntity getBlockEntity() {
             return this.blockEntity;
         }
 
         @Override
-        public boolean stillValid(Player p_38874_) {
+        public boolean stillValid(Player player) {
             return !this.getBlockEntity().isRemoved();
         }
 

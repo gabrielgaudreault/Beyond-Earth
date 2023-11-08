@@ -26,14 +26,14 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import com.st0x0ef.beyond_earth.BeyondEarth;
 import com.st0x0ef.beyond_earth.common.config.Config;
-import com.st0x0ef.beyond_earth.common.data.recipes.OxygenLoaderRecipe;
+import com.st0x0ef.beyond_earth.common.data.recipes.WaterSeparatorRecipe;
 import com.st0x0ef.beyond_earth.common.jei.Jei;
 import com.st0x0ef.beyond_earth.common.jei.helper.CustomFluidRenderer;
 import com.st0x0ef.beyond_earth.common.jei.helper.EnergyIngredient;
 import com.st0x0ef.beyond_earth.common.jei.helper.O2Ingredient;
 import com.st0x0ef.beyond_earth.common.registries.ItemsRegistry;
 
-public class OxygenLoader implements IRecipeCategory<OxygenLoaderRecipe> {
+public class OxygenLoader implements IRecipeCategory<WaterSeparatorRecipe> {
     public static final ResourceLocation GUI = new ResourceLocation(BeyondEarth.MODID, "textures/jei/jei_gui_1.png");
 
     public static final int width = 128;
@@ -51,7 +51,7 @@ public class OxygenLoader implements IRecipeCategory<OxygenLoaderRecipe> {
         this.background = guiHelper.createDrawable(OxygenLoader.GUI, 0, 128, OxygenLoader.width, OxygenLoader.height);
         this.icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK,
                 new ItemStack(ItemsRegistry.COAL_GENERATOR_ITEM.get()));
-        this.localizedName = I18n.get("container." + BeyondEarth.MODID + ".oxygen_loader");
+        this.localizedName = I18n.get("container." + BeyondEarth.MODID + ".water_separator");
 
         this.cachedArrow = CacheBuilder.newBuilder().maximumSize(25).build(new CacheLoader<>() {
             @Override
@@ -63,8 +63,8 @@ public class OxygenLoader implements IRecipeCategory<OxygenLoaderRecipe> {
     }
 
     @Override
-    public RecipeType<OxygenLoaderRecipe> getRecipeType() {
-        return Jei.OXYGEN_LOADER_TYPE;
+    public RecipeType<WaterSeparatorRecipe> getRecipeType() {
+        return Jei.WATER_SEPARATOR_TYPE;
     }
 
     @Override
@@ -83,13 +83,13 @@ public class OxygenLoader implements IRecipeCategory<OxygenLoaderRecipe> {
     }
 
     @Override
-    public List<Component> getTooltipStrings(OxygenLoaderRecipe recipe, IRecipeSlotsView recipeSlotsView, double mouseX,
-            double mouseY) {
+    public List<Component> getTooltipStrings(WaterSeparatorRecipe recipe, IRecipeSlotsView recipeSlotsView, double mouseX,
+                                             double mouseY) {
         return IRecipeCategory.super.getTooltipStrings(recipe, recipeSlotsView, mouseX, mouseY);
     }
 
     @Override
-    public void draw(OxygenLoaderRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics graphics, double mouseX, double mouseY) {
+    public void draw(WaterSeparatorRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics graphics, double mouseX, double mouseY) {
         int energyTime = 100 / Config.FUEL_REFINERY_ENERGY_USAGE.get();
 
         int compressTime = energyTime;
@@ -106,7 +106,7 @@ public class OxygenLoader implements IRecipeCategory<OxygenLoaderRecipe> {
     }
 
     @Override
-    public void setRecipe(IRecipeLayoutBuilder builder, OxygenLoaderRecipe recipe, IFocusGroup focuses) {
+    public void setRecipe(IRecipeLayoutBuilder builder, WaterSeparatorRecipe recipe, IFocusGroup focuses) {
         IRecipeSlotBuilder inputStack = builder.addSlot(RecipeIngredientRole.INPUT, 20, 8);
         inputStack.addIngredients(ForgeTypes.FLUID_STACK, recipe.getInput().toStacks());
         inputStack.setCustomRenderer(ForgeTypes.FLUID_STACK, new CustomFluidRenderer(true));

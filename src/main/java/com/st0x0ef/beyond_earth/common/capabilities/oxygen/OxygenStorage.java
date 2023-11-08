@@ -19,7 +19,7 @@ public class OxygenStorage implements IOxygenStorage {
     public OxygenStorage(IOxygenStorageHolder holder, int capacity, int oxygen) {
         this.listener = holder;
         this.capacity = capacity;
-        this.oxygen = Methods.clamp(oxygen, 0, capacity);
+        this.oxygen = Mth.clamp(oxygen, 0, capacity);
     }
 
     public OxygenStorage(IOxygenStorageHolder listener) {

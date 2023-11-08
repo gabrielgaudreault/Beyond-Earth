@@ -90,7 +90,7 @@ public class BlockLootTables extends BlockLootSubProvider {
         this.dropSelf(BlockRegistry.FUEL_REFINERY_BLOCK.get());
         this.dropSelf(BlockRegistry.COMPRESSOR_BLOCK.get());
         this.dropSelf(BlockRegistry.COAL_GENERATOR_BLOCK.get());
-        this.dropSelf(BlockRegistry.OXYGEN_LOADER_BLOCK.get());
+        this.dropSelf(BlockRegistry.WATER_SEPARATOR_BLOCK.get());
         this.dropSelf(BlockRegistry.SOLAR_PANEL_BLOCK.get());
         this.dropSelf(BlockRegistry.NASA_WORKBENCH_BLOCK.get());
         this.dropSelf(BlockRegistry.OXYGEN_BUBBLE_DISTRIBUTOR_BLOCK.get());
