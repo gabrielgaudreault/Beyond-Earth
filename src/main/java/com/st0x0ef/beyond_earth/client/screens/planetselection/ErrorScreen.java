@@ -100,9 +100,7 @@ public class ErrorScreen extends Screen implements MenuAccess<ErrorMenu.GuiConta
                 BUTTON_TEXTURE, TexturedButton.ColorTypes.BLUE, Component.literal("Go Back"), (onPress) -> {
                         Methods.openPlanetGui(menu.getPlayer());
                         this.onClose();
-                }
-                );
-
+                });
     }
 
     public ModifiedButton addButton(int x, int y, int row, int width, int height, boolean rocketCondition,
