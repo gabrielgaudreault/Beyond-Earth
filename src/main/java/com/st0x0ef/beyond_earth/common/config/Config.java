@@ -2,6 +2,7 @@ package com.st0x0ef.beyond_earth.common.config;
 
 import net.minecraftforge.common.ForgeConfigSpec;
 import com.st0x0ef.beyond_earth.common.blocks.entities.machines.*;
+import com.st0x0ef.beyond_earth.common.entities.RoverEntity;
 
 public class Config {
 	public static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
@@ -44,13 +45,12 @@ public class Config {
         public static final ForgeConfigSpec.ConfigValue<Integer> FUEL_REFINERY_TANK_OUTPUT_CAPACITY;
         public static final ForgeConfigSpec.ConfigValue<Integer> FUEL_REFINERY_TANK_TRANSFER;
 
-        public static final ForgeConfigSpec.ConfigValue<Integer> WATER_SEPARATOR_ENERGY_USAGE;
-        public static final ForgeConfigSpec.ConfigValue<Integer> WATER_SEPARATOR_ENERGY_CAPACITY;
-        public static final ForgeConfigSpec.ConfigValue<Integer> WATER_SEPARATOR_ENERGY_TRANSFER;
-        public static final ForgeConfigSpec.ConfigValue<Integer> WATER_SEPARATOR_TANK_FLUID_CAPACITY;
-        public static final ForgeConfigSpec.ConfigValue<Integer> WATER_SEPARATOR_TANK_OXYGEN_CAPACITY;
-        public static final ForgeConfigSpec.ConfigValue<Integer> WATER_SEPARATOR_TANK_HYDROGEN_CAPACITY;
-        public static final ForgeConfigSpec.ConfigValue<Integer> WATER_SEPARATOR_TANK_TRANSFER;
+        public static final ForgeConfigSpec.ConfigValue<Integer> OXYGEN_LOADER_ENERGY_USAGE;
+        public static final ForgeConfigSpec.ConfigValue<Integer> OXYGEN_LOADER_ENERGY_CAPACITY;
+        public static final ForgeConfigSpec.ConfigValue<Integer> OXYGEN_LOADER_ENERGY_TRANSFER;
+        public static final ForgeConfigSpec.ConfigValue<Integer> OXYGEN_LOADER_TANK_FLUID_CAPACITY;
+        public static final ForgeConfigSpec.ConfigValue<Integer> OXYGEN_LOADER_TANK_OXYGEN_CAPACITY;
+        public static final ForgeConfigSpec.ConfigValue<Integer> OXYGEN_LOADER_TANK_TRANSFER;
 
         public static final ForgeConfigSpec.ConfigValue<Integer> OXYGEN_BUBBLE_DISTRIBUTOR_ENERGY_USAGE;
         public static final ForgeConfigSpec.ConfigValue<Integer> OXYGEN_BUBBLE_DISTRIBUTOR_ENERGY_CAPACITY;
@@ -70,8 +70,6 @@ public class Config {
 
         public static final ForgeConfigSpec.ConfigValue<Boolean> WATER_TO_ICE_MOON;
         public static final ForgeConfigSpec.ConfigValue<Boolean> WATER_TO_ICE_GLACIO;
-        public static final ForgeConfigSpec.ConfigValue<Boolean> WATER_TO_ICE_ORBIT;
-
         public static final ForgeConfigSpec.ConfigValue<Boolean> CHECK_SPACE_STATION;
 
 
@@ -131,14 +129,13 @@ public class Config {
                 FUEL_REFINERY_TANK_TRANSFER = BUILDER.comment("Set tank transfer, default: " + FuelRefineryBlockEntity.DEFAULT_TANK_TRANSFER + " mB").define("TankTransfer", FuelRefineryBlockEntity.DEFAULT_TANK_TRANSFER);
                 BUILDER.pop();
 
-                BUILDER.push("Water Separator");
-                WATER_SEPARATOR_ENERGY_USAGE = BUILDER.comment("Set energy usage per tick, default: " + WaterSeparatorBlockEntity.DEFAULT_ENERGY_USAGE + " FE/t").define("EnergyUsage", WaterSeparatorBlockEntity.DEFAULT_ENERGY_USAGE);
-                WATER_SEPARATOR_ENERGY_CAPACITY = BUILDER.comment("Set energy capacity, default: " + WaterSeparatorBlockEntity.DEFAULT_ENERGY_STORAGE_CAPACITY + " FE").define("EnergyCapacity", WaterSeparatorBlockEntity.DEFAULT_ENERGY_STORAGE_CAPACITY);
-                WATER_SEPARATOR_ENERGY_TRANSFER = BUILDER.comment("Set energy transfer, default: " + WaterSeparatorBlockEntity.DEFAULT_ENERGY_STORAGE_TRANSFER + " FE").define("EnergyTransfer", WaterSeparatorBlockEntity.DEFAULT_ENERGY_STORAGE_TRANSFER);
-                WATER_SEPARATOR_TANK_FLUID_CAPACITY = BUILDER.comment("Set fluid input tank capacity, default: " + WaterSeparatorBlockEntity.DEFAULT_TANK_CAPACITY + " mB").define("FluidCapacity", WaterSeparatorBlockEntity.DEFAULT_TANK_CAPACITY);
-                WATER_SEPARATOR_TANK_OXYGEN_CAPACITY = BUILDER.comment("Set oxygen output tank capacity, default: " + WaterSeparatorBlockEntity.DEFAULT_TANK_CAPACITY + " mB").define("OxygenCapacity", WaterSeparatorBlockEntity.DEFAULT_TANK_CAPACITY);
-                WATER_SEPARATOR_TANK_HYDROGEN_CAPACITY = BUILDER.comment("Set hydrogen output tank capacity, default: " + WaterSeparatorBlockEntity.DEFAULT_TANK_CAPACITY + " mB").define("HydrogenCapacity", WaterSeparatorBlockEntity.DEFAULT_TANK_CAPACITY);
-                WATER_SEPARATOR_TANK_TRANSFER = BUILDER.comment("Set tank transfer, default: " + WaterSeparatorBlockEntity.DEFAULT_TANK_TRANSFER + " mB").define("FluidTransfer", WaterSeparatorBlockEntity.DEFAULT_TANK_TRANSFER);
+                BUILDER.push("Oxygen Loader");
+                OXYGEN_LOADER_ENERGY_USAGE = BUILDER.comment("Set energy usage per tick, default: " + WaterSeparatorBlockEntity.DEFAULT_ENERGY_USAGE + " FE/t").define("EnergyUsage", OxygenLoaderBlockEntity.DEFAULT_ENERGY_USAGE);
+                OXYGEN_LOADER_ENERGY_CAPACITY = BUILDER.comment("Set energy capacity, default: " + WaterSeparatorBlockEntity.DEFAULT_ENERGY_STORAGE_CAPACITY + " FE").define("EnergyCapacity", OxygenLoaderBlockEntity.DEFAULT_ENERGY_STORAGE_CAPACITY);
+                OXYGEN_LOADER_ENERGY_TRANSFER = BUILDER.comment("Set energy transfer, default: " + WaterSeparatorBlockEntity.DEFAULT_ENERGY_STORAGE_TRANSFER + " FE").define("EnergyTransfer", OxygenLoaderBlockEntity.DEFAULT_ENERGY_STORAGE_TRANSFER);
+                OXYGEN_LOADER_TANK_FLUID_CAPACITY = BUILDER.comment("Set fluid input tank capacity, default: " + WaterSeparatorBlockEntity.DEFAULT_TANK_CAPACITY + " mB").define("FluidCapacity", OxygenLoaderBlockEntity.DEFAULT_TANK_CAPACITY);
+                OXYGEN_LOADER_TANK_OXYGEN_CAPACITY = BUILDER.comment("Set oxygen output tank capacity, default: " + WaterSeparatorBlockEntity.DEFAULT_TANK_CAPACITY + " mB").define("OxygenCapacity", OxygenLoaderBlockEntity.DEFAULT_TANK_CAPACITY);
+                OXYGEN_LOADER_TANK_TRANSFER = BUILDER.comment("Set tank transfer, default: " + WaterSeparatorBlockEntity.DEFAULT_TANK_TRANSFER + " mB").define("FluidTransfer", OxygenLoaderBlockEntity.DEFAULT_TANK_TRANSFER);
                 BUILDER.pop();
                 
                 BUILDER.push("Oxygen Bubble Distributor");
@@ -165,9 +162,8 @@ public class Config {
 
             /** Water to ice */
             BUILDER.push("Water to Ice");
-            WATER_TO_ICE_MOON = BUILDER.comment("Enable or Disable the transformation of water into ice on moon").define("Water to ice moon", false);
+            WATER_TO_ICE_MOON = BUILDER.comment("Enable or Disable the transformation of water into ice on the moon").define("Water to ice moon", false);
             WATER_TO_ICE_GLACIO = BUILDER.comment("Enable or Disable the transformation of water into ice on glacio").define("Water to ice glacio", false);
-            WATER_TO_ICE_ORBIT = BUILDER.comment("Enable or Disable the transformation of water into ice on orbit").define("Water to ice orbit", false);
             BUILDER.pop();
 
 
