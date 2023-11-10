@@ -1,5 +1,6 @@
 package com.st0x0ef.beyond_earth.common.util;
 
+import com.st0x0ef.beyond_earth.common.menus.planetselection.ErrorMenu;
 import io.netty.buffer.Unpooled;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -59,7 +60,6 @@ import java.util.function.Function;
 public class Methods {
     public static final ResourceLocation SPACE_STATION = new ResourceLocation(BeyondEarth.MODID, "space_station");
     public static final TagKey<Item> SPACE_SUIT_PART = TagKey.create(Keys.ITEMS, new ResourceLocation(BeyondEarth.MODID, "space_suit"));
-
     public static Entity teleportTo(Entity entity, ResourceKey<Level> levelKey, double yPos) {
         if (!isLevel(entity.level(), levelKey)) {
             if (entity.canChangeDimensions()) {
@@ -371,6 +371,7 @@ public class Methods {
         return true;
     }
 
+
     public static void resetPlanetSelectionMenuNeededNbt(Player player) {
         player.getPersistentData().putBoolean(BeyondEarth.MODID + ":planet_selection_menu_open", false);
         player.getPersistentData().putInt(BeyondEarth.MODID + ":rocket_distance", 0);
@@ -401,6 +402,28 @@ public class Methods {
             }
         }
     }
+
+    public static void openErrorGui(Player player) {
+        if (!player.hasContainerOpen()) {
+            if (player instanceof ServerPlayer serverPlayer) {
+                /** OPEN MENU */
+                NetworkHooks.openScreen(serverPlayer, new MenuProvider() {
+                    @Override
+                    public Component getDisplayName() {
+                        return Component.literal("Error Menu");
+                    }
+
+                    @Override
+                    public AbstractContainerMenu createMenu(int id, Inventory inventory, Player player) {
+                        FriendlyByteBuf packetBuffer = new FriendlyByteBuf(Unpooled.buffer());
+                        packetBuffer.writeDouble(player.getPersistentData().getDouble(BeyondEarth.MODID + ":rocket_distance"));
+                        return new ErrorMenu.GuiContainer(id, inventory, packetBuffer);
+                    }
+                });
+            }
+        }
+    }
+
 
     public static void entityFallWithLanderToPlanet(Entity entity, Level level) {
         if (entity.getVehicle().getY() < level.getMinBuildHeight() + 1) {

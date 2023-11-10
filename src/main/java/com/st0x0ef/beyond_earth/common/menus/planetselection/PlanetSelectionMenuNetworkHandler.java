@@ -62,16 +62,8 @@ public class PlanetSelectionMenuNetworkHandler extends PlanetSelectionMenuNetwor
                     message.deleteItems(player);
                     Methods.createLanderAndTeleportTo(player, dest, 700, true);
                 } else {
-                    //TODO : ADD SOMETHING TO TELL THE PLAYER HE CAN'T PLACE SPACE STATION HERE
                     player.closeContainer();
-
-                    try {
-                        player.displayClientMessage(Component.literal("test"), true);
-                        Thread.sleep(9000);
-                    } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
-                    }
-                    Methods.openPlanetGui(player);
+                    Methods.openErrorGui(player);
                 }
             }
         });
