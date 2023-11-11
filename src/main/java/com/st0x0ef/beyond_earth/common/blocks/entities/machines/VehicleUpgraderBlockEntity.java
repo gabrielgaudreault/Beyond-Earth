@@ -62,6 +62,11 @@ public class VehicleUpgraderBlockEntity extends AbstractMachineBlockEntity {
 
             if (output.getItem() instanceof RocketItem rocket) {
                 if (upgrade_input.getItem() instanceof VehicleUpgradeItem upgrade) {
+
+                    if(upgrade.getRocketSkinTexture() != null) {
+                        rocket.setRocketSkinTexture(upgrade.getRocketSkinTexture());
+                    }
+
                     rocket.fuelCapacityModifier = upgrade.getFuelCapacityModifier() > 0 ? upgrade.getFuelCapacityModifier() : rocket.fuelCapacityModifier;
                     rocket.fuelUsageModifier = upgrade.getFuelUsageModifier() > 0 ? upgrade.getFuelUsageModifier() : rocket.fuelUsageModifier;
                     output = rocket.asItem().getDefaultInstance();

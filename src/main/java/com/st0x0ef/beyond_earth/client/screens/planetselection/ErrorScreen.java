@@ -98,7 +98,6 @@ public class ErrorScreen extends Screen implements MenuAccess<ErrorMenu.GuiConta
         buttonText = List.of("Go Back to the planet selection", "menu and try again.");
         this.addButton(this.width / 2 - 30 , this.height / 2 + 50, 0, 75, 25, false, null, buttonText,
                 BUTTON_TEXTURE, TexturedButton.ColorTypes.BLUE, Component.literal("Go Back"), (onPress) -> {
-                        BeyondEarth.LOGGER.error("UWU");
                         Methods.openPlanetGui(menu.getPlayer());
                         this.onClose();
                 }

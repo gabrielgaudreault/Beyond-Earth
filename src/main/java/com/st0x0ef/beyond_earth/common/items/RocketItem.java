@@ -45,6 +45,7 @@ public class RocketItem extends VehicleItem {
 
     public int fuelCapacityModifier = 0;
     public int fuelUsageModifier = 0;
+    public String rocketSkinTexture = "textures/vehicle/rocket.png";
 
     public RocketItem(Properties properties) {
         super(properties);
@@ -61,6 +62,10 @@ public class RocketItem extends VehicleItem {
 
     public RocketEntity getRocket(Level level) {
         return new RocketEntity(getEntityType(), level);
+    }
+
+    public String getRocketSkinTexture() {
+        return rocketSkinTexture;
     }
 
     public int getFuelBuckets() {
@@ -118,7 +123,8 @@ public class RocketItem extends VehicleItem {
                     rocket.getEntityData().set(RocketEntity.FUEL, itemStack.getOrCreateTag().getInt(FUEL_TAG));
                     rocket.getEntityData().set(RocketEntity.FUEL_BUCKET_NEEDED, RocketEntity.DEFAULT_FUEL_BUCKETS + itemStack.getOrCreateTag().getInt("fuelCapacityModifier"));
                     rocket.getEntityData().set(RocketEntity.FUEL_USAGE, RocketEntity.DEFAULT_FUEL_USAGE + itemStack.getOrCreateTag().getInt("fuelUsageModifier"));
-
+                    rocket.getEntityData().set(RocketEntity.SKIN_TEXTURE, itemStack.getOrCreateTag().getString("rocketSkinTexture"));
+                    rocket.setSkinTexture(rocketSkinTexture);
                     /** CALL PLACE ROCKET EVENT */
                     MinecraftForge.EVENT_BUS.post(new PlaceRocketEvent(rocket, context));
 
@@ -167,5 +173,10 @@ public class RocketItem extends VehicleItem {
 
     public void rocketPlaceSound(BlockPos pos, Level world) {
         world.playSound(null, pos, SoundEvents.STONE_BREAK, SoundSource.BLOCKS, 1,1);
+    }
+
+    public void setRocketSkinTexture(String skinTexture) {
+        this.rocketSkinTexture = skinTexture;
+        this.getDefaultInstance().getOrCreateTag().putString("rocketSkinTexture", rocketSkinTexture);
     }
 }

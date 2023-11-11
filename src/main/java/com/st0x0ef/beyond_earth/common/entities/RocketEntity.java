@@ -71,11 +71,14 @@ public class RocketEntity extends IVehicleEntity implements HasCustomInventorySc
 	public static final int DEFAULT_FUEL_BUCKETS = 3;
 	public static final long DEFAULT_DISTANCE_TRAVELABLE = 38000000;
 	public static final int DEFAULT_FUEL_USAGE = 1000000;
+	public static final String DEFAULT_SKIN_TEXTURE = "textures/vehicle/rocket.png";
 
 	public static final EntityDataAccessor<Boolean> ROCKET_START = SynchedEntityData.defineId(RocketEntity.class, EntityDataSerializers.BOOLEAN);
 	public static final EntityDataAccessor<Integer> FUEL = SynchedEntityData.defineId(RocketEntity.class, EntityDataSerializers.INT);
 	public static final EntityDataAccessor<Integer> FUEL_BUCKET_NEEDED = SynchedEntityData.defineId(RocketEntity.class, EntityDataSerializers.INT);
 	public static final EntityDataAccessor<Integer> FUEL_USAGE = SynchedEntityData.defineId(RocketEntity.class, EntityDataSerializers.INT);
+	public static final EntityDataAccessor<String> SKIN_TEXTURE = SynchedEntityData.defineId(RocketEntity.class, EntityDataSerializers.STRING);
+
 	public static final EntityDataAccessor<Long> MAX_DISTANCE_TRAVELABLE = SynchedEntityData.defineId(RocketEntity.class, EntityDataSerializers.LONG);
 	public static final EntityDataAccessor<Integer> START_TIMER = SynchedEntityData.defineId(RocketEntity.class, EntityDataSerializers.INT);
 
@@ -87,6 +90,7 @@ public class RocketEntity extends IVehicleEntity implements HasCustomInventorySc
 		this.entityData.define(FUEL_USAGE, DEFAULT_FUEL_USAGE);
 		this.entityData.define(MAX_DISTANCE_TRAVELABLE, DEFAULT_DISTANCE_TRAVELABLE);
 		this.entityData.define(START_TIMER, 0);
+		this.entityData.define(SKIN_TEXTURE, DEFAULT_SKIN_TEXTURE);
 	}
 
 	public double getRocketSpeed() {
@@ -112,9 +116,19 @@ public class RocketEntity extends IVehicleEntity implements HasCustomInventorySc
 		itemStack.getOrCreateTag().putInt(BeyondEarth.MODID + ":fuel", this.getEntityData().get(FUEL));
 		itemStack.getOrCreateTag().putInt("fuelCapacityModifier", this.getEntityData().get(FUEL_BUCKET_NEEDED) - DEFAULT_FUEL_BUCKETS);
 		itemStack.getOrCreateTag().putInt("fuelUsageModifier", this.getEntityData().get(FUEL_USAGE) - DEFAULT_FUEL_USAGE);
+		itemStack.getOrCreateTag().putString("rocketSkinTexture", this.getEntityData().get(SKIN_TEXTURE));
 		MinecraftForge.EVENT_BUS.post(new SetRocketItemStackEvent(this, itemStack));
 
 		return itemStack;
+	}
+
+	public void setSkinTexture(String texture) {
+		this.getEntityData().set(SKIN_TEXTURE, texture);
+		this.getPersistentData().putString("rocket_skin_texture", texture);
+	}
+
+	public String getSkinTexture() {
+		return this.getPersistentData().getString("rocket_skin_texture");
 	}
 
 	public void spawnParticle() {
@@ -163,7 +177,6 @@ public class RocketEntity extends IVehicleEntity implements HasCustomInventorySc
 	public void push(Entity entity) {
 
 	}
-
 	@Override
 	public void kill() {
 		this.dropEquipment();
@@ -249,6 +262,7 @@ public class RocketEntity extends IVehicleEntity implements HasCustomInventorySc
 		compound.putInt("start_timer", this.getEntityData().get(START_TIMER));
 		compound.putInt("fuel_capacity", this.getEntityData().get(FUEL_BUCKET_NEEDED));
 		compound.putInt("fuel_usage", this.getEntityData().get(FUEL_USAGE));
+		compound.putString("rocket_skin_texture", this.getEntityData().get(SKIN_TEXTURE));
 		compound.putDouble(BeyondEarth.MODID + ":rocket_distance", this.getEntityData().get(MAX_DISTANCE_TRAVELABLE));
 	}
 
@@ -266,6 +280,7 @@ public class RocketEntity extends IVehicleEntity implements HasCustomInventorySc
 		this.getEntityData().set(START_TIMER, compound.getInt("start_timer"));
 		this.getEntityData().set(FUEL_BUCKET_NEEDED, compound.getInt("fuel_capacity"));
 		this.getEntityData().set(FUEL_USAGE, compound.getInt("fuel_usage"));
+		this.getEntityData().set(SKIN_TEXTURE, compound.getString("rocket_skin_texture"));
 		this.getEntityData().set(MAX_DISTANCE_TRAVELABLE, (long) compound.getDouble(BeyondEarth.MODID + ":rocket_distance"));
 	}
 
