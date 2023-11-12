@@ -3,8 +3,6 @@
   "values": [
     "beyond_earth:moon_sand",
     "beyond_earth:mars_sand",
-    "beyond_earth:venus_sand",
-    "beyond_earth:permafrost_grass",
-    "beyond_earth:permafrost_dirt"
+    "beyond_earth:venus_sand"
   ]
 }
