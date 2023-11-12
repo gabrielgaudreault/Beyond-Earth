@@ -1,5 +1,6 @@
 package com.st0x0ef.beyond_earth.mixin;
 
+import com.st0x0ef.beyond_earth.common.util.Methods;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
@@ -21,7 +22,8 @@ public class BlockPlace {
         Level level = (Level) ((Object) this);
 
         if ((level.dimension().equals(LevelRegistry.MOON) && Config.WATER_TO_ICE_MOON.get()) ||
-            (level.dimension().equals(LevelRegistry.GLACIO) && Config.WATER_TO_ICE_GLACIO.get())) {
+            (level.dimension().equals(LevelRegistry.GLACIO) && Config.WATER_TO_ICE_GLACIO.get()) ||
+            (Methods.isOrbitLevel(level) && Config.WATER_TO_ICE_ORBIT.get())) {
             if (level.getBlockState(blockPos).equals(Blocks.WATER)) {
                 level.setBlock(blockPos, Blocks.ICE.defaultBlockState(), 4096);
             }

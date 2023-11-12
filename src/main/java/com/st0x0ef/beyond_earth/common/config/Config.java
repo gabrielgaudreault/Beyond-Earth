@@ -70,6 +70,8 @@ public class Config {
 
         public static final ForgeConfigSpec.ConfigValue<Boolean> WATER_TO_ICE_MOON;
         public static final ForgeConfigSpec.ConfigValue<Boolean> WATER_TO_ICE_GLACIO;
+        public static final ForgeConfigSpec.ConfigValue<Boolean> WATER_TO_ICE_ORBIT;
+
         public static final ForgeConfigSpec.ConfigValue<Boolean> CHECK_SPACE_STATION;
 
 
@@ -165,6 +167,7 @@ public class Config {
             BUILDER.push("Water to Ice");
             WATER_TO_ICE_MOON = BUILDER.comment("Enable or Disable the transformation of water into ice on moon").define("Water to ice moon", false);
             WATER_TO_ICE_GLACIO = BUILDER.comment("Enable or Disable the transformation of water into ice on glacio").define("Water to ice glacio", false);
+            WATER_TO_ICE_ORBIT = BUILDER.comment("Enable or Disable the transformation of water into ice on orbit").define("Water to ice orbit", false);
             BUILDER.pop();
 
 

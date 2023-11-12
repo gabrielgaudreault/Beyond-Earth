@@ -1,6 +1,5 @@
 package com.st0x0ef.beyond_earth.common.events;
 
-import com.st0x0ef.beyond_earth.common.entities.RocketEntity;
 import com.st0x0ef.beyond_earth.common.events.forge.*;
 import com.st0x0ef.beyond_earth.common.util.*;
 import net.minecraft.core.NonNullList;
@@ -9,7 +8,6 @@ import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -281,16 +279,12 @@ public class Events {
         Player player = event.getEntity();
         AbstractContainerMenu container = event.getContainer();
         NonNullList<ItemStack> itemStacks = container.getItems();
-
         for (ItemStack stack : itemStacks) {
             if (stack.is(TagRegistry.RADIOACTIVE_ITEMS_TAG)) {
                 if(!Methods.isLivingInJetSuit(player)) {
                     player.addEffect(new MobEffectInstance(MobEffectsRegistry.RADIATION.get(), 100));
-
                 }
-
             }
-
         }
     }
 }
