@@ -1,5 +1,6 @@
 package com.st0x0ef.beyond_earth.client.registries;
 
+import com.st0x0ef.beyond_earth.client.screens.planetselection.ErrorScreen;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -29,5 +30,6 @@ public class ScreenRegistry {
         MenuScreens.register(ContainerRegistry.VEHICLE_UPGRADER_GUI.get(), VehicleUpgraderScreen::new);
 
         MenuScreens.register(ContainerRegistry.PLANET_SELECTION_GUI.get(), PlanetSelectionScreen::new);
+        MenuScreens.register(ContainerRegistry.ERROR_GUI.get(), ErrorScreen::new);
     }
 }
