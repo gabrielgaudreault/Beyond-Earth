@@ -9,19 +9,19 @@ public class Rectangle2d {
 	private final int width;
 	private final int height;
 
-	public Rectangle2d(int p_i47637_1_, int p_i47637_2_, int p_i47637_3_, int p_i47637_4_) {
-		this.x = p_i47637_1_;
-		this.y = p_i47637_2_;
-		this.width = p_i47637_3_;
-		this.height = p_i47637_4_;
+	public Rectangle2d(int x, int y, int width, int height) {
+		this.x = x;
+		this.y = y;
+		this.width = width;
+		this.height = height;
 	}
 
 	@OnlyIn(Dist.CLIENT)
-	public Rectangle2d(net.minecraft.client.renderer.Rect2i vanila) {
-		this.x = vanila.getX();
-		this.y = vanila.getY();
-		this.width = vanila.getWidth();
-		this.height = vanila.getHeight();
+	public Rectangle2d(net.minecraft.client.renderer.Rect2i vanilla) {
+		this.x = vanilla.getX();
+		this.y = vanilla.getY();
+		this.width = vanilla.getWidth();
+		this.height = vanilla.getHeight();
 	}
 
 	public int getX() {
@@ -40,8 +40,8 @@ public class Rectangle2d {
 		return this.height;
 	}
 
-	public boolean contains(int p_199315_1_, int p_199315_2_) {
-		return p_199315_1_ >= this.x && p_199315_1_ <= this.x + this.width && p_199315_2_ >= this.y && p_199315_2_ <= this.y + this.height;
+	public boolean contains(int _x, int _y) {
+		return _x >= this.x && _x <= this.x + this.width && _y >= this.y && _y <= this.y + this.height;
 	}
 
 	@OnlyIn(Dist.CLIENT)

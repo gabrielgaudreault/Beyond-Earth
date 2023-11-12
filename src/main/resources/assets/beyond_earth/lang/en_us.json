@@ -368,6 +368,7 @@
   "general.beyond_earth.fluid": "Fluid",
   "general.beyond_earth.fuel": "Fuel",
   "general.beyond_earth.oxygen": "Oxygen",
+  "general.beyond_earth.hydrogen": "Hydrogen",
   "general.beyond_earth.burntime": "Burn Time",
   "general.beyond_earth.cooktime": "Cook Time",
   "general.beyond_earth.oxygenloading": "Loading",

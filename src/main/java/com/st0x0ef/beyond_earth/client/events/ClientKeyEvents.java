@@ -1,20 +1,18 @@
 package com.st0x0ef.beyond_earth.client.events;
 
-import net.minecraft.client.KeyMapping;
-import net.minecraft.world.entity.player.Player;
-import net.minecraftforge.client.event.InputEvent;
-import net.minecraftforge.fml.common.Mod;
 import com.st0x0ef.beyond_earth.BeyondEarth;
 import com.st0x0ef.beyond_earth.client.registries.KeyMappingRegistry;
+import com.st0x0ef.beyond_earth.common.keybinds.KeyHandler;
 import com.st0x0ef.beyond_earth.common.keybinds.KeyVariables;
 import com.st0x0ef.beyond_earth.common.registries.NetworkRegistry;
-import com.st0x0ef.beyond_earth.common.keybinds.KeyHandler;
-import org.lwjgl.glfw.GLFW;
-
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.api.distmarker.Dist;
-
+import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
+import net.minecraft.world.entity.player.Player;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.InputEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import org.lwjgl.glfw.GLFW;
 
 import java.util.Map;
 import java.util.UUID;

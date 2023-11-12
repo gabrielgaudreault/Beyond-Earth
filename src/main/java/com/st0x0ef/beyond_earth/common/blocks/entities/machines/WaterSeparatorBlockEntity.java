@@ -3,20 +3,26 @@ package com.st0x0ef.beyond_earth.common.blocks.entities.machines;
 import java.util.List;
 
 import com.st0x0ef.beyond_earth.BeyondEarth;
+import com.st0x0ef.beyond_earth.common.blocks.entities.machines.gauge.GaugeValueHelper;
+import com.st0x0ef.beyond_earth.common.blocks.entities.machines.gauge.IGaugeValue;
 import com.st0x0ef.beyond_earth.common.capabilities.hydrogen.HydrogenStorage;
 import com.st0x0ef.beyond_earth.common.capabilities.hydrogen.HydrogenUtil;
 import com.st0x0ef.beyond_earth.common.capabilities.hydrogen.IHydrogenStorage;
 import com.st0x0ef.beyond_earth.common.capabilities.hydrogen.IHydrogenStorageHolder;
 import com.st0x0ef.beyond_earth.common.capabilities.oxygen.IOxygenStorageHolder;
 import com.st0x0ef.beyond_earth.common.capabilities.oxygen.OxygenStorage;
+import com.st0x0ef.beyond_earth.common.compats.mekanism.MekanismCompat;
 import com.st0x0ef.beyond_earth.common.menus.nasaworkbench.StackCacher;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.IEnergyStorage;
 import com.st0x0ef.beyond_earth.common.blocks.entities.machines.power.NamedComponentRegistry;
 import com.st0x0ef.beyond_earth.common.blocks.entities.machines.power.PowerSystemEnergyCommon;
@@ -34,15 +40,16 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 
+import javax.annotation.Nullable;
+
 public class WaterSeparatorBlockEntity extends AbstractMachineBlockEntity {
     public static final ResourceLocation TANK_INPUT = new ResourceLocation(BeyondEarth.MODID, "input");
     public static final ResourceLocation O2_TANK_OUTPUT = new ResourceLocation(BeyondEarth.MODID, "o2_output");
     public static final ResourceLocation H2_TANK_OUTPUT = new ResourceLocation(BeyondEarth.MODID, "h2_output");
     public static final int DEFAULT_ENERGY_USAGE = 1;
+    public static final int DEFAULT_ENERGY_STORAGE_CAPACITY = 12000;
     public static final int SLOT_OUTPUT_SINK_O2 = 2;
-    public static final int SLOT_OUTPUT_SOURCE_O2 = 3;
-    public static final int SLOT_OUTPUT_SINK_H2 = 4;
-    public static final int SLOT_OUTPUT_SOURCE_H2 = 5;
+    public static final int SLOT_OUTPUT_SINK_H2 = 3;
 
     private FluidTank InputTank;
     private OxygenStorage O2OutputTank;
@@ -60,7 +67,6 @@ public class WaterSeparatorBlockEntity extends AbstractMachineBlockEntity {
 
     @Override
     protected void tickProcessing() {
-        this.drainSources();
         this.consumeIngredients();
         this.fillSinks();
     }
@@ -97,7 +103,7 @@ public class WaterSeparatorBlockEntity extends AbstractMachineBlockEntity {
     }
 
     public boolean hasSpaceInOutput(int oxygen, IOxygenStorage O2Storage, int hydrogen, IHydrogenStorage H2Storage) {
-        return ((oxygen + O2Storage.getOxygen()) <= O2Storage.getMaxCapacity()) && ((hydrogen + H2Storage.getHydrogen()) <= H2Storage.getMaxCapacity());
+        return ((oxygen + O2Storage.getOxygen()) <= O2Storage.getMaxCapacity()) || ((hydrogen + H2Storage.getHydrogen()) <= H2Storage.getMaxCapacity());
     }
 
     public OxygenMakingRecipeAbstract cacheRecipe() {
@@ -108,7 +114,7 @@ public class WaterSeparatorBlockEntity extends AbstractMachineBlockEntity {
             this.cachedRecipe = null;
         } else if (!this.recipeCacher.test(fluidStack)) {
             this.recipeCacher.set(fluidStack);
-            this.cachedRecipe = this.getRecipeType().findFirst(this.getLevel(), r -> r.test(fluidStack));
+            this.cachedRecipe = this.getRecipeType().findFirst(this.getLevel(), recipe -> recipe.test(fluidStack));
         }
 
         return this.cachedRecipe;
@@ -144,14 +150,6 @@ public class WaterSeparatorBlockEntity extends AbstractMachineBlockEntity {
         return storage;
     }
 
-    private void drainSources() {
-        OxygenUtil.drainSource(this.getItemHandler(), this.getO2OutputSourceSlot(), this.getO2OutputTank(),
-                this.getTransferPerTick());
-
-        HydrogenUtil.drainSource(this.getItemHandler(), this.getH2OutputSourceSlot(), this.getH2OutputTank(),
-                this.getTransferPerTick());
-    }
-
     private void fillSinks() {
         OxygenUtil.fillSink(this.getItemHandler(), this.getO2OutputSinkSlot(), this.getO2OutputTank(),
                 this.getTransferPerTick());
@@ -162,12 +160,8 @@ public class WaterSeparatorBlockEntity extends AbstractMachineBlockEntity {
 
     @Override
     protected boolean onCanPlaceItemThroughFace(int index, ItemStack stack, Direction direction) {
-        if (index == this.getO2OutputSourceSlot()) {
-            return OxygenUtil.canExtract(stack);
-        } else if (index == this.getO2OutputSinkSlot()) {
+        if (index == this.getO2OutputSinkSlot()) {
             return OxygenUtil.canReceive(stack);
-        } else if (index == this.getH2OutputSourceSlot()) {
-            return HydrogenUtil.canReceive(stack);
         } else if (index == this.getH2OutputSinkSlot()) {
             return HydrogenUtil.canReceive(stack);
         }
@@ -177,12 +171,8 @@ public class WaterSeparatorBlockEntity extends AbstractMachineBlockEntity {
 
     @Override
     public boolean canTakeItemThroughFace(int index, ItemStack stack, Direction direction) {
-        if (index == this.getO2OutputSourceSlot()) {
-            return !OxygenUtil.canExtract(stack);
-        } else if (index == this.getO2OutputSinkSlot()) {
+        if (index == this.getO2OutputSinkSlot()) {
             return !OxygenUtil.canReceive(stack);
-        } else if (index == this.getH2OutputSourceSlot()) {
-            return !HydrogenUtil.canReceive(stack);
         } else if (index == this.getH2OutputSinkSlot()) {
             return !HydrogenUtil.canReceive(stack);
         }
@@ -193,9 +183,7 @@ public class WaterSeparatorBlockEntity extends AbstractMachineBlockEntity {
     @Override
     protected void getSlotsForFace(Direction direction, List<Integer> slots) {
         super.getSlotsForFace(direction, slots);
-        slots.add(this.getO2OutputSourceSlot());
         slots.add(this.getO2OutputSinkSlot());
-        slots.add(this.getH2OutputSourceSlot());
         slots.add(this.getH2OutputSinkSlot());
     }
 
@@ -250,20 +238,45 @@ public class WaterSeparatorBlockEntity extends AbstractMachineBlockEntity {
     }
 
     @Override
-    protected int getInitialInventorySize() {
-        return super.getInitialInventorySize() + 6;
+    public List<IGaugeValue> getDisplayGaugeValues() {
+        List<IGaugeValue> list = super.getDisplayGaugeValues();
+
+        if (!MekanismCompat.LOADED) {
+            list.add(GaugeValueHelper.getOxygen(this.getO2OutputTank()));
+            list.add(GaugeValueHelper.getHydrogen(this.getH2OutputTank()));
+        }
+
+        return list;
     }
 
-    public int getO2OutputSourceSlot() {
-        return SLOT_OUTPUT_SOURCE_O2;
+    @Override
+    public <T> LazyOptional<T> getCapabilityFluidHandler(Capability<T> capability, @Nullable Direction facing) {
+        return LazyOptional.of(this::getInputTank).cast();
+    }
+
+    @Override
+    public void load(CompoundTag compound) {
+        super.load(compound);
+
+        this.getO2OutputTank().deserializeNBT(compound.getCompound("O2outputTank"));
+        this.getH2OutputTank().deserializeNBT(compound.getCompound("H2outputTank"));
+    }
+
+    @Override
+    protected void saveAdditional(CompoundTag compound) {
+        super.saveAdditional(compound);
+
+        compound.put("O2outputTank", this.getO2OutputTank().serializeNBT());
+        compound.put("H2outputTank", this.getH2OutputTank().serializeNBT());
+    }
+
+    @Override
+    protected int getInitialInventorySize() {
+        return super.getInitialInventorySize() + 4;
     }
 
     public int getO2OutputSinkSlot() {
         return SLOT_OUTPUT_SINK_O2;
-    }
-
-    public int getH2OutputSourceSlot() {
-        return SLOT_OUTPUT_SOURCE_H2;
     }
 
     public int getH2OutputSinkSlot() {

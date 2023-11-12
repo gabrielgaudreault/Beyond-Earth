@@ -28,16 +28,14 @@ public class WaterSeparatorMenu {
         private final WaterSeparatorBlockEntity blockEntity;
 
         public GuiContainer(int id, Inventory inv, WaterSeparatorBlockEntity blockEntity) {
-            super(ContainerRegistry.water_separator_GUI.get(), id);
+            super(ContainerRegistry.WATER_SEPARATOR_GUI.get(), id);
             this.blockEntity = blockEntity;
 
             IItemHandlerModifiable internal = blockEntity.getItemHandler();
             this.addSlot(new SlotItemHandler(internal, OxygenMakingBlockEntity.SLOT_INPUT_SOURCE, 9, 33));
             this.addSlot(new SlotItemHandler(internal, OxygenMakingBlockEntity.SLOT_INPUT_SINK, 9, 63));
-            this.addSlot(new SlotItemHandler(internal, WaterSeparatorBlockEntity.SLOT_OUTPUT_SINK_O2, 69, 4));
-            this.addSlot(new SlotItemHandler(internal, WaterSeparatorBlockEntity.SLOT_OUTPUT_SOURCE_O2, 95, 4));
-            this.addSlot(new SlotItemHandler(internal, WaterSeparatorBlockEntity.SLOT_OUTPUT_SINK_H2, 127, 4));
-            this.addSlot(new SlotItemHandler(internal, WaterSeparatorBlockEntity.SLOT_OUTPUT_SOURCE_H2, 153, 4));
+            this.addSlot(new SlotItemHandler(internal, WaterSeparatorBlockEntity.SLOT_OUTPUT_SINK_O2, 94, 82));
+            this.addSlot(new SlotItemHandler(internal, WaterSeparatorBlockEntity.SLOT_OUTPUT_SINK_H2, 126, 82));
 
             MenuHelper.createInventorySlots(inv, this::addSlot, 8, 102);
         }

@@ -28,17 +28,17 @@ public class OxygenBubbleDistributorRecipe extends OxygenMakingRecipeAbstract {
 	}
 
 	@Override
-	public boolean matches(Container p_44002_, Level p_44003_) {
+	public boolean matches(Container container, Level level) {
 		return false;
 	}
 
 	@Override
-	public ItemStack assemble(Container p_44001_, RegistryAccess p_267165_) {
+	public ItemStack assemble(Container container, RegistryAccess access) {
 		return null;
 	}
 
 	@Override
-	public ItemStack getResultItem(RegistryAccess p_267052_) {
+	public ItemStack getResultItem(RegistryAccess access) {
 		return null;
 	}
 

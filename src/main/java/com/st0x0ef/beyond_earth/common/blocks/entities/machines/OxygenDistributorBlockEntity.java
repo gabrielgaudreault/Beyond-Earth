@@ -89,7 +89,6 @@ public class OxygenDistributorBlockEntity extends OxygenMakingBlockEntity {
 
     protected void tickProcessing() {
         super.tickProcessing();
-
         this.tickDistributeTimer();
     }
 

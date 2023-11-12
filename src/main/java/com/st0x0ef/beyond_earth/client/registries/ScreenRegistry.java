@@ -22,7 +22,7 @@ public class ScreenRegistry {
         MenuScreens.register(ContainerRegistry.FUEL_REFINERY_GUI.get(), FuelRefineryScreen::new);
         MenuScreens.register(ContainerRegistry.COAL_GENERATOR_GUI.get(), CoalGeneratorScreen::new);
         MenuScreens.register(ContainerRegistry.NASA_WORKBENCH_GUI.get(), NasaWorkbenchScreen::new);
-        MenuScreens.register(ContainerRegistry.water_separator_GUI.get(), WaterSeparatorScreen::new);
+        MenuScreens.register(ContainerRegistry.WATER_SEPARATOR_GUI.get(), WaterSeparatorScreen::new);
         MenuScreens.register(ContainerRegistry.SOLAR_PANEL_GUI.get(), SolarPanelScreen::new);
         MenuScreens.register(ContainerRegistry.WATER_PUMP_GUI.get(), WaterPumpScreen::new);
         MenuScreens.register(ContainerRegistry.OXYGEN_BUBBLE_DISTRIBUTOR_GUI.get(), OxygenDistributorScreen::new);

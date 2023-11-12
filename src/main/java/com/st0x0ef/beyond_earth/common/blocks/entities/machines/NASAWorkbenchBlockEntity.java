@@ -53,7 +53,7 @@ public class NASAWorkbenchBlockEntity extends AbstractMachineBlockEntity {
     }
 
     public static int getBasicPartSlots() {
-        return getBasicPartOrders().stream().collect(Collectors.summingInt(p -> p.getSlots()));
+        return getBasicPartOrders().stream().mapToInt(RocketPart::getSlots).sum();
     }
 
     private final StackCacher itemStackCacher;

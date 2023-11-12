@@ -125,7 +125,7 @@ public class Config {
                 FUEL_REFINERY_TANK_TRANSFER = BUILDER.comment("Set tank transfer, default: " + FuelRefineryBlockEntity.DEFAULT_TANK_TRANSFER + " mB").define("TankTransfer", FuelRefineryBlockEntity.DEFAULT_TANK_TRANSFER);
                 BUILDER.pop();
 
-                BUILDER.push("Oxygen Loader");
+                BUILDER.push("Water Separator");
                 WATER_SEPARATOR_ENERGY_USAGE = BUILDER.comment("Set energy usage per tick, default: " + WaterSeparatorBlockEntity.DEFAULT_ENERGY_USAGE + " FE/t").define("EnergyUsage", WaterSeparatorBlockEntity.DEFAULT_ENERGY_USAGE);
                 WATER_SEPARATOR_ENERGY_CAPACITY = BUILDER.comment("Set energy capacity, default: " + WaterSeparatorBlockEntity.DEFAULT_ENERGY_STORAGE_CAPACITY + " FE").define("EnergyCapacity", WaterSeparatorBlockEntity.DEFAULT_ENERGY_STORAGE_CAPACITY);
                 WATER_SEPARATOR_ENERGY_TRANSFER = BUILDER.comment("Set energy transfer, default: " + WaterSeparatorBlockEntity.DEFAULT_ENERGY_STORAGE_TRANSFER + " FE").define("EnergyTransfer", WaterSeparatorBlockEntity.DEFAULT_ENERGY_STORAGE_TRANSFER);
@@ -159,7 +159,7 @@ public class Config {
 
             /** Water to ice */
             BUILDER.push("Water to Ice");
-            WATER_TO_ICE_MOON = BUILDER.comment("Enable or Disable the transformation of water into ice on the moon").define("Water to ice moon", false);
+            WATER_TO_ICE_MOON = BUILDER.comment("Enable or Disable the transformation of water into ice on moon").define("Water to ice moon", false);
             WATER_TO_ICE_GLACIO = BUILDER.comment("Enable or Disable the transformation of water into ice on glacio").define("Water to ice glacio", false);
             BUILDER.pop();
 
