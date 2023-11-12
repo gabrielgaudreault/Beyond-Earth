@@ -70,6 +70,7 @@ public class Config {
 
         public static final ForgeConfigSpec.ConfigValue<Boolean> WATER_TO_ICE_MOON;
         public static final ForgeConfigSpec.ConfigValue<Boolean> WATER_TO_ICE_GLACIO;
+        public static final ForgeConfigSpec.ConfigValue<Boolean> CHECK_SPACE_STATION;
 
 
 	static {
@@ -84,7 +85,10 @@ public class Config {
 		MOGLER_SPAWN = BUILDER.comment("Enable or Disable Mogler to Spawn").define("Mogler Spawn", true);
 		MARTIAN_RAPTOR_SPAWN = BUILDER.comment("Enable or Disable Martian Raptor to Spawn").define("Martian Raptor Spawn", true);
 
-		/** Entity Systems */
+        /** Space Station */
+        CHECK_SPACE_STATION = BUILDER.comment("Should it be impossible to create a space station on another space station?").define("CheckSpaceStation", true);
+
+            /** Entity Systems */
 		PLAYER_OXYGEN_SYSTEM = BUILDER.comment("Enable or Disable Player Oxygen System").define("Player Oxygen System", true);
                 ENTITY_OXYGEN_SYSTEM = BUILDER.comment("Enable or Disable Entity Oxygen System").define("Entity Oxygen System", true);
 
@@ -162,6 +166,7 @@ public class Config {
             WATER_TO_ICE_MOON = BUILDER.comment("Enable or Disable the transformation of water into ice on moon").define("Water to ice moon", false);
             WATER_TO_ICE_GLACIO = BUILDER.comment("Enable or Disable the transformation of water into ice on glacio").define("Water to ice glacio", false);
             BUILDER.pop();
+
 
             SPEC = BUILDER.build();
 	}

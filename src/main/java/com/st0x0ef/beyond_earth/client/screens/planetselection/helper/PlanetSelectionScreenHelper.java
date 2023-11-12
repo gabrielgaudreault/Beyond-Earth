@@ -7,6 +7,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -110,7 +111,7 @@ public class PlanetSelectionScreenHelper {
     }
 
     /** USE THIS TO ROTATE GALAXIES */
-    public static void drawGalaxy(PlanetSelectionScreen screen, PoseStack ms, ResourceLocation texture, float x, float y, int width, int height, float rotation) {
+    public static void drawGalaxy(Screen screen, PoseStack ms, ResourceLocation texture, float x, float y, int width, int height, float rotation) {
         ms.pushPose();
 
         ms.translate(screen.width / 2, screen.height / 2, 0);

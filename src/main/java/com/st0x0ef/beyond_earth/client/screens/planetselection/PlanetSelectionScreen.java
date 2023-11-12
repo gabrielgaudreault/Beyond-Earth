@@ -1,6 +1,7 @@
 package com.st0x0ef.beyond_earth.client.screens.planetselection;
 
 import com.google.common.collect.Lists;
+import com.st0x0ef.beyond_earth.common.util.Methods;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.Screen;
@@ -322,12 +323,14 @@ public class PlanetSelectionScreen extends Screen implements MenuAccess<PlanetSe
                 ModifiedButton.ColorTypes.LIGHT_BLUE, ORBIT_TEXT);
         orbitButton.isVisible = i -> i == planetCategory;
 
+
         // Space station teleport buttons
         ModifiedButton stationButton = PlanetSelectionScreenHelper.addHandlerButton(this, 125, 3, 75, 20,
                 this.spaceStationItemList, false, true, NetworkRegistry.PACKET_HANDLER,
                 PlanetSelectionScreenHelper.getNetworkHandler(planet.stationID),
                 ModifiedButton.ButtonTypes.PLANET_SPACE_STATION_CATEGORY, buttonText, LARGE_BUTTON_TEXTURE,
                 ModifiedButton.ColorTypes.GREEN, SPACE_STATION_TEXT);
+
         stationButton.isVisible = i -> i == planetCategory;
 
         planet.moons.forEach(p2 -> {

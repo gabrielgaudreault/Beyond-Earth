@@ -3,6 +3,9 @@
   "values": [
     "beyond_earth:basic_fuel_upgrade",
     "beyond_earth:advanced_fuel_upgrade",
-    "beyond_earth:hydrogen_motor_upgrade"
+    "beyond_earth:hydrogen_motor_upgrade",
+    "beyond_earth:frozy_skin_upgrade",
+    "beyond_earth:rusty_skin_upgrade"
+
   ]
 }

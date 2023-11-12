@@ -1,5 +1,6 @@
 package com.st0x0ef.beyond_earth.common.registries;
 
+import com.st0x0ef.beyond_earth.common.menus.planetselection.ErrorMenu;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -29,4 +30,6 @@ public class ContainerRegistry {
     public static final RegistryObject<MenuType<LanderMenu.GuiContainer>> LANDER_GUI = CONTAINERS.register("lander_gui", () -> new MenuType<>(new LanderMenu.GuiContainerFactory(), null));
     public static final RegistryObject<MenuType<RoverMenu.GuiContainer>> ROVER_GUI = CONTAINERS.register("rover_gui", () -> new MenuType<>(new RoverMenu.GuiContainerFactory(), null));
     public static final RegistryObject<MenuType<PlanetSelectionMenu.GuiContainer>> PLANET_SELECTION_GUI = CONTAINERS.register("planet_selection_gui", () -> new MenuType<>(new PlanetSelectionMenu.GuiContainerFactory(), null));
+    public static final RegistryObject<MenuType<ErrorMenu.GuiContainer>> ERROR_GUI = CONTAINERS.register("error_gui", () -> new MenuType<>(new ErrorMenu.GuiContainerFactory(), null));
+
 }

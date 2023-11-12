@@ -1,5 +1,6 @@
 package com.st0x0ef.beyond_earth.client.overlays;
 
+import com.st0x0ef.beyond_earth.common.menus.OxygenBubbleDistributorMenu;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;

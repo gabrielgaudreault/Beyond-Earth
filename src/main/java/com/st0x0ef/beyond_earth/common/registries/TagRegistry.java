@@ -7,9 +7,9 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Fluid;
 import com.st0x0ef.beyond_earth.BeyondEarth;
-
 public class TagRegistry {
 
     /** ENTITIES */
@@ -35,5 +35,8 @@ public class TagRegistry {
 
     /** ITEMS */
     public static final TagKey<Item> RADIOACTIVE_ITEMS_TAG = TagKey.create(Registries.ITEM, new ResourceLocation(BeyondEarth.MODID, "radioactive_items"));
+
+    /** BLOCKS */
+    public static final TagKey<Block> SPACE_STATION_CAN_SPAWN_ON = TagKey.create(Registries.BLOCK, new ResourceLocation(BeyondEarth.MODID, "space_station_can_spawn_on"));
 
 }

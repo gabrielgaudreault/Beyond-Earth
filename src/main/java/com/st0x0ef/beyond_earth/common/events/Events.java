@@ -1,11 +1,15 @@
 package com.st0x0ef.beyond_earth.common.events;
 
+import com.st0x0ef.beyond_earth.common.entities.RocketEntity;
+import com.st0x0ef.beyond_earth.common.events.forge.*;
+import com.st0x0ef.beyond_earth.common.util.*;
 import net.minecraft.core.NonNullList;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -22,10 +26,7 @@ import net.minecraftforge.event.OnDatapackSyncEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
-import net.minecraftforge.event.entity.living.LivingAttackEvent;
-import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.event.entity.living.LivingEvent;
-import net.minecraftforge.event.entity.living.LivingFallEvent;
+import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.entity.player.PlayerContainerEvent;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -36,17 +37,7 @@ import com.st0x0ef.beyond_earth.common.data.PlanetData;
 import com.st0x0ef.beyond_earth.common.data.PlanetData.PlanetDataHandler;
 import com.st0x0ef.beyond_earth.common.data.PlanetData.StarEntry;
 import com.st0x0ef.beyond_earth.common.entities.LanderEntity;
-import com.st0x0ef.beyond_earth.common.events.forge.EntityTickEvent;
-import com.st0x0ef.beyond_earth.common.events.forge.FireworkRocketUseEvent;
-import com.st0x0ef.beyond_earth.common.events.forge.ItemEntityTickAtEndEvent;
-import com.st0x0ef.beyond_earth.common.events.forge.LivingSprintingEvent;
-import com.st0x0ef.beyond_earth.common.events.forge.TryStartFallFlyingEvent;
 import com.st0x0ef.beyond_earth.common.registries.*;
-import com.st0x0ef.beyond_earth.common.util.EntityGravity;
-import com.st0x0ef.beyond_earth.common.util.ItemGravity;
-import com.st0x0ef.beyond_earth.common.util.Methods;
-import com.st0x0ef.beyond_earth.common.util.OxygenSystem;
-import com.st0x0ef.beyond_earth.common.util.Planets;
 
 @Mod.EventBusSubscriber(modid = BeyondEarth.MODID)
 public class Events {
