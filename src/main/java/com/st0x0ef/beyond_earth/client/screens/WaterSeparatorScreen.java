@@ -26,20 +26,20 @@ public class WaterSeparatorScreen extends AbstractContainerScreen<WaterSeparator
             "textures/gui/water_separator.png");
 
     public static final int INPUT_TANK_LEFT = 39;
-    public static final int INPUT_TANK_TOP = 26;
+    public static final int INPUT_TANK_TOP = 31;
 
     public static final int H2_OUTPUT_TANK_LEFT = 96;
-    public static final int H2_OUTPUT_TANK_TOP = 26;
+    public static final int H2_OUTPUT_TANK_TOP = 31;
 
-    public static final int O2_OUTPUT_TANK_LEFT = 128;
-    public static final int O2_OUTPUT_TANK_TOP = 26;
+    public static final int O2_OUTPUT_TANK_LEFT = 184;
+    public static final int O2_OUTPUT_TANK_TOP = 31;
 
-    public static final int ENERGY_LEFT = 152;
-    public static final int ENERGY_TOP = 26;
+    public static final int ENERGY_LEFT = 217;
+    public static final int ENERGY_TOP = 31;
 
     public WaterSeparatorScreen(WaterSeparatorMenu.GuiContainer container, Inventory inventory, Component text) {
         super(container, inventory, text);
-        this.imageWidth = 177;
+        this.imageWidth = 242;
         this.imageHeight = 184;
         this.inventoryLabelY = this.imageHeight - 92;
     }

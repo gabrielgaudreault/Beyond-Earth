@@ -1,18 +1,26 @@
 package com.st0x0ef.beyond_earth.common.blocks.entities.machines;
 
-import java.util.List;
-
 import com.st0x0ef.beyond_earth.BeyondEarth;
 import com.st0x0ef.beyond_earth.common.blocks.entities.machines.gauge.GaugeValueHelper;
 import com.st0x0ef.beyond_earth.common.blocks.entities.machines.gauge.IGaugeValue;
+import com.st0x0ef.beyond_earth.common.blocks.entities.machines.power.NamedComponentRegistry;
+import com.st0x0ef.beyond_earth.common.blocks.entities.machines.power.PowerSystemEnergyCommon;
+import com.st0x0ef.beyond_earth.common.blocks.entities.machines.power.PowerSystemRegistry;
+import com.st0x0ef.beyond_earth.common.capabilities.energy.EnergyStorageBasic;
 import com.st0x0ef.beyond_earth.common.capabilities.hydrogen.HydrogenStorage;
 import com.st0x0ef.beyond_earth.common.capabilities.hydrogen.HydrogenUtil;
 import com.st0x0ef.beyond_earth.common.capabilities.hydrogen.IHydrogenStorage;
-import com.st0x0ef.beyond_earth.common.capabilities.hydrogen.IHydrogenStorageHolder;
-import com.st0x0ef.beyond_earth.common.capabilities.oxygen.IOxygenStorageHolder;
+import com.st0x0ef.beyond_earth.common.capabilities.oxygen.IOxygenStorage;
 import com.st0x0ef.beyond_earth.common.capabilities.oxygen.OxygenStorage;
+import com.st0x0ef.beyond_earth.common.capabilities.oxygen.OxygenUtil;
 import com.st0x0ef.beyond_earth.common.compats.mekanism.MekanismCompat;
+import com.st0x0ef.beyond_earth.common.config.Config;
+import com.st0x0ef.beyond_earth.common.data.recipes.BeyondEarthRecipeType;
+import com.st0x0ef.beyond_earth.common.data.recipes.OxygenMakingRecipeAbstract;
+import com.st0x0ef.beyond_earth.common.menus.WaterSeparatorMenu;
 import com.st0x0ef.beyond_earth.common.menus.nasaworkbench.StackCacher;
+import com.st0x0ef.beyond_earth.common.registries.BlockEntityRegistry;
+import com.st0x0ef.beyond_earth.common.registries.RecipeTypeRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -24,23 +32,12 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.IEnergyStorage;
-import com.st0x0ef.beyond_earth.common.blocks.entities.machines.power.NamedComponentRegistry;
-import com.st0x0ef.beyond_earth.common.blocks.entities.machines.power.PowerSystemEnergyCommon;
-import com.st0x0ef.beyond_earth.common.blocks.entities.machines.power.PowerSystemRegistry;
-import com.st0x0ef.beyond_earth.common.capabilities.energy.EnergyStorageBasic;
-import com.st0x0ef.beyond_earth.common.capabilities.oxygen.IOxygenStorage;
-import com.st0x0ef.beyond_earth.common.capabilities.oxygen.OxygenUtil;
-import com.st0x0ef.beyond_earth.common.config.Config;
-import com.st0x0ef.beyond_earth.common.data.recipes.BeyondEarthRecipeType;
-import com.st0x0ef.beyond_earth.common.data.recipes.OxygenMakingRecipeAbstract;
-import com.st0x0ef.beyond_earth.common.menus.WaterSeparatorMenu;
-import com.st0x0ef.beyond_earth.common.registries.BlockEntityRegistry;
-import com.st0x0ef.beyond_earth.common.registries.RecipeTypeRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 
 import javax.annotation.Nullable;
+import java.util.List;
 
 public class WaterSeparatorBlockEntity extends AbstractMachineBlockEntity {
     public static final ResourceLocation TANK_INPUT = new ResourceLocation(BeyondEarth.MODID, "input");
@@ -48,8 +45,10 @@ public class WaterSeparatorBlockEntity extends AbstractMachineBlockEntity {
     public static final ResourceLocation H2_TANK_OUTPUT = new ResourceLocation(BeyondEarth.MODID, "h2_output");
     public static final int DEFAULT_ENERGY_USAGE = 1;
     public static final int DEFAULT_ENERGY_STORAGE_CAPACITY = 12000;
-    public static final int SLOT_OUTPUT_SINK_O2 = 2;
-    public static final int SLOT_OUTPUT_SINK_H2 = 3;
+    public static final int SLOT_OUTPUT_SOURCE_O2 = 2;
+    public static final int SLOT_OUTPUT_SINK_O2 = 3;
+    public static final int SLOT_OUTPUT_SOURCE_H2 = 4;
+    public static final int SLOT_OUTPUT_SINK_H2 = 5;
 
     private FluidTank InputTank;
     private OxygenStorage O2OutputTank;
@@ -67,6 +66,7 @@ public class WaterSeparatorBlockEntity extends AbstractMachineBlockEntity {
 
     @Override
     protected void tickProcessing() {
+        this.drainSources();
         this.consumeIngredients();
         this.fillSinks();
     }
@@ -150,6 +150,14 @@ public class WaterSeparatorBlockEntity extends AbstractMachineBlockEntity {
         return storage;
     }
 
+    private void drainSources() {
+        OxygenUtil.drainSource(this.getItemHandler(), this.getO2OutputSourceSlot(), this.getO2OutputTank(),
+                this.getTransferPerTick());
+
+        HydrogenUtil.drainSource(this.getItemHandler(), this.getH2OutputSourceSlot(), this.getH2OutputTank(),
+                this.getTransferPerTick());
+    }
+
     private void fillSinks() {
         OxygenUtil.fillSink(this.getItemHandler(), this.getO2OutputSinkSlot(), this.getO2OutputTank(),
                 this.getTransferPerTick());
@@ -160,8 +168,12 @@ public class WaterSeparatorBlockEntity extends AbstractMachineBlockEntity {
 
     @Override
     protected boolean onCanPlaceItemThroughFace(int index, ItemStack stack, Direction direction) {
-        if (index == this.getO2OutputSinkSlot()) {
+        if (index == this.getO2OutputSourceSlot()) {
+            return OxygenUtil.canExtract(stack);
+        } else if (index == this.getO2OutputSinkSlot()) {
             return OxygenUtil.canReceive(stack);
+        } else if (index == this.getH2OutputSourceSlot()) {
+            return HydrogenUtil.canExtract(stack);
         } else if (index == this.getH2OutputSinkSlot()) {
             return HydrogenUtil.canReceive(stack);
         }
@@ -171,11 +183,15 @@ public class WaterSeparatorBlockEntity extends AbstractMachineBlockEntity {
 
     @Override
     public boolean canTakeItemThroughFace(int index, ItemStack stack, Direction direction) {
-        if (index == this.getO2OutputSinkSlot()) {
-            return !OxygenUtil.canReceive(stack);
-        } else if (index == this.getH2OutputSinkSlot()) {
-            return !HydrogenUtil.canReceive(stack);
-        }
+            if (index == this.getO2OutputSourceSlot()) {
+                return !OxygenUtil.canExtract(stack);
+            } else if (index == this.getO2OutputSinkSlot()) {
+                return !OxygenUtil.canReceive(stack);
+            } else if (index == this.getH2OutputSourceSlot()) {
+                return !HydrogenUtil.canExtract(stack);
+            } else if (index == this.getH2OutputSinkSlot()) {
+                return !HydrogenUtil.canReceive(stack);
+            }
 
         return super.canTakeItemThroughFace(index, stack, direction);
     }
@@ -275,13 +291,21 @@ public class WaterSeparatorBlockEntity extends AbstractMachineBlockEntity {
         return super.getInitialInventorySize() + 4;
     }
 
+    public int getO2OutputSourceSlot() {
+        return SLOT_OUTPUT_SOURCE_O2;
+    }
     public int getO2OutputSinkSlot() {
         return SLOT_OUTPUT_SINK_O2;
+    }
+
+    public int getH2OutputSourceSlot() {
+        return SLOT_OUTPUT_SOURCE_H2;
     }
 
     public int getH2OutputSinkSlot() {
         return SLOT_OUTPUT_SINK_H2;
     }
+
 
     public ResourceLocation getInputTankName() {
         return TANK_INPUT;
