@@ -25,11 +25,11 @@ import com.st0x0ef.beyond_earth.client.screens.helper.ScreenHelper;
 import com.st0x0ef.beyond_earth.client.screens.planetselection.helper.CategoryHelper;
 import com.st0x0ef.beyond_earth.client.screens.planetselection.helper.PlanetSelectionScreenHelper;
 import com.st0x0ef.beyond_earth.common.data.recipes.IngredientStack;
-import com.st0x0ef.beyond_earth.common.menus.planetselection.PlanetSelectionMenu;
 import com.st0x0ef.beyond_earth.common.registries.NetworkRegistry;
 import com.st0x0ef.beyond_earth.common.util.Planets;
 import com.st0x0ef.beyond_earth.common.util.Planets.Planet;
 import com.st0x0ef.beyond_earth.common.util.Planets.StarSystem;
+import com.st0x0ef.beyond_earth.common.menus.planetselection.PlanetSelectionMenu;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -204,7 +204,6 @@ public class PlanetSelectionScreen extends Screen implements MenuAccess<PlanetSe
     @Override
     protected void init() {
         super.init();
-
         /** INIT PRE EVENT FOR ADDONS */
         if (MinecraftForge.EVENT_BUS.post(new PlanetSelectionScreenInitEvent.Pre(this))) {
             return;
@@ -611,8 +610,19 @@ public class PlanetSelectionScreen extends Screen implements MenuAccess<PlanetSe
         return itemStackCount >= ingredientStack.getCount();
     }
 
-    public boolean canGoOn(Planet planet) {
-        return planet.distanceFromEarth <= this.menu.getMaxDistanceTravelable();
+    public boolean canGoOn(Planet planetTo) {
+        Planet planet = this.menu.getPlanet();
+        //BeyondEarth.LOGGER.error("The distance between " + planet.name + " and " + planetTo.name + " is "+(planet.distanceFromEarth - planetTo.distanceFromEarth) + " " + this.menu.getMaxDistanceTravelable());
+
+        if(planet.distanceFromEarth > planetTo.distanceFromEarth) {
+            BeyondEarth.LOGGER.error("The distance between " + planet.name + " and " + planetTo.name + " is "+(planet.distanceFromEarth - planetTo.distanceFromEarth) + " " + this.menu.getMaxDistanceTravelable());
+
+            return (planet.distanceFromEarth - planetTo.distanceFromEarth) <= this.menu.getMaxDistanceTravelable();
+        } else {
+            BeyondEarth.LOGGER.error("The distance between " + planet.name + " and " + planetTo.name + " is "+(planetTo.distanceFromEarth - planet.distanceFromEarth) + " " + this.menu.getMaxDistanceTravelable());
+
+            return (planetTo.distanceFromEarth - planet.distanceFromEarth) <= this.menu.getMaxDistanceTravelable();
+        }
     }
 
     /**
