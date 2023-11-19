@@ -30,7 +30,7 @@ public class PlanetSelectionCommand {
         Player player = source.getPlayer();
 
         player.getPersistentData().putBoolean(BeyondEarth.MODID + ":planet_selection_menu_open", true);
-        player.getPersistentData().putInt(BeyondEarth.MODID + ":rocket_distance", 100000000);
+        player.getPersistentData().putDouble(BeyondEarth.MODID + ":rocket_distance", 1e13);
         Methods.openPlanetGui(player);
 
         return 0;
