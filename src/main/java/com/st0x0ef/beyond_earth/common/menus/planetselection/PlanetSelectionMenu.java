@@ -1,5 +1,7 @@
 package com.st0x0ef.beyond_earth.common.menus.planetselection;
 
+import com.st0x0ef.beyond_earth.common.util.Planets;
+import mekanism.common.lib.math.Plane;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -11,7 +13,7 @@ import com.st0x0ef.beyond_earth.common.registries.ContainerRegistry;
 
 public class PlanetSelectionMenu {
 
-    public static class GuiContainerFactory implements IContainerFactory<GuiContainer> {
+    public static class GuiContainerFactory implements IContainerFactory<PlanetSelectionMenu.GuiContainer> {
         public GuiContainer create(int id, Inventory inv, FriendlyByteBuf extraData) {
             return new GuiContainer(id, inv, extraData);
         }
@@ -42,6 +44,10 @@ public class PlanetSelectionMenu {
 
         public Player getPlayer() {
             return this.player;
+        }
+
+        public Planets.Planet getPlanet() {
+            return Planets.getLocationForPlanet(this.player.level());
         }
     }
 }

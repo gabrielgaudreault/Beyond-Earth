@@ -20,10 +20,6 @@ import java.util.List;
 
 public class SpaceBaliseItem extends Item {
     Boolean coordsSet = false;
-    int baliseX = 0;
-    int baliseY = 0;
-    int baliseZ = 0;
-    String baliseLevel = "";
 
     public SpaceBaliseItem(Properties properties) {
         super(properties);
@@ -45,11 +41,6 @@ public class SpaceBaliseItem extends Item {
             coords.putString("level", level.dimension().location().toString());
             coordsSet = true;
 
-            baliseX = coords.getInt("x");
-            baliseY = coords.getInt("y");
-            baliseZ = coords.getInt("z");
-            baliseLevel = coords.getString("level");
-
             return InteractionResult.SUCCESS;
         }
 
@@ -60,7 +51,7 @@ public class SpaceBaliseItem extends Item {
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand usedHand) {
         ItemStack stack = player.getItemInHand(usedHand);
-        CompoundTag coords = stack.getTagElement("coords");
+        CompoundTag coords = stack.getOrCreateTagElement("coords");
 
         if (coords == null) {
             player.sendSystemMessage(Component.literal("No coords found"));
@@ -71,7 +62,7 @@ public class SpaceBaliseItem extends Item {
             coordsSet = false;
         }
         else {
-            player.sendSystemMessage(Component.translatable("message.beyond_earth.space_balise.launch_pad_coordinates", baliseX, baliseY, baliseZ, baliseLevel));
+            player.sendSystemMessage(Component.translatable("message.beyond_earth.space_balise.launch_pad_coordinates", coords.getInt("x"), coords.getInt("z"), coords.getInt("y"), coords.getString("level")));
 
         }
 
@@ -80,11 +71,12 @@ public class SpaceBaliseItem extends Item {
 
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltipComponents, TooltipFlag isAdvanced) {
-        if (!coordsSet) {
+        CompoundTag coords = stack.getOrCreateTagElement("coords");
+        if (!coordsSet && coords == null) {
             tooltipComponents.add(Component.translatable("message.beyond_earth.space_balise.right_click"));
 
-        } else {
-            tooltipComponents.add(Component.translatable("message.beyond_earth.space_balise.launch_pad_coordinates", baliseX, baliseY, baliseZ, baliseLevel));
+        } else if(coords != null) {
+            tooltipComponents.add(Component.translatable("message.beyond_earth.space_balise.launch_pad_coordinates", coords.getInt("x"), coords.getInt("z"), coords.getInt("y"), coords.getString("level")));
         }
     }
 }

@@ -1,6 +1,8 @@
 package com.st0x0ef.beyond_earth.common.blocks;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
@@ -21,7 +23,7 @@ import com.st0x0ef.beyond_earth.common.registries.BlockRegistry;
 public class CoalTorchBlock extends TorchBlock {
 
     public CoalTorchBlock(Properties p_57491_) {
-        super(p_57491_, null);
+        super(p_57491_, ParticleTypes.ASH);
     }
 
     @Override

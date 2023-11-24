@@ -374,7 +374,7 @@ public class Methods {
 
     public static void resetPlanetSelectionMenuNeededNbt(Player player) {
         player.getPersistentData().putBoolean(BeyondEarth.MODID + ":planet_selection_menu_open", false);
-        player.getPersistentData().putInt(BeyondEarth.MODID + ":rocket_distance", 0);
+        player.getPersistentData().putDouble(BeyondEarth.MODID + ":rocket_distance", 0);
         player.getPersistentData().put(BeyondEarth.MODID + ":rocket_item_list", new CompoundTag());
 
         MinecraftForge.EVENT_BUS.post(new ResetPlanetSelectionMenuNeededNbtEvent(player));
