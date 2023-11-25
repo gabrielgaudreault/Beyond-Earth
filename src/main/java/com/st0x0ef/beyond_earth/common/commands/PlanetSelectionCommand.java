@@ -12,18 +12,7 @@ public class PlanetSelectionCommand {
 
     public PlanetSelectionCommand(CommandDispatcher<CommandSourceStack> dispatcher) {
 
-        dispatcher.register(Commands.literal("beyond_earth")
-                .then(Commands.literal("planetSelection").requires(c -> c.hasPermission(2)).executes((Command) -> {
-
-                    return openPlanetSelection(Command.getSource());
-                }))
-                .then(Commands.literal("errorGUI").requires(c -> c.hasPermission(2)).executes((Command) -> {
-
-                    return openErrorGui(Command.getSource());
-                })));
-
-
-
+        dispatcher.register(Commands.literal("planetselectionmenu").requires(player -> player.hasPermission(2)).executes((context) -> openPlanetSelection(context.getSource())));
     }
 
     private int openPlanetSelection(CommandSourceStack source)  throws CommandSyntaxException {
@@ -33,15 +22,6 @@ public class PlanetSelectionCommand {
         player.getPersistentData().putDouble(BeyondEarth.MODID + ":rocket_distance", 1e13);
         Methods.openPlanetGui(player);
 
-        return 0;
-
-    }
-
-    private int openErrorGui(CommandSourceStack source)  throws CommandSyntaxException {
-        Methods.openErrorGui(source.getPlayer());
-
         return 1;
-
     }
-
 }
