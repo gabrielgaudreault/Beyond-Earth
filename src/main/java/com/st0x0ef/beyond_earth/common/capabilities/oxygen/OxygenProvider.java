@@ -13,8 +13,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class OxygenProvider implements ICapabilityProvider, IOxygenStorageHolder {
-    public static Capability<OxygenStorage> OXYGEN = CapabilityManager.get(new CapabilityToken<>() {
-    });
+    public static Capability<OxygenStorage> OXYGEN = CapabilityManager.get(new CapabilityToken<>() {});
     public static final String KEY_OXYGEN = "Oxygen"; // for compatible other code
 
     private final ItemStack itemStack;
