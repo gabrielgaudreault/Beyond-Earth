@@ -15,11 +15,11 @@ public class PlanetSelectionCommand {
         dispatcher.register(Commands.literal("planetselectionmenu").requires(player -> player.hasPermission(2)).executes((context) -> openPlanetSelection(context.getSource())));
     }
 
-    private int openPlanetSelection(CommandSourceStack source)  throws CommandSyntaxException {
+    private int openPlanetSelection(CommandSourceStack source) {
         Player player = source.getPlayer();
 
         player.getPersistentData().putBoolean(BeyondEarth.MODID + ":planet_selection_menu_open", true);
-        player.getPersistentData().putDouble(BeyondEarth.MODID + ":rocket_distance", 1e13);
+        player.getPersistentData().putDouble(BeyondEarth.MODID + ":rocket_distance", Double.MAX_VALUE);
         Methods.openPlanetGui(player);
 
         return 1;
