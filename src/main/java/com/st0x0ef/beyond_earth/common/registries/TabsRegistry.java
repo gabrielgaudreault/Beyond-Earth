@@ -85,6 +85,13 @@ public class TabsRegistry {
                 builder.accept(ItemsRegistry.ADVANCED_FUEL_UPGRADE.get());
                 builder.accept(ItemsRegistry.HYDROGEN_MOTOR_UPGRADE.get());
                 builder.accept(ItemsRegistry.URANIUM_MOTOR_UPGRADE.get());
+                builder.accept(ItemsRegistry.FROZY_SKIN_UPGRADE.get());
+                builder.accept(ItemsRegistry.GALAXY_SKIN_UPGRADE.get());
+                builder.accept(ItemsRegistry.MILITARY_SKIN_UPGRADE.get());
+                builder.accept(ItemsRegistry.RAINBOW_SKIN_UPGRADE.get());
+                builder.accept(ItemsRegistry.RUSTY_SKIN_UPGRADE.get());
+                builder.accept(ItemsRegistry.STANDART_SKIN_UPGRADE.get());
+
             }).build());
 
     public static RegistryObject<CreativeModeTab> MATERIALS = CREATIVE_MOD_TAB.register("tab_materials", () -> CreativeModeTab.builder()

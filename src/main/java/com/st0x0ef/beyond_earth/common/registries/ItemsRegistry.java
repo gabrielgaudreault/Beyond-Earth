@@ -71,7 +71,11 @@ public class ItemsRegistry {
 
     //Rocket Skin
     public static final RegistryObject<Item> FROZY_SKIN_UPGRADE = ITEMS.register("frozy_skin_upgrade", () -> new VehicleUpgradeItem(new Item.Properties(), 0, 0, "textures/rocket_skin/frozy.png"));
+    public static final RegistryObject<Item> GALAXY_SKIN_UPGRADE = ITEMS.register("galaxy_skin_upgrade", () -> new VehicleUpgradeItem(new Item.Properties(), 0, 0, "textures/rocket_skin/galaxy.png"));
+    public static final RegistryObject<Item> MILITARY_SKIN_UPGRADE = ITEMS.register("military_skin_upgrade", () -> new VehicleUpgradeItem(new Item.Properties(), 0, 0, "textures/rocket_skin/military.png"));
+    public static final RegistryObject<Item> RAINBOW_SKIN_UPGRADE = ITEMS.register("rainbow_skin_upgrade", () -> new VehicleUpgradeItem(new Item.Properties(), 0, 0, "textures/rocket_skin/rainbow.png"));
     public static final RegistryObject<Item> RUSTY_SKIN_UPGRADE = ITEMS.register("rusty_skin_upgrade", () -> new VehicleUpgradeItem(new Item.Properties(), 0, 0, "textures/rocket_skin/rusty.png"));
+    public static final RegistryObject<Item> STANDART_SKIN_UPGRADE = ITEMS.register("standart_skin_upgrade", () -> new VehicleUpgradeItem(new Item.Properties(), 0, 0, "textures/rocket_skin/standart.png"));
 
 
     /** NORMAL ITEMS */
