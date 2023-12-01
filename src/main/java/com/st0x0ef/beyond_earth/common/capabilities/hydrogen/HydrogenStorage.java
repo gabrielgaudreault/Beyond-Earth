@@ -1,8 +1,11 @@
 package com.st0x0ef.beyond_earth.common.capabilities.hydrogen;
 
+import com.st0x0ef.beyond_earth.common.registries.FluidRegistry;
 import com.st0x0ef.beyond_earth.common.util.Methods;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.Mth;
+import net.minecraft.world.level.material.Fluid;
+import net.minecraftforge.fluids.FluidStack;
 
 public class HydrogenStorage implements IHydrogenStorage {
     private int hydrogen;
@@ -31,6 +34,10 @@ public class HydrogenStorage implements IHydrogenStorage {
     @Override
     public int getHydrogen() {
         return this.hydrogen;
+    }
+
+    public Fluid getFluid() {
+        return FluidRegistry.HYDROGEN_STILL.get();
     }
 
     @Override

@@ -20,7 +20,9 @@ import com.st0x0ef.beyond_earth.common.data.recipes.OxygenMakingRecipeAbstract;
 import com.st0x0ef.beyond_earth.common.menus.WaterSeparatorMenu;
 import com.st0x0ef.beyond_earth.common.menus.nasaworkbench.StackCacher;
 import com.st0x0ef.beyond_earth.common.registries.BlockEntityRegistry;
+import com.st0x0ef.beyond_earth.common.registries.FluidRegistry;
 import com.st0x0ef.beyond_earth.common.registries.RecipeTypeRegistry;
+import com.st0x0ef.beyond_earth.common.util.FluidUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -29,10 +31,12 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 
@@ -45,9 +49,11 @@ public class WaterSeparatorBlockEntity extends AbstractMachineBlockEntity {
     public static final ResourceLocation H2_TANK_OUTPUT = new ResourceLocation(BeyondEarth.MODID, "h2_output");
     public static final int DEFAULT_ENERGY_USAGE = 1;
     public static final int DEFAULT_ENERGY_STORAGE_CAPACITY = 12000;
-    public static final int SLOT_INPUT_SOURCE_O2 = 2;
+    public static final int SLOT_INPUT_SOURCE = 0;
+    public static final int SLOT_INPUT_SINK = 1;
+    public static final int SLOT_OUTPUT_SOURCE_O2 = 2;
     public static final int SLOT_OUTPUT_SINK_O2 = 3;
-    public static final int SLOT_INPUT_SOURCE_H2 = 4;
+    public static final int SLOT_OUTPUT_SOURCE_H2 = 4;
     public static final int SLOT_OUTPUT_SINK_H2 = 5;
 
     private FluidTank InputTank;
@@ -151,57 +157,67 @@ public class WaterSeparatorBlockEntity extends AbstractMachineBlockEntity {
     }
 
     private void drainSources() {
-        OxygenUtil.drainSource(this.getItemHandler(), this.getO2InputSourceSlot(), this.getO2OutputTank(),
-                this.getTransferPerTick());
-
-        HydrogenUtil.drainSource(this.getItemHandler(), this.getH2InputSourceSlot(), this.getH2OutputTank(),
-                this.getTransferPerTick());
+        FluidUtils.drainSource(this.getItemHandler(), this.getInputSourceSlot(), this.getInputTank(), this.getTransferPerTick());
+        OxygenUtil.drainSource(this.getItemHandler(), this.getO2OutputSourceSlot(), this.getO2OutputTank(), this.getTransferPerTick());
+        HydrogenUtil.drainSource(this.getItemHandler(), this.getH2OutputSourceSlot(), this.getH2OutputTank(), this.getTransferPerTick());
     }
 
     private void fillSinks() {
-        OxygenUtil.fillSink(this.getItemHandler(), this.getO2OutputSinkSlot(), this.getO2OutputTank(),
-                this.getTransferPerTick());
-
-        HydrogenUtil.fillSink(this.getItemHandler(), this.getH2OutputSinkSlot(), this.getH2OutputTank(),
-                this.getTransferPerTick());
+        FluidUtils.fillSink(this.getItemHandler(), this.getInputSinkSlot(), this.getInputTank(), this.getTransferPerTick());
+        OxygenUtil.fillSink(this.getItemHandler(), this.getO2OutputSinkSlot(), this.getO2OutputTank(), this.getTransferPerTick());
+        HydrogenUtil.fillSink(this.getItemHandler(), this.getH2OutputSinkSlot(), this.getH2OutputTank(), this.getTransferPerTick());
     }
 
     @Override
     protected boolean onCanPlaceItemThroughFace(int index, ItemStack stack, Direction direction) {
-        if (index == this.getO2InputSourceSlot()) {
-            return OxygenUtil.canReceive(stack);
+        boolean canInsert = super.onCanPlaceItemThroughFace(index, stack, direction);
+
+        if (index == this.getInputSourceSlot()) {
+            canInsert = FluidUtils.canDrain(stack);
+        } else if (index == this.getInputSinkSlot()) {
+            canInsert = FluidUtils.canFill(stack, this.InputTank.getFluid().getFluid());
+        } else if (index == this.getO2OutputSourceSlot()) {
+            canInsert = OxygenUtil.canExtract(stack);
         } else if (index == this.getO2OutputSinkSlot()) {
-            return OxygenUtil.canExtract(stack);
-        } else if (index == this.getH2InputSourceSlot()) {
-            return HydrogenUtil.canReceive(stack);
+            canInsert = OxygenUtil.canReceive(stack);
+        } else if (index == this.getH2OutputSourceSlot()) {
+            canInsert = FluidUtils.canDrain(stack);
         } else if (index == this.getH2OutputSinkSlot()) {
-            return HydrogenUtil.canExtract(stack);
+            canInsert = FluidUtils.canFill(stack, this.H2OutputTank.getFluid());
         }
 
-        return super.onCanPlaceItemThroughFace(index, stack, direction);
+        return canInsert;
     }
 
     @Override
     public boolean canTakeItemThroughFace(int index, ItemStack stack, Direction direction) {
-        if (index == this.getO2InputSourceSlot()) {
-            return !OxygenUtil.canReceive(stack);
+        boolean canTake = super.onCanPlaceItemThroughFace(index, stack, direction);
+
+        if (index == this.getInputSourceSlot()) {
+            canTake = !FluidUtils.canDrain(stack, Fluids.WATER);
+        } else if (index == this.getInputSinkSlot()) {
+            canTake = !FluidUtils.canFill(stack, this.InputTank.getFluid().getFluid());
+        } else if (index == this.getO2OutputSourceSlot()) {
+            canTake = !OxygenUtil.canExtract(stack);
         } else if (index == this.getO2OutputSinkSlot()) {
-            return !OxygenUtil.canExtract(stack);
-        } else if (index == this.getH2InputSourceSlot()) {
-            return !HydrogenUtil.canReceive(stack);
+            canTake = !OxygenUtil.canReceive(stack);
+        } else if (index == this.getH2OutputSourceSlot()) {
+            canTake = !FluidUtils.canDrain(stack);
         } else if (index == this.getH2OutputSinkSlot()) {
-            return !HydrogenUtil.canExtract(stack);
+            canTake = !FluidUtils.canFill(stack, this.H2OutputTank.getFluid());
         }
 
-        return super.canTakeItemThroughFace(index, stack, direction);
+        return canTake;
     }
 
     @Override
     protected void getSlotsForFace(Direction direction, List<Integer> slots) {
         super.getSlotsForFace(direction, slots);
-        slots.add(this.getO2InputSourceSlot());
+        slots.add(this.getInputSourceSlot());
+        slots.add(this.getInputSinkSlot());
+        slots.add(this.getO2OutputSourceSlot());
         slots.add(this.getO2OutputSinkSlot());
-        slots.add(this.getH2InputSourceSlot());
+        slots.add(this.getH2OutputSourceSlot());
         slots.add(this.getH2OutputSinkSlot());
     }
 
@@ -293,15 +309,21 @@ public class WaterSeparatorBlockEntity extends AbstractMachineBlockEntity {
         return super.getInitialInventorySize() + 6;
     }
 
-    public int getO2InputSourceSlot() {
-        return SLOT_INPUT_SOURCE_O2;
+    public int getInputSourceSlot() {
+        return SLOT_INPUT_SOURCE;
+    }
+    public int getInputSinkSlot() {
+        return SLOT_INPUT_SINK;
+    }
+    public int getO2OutputSourceSlot() {
+        return SLOT_OUTPUT_SOURCE_O2;
     }
     public int getO2OutputSinkSlot() {
         return SLOT_OUTPUT_SINK_O2;
     }
 
-    public int getH2InputSourceSlot() {
-        return SLOT_INPUT_SOURCE_H2;
+    public int getH2OutputSourceSlot() {
+        return SLOT_OUTPUT_SOURCE_H2;
     }
 
     public int getH2OutputSinkSlot() {

@@ -1,11 +1,7 @@
 package com.st0x0ef.beyond_earth.common.capabilities.oxygen;
 
-import com.st0x0ef.beyond_earth.BeyondEarth;
-import com.st0x0ef.beyond_earth.common.util.Methods;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.Mth;
-
-import java.lang.reflect.Method;
 
 public class OxygenStorage implements IOxygenStorage {
     private int oxygen;

@@ -46,16 +46,11 @@ public class FluidUtils {
         }
 
         public static boolean isSame(FluidStack left, FluidStack right) {
-                if (left.isEmpty())
-                        return right.isEmpty();
-                else if (right.isEmpty())
-                        return false;
-
-                return left.getFluid().isSame(right.getFluid()) && FluidStack.areFluidStackTagsEqual(left, right);
+                return isSame(left, right.getFluid());
         }
 
         public static Fluid getFluid(FluidStack stack) {
-                return Optional.ofNullable(stack).map(fs -> fs.getFluid()).orElse(Fluids.EMPTY);
+                return Optional.ofNullable(stack).map(FluidStack::getFluid).orElse(Fluids.EMPTY);
         }
 
         public static IFluidHandlerItem getItemStackFluidHandler(ItemStack itemStack) {
@@ -78,9 +73,7 @@ public class FluidUtils {
                         return fluid.getBucket() != Items.AIR;
                 }
 
-                IFluidHandlerItem handlerInItemStack = getItemStackFluidHandler(itemStack);
-
-                return handlerInItemStack != null && handlerInItemStack.fill(new FluidStack(fluid, 1), FluidAction.SIMULATE) > 0;
+                return  getItemStackFluidHandler(itemStack).fill(new FluidStack(fluid, 1), FluidAction.SIMULATE) > 0;
         }
 
         /**
@@ -99,9 +92,7 @@ public class FluidUtils {
                         return true;
                 }
 
-                IFluidHandlerItem handlerInItemStack = getItemStackFluidHandler(itemStack);
-
-                return handlerInItemStack != null && !handlerInItemStack.drain(1, FluidAction.SIMULATE).isEmpty();
+                return !getItemStackFluidHandler(itemStack).drain(1, FluidAction.SIMULATE).isEmpty();
         }
 
         /**
@@ -120,9 +111,7 @@ public class FluidUtils {
                         return true;
                 }
 
-                IFluidHandlerItem handlerInItemStack = getItemStackFluidHandler(itemStack);
-
-                return handlerInItemStack != null && !handlerInItemStack.drain(new FluidStack(fluid, 1), FluidAction.SIMULATE).isEmpty();
+                return getItemStackFluidHandler(itemStack).drain(new FluidStack(fluid, 1), FluidAction.SIMULATE).isEmpty();
         }
 
         public static int getMaxCapacity(ItemStack itemStack) {
@@ -134,13 +123,7 @@ public class FluidUtils {
                         return BUCKET_SIZE;
                 }
 
-                IFluidHandlerItem handlerInItemStack = getItemStackFluidHandler(itemStack);
-
-                if (handlerInItemStack != null) {
-                        return getMaxCapacity(handlerInItemStack);
-                }
-
-                return 0;
+                return getMaxCapacity(getItemStackFluidHandler(itemStack));
         }
 
         public static int getMaxCapacity(IFluidHandler fluidHandler) {
@@ -164,10 +147,8 @@ public class FluidUtils {
 
                 IFluidHandlerItem handlerInItemStack = getItemStackFluidHandler(itemStack);
 
-                if (handlerInItemStack != null) {
-                        FluidStack fluidStack = new FluidStack(fluid, getMaxCapacity(handlerInItemStack));
-                        handlerInItemStack.drain(fluidStack, FluidAction.EXECUTE);
-                }
+                FluidStack fluidStack = new FluidStack(fluid, getMaxCapacity(handlerInItemStack));
+                handlerInItemStack.drain(fluidStack, FluidAction.EXECUTE);
 
                 return itemStack;
         }
@@ -177,16 +158,15 @@ public class FluidUtils {
                         return itemStack;
                 }
 
-                if (itemStack.getItem() == Items.BUCKET && fluid.getBucket() != null) {
+                if (itemStack.getItem() == Items.BUCKET) {
+                        fluid.getBucket();
                         return new ItemStack(fluid.getBucket());
                 }
 
                 IFluidHandlerItem handlerInItemStack = getItemStackFluidHandler(itemStack);
 
-                if (handlerInItemStack != null) {
-                        FluidStack fluidStack = new FluidStack(fluid, getMaxCapacity(handlerInItemStack));
-                        handlerInItemStack.fill(fluidStack, FluidAction.EXECUTE);
-                }
+                FluidStack fluidStack = new FluidStack(fluid, getMaxCapacity(handlerInItemStack));
+                handlerInItemStack.fill(fluidStack, FluidAction.EXECUTE);
 
                 return itemStack;
         }
@@ -205,15 +185,8 @@ public class FluidUtils {
                 } else {
                         IFluidHandlerItem handlerInItemStack = getItemStackFluidHandler(itemStack);
 
-                        if (handlerInItemStack != null) {
-                                for (int i = 0; i < handlerInItemStack.getTanks(); i++) {
-                                        fluidStacks.add(handlerInItemStack.getFluidInTank(i));
-                                }
-                        } else {
-                                Fluid fluid = findBucketFluid(item);
-                                if (fluid != Fluids.EMPTY) {
-                                        fluidStacks.add(new FluidStack(fluid, BUCKET_SIZE));
-                                }
+                        for (int i = 0; i < handlerInItemStack.getTanks(); i++) {
+                                fluidStacks.add(handlerInItemStack.getFluidInTank(i));
                         }
                 }
 

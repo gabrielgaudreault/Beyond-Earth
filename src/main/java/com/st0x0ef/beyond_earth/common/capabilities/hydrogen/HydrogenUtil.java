@@ -12,11 +12,11 @@ import javax.annotation.Nullable;
 
 public class HydrogenUtil {
 
-    public static <T> LazyOptional<T> getHydrogenCapability(Capability<T> capability, @Nullable NonNullSupplier<IHydrogenStorage> oxygenStorage) {
+    public static <T> LazyOptional<T> getHydrogenCapability(Capability<T> capability, @Nullable NonNullSupplier<IHydrogenStorage> hydrogenStorage) {
         if (capability == null) {
             return LazyOptional.empty();
         } else if (capability == HydrogenProvider.HYDROGEN) {
-            return LazyOptional.of(oxygenStorage).cast();
+            return LazyOptional.of(hydrogenStorage).cast();
         }
 
         return LazyOptional.empty();
