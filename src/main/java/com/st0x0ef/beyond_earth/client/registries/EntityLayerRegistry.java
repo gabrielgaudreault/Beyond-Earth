@@ -11,10 +11,10 @@ import com.st0x0ef.beyond_earth.client.renderers.entities.lander.LanderModel;
 import com.st0x0ef.beyond_earth.client.renderers.entities.martianraptor.MartianRaptorModel;
 import com.st0x0ef.beyond_earth.client.renderers.entities.mogler.MoglerModel;
 import com.st0x0ef.beyond_earth.client.renderers.entities.pygro.PygroModel;
-import com.st0x0ef.beyond_earth.client.renderers.entities.rockettier1.RocketTier1Model;
-import com.st0x0ef.beyond_earth.client.renderers.entities.rockettier2.RocketTier2Model;
-import com.st0x0ef.beyond_earth.client.renderers.entities.rockettier3.RocketTier3Model;
-import com.st0x0ef.beyond_earth.client.renderers.entities.rockettier4.RocketTier4Model;
+import com.st0x0ef.beyond_earth.client.renderers.entities.rocket.big.BigRocketModel;
+import com.st0x0ef.beyond_earth.client.renderers.entities.rocket.normal.NormalRocketModel;
+import com.st0x0ef.beyond_earth.client.renderers.entities.rocket.small.SmallRocketModel;
+import com.st0x0ef.beyond_earth.client.renderers.entities.rocket.tiny.TinyRocketModel;
 import com.st0x0ef.beyond_earth.client.renderers.entities.rover.RoverModel;
 import com.st0x0ef.beyond_earth.client.renderers.entities.starcrawler.StarCrawlerModel;
 import net.minecraftforge.api.distmarker.Dist;
@@ -36,10 +36,10 @@ public class EntityLayerRegistry {
         event.registerLayerDefinition(MartianRaptorModel.LAYER_LOCATION, MartianRaptorModel::createBodyLayer);
 
         /** VEHICLES */
-        event.registerLayerDefinition(RocketTier1Model.LAYER_LOCATION, RocketTier1Model::createBodyLayer);
-        event.registerLayerDefinition(RocketTier2Model.LAYER_LOCATION, RocketTier2Model::createBodyLayer);
-        event.registerLayerDefinition(RocketTier3Model.LAYER_LOCATION, RocketTier3Model::createBodyLayer);
-        event.registerLayerDefinition(RocketTier4Model.LAYER_LOCATION, RocketTier4Model::createBodyLayer);
+        event.registerLayerDefinition(TinyRocketModel.LAYER_LOCATION, TinyRocketModel::createBodyLayer);
+        event.registerLayerDefinition(SmallRocketModel.LAYER_LOCATION, SmallRocketModel::createBodyLayer);
+        event.registerLayerDefinition(NormalRocketModel.LAYER_LOCATION, NormalRocketModel::createBodyLayer);
+        event.registerLayerDefinition(BigRocketModel.LAYER_LOCATION, BigRocketModel::createBodyLayer);
         event.registerLayerDefinition(LanderModel.LAYER_LOCATION, LanderModel::createBodyLayer);
         event.registerLayerDefinition(RoverModel.LAYER_LOCATION, RoverModel::createBodyLayer);
 

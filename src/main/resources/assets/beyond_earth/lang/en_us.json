@@ -76,6 +76,17 @@
   "item.beyond_earth.hydrogen_motor_upgrade": "Hydrogen Motor Upgrade",
   "item.beyond_earth.uranium_motor_upgrade": "Uranium Motor Upgrade",
 
+  "item.beyond_earth.standard_skin_modifier": "Standard Skin Modifier",
+  "item.beyond_earth.frozy_skin_modifier": "Frozy Skin Modifier",
+  "item.beyond_earth.galaxy_skin_modifier": "Galaxy Skin Modifier",
+  "item.beyond_earth.military_skin_modifier": "Military Skin Modifier",
+  "item.beyond_earth.rusty_skin_modifier": "Rusty Skin Modifier",
+
+  "item.beyond_earth.tiny_model_modifier": "Tiny Model Modifier",
+  "item.beyond_earth.small_model_modifier": "Small Model Modifier",
+  "item.beyond_earth.normal_model_modifier": "Normal Model Modifier",
+  "item.beyond_earth.big_model_modifier": "Big Model Modifier",
+
   "itemGroup.tab_normal": "Beyond Earth",
   "itemGroup.tab_flags": "Beyond Earth: Flags",
   "itemGroup.tab_globes": "Beyond Earth: Globes",
@@ -84,6 +95,7 @@
   "itemGroup.tab_machines": "Beyond Earth: Machines",
   "itemGroup.tab_spawn_eggs": "Beyond Earth: Spawn Eggs",
   "itemGroup.tab_materials": "Beyond Earth: Materials",
+  "itemGroup.tab_rocket_modifier": "Beyond Earth: Rocket Upgrade/Modifier",
 
   "block.beyond_earth.coal_lantern": "Coal Lantern",
   "block.beyond_earth.oxygen_bubble_distributor": "Oxygen Bubble Distributor",
@@ -380,5 +392,5 @@
   "general.beyond_earth.jet_suit_elytra_mode": "Elytra",
   
   "config.jade.plugin_beyond_earth.entity": "Entity",
-  "config.jade.plugin_beyond_earth.block": "Block"
+  "config.jade.plugin_beyond_earth.block": "Block",
 }

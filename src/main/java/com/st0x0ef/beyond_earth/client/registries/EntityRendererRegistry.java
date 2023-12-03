@@ -11,7 +11,7 @@ import com.st0x0ef.beyond_earth.client.renderers.entities.mogler.MoglerRenderer;
 import com.st0x0ef.beyond_earth.client.renderers.entities.pygro.PygroModel;
 import com.st0x0ef.beyond_earth.client.renderers.entities.pygro.PygroRenderer;
 import com.st0x0ef.beyond_earth.client.renderers.entities.pygrobrute.PygroBruteRenderer;
-import com.st0x0ef.beyond_earth.client.renderers.entities.rockettier1.RocketTier1Renderer;
+import com.st0x0ef.beyond_earth.client.renderers.entities.rocket.tiny.TinyRocketRenderer;
 import com.st0x0ef.beyond_earth.client.renderers.entities.rover.RoverRenderer;
 import com.st0x0ef.beyond_earth.client.renderers.entities.starcrawler.StarCrawlerRenderer;
 import com.st0x0ef.beyond_earth.client.sounds.TickableBeepSound;
@@ -54,7 +54,7 @@ public class EntityRendererRegistry {
         event.registerEntityRenderer(EntityRegistry.ICE_SPIT_ENTITY.get(), renderManager -> new ThrownItemRenderer(renderManager, 1, true));
 
         /** VEHICLES */
-        event.registerEntityRenderer(EntityRegistry.ROCKET.get(), RocketTier1Renderer::new); /** TODO : change this to update the model with the rocket properties */
+        event.registerEntityRenderer(EntityRegistry.ROCKET.get(), TinyRocketRenderer::new);
         event.registerEntityRenderer(EntityRegistry.LANDER.get(), LanderRenderer::new);
         event.registerEntityRenderer(EntityRegistry.ROVER.get(), RoverRenderer::new);
 

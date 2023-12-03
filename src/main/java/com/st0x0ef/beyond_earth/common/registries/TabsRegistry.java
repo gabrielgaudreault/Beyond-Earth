@@ -81,23 +81,32 @@ public class TabsRegistry {
                 builder.accept(ItemsRegistry.OSTRUM_TANK.get());
                 builder.accept(ItemsRegistry.CALORITE_TANK.get());
                 builder.accept(ItemsRegistry.GLACIO_TREE_SAPLING_ITEM.get());
+            }).build());
+
+    public static RegistryObject<CreativeModeTab> ROCKET_MODIFIER = CREATIVE_MOD_TAB.register("rocket_modifier", () -> CreativeModeTab.builder()
+            .title(Component.translatable("itemGroup.tab_rocket_modifier"))
+            .icon(() -> new ItemStack(ItemsRegistry.ADVANCED_FUEL_UPGRADE.get()))
+            .withTabsBefore(BASICS.getId())
+            .displayItems((feature, builder) -> {
                 builder.accept(ItemsRegistry.BASIC_FUEL_UPGRADE.get());
                 builder.accept(ItemsRegistry.ADVANCED_FUEL_UPGRADE.get());
                 builder.accept(ItemsRegistry.HYDROGEN_MOTOR_UPGRADE.get());
                 builder.accept(ItemsRegistry.URANIUM_MOTOR_UPGRADE.get());
-                builder.accept(ItemsRegistry.FROZY_SKIN_UPGRADE.get());
-                builder.accept(ItemsRegistry.GALAXY_SKIN_UPGRADE.get());
-                builder.accept(ItemsRegistry.MILITARY_SKIN_UPGRADE.get());
-                builder.accept(ItemsRegistry.RAINBOW_SKIN_UPGRADE.get());
-                builder.accept(ItemsRegistry.RUSTY_SKIN_UPGRADE.get());
-                builder.accept(ItemsRegistry.STANDART_SKIN_UPGRADE.get());
-
+                builder.accept(ItemsRegistry.FROZY_SKIN_MODIFIER.get());
+                builder.accept(ItemsRegistry.GALAXY_SKIN_MODIFIER.get());
+                builder.accept(ItemsRegistry.MILITARY_SKIN_MODIFIER.get());
+                builder.accept(ItemsRegistry.RUSTY_SKIN_MODIFIER.get());
+                builder.accept(ItemsRegistry.STANDARD_SKIN_MODIFIER.get());
+                builder.accept(ItemsRegistry.TINY_MODEL_MODIFIER.get());
+                builder.accept(ItemsRegistry.SMALL_MODEL_MODIFIER.get());
+                builder.accept(ItemsRegistry.NORMAL_MODEL_MODIFIER.get());
+                builder.accept(ItemsRegistry.BIG_MODEL_MODIFIER.get());
             }).build());
 
     public static RegistryObject<CreativeModeTab> MATERIALS = CREATIVE_MOD_TAB.register("tab_materials", () -> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup.tab_materials"))
             .icon(() -> new ItemStack(ItemsRegistry.IRON_PLATE.get()))
-            .withTabsBefore(BASICS.getId())
+            .withTabsBefore(ROCKET_MODIFIER.getId())
             .displayItems((feature, builder) -> {
                 builder.accept(ItemsRegistry.STEEL_INGOT.get());
                 builder.accept(ItemsRegistry.DESH_INGOT.get());

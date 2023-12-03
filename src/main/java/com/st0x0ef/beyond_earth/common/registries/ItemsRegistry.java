@@ -1,6 +1,7 @@
 package com.st0x0ef.beyond_earth.common.registries;
 
 import com.st0x0ef.beyond_earth.BeyondEarth;
+import com.st0x0ef.beyond_earth.client.registries.ItemRendererRegistry;
 import com.st0x0ef.beyond_earth.common.armors.JetSuit;
 import com.st0x0ef.beyond_earth.common.armors.NetheriteSpaceSuit;
 import com.st0x0ef.beyond_earth.common.armors.SpaceSuit;
@@ -63,19 +64,26 @@ public class ItemsRegistry {
     public static final RegistryObject<BlockItem> ROCKET_LAUNCH_PAD_ITEM = ITEMS.register("rocket_launch_pad", () -> new BlockItem(BlockRegistry.ROCKET_LAUNCH_PAD.get(), new Item.Properties()));
     public static final RegistryObject<Item> FLAG_ITEM = ITEMS.register("flag", () -> new DoubleHighBlockItem(BlockRegistry.FLAG_BLOCK.get(), new Item.Properties()));
 
-    /** ROCKET UPGRADE */
-    public static final RegistryObject<Item> BASIC_FUEL_UPGRADE = ITEMS.register("basic_fuel_upgrade", () -> new VehicleUpgradeItem(new Item.Properties(), 1, 0, null));
-    public static final RegistryObject<Item> ADVANCED_FUEL_UPGRADE = ITEMS.register("advanced_fuel_upgrade", () -> new VehicleUpgradeItem(new Item.Properties(), 3, 0, null));
-    public static final RegistryObject<Item> HYDROGEN_MOTOR_UPGRADE = ITEMS.register("hydrogen_motor_upgrade", () -> new VehicleUpgradeItem(new Item.Properties(), 0, 10000000, null));
-    public static final RegistryObject<Item> URANIUM_MOTOR_UPGRADE = ITEMS.register("uranium_motor_upgrade", () -> new VehicleUpgradeItem(new Item.Properties(), 0, 1000000000, null));
+    /** ROCKET MODIFIER */
 
-    //Rocket Skin
-    public static final RegistryObject<Item> FROZY_SKIN_UPGRADE = ITEMS.register("frozy_skin_upgrade", () -> new VehicleUpgradeItem(new Item.Properties(), 0, 0, "textures/rocket_skin/frozy.png"));
-    public static final RegistryObject<Item> GALAXY_SKIN_UPGRADE = ITEMS.register("galaxy_skin_upgrade", () -> new VehicleUpgradeItem(new Item.Properties(), 0, 0, "textures/rocket_skin/galaxy.png"));
-    public static final RegistryObject<Item> MILITARY_SKIN_UPGRADE = ITEMS.register("military_skin_upgrade", () -> new VehicleUpgradeItem(new Item.Properties(), 0, 0, "textures/rocket_skin/military.png"));
-    public static final RegistryObject<Item> RAINBOW_SKIN_UPGRADE = ITEMS.register("rainbow_skin_upgrade", () -> new VehicleUpgradeItem(new Item.Properties(), 0, 0, "textures/rocket_skin/rainbow.png"));
-    public static final RegistryObject<Item> RUSTY_SKIN_UPGRADE = ITEMS.register("rusty_skin_upgrade", () -> new VehicleUpgradeItem(new Item.Properties(), 0, 0, "textures/rocket_skin/rusty.png"));
-    public static final RegistryObject<Item> STANDART_SKIN_UPGRADE = ITEMS.register("standart_skin_upgrade", () -> new VehicleUpgradeItem(new Item.Properties(), 0, 0, "textures/rocket_skin/standart.png"));
+    // Rocket upgrade
+    public static final RegistryObject<Item> BASIC_FUEL_UPGRADE = ITEMS.register("basic_fuel_upgrade", () -> new VehicleUpgradeItem(new Item.Properties(), 1, 0, null, null, null));
+    public static final RegistryObject<Item> ADVANCED_FUEL_UPGRADE = ITEMS.register("advanced_fuel_upgrade", () -> new VehicleUpgradeItem(new Item.Properties(), 3, 0, null, null, null));
+    public static final RegistryObject<Item> HYDROGEN_MOTOR_UPGRADE = ITEMS.register("hydrogen_motor_upgrade", () -> new VehicleUpgradeItem(new Item.Properties(), 0, 10000000, null, null, null));
+    public static final RegistryObject<Item> URANIUM_MOTOR_UPGRADE = ITEMS.register("uranium_motor_upgrade", () -> new VehicleUpgradeItem(new Item.Properties(), 0, 1000000000, null, null, null));
+
+    // Rocket Skin
+    public static final RegistryObject<Item> STANDARD_SKIN_MODIFIER = ITEMS.register("standard_skin_modifier", () -> new VehicleUpgradeItem(new Item.Properties(), 0, 0, "standart", null, null));
+    public static final RegistryObject<Item> FROZY_SKIN_MODIFIER = ITEMS.register("frozy_skin_modifier", () -> new VehicleUpgradeItem(new Item.Properties(), 0, 0, "frozy", null, null));
+    public static final RegistryObject<Item> GALAXY_SKIN_MODIFIER = ITEMS.register("galaxy_skin_modifier", () -> new VehicleUpgradeItem(new Item.Properties(), 0, 0, "galaxy", null, null));
+    public static final RegistryObject<Item> MILITARY_SKIN_MODIFIER = ITEMS.register("military_skin_modifier", () -> new VehicleUpgradeItem(new Item.Properties(), 0, 0, "military", null, null));
+    public static final RegistryObject<Item> RUSTY_SKIN_MODIFIER = ITEMS.register("rusty_skin_modifier", () -> new VehicleUpgradeItem(new Item.Properties(), 0, 0, "rusty", null, null));
+
+    // Rocket Model
+    public static final RegistryObject<Item> TINY_MODEL_MODIFIER = ITEMS.register("tiny_model_modifier", () -> new VehicleUpgradeItem(new Item.Properties(), 0, 0, null, "tiny", ItemRendererRegistry.TINY_ROCKET_ITEM_RENDERER));
+    public static final RegistryObject<Item> SMALL_MODEL_MODIFIER = ITEMS.register("small_model_modifier", () -> new VehicleUpgradeItem(new Item.Properties(), 0, 0, null, "small", ItemRendererRegistry.SMALL_ROCKET_ITEM_RENDERER));
+    public static final RegistryObject<Item> NORMAL_MODEL_MODIFIER = ITEMS.register("normal_model_modifier", () -> new VehicleUpgradeItem(new Item.Properties(), 0, 0, null, "normal", ItemRendererRegistry.NORMAL_ROCKET_ITEM_RENDERER));
+    public static final RegistryObject<Item> BIG_MODEL_MODIFIER = ITEMS.register("big_model_modifier", () -> new VehicleUpgradeItem(new Item.Properties(), 0, 0, null, "big", ItemRendererRegistry.BIG_ROCKET_ITEM_RENDERER));
 
 
     /** NORMAL ITEMS */

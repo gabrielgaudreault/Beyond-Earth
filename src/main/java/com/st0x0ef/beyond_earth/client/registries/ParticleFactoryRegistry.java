@@ -10,7 +10,6 @@ import com.st0x0ef.beyond_earth.common.registries.ParticleRegistry;
 
 @Mod.EventBusSubscriber(modid = BeyondEarth.MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ParticleFactoryRegistry {
-
     @SubscribeEvent
     public static void register(RegisterParticleProvidersEvent event) {
         event.registerSpriteSet(ParticleRegistry.VENUS_RAIN_PARTICLE.get(), VenusRainParticle.ParticleFactory::new);

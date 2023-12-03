@@ -4,8 +4,14 @@
     "beyond_earth:basic_fuel_upgrade",
     "beyond_earth:advanced_fuel_upgrade",
     "beyond_earth:hydrogen_motor_upgrade",
-    "beyond_earth:frozy_skin_upgrade",
-    "beyond_earth:rusty_skin_upgrade"
-
+    "beyond_earth:standard_skin_modifier",
+    "beyond_earth:frozy_skin_modifier",
+    "beyond_earth:rusty_skin_modifier",
+    "beyond_earth:galaxy_skin_modifier",
+    "beyond_earth:military_skin_modifier",
+    "beyond_earth:tiny_model_modifier",
+    "beyond_earth:small_model_modifier",
+    "beyond_earth:normal_model_modifier",
+    "beyond_earth:big_model_modifier"
   ]
 }

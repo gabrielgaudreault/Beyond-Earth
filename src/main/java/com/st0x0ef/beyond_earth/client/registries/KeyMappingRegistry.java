@@ -11,7 +11,6 @@ import org.lwjgl.glfw.GLFW;
 
 @Mod.EventBusSubscriber(modid = BeyondEarth.MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class KeyMappingRegistry {
-
     public static final KeyMapping ROCKET_START = new KeyMapping("key." + BeyondEarth.MODID + ".rocket_start", GLFW.GLFW_KEY_SPACE, "key.categories." + BeyondEarth.MODID);
     public static final KeyMapping SWITCH_JET_SUIT_MODE = new KeyMapping("key." + BeyondEarth.MODID + ".switch_jet_suit_mode", GLFW.GLFW_KEY_V, "key.categories." + BeyondEarth.MODID);
 

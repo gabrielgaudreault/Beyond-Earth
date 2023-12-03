@@ -1,6 +1,7 @@
 package com.st0x0ef.beyond_earth.common.items;
 
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -37,6 +38,7 @@ import com.st0x0ef.beyond_earth.common.util.FluidUtils;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Map;
 import java.util.function.Consumer;
 
 public class RocketItem extends VehicleItem {
@@ -45,7 +47,10 @@ public class RocketItem extends VehicleItem {
 
     public int fuelCapacityModifier = 0;
     public int fuelUsageModifier = 0;
-    public String rocketSkinTexture = "textures/vehicle/rocket.png";
+    public String rocketSkinTextureBasePath = "textures/vehicle/rocket_skin/";
+    public String rocketSkinTextureName = "standard";
+    public String rocketSkinModelName = "tiny";
+    public BlockEntityWithoutLevelRenderer model = ItemRendererRegistry.TINY_ROCKET_ITEM_RENDERER;
 
     public RocketItem(Properties properties) {
         super(properties);
@@ -53,7 +58,7 @@ public class RocketItem extends VehicleItem {
 
     @OnlyIn(Dist.CLIENT)
     public BlockEntityWithoutLevelRenderer getRenderer() {
-        return ItemRendererRegistry.ROCKET_TIER_1_ITEM_RENDERER;
+        return model;
     }
 
     public EntityType<? extends RocketEntity> getEntityType() {
@@ -64,8 +69,8 @@ public class RocketItem extends VehicleItem {
         return new RocketEntity(getEntityType(), level);
     }
 
-    public String getRocketSkinTexture() {
-        return rocketSkinTexture;
+    public String getRocketSkinTexturePath() {
+        return rocketSkinTextureBasePath + rocketSkinModelName + "/" + rocketSkinTextureName + ".png";
     }
 
     public int getFuelBuckets() {
@@ -123,8 +128,8 @@ public class RocketItem extends VehicleItem {
                     rocket.getEntityData().set(RocketEntity.FUEL, itemStack.getOrCreateTag().getInt(FUEL_TAG));
                     rocket.getEntityData().set(RocketEntity.FUEL_BUCKET_NEEDED, RocketEntity.DEFAULT_FUEL_BUCKETS + itemStack.getOrCreateTag().getInt("fuelCapacityModifier"));
                     rocket.getEntityData().set(RocketEntity.FUEL_USAGE, RocketEntity.DEFAULT_FUEL_USAGE + itemStack.getOrCreateTag().getInt("fuelUsageModifier"));
-                    rocket.getEntityData().set(RocketEntity.SKIN_TEXTURE, itemStack.getOrCreateTag().getString("rocketSkinTexture"));
-                    rocket.setSkinTexture(rocketSkinTexture);
+                    rocket.getEntityData().set(RocketEntity.SKIN_TEXTURE_PATH, itemStack.getOrCreateTag().getString("rocketSkinTexturePath"));
+                    rocket.setSkinTexture(getRocketSkinTexturePath());
                     /** CALL PLACE ROCKET EVENT */
                     MinecraftForge.EVENT_BUS.post(new PlaceRocketEvent(rocket, context));
 
@@ -154,6 +159,8 @@ public class RocketItem extends VehicleItem {
 
         list.add(Component.literal("Fuel Capacity Modifier : " + fuelCapacityModifier));
         list.add(Component.literal("Fuel Usage Modifier : " + fuelUsageModifier));
+        list.add(Component.literal("Model : " + rocketSkinModelName + " rocket"));
+        list.add(Component.literal("Skin : " + rocketSkinTextureName));
     }
 
     @Override
@@ -176,7 +183,13 @@ public class RocketItem extends VehicleItem {
     }
 
     public void setRocketSkinTexture(String skinTexture) {
-        this.rocketSkinTexture = skinTexture;
-        this.getDefaultInstance().getOrCreateTag().putString("rocketSkinTexture", rocketSkinTexture);
+        this.rocketSkinTextureName = skinTexture;
+        this.getDefaultInstance().getOrCreateTag().putString("rocketSkinTexturePath", getRocketSkinTexturePath());
+    }
+
+    public void setRocketModel(BlockEntityWithoutLevelRenderer model, String name) {
+        this.model = model;
+        this.rocketSkinModelName = name;
+        this.getDefaultInstance().getOrCreateTag().putString("rocketSkinTexturePath", getRocketSkinTexturePath());
     }
 }

@@ -31,6 +31,5 @@ public class ScreenRegistry {
 
         MenuScreens.register(ContainerRegistry.PLANET_SELECTION_GUI.get(), PlanetSelectionScreen::new);
         MenuScreens.register(ContainerRegistry.ERROR_GUI.get(), ErrorScreen::new);
-
     }
 }

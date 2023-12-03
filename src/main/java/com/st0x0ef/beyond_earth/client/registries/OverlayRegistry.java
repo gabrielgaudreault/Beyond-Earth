@@ -9,7 +9,6 @@ import com.st0x0ef.beyond_earth.client.overlays.*;
 
 @Mod.EventBusSubscriber(modid = BeyondEarth.MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class OverlayRegistry {
-
     @SubscribeEvent
     public static void register(RegisterGuiOverlaysEvent event) {
         event.registerAboveAll("warning", new WarningOverlay());

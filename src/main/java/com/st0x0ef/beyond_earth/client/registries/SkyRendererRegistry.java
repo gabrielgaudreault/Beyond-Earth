@@ -12,7 +12,6 @@ import com.st0x0ef.beyond_earth.common.util.Planets;
 
 @Mod.EventBusSubscriber(modid = BeyondEarth.MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class SkyRendererRegistry {
-
     @SubscribeEvent
     public static void register(RegisterDimensionSpecialEffectsEvent event) {
         // Load planets if not loaded.

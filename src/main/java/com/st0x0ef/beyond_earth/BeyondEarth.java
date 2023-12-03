@@ -50,6 +50,6 @@ public class BeyondEarth {
 
 		MinecraftForge.EVENT_BUS.register(this);
 
-		LOGGER.info("Beyond Earth Started Successfully!");
+		LOGGER.info("Beyond Earth Loaded Successfully!");
 	}
 }
