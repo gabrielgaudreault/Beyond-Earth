@@ -64,7 +64,7 @@ import java.util.Set;
 
 public class RoverEntity extends IVehicleEntity implements IGaugeValuesProvider {
     private double speed = 0;
-    private int fuelCapacityModifier = 0;
+    private final int fuelCapacityModifier = 0;
 
     public float flyingSpeed = 0.02F;
     public float animationSpeedOld;

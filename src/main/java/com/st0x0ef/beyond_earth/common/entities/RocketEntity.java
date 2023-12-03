@@ -263,7 +263,7 @@ public class RocketEntity extends IVehicleEntity implements HasCustomInventorySc
 		compound.putInt("start_timer", this.getEntityData().get(START_TIMER));
 		compound.putInt("fuel_capacity", this.getEntityData().get(FUEL_BUCKET_NEEDED));
 		compound.putInt("fuel_usage", this.getEntityData().get(FUEL_USAGE));
-		compound.putString("rocket_skin_texture", this.getEntityData().get(SKIN_TEXTURE));
+		compound.putString("rocket_skin_texture", this.getEntityData().get(SKIN_TEXTURE_PATH));
 		compound.putDouble(BeyondEarth.MODID + ":rocket_distance", this.getEntityData().get(MAX_DISTANCE_TRAVELABLE));
 	}
 
@@ -281,7 +281,7 @@ public class RocketEntity extends IVehicleEntity implements HasCustomInventorySc
 		this.getEntityData().set(START_TIMER, compound.getInt("start_timer"));
 		this.getEntityData().set(FUEL_BUCKET_NEEDED, compound.getInt("fuel_capacity"));
 		this.getEntityData().set(FUEL_USAGE, compound.getInt("fuel_usage"));
-		this.getEntityData().set(SKIN_TEXTURE, compound.getString("rocket_skin_texture"));
+		this.getEntityData().set(SKIN_TEXTURE_PATH, compound.getString("rocket_skin_texture"));
 		this.getEntityData().set(MAX_DISTANCE_TRAVELABLE, (long) compound.getDouble(BeyondEarth.MODID + ":rocket_distance"));
 	}
 
