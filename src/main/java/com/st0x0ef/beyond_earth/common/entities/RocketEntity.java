@@ -72,7 +72,7 @@ public class RocketEntity extends IVehicleEntity implements HasCustomInventorySc
 	public static final int DEFAULT_FUEL_BUCKETS = 3;
 	public static final long DEFAULT_DISTANCE_TRAVELABLE = 38000000;
 	public static final int DEFAULT_FUEL_USAGE = 1000000;
-	public static final String DEFAULT_SKIN_TEXTURE = "textures/vehicle/rocket_skin_tiny/standard.png";
+	public static final String DEFAULT_SKIN_TEXTURE = "textures/vehicle/rocket_skin/tiny/standard.png";
 
 	public static final EntityDataAccessor<Boolean> ROCKET_START = SynchedEntityData.defineId(RocketEntity.class, EntityDataSerializers.BOOLEAN);
 	public static final EntityDataAccessor<Integer> FUEL = SynchedEntityData.defineId(RocketEntity.class, EntityDataSerializers.INT);

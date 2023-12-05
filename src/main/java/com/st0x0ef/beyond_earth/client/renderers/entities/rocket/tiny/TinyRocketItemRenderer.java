@@ -23,7 +23,7 @@ import com.st0x0ef.beyond_earth.common.entities.RocketEntity;
 public class TinyRocketItemRenderer<T extends RocketEntity> extends BlockEntityWithoutLevelRenderer {
 
     /** TEXTURE */
-    public static ResourceLocation TEXTURE = new ResourceLocation(BeyondEarth.MODID, "textures/vehicle/standard.png");
+    public static ResourceLocation TEXTURE = new ResourceLocation(BeyondEarth.MODID, "textures/vehicle/rocket_skin/tiny/standard.png");
 
     /** MODEL */
     private TinyRocketModel model;

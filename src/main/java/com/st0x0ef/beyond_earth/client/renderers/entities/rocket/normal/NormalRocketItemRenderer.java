@@ -22,7 +22,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class NormalRocketItemRenderer<T extends RocketEntity> extends BlockEntityWithoutLevelRenderer {
 
     /** TEXTURE */
-    public static final ResourceLocation TEXTURE = new ResourceLocation(BeyondEarth.MODID, "textures/vehicle/standard.png");
+    public static ResourceLocation TEXTURE = new ResourceLocation(BeyondEarth.MODID, "textures/vehicle/rocket_skin/normal/standard.png");
 
     /** MODEL */
     private NormalRocketModel model;

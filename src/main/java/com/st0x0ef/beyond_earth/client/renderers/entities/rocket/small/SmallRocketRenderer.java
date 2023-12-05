@@ -11,7 +11,7 @@ import com.st0x0ef.beyond_earth.common.entities.RocketEntity;
 @OnlyIn(Dist.CLIENT)
 public class SmallRocketRenderer extends VehicleRenderer<RocketEntity, SmallRocketModel<RocketEntity>> {
 
-    public static final ResourceLocation TEXTURE = new ResourceLocation(BeyondEarth.MODID, "textures/vehicle/standard.png");
+    public static ResourceLocation TEXTURE = new ResourceLocation(BeyondEarth.MODID, "textures/vehicle/rocket_skin/small/standard.png");
 
     public SmallRocketRenderer(EntityRendererProvider.Context renderManagerIn) {
         super(renderManagerIn, new SmallRocketModel<>(renderManagerIn.bakeLayer(SmallRocketModel.LAYER_LOCATION)), 0.5f);

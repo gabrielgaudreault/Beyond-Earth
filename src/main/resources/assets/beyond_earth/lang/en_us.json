@@ -392,5 +392,5 @@
   "general.beyond_earth.jet_suit_elytra_mode": "Elytra",
   
   "config.jade.plugin_beyond_earth.entity": "Entity",
-  "config.jade.plugin_beyond_earth.block": "Block",
+  "config.jade.plugin_beyond_earth.block": "Block"
 }
