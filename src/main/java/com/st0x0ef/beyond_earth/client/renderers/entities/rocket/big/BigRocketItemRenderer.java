@@ -5,6 +5,7 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
 import com.st0x0ef.beyond_earth.BeyondEarth;
 import com.st0x0ef.beyond_earth.common.entities.RocketEntity;
+import com.st0x0ef.beyond_earth.common.items.RocketItem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
@@ -22,7 +23,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class BigRocketItemRenderer<T extends RocketEntity> extends BlockEntityWithoutLevelRenderer {
 
     /** TEXTURE */
-    public static final ResourceLocation TEXTURE = new ResourceLocation(BeyondEarth.MODID, "textures/vehicle/rocket_skin/big/standard.png");
+    public static ResourceLocation TEXTURE = new ResourceLocation(BeyondEarth.MODID, "textures/vehicle/rocket_skin/big/standard.png");
 
     /** MODEL */
     private BigRocketModel model;
@@ -32,7 +33,7 @@ public class BigRocketItemRenderer<T extends RocketEntity> extends BlockEntityWi
     }
 
     @Override
-    public void renderByItem(ItemStack p_108830_, ItemDisplayContext p_108831_, PoseStack matrixStackIn, MultiBufferSource buffer, int combinedLight, int p_108835_) {
+    public void renderByItem(ItemStack pStack, ItemDisplayContext p_108831_, PoseStack matrixStackIn, MultiBufferSource buffer, int combinedLight, int p_108835_) {
         matrixStackIn.pushPose();
 
         matrixStackIn.mulPose(Axis.ZP.rotationDegrees(180));
@@ -43,6 +44,10 @@ public class BigRocketItemRenderer<T extends RocketEntity> extends BlockEntityWi
         VertexConsumer vertexBuilder;
 
         /** TEXTURE BINDING */
+        if(pStack.getItem() instanceof RocketItem item) {
+            TEXTURE = new ResourceLocation(BeyondEarth.MODID, item.getRocketSkinTexturePath());
+        }
+
         vertexBuilder = buffer.getBuffer(RenderType.entityCutoutNoCullZOffset(TEXTURE));
 
         if (this.model == null) {
