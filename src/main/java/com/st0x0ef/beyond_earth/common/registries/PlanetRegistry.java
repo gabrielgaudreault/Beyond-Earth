@@ -147,7 +147,7 @@ public class PlanetRegistry {
         PROXIMA_CENTAURI.mass = 0.122f * Planets.STAR_MASS_SCALE;
         PROXIMA_CENTAURI.colour = new int[] { 255, 127, 63 };
 
-        GLACIO = BY_DIMENSION.get(LevelRegistry.MOON);
+        GLACIO = BY_DIMENSION.get(LevelRegistry.GLACIO);
         GLACIO.texture = GLACIO_TEXTURE;
         GLACIO.mass = 0.08f * Planets.PLANET_MASS_SCALE;
         GLACIO.orbitRadius = 0.39f * Planets.PLANET_ORBIT_SCALE;
