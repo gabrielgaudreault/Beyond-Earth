@@ -16,8 +16,8 @@ public class BigRocketRenderer extends VehicleRenderer<RocketEntity, BigRocketMo
 
     @Override
     public ResourceLocation getTextureLocation(RocketEntity rocket) {
-        return TEXTURE;
-    }
+        return new ResourceLocation(BeyondEarth.MODID, rocket.getEntityData().get(RocketEntity.SKIN_TEXTURE_PATH));
+     }
 
     @Override
     protected boolean isShaking(RocketEntity rocket) {

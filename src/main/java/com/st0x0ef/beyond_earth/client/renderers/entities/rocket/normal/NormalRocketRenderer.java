@@ -19,7 +19,7 @@ public class NormalRocketRenderer extends VehicleRenderer<RocketEntity, NormalRo
 
     @Override
     public ResourceLocation getTextureLocation(RocketEntity rocket) {
-        return TEXTURE;
+        return new ResourceLocation(BeyondEarth.MODID, rocket.getEntityData().get(RocketEntity.SKIN_TEXTURE_PATH));
     }
 
     @Override
