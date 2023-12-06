@@ -106,6 +106,18 @@ public class GlobeBlock extends BaseEntityBlock implements SimpleWaterloggedBloc
     }
 
     @Override
+    public void neighborChanged(BlockState pState, Level pLevel, BlockPos pPos, Block pBlock, BlockPos pFromPos, boolean pIsMoving) {
+        if (!pLevel.isClientSide) {
+            if (pLevel.getBlockEntity(pPos) instanceof GlobeTileEntity blockEntity) {
+                float value = (float) (Math.PI / (Math.pow(0.00003, blockEntity.getRotationalInertia()) + 1) / 4);
+                blockEntity.setRotationalInertia(value);
+                blockEntity.setChanged();
+            }
+        }
+    }
+
+
+    @Override
     public <T2 extends BlockEntity> BlockEntityTicker<T2> getTicker(Level level, BlockState state, BlockEntityType<T2> type) {
         return (l, p, s, e) -> {
             if (e instanceof GlobeTileEntity) {
