@@ -3,7 +3,6 @@ package com.st0x0ef.beyond_earth.common.registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
-import net.minecraft.world.entity.animal.Sheep;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -27,7 +26,11 @@ public class EntityRegistry {
 
 
     /** VEHICLE ENTITIES */
-    public static final RegistryObject<EntityType<RocketEntity>> ROCKET = ENTITIES.register("rocket", () -> EntityType.Builder.of(RocketEntity::new, MobCategory.MISC).sized(1.1f, 4.4f).fireImmune().build(new ResourceLocation(BeyondEarth.MODID, "rocket").toString()));
+    // Rocket
+    public static final RegistryObject<EntityType<RocketEntity>> TINY_ROCKET = ENTITIES.register("tiny_rocket", () -> EntityType.Builder.of(RocketEntity::new, MobCategory.MISC).sized(1.1f, 4.4f).fireImmune().build(new ResourceLocation(BeyondEarth.MODID, "tiny_rocket").toString()));
+    public static final RegistryObject<EntityType<RocketEntity>> BIG_ROCKET = ENTITIES.register("big_rocket", () -> EntityType.Builder.of(RocketEntity::new, MobCategory.MISC).sized(1.1f, 4.4f).fireImmune().build(new ResourceLocation(BeyondEarth.MODID, "big_rocket").toString()));
+    public static final RegistryObject<EntityType<RocketEntity>> NORMAL_ROCKET = ENTITIES.register("normal_rocket", () -> EntityType.Builder.of(RocketEntity::new, MobCategory.MISC).sized(1.1f, 4.4f).fireImmune().build(new ResourceLocation(BeyondEarth.MODID, "normal_rocket").toString()));
+    public static final RegistryObject<EntityType<RocketEntity>> SMALL_ROCKET = ENTITIES.register("small_rocket", () -> EntityType.Builder.of(RocketEntity::new, MobCategory.MISC).sized(1.1f, 4.4f).fireImmune().build(new ResourceLocation(BeyondEarth.MODID, "small_rocket").toString()));
     public static final RegistryObject<EntityType<LanderEntity>> LANDER = ENTITIES.register("lander", () -> EntityType.Builder.of(LanderEntity::new, MobCategory.MISC).sized(1.0f, 2.0f).fireImmune().build(new ResourceLocation(BeyondEarth.MODID, "lander").toString()));
     public static final RegistryObject<EntityType<RoverEntity>> ROVER = ENTITIES.register("rover", () -> EntityType.Builder.of(RoverEntity::new, MobCategory.MISC).sized(2.5f, 1.0f).fireImmune().build(new ResourceLocation(BeyondEarth.MODID, "rover").toString()));
 

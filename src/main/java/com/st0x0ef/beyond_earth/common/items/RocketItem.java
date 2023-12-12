@@ -1,10 +1,8 @@
 package com.st0x0ef.beyond_earth.common.items;
 
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.core.BlockPos;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -35,10 +33,8 @@ import com.st0x0ef.beyond_earth.common.events.forge.PlaceRocketEvent;
 import com.st0x0ef.beyond_earth.common.registries.EntityRegistry;
 import com.st0x0ef.beyond_earth.client.registries.ItemRendererRegistry;
 import com.st0x0ef.beyond_earth.common.util.FluidUtils;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
-import java.util.Map;
 import java.util.function.Consumer;
 
 public class RocketItem extends VehicleItem {
@@ -62,7 +58,18 @@ public class RocketItem extends VehicleItem {
     }
 
     public EntityType<? extends RocketEntity> getEntityType() {
-        return EntityRegistry.ROCKET.get();
+        switch (rocketSkinModelName){
+            case "big":
+                return EntityRegistry.BIG_ROCKET.get();
+            case "normal":
+                return EntityRegistry.NORMAL_ROCKET.get();
+            case "small":
+                return EntityRegistry.SMALL_ROCKET.get();
+            case "tiny":
+                return EntityRegistry.TINY_ROCKET.get();
+        }
+        return EntityRegistry.TINY_ROCKET.get();
+
     }
 
     public RocketEntity getRocket(Level level) {
@@ -130,6 +137,7 @@ public class RocketItem extends VehicleItem {
                     rocket.getEntityData().set(RocketEntity.FUEL_USAGE, RocketEntity.DEFAULT_FUEL_USAGE + itemStack.getOrCreateTag().getInt("fuelUsageModifier"));
                     rocket.getEntityData().set(RocketEntity.SKIN_TEXTURE_PATH, itemStack.getOrCreateTag().getString("rocketSkinTexturePath"));
                     rocket.setSkinTexture(getRocketSkinTexturePath());
+
                     /** CALL PLACE ROCKET EVENT */
                     MinecraftForge.EVENT_BUS.post(new PlaceRocketEvent(rocket, context));
 
