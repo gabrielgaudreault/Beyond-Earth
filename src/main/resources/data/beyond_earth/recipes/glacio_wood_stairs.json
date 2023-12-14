@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "beyond_earth",
+  "key": {
+    "#": {
+      "item": "beyond_earth:glacio_wood_planks"
+    }
+  },
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "result": {
+    "count": 4,
+    "item": "beyond_earth:glacio_wood_stairs"
+  },
+  "show_notification": true
+}

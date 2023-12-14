@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "group": "beyond_earth",
+  "ingredients": [
+    {
+      "item": "beyond_earth:glacio_wood_log"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "item": "beyond_earth:glacio_wood_planks"
+  }
+}
