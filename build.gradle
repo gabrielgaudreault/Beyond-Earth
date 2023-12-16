@@ -109,6 +109,8 @@ dependencies {
 
     /** Mekanism */
     implementation fg.deobf("mekanism:Mekanism:${mc_version}-${mekanism_version}")
+
+    //implementation fg.deobf("curse.maven:cyanide-541676:4824162")
 }
 
 jar {
