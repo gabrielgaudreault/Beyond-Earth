@@ -6,6 +6,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.Tesselator;
 import com.mojang.blaze3d.vertex.VertexBuffer;
 import com.mojang.math.Axis;
+import com.st0x0ef.beyond_earth.common.config.ClientConfig;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
@@ -25,7 +26,6 @@ import org.joml.Matrix4f;
 @OnlyIn(Dist.CLIENT)
 public class OrbitSky extends DimensionSpecialEffects {
 
-    private final VertexBuffer starBuffer = StarHelper.createStars(0.1F, 6000, 13000, 190, 160, -1);
 
     private Planet planet;
 
@@ -103,6 +103,8 @@ public class OrbitSky extends DimensionSpecialEffects {
                 SkyHelper.drawSky(mc, matrix4f, projectionMatrix, shaderInstance);
 
                 /** STARS */
+                VertexBuffer starBuffer = StarHelper.createStars(0.1F, ClientConfig.ORBIT_FANCY_STARS_COUNT.get(), ClientConfig.ORBIT_FANCY_STARS_COUNT.get(), 190, 160, -1);
+
                 matrix4f = SkyHelper.setMatrixRot(poseStack,
                         Triple.of(Axis.YP.rotationDegrees(-90), Axis.XP.rotationDegrees(dayTime), null));
                 RenderSystem.setShaderColor(0.8F, 0.8F, 0.8F, 0.8F);

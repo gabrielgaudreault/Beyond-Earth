@@ -1,5 +1,6 @@
 package com.st0x0ef.beyond_earth;
 
+import com.st0x0ef.beyond_earth.common.config.ClientConfig;
 import com.st0x0ef.beyond_earth.common.config.Config;
 import com.st0x0ef.beyond_earth.common.registries.*;
 import net.minecraftforge.common.MinecraftForge;
@@ -24,6 +25,7 @@ public class BeyondEarth {
 
 		/** CONFIG REGISTRIES */
 		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.SPEC, "beyond_earth-common.toml");
+		ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, ClientConfig.SPEC, "beyond_earth-client.toml");
 
 		/** NETWORK REGISTRIES */
 		NetworkRegistry.register();

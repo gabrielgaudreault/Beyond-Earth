@@ -5,6 +5,7 @@ import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.Axis;
 import com.st0x0ef.beyond_earth.client.renderers.sky.helper.SkyHelper;
 import com.st0x0ef.beyond_earth.client.renderers.sky.helper.StarHelper;
+import com.st0x0ef.beyond_earth.common.config.ClientConfig;
 import com.st0x0ef.beyond_earth.common.util.Planets;
 import com.st0x0ef.beyond_earth.common.util.Planets.Planet;
 import net.minecraft.client.Camera;
@@ -29,7 +30,7 @@ import org.joml.Matrix4f;
 @OnlyIn(Dist.CLIENT)
 public class PlanetSky extends DimensionSpecialEffects {
 
-    private final VertexBuffer starBuffer = StarHelper.createStars(0.1F, 190, 160, -1);
+
     private final float[] sunriseCol = new float[4];
     private final float[] rainSizeX = new float[1024];
     private final float[] rainSizeZ = new float[1024];
@@ -144,13 +145,14 @@ public class PlanetSky extends DimensionSpecialEffects {
         RenderSystem.defaultBlendFunc();
 
         /** STARS */
+        VertexBuffer starBuffer = StarHelper.createStars(0.1F, ClientConfig.ORBIT_FANCY_STARS_COUNT.get(), ClientConfig.ORBIT_FANCY_STARS_COUNT.get(), 190, 160, -1);
+
         float rainLevel = 1.0F - mc.level.getRainLevel(partialTick);
         float starLight = mc.level.getStarBrightness(partialTick) * rainLevel;
-
         if (starLight > 0.0F) {
             matrix4f = SkyHelper.setMatrixRot(poseStack,
                     Triple.of(Axis.YP.rotationDegrees(-90), Axis.XP.rotationDegrees(dayAngle), null));
-            RenderSystem.setShaderColor(starLight, starLight, starLight, starLight);
+            RenderSystem.setShaderColor(starLight + 0.5F, starLight + 0.5F, starLight + 0.5F, starLight + 0.5F);
             SkyHelper.drawStars(starBuffer, matrix4f, projectionMatrix, GameRenderer.getPositionColorShader(),
                     setupFog, true);
         }
