@@ -73,7 +73,13 @@ public class FluidUtils {
                         return fluid.getBucket() != Items.AIR;
                 }
 
-                return  getItemStackFluidHandler(itemStack).fill(new FluidStack(fluid, 1), FluidAction.SIMULATE) > 0;
+                IFluidHandlerItem fluidHandlerItem = getItemStackFluidHandler(itemStack);
+
+                if (fluidHandlerItem != null) {
+                        return fluidHandlerItem.fill(new FluidStack(fluid, 1), FluidAction.SIMULATE) > 0;
+                }
+
+                return false;
         }
 
         /**

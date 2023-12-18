@@ -37,8 +37,8 @@ public class GlobeBlock extends BaseEntityBlock implements SimpleWaterloggedBloc
 
     public ResourceLocation texture;
 
-    public GlobeBlock(Properties p_49224_, ResourceLocation texture) {
-        super(p_49224_);
+    public GlobeBlock(Properties properties, ResourceLocation texture) {
+        super(properties);
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(WATERLOGGED, false));
         this.texture = texture;
     }
@@ -48,9 +48,9 @@ public class GlobeBlock extends BaseEntityBlock implements SimpleWaterloggedBloc
         return SHAPE;
     }
 
-    public boolean canSurvive(BlockState p_49325_, LevelReader p_49326_, BlockPos p_49327_) {
-        BlockPos blockpos = p_49327_.below();
-        return canSupportRigidBlock(p_49326_, blockpos);
+    public boolean canSurvive(BlockState state, LevelReader levelReader, BlockPos blockPos) {
+        BlockPos below = blockPos.below();
+        return canSupportRigidBlock(levelReader, below);
     }
 
     @Override
@@ -93,9 +93,9 @@ public class GlobeBlock extends BaseEntityBlock implements SimpleWaterloggedBloc
     }
 
     @Override
-    public InteractionResult use(BlockState p_60503_, Level p_60504_, BlockPos p_60505_, Player p_60506_, InteractionHand p_60507_, BlockHitResult p_60508_) {
-        if (!p_60504_.isClientSide) {
-            if (p_60504_.getBlockEntity(p_60505_) instanceof GlobeTileEntity blockEntity) {
+    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
+        if (!level.isClientSide) {
+            if (level.getBlockEntity(pos) instanceof GlobeTileEntity blockEntity) {
                 float value = (float) (Math.PI / (Math.pow(0.00003, blockEntity.getRotationalInertia()) + 1) / 4);
                 blockEntity.setRotationalInertia(value);
                 blockEntity.setChanged();

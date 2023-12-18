@@ -11,9 +11,6 @@ import com.st0x0ef.beyond_earth.client.renderers.entities.mogler.MoglerRenderer;
 import com.st0x0ef.beyond_earth.client.renderers.entities.pygro.PygroModel;
 import com.st0x0ef.beyond_earth.client.renderers.entities.pygro.PygroRenderer;
 import com.st0x0ef.beyond_earth.client.renderers.entities.pygrobrute.PygroBruteRenderer;
-import com.st0x0ef.beyond_earth.client.renderers.entities.rocket.big.BigRocketRenderer;
-import com.st0x0ef.beyond_earth.client.renderers.entities.rocket.normal.NormalRocketRenderer;
-import com.st0x0ef.beyond_earth.client.renderers.entities.rocket.small.SmallRocketRenderer;
 import com.st0x0ef.beyond_earth.client.renderers.entities.rocket.tiny.TinyRocketRenderer;
 import com.st0x0ef.beyond_earth.client.renderers.entities.rover.RoverRenderer;
 import com.st0x0ef.beyond_earth.client.renderers.entities.starcrawler.StarCrawlerRenderer;
@@ -57,11 +54,7 @@ public class EntityRendererRegistry {
         event.registerEntityRenderer(EntityRegistry.ICE_SPIT_ENTITY.get(), renderManager -> new ThrownItemRenderer(renderManager, 1, true));
 
         /** VEHICLES */
-        event.registerEntityRenderer(EntityRegistry.BIG_ROCKET.get(), BigRocketRenderer::new);
-        event.registerEntityRenderer(EntityRegistry.TINY_ROCKET.get(), TinyRocketRenderer::new);
-        event.registerEntityRenderer(EntityRegistry.NORMAL_ROCKET.get(), NormalRocketRenderer::new);
-
-        event.registerEntityRenderer(EntityRegistry.SMALL_ROCKET.get(), SmallRocketRenderer::new);
+        event.registerEntityRenderer(EntityRegistry.ROCKET.get(), TinyRocketRenderer::new);
         event.registerEntityRenderer(EntityRegistry.LANDER.get(), LanderRenderer::new);
         event.registerEntityRenderer(EntityRegistry.ROVER.get(), RoverRenderer::new);
 

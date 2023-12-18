@@ -23,19 +23,19 @@ public class GlobeTileEntity extends BlockEntity {
     }
 
     @Override
-    public void load(CompoundTag p_155245_) {
-        super.load(p_155245_);
-        this.rotationalInertia = p_155245_.getFloat("inertia");
-        this.yaw = p_155245_.getFloat("yaw");
-        this.yaw0 = p_155245_.getFloat("yaw0");
+    public void load(CompoundTag tag) {
+        super.load(tag);
+        this.rotationalInertia = tag.getFloat("inertia");
+        this.yaw = tag.getFloat("yaw");
+        this.yaw0 = tag.getFloat("yaw0");
     }
 
     @Override
-    public void saveAdditional(CompoundTag p_187471_) {
-        super.saveAdditional(p_187471_);
-        p_187471_.putFloat("inertia", this.rotationalInertia);
-        p_187471_.putFloat("yaw", this.yaw);
-        p_187471_.putFloat("yaw0", this.yaw0);
+    public void saveAdditional(CompoundTag tag) {
+        super.saveAdditional(tag);
+        tag.putFloat("inertia", this.rotationalInertia);
+        tag.putFloat("yaw", this.yaw);
+        tag.putFloat("yaw0", this.yaw0);
     }
 
     @Override

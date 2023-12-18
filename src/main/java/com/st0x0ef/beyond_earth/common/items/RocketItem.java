@@ -174,7 +174,6 @@ public class RocketItem extends VehicleItem {
     @Override
     public void initializeClient(Consumer<IClientItemExtensions> consumer) {
         consumer.accept(new IClientItemExtensions() {
-
             @Override
             public BlockEntityWithoutLevelRenderer getCustomRenderer() {
                 return RocketItem.this.getRenderer();
