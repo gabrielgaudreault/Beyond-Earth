@@ -50,8 +50,7 @@ public class OrbitSky extends DimensionSpecialEffects {
     }
 
     @Override
-    public boolean renderClouds(ClientLevel level, int ticks, float partialTick, PoseStack poseStack, double camX,
-            double camY, double camZ, Matrix4f projectionMatrix) {
+    public boolean renderClouds(ClientLevel level, int ticks, float partialTick, PoseStack poseStack, double camX, double camY, double camZ, Matrix4f projectionMatrix) {
         return true;
     }
 
@@ -61,14 +60,16 @@ public class OrbitSky extends DimensionSpecialEffects {
     }
 
     @Override
-    public boolean renderSnowAndRain(ClientLevel level, int ticks, float partialTick, LightTexture lightTexture,
-            double camX, double camY, double camZ) {
+    public boolean renderSnowAndRain(ClientLevel level, int ticks, float partialTick, LightTexture lightTexture, double camX, double camY, double camZ) {
         return true;
     }
 
     @Override
-    public boolean renderSky(ClientLevel level, int ticks, float partialTick, PoseStack poseStack, Camera camera,
-            Matrix4f projectionMatrix, boolean isFoggy, Runnable setupFog) {
+    public boolean renderSky(ClientLevel level, int ticks, float partialTick, PoseStack poseStack, Camera camera, Matrix4f projectionMatrix, boolean isFoggy, Runnable setupFog) {
+        if (!ClientConfig.ORBIT_CUSTOM_SKY.get()) {
+            return false;
+        }
+
         Minecraft mc = Minecraft.getInstance();
         Vec3 cameraPos = camera.getPosition();
         double y = cameraPos.y();
@@ -103,7 +104,7 @@ public class OrbitSky extends DimensionSpecialEffects {
                 SkyHelper.drawSky(mc, matrix4f, projectionMatrix, shaderInstance);
 
                 /** STARS */
-                VertexBuffer starBuffer = StarHelper.createStars(0.1F, ClientConfig.ORBIT_FANCY_STARS_COUNT.get(), ClientConfig.ORBIT_FANCY_STARS_COUNT.get(), 190, 160, -1);
+                VertexBuffer starBuffer = StarHelper.createStars(0.1F, ClientConfig.ORBIT_FAST_STARS_COUNT.get(), ClientConfig.ORBIT_FANCY_STARS_COUNT.get(), 190, 160, -1);
 
                 matrix4f = SkyHelper.setMatrixRot(poseStack,
                         Triple.of(Axis.YP.rotationDegrees(-90), Axis.XP.rotationDegrees(dayTime), null));

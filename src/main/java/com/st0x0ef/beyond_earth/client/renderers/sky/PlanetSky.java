@@ -113,6 +113,10 @@ public class PlanetSky extends DimensionSpecialEffects {
 
     @Override
     public boolean renderSky(ClientLevel level, int ticks, float partialTick, PoseStack poseStack, Camera camera, Matrix4f projectionMatrix, boolean isFoggy, Runnable setupFog) {
+        if (!ClientConfig.PLANET_CUSTOM_SKY.get()) {
+            return false;
+        }
+
         /** DEFAULT VARIABLES */
         BufferBuilder bufferBuilder = Tesselator.getInstance().getBuilder();
         Minecraft mc = Minecraft.getInstance();
@@ -145,7 +149,7 @@ public class PlanetSky extends DimensionSpecialEffects {
         RenderSystem.defaultBlendFunc();
 
         /** STARS */
-        VertexBuffer starBuffer = StarHelper.createStars(0.1F, ClientConfig.ORBIT_FANCY_STARS_COUNT.get(), ClientConfig.ORBIT_FANCY_STARS_COUNT.get(), 190, 160, -1);
+        VertexBuffer starBuffer = StarHelper.createStars(0.1F, ClientConfig.PLANETS_FAST_STARS_COUNT.get(), ClientConfig.PLANETS_FANCY_STARS_COUNT.get(), 190, 160, -1);
 
         float rainLevel = 1.0F - mc.level.getRainLevel(partialTick);
         float starLight = mc.level.getStarBrightness(partialTick) * rainLevel;
@@ -169,8 +173,7 @@ public class PlanetSky extends DimensionSpecialEffects {
     }
 
     @Override
-    public boolean renderSnowAndRain(ClientLevel level, int ticks, float partialTick, LightTexture lightTexture,
-                                     double camX, double camY, double camZ) {
+    public boolean renderSnowAndRain(ClientLevel level, int ticks, float partialTick, LightTexture lightTexture, double camX, double camY, double camZ) {
         if (planet == null)
             return false;
 
