@@ -64,6 +64,7 @@ public class PlanetRegistry {
         MERCURY.radius = 2439.7;
         MERCURY.temperature = 430;
         MERCURY.orbitColour = new int[] { 179, 49, 44 };
+        MERCURY.hasStarsAtDay = true;
 
         VENUS = BY_DIMENSION.get(LevelRegistry.VENUS);
         VENUS.orbitRadius = 0.72f * Planets.PLANET_ORBIT_SCALE;
@@ -112,6 +113,7 @@ public class PlanetRegistry {
         PHOBOS.orbitRadius = 0.0244f * Planets.MOON_ORBIT_SCALE;
         PHOBOS.orbitColour = MARS.orbitColour;
         PHOBOS.tidalLock = true;
+        PHOBOS.hasStarsAtDay = true;
         MARS.addChild(PHOBOS);
 
         DEIMOS= BY_DIMENSION.get(LevelRegistry.DEIMOS);
@@ -123,6 +125,7 @@ public class PlanetRegistry {
         DEIMOS.orbitRadius = 0.0610f * Planets.MOON_ORBIT_SCALE;
         DEIMOS.orbitColour = MARS.orbitColour;
         DEIMOS.tidalLock = true;
+        DEIMOS.hasStarsAtDay = true;
         MARS.addChild(DEIMOS);
 
         MOON= BY_DIMENSION.get(LevelRegistry.MOON);
@@ -134,6 +137,7 @@ public class PlanetRegistry {
         MOON.orbitRadius = Planets.MOON_ORBIT_SCALE;
         MOON.orbitColour = EARTH.orbitColour;
         MOON.tidalLock = true;
+        MOON.hasStarsAtDay = true;
         MOON.phaseTexture = new ResourceLocation(BeyondEarth.MODID, "textures/environment/planet/moon_phases.png");
         EARTH.addChild(MOON);
         SOL.addChild(MERCURY);
