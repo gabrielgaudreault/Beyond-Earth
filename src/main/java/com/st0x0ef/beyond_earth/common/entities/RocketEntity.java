@@ -117,7 +117,7 @@ public class RocketEntity extends IVehicleEntity implements HasCustomInventorySc
 		itemStack.getOrCreateTag().putInt(BeyondEarth.MODID + ":fuel", this.getEntityData().get(FUEL));
 		itemStack.getOrCreateTag().putInt("fuelCapacityModifier", this.getEntityData().get(FUEL_BUCKET_NEEDED) - DEFAULT_FUEL_BUCKETS);
 		itemStack.getOrCreateTag().putInt("fuelUsageModifier", this.getEntityData().get(FUEL_USAGE) - DEFAULT_FUEL_USAGE);
-		itemStack.getOrCreateTag().putString("rocketSkinTexture", this.getEntityData().get(SKIN_TEXTURE_PATH));
+		itemStack.getOrCreateTag().putString("rocket_skin_texture", this.getEntityData().get(SKIN_TEXTURE_PATH));
 		MinecraftForge.EVENT_BUS.post(new SetRocketItemStackEvent(this, itemStack));
 
 		return itemStack;
@@ -178,6 +178,7 @@ public class RocketEntity extends IVehicleEntity implements HasCustomInventorySc
 	public void push(Entity entity) {
 
 	}
+
 	@Override
 	public void kill() {
 		this.dropEquipment();

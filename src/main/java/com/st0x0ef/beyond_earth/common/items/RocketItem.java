@@ -45,7 +45,7 @@ public class RocketItem extends VehicleItem {
     public int fuelUsageModifier = 0;
     public String rocketSkinTextureBasePath = "textures/vehicle/rocket_skin/";
     public String rocketSkinTextureName = "standard";
-    public String rocketSkinModelName = "tiny";
+    public String rocketModelName = "tiny";
     public BlockEntityWithoutLevelRenderer model = ItemRendererRegistry.TINY_ROCKET_ITEM_RENDERER;
 
     public RocketItem(Properties properties) {
@@ -58,18 +58,16 @@ public class RocketItem extends VehicleItem {
     }
 
     public EntityType<? extends RocketEntity> getEntityType() {
-        switch (rocketSkinModelName){
+        switch (rocketModelName) {
             case "big":
                 return EntityRegistry.BIG_ROCKET.get();
             case "normal":
                 return EntityRegistry.NORMAL_ROCKET.get();
             case "small":
                 return EntityRegistry.SMALL_ROCKET.get();
-            case "tiny":
+            default:
                 return EntityRegistry.TINY_ROCKET.get();
         }
-        return EntityRegistry.TINY_ROCKET.get();
-
     }
 
     public RocketEntity getRocket(Level level) {
@@ -77,7 +75,7 @@ public class RocketItem extends VehicleItem {
     }
 
     public String getRocketSkinTexturePath() {
-        return rocketSkinTextureBasePath + rocketSkinModelName + "/" + rocketSkinTextureName + ".png";
+        return rocketSkinTextureBasePath + rocketModelName + "/" + rocketSkinTextureName + ".png";
     }
 
     public int getFuelBuckets() {
@@ -165,10 +163,10 @@ public class RocketItem extends VehicleItem {
         int capacity = this.getFuelBuckets() * FluidUtils.BUCKET_SIZE;
         list.add(GaugeTextHelper.buildFuelStorageTooltip(GaugeValueHelper.getFuel(fuel, capacity), ChatFormatting.GRAY));
 
-        list.add(Component.literal("Fuel Capacity Modifier : " + fuelCapacityModifier));
-        list.add(Component.literal("Fuel Usage Modifier : " + fuelUsageModifier));
-        list.add(Component.literal("Model : " + rocketSkinModelName + " rocket"));
-        list.add(Component.literal("Skin : " + rocketSkinTextureName));
+        list.add(Component.literal("Fuel Capacity Modifier : " + this.fuelCapacityModifier));
+        list.add(Component.literal("Fuel Usage Modifier : " + this.fuelUsageModifier));
+        list.add(Component.literal("Model : " + this.rocketSkinTextureName + " rocket"));
+        list.add(Component.literal("Skin : " + this.rocketSkinTextureName));
     }
 
     @Override
@@ -189,14 +187,35 @@ public class RocketItem extends VehicleItem {
         world.playSound(null, pos, SoundEvents.STONE_BREAK, SoundSource.BLOCKS, 1,1);
     }
 
-    public void setRocketSkinTexture(String skinTexture) {
-        this.rocketSkinTextureName = skinTexture;
+    public void setRocketSkinAndModel(VehicleUpgradeItem upgradeItem) {
+        if (upgradeItem.getRocketModel() != null) {
+            this.model = upgradeItem.getRocketModel();
+        }
+
+        if (upgradeItem.getRocketModelName() != null) {
+            this.rocketModelName = upgradeItem.getRocketModelName();
+        }
+
+        if (upgradeItem.getRocketSkinTexture() != null) {
+            this.rocketSkinTextureName = upgradeItem.getRocketSkinTexture();
+        }
+
         this.getDefaultInstance().getOrCreateTag().putString("rocketSkinTexturePath", getRocketSkinTexturePath());
     }
 
-    public void setRocketModel(BlockEntityWithoutLevelRenderer model, String name) {
-        this.model = model;
-        this.rocketSkinModelName = name;
-        this.getDefaultInstance().getOrCreateTag().putString("rocketSkinTexturePath", getRocketSkinTexturePath());
+    public void setFuelCapacityModifier(VehicleUpgradeItem upgradeItem) {
+        if (upgradeItem.getFuelCapacityModifier() > 0) {
+            fuelCapacityModifier = upgradeItem.getFuelCapacityModifier();
+        }
+
+        this.getDefaultInstance().getOrCreateTag().putInt("fuelCapacityModifier", this.fuelCapacityModifier);
+    }
+
+    public void setFuelUsageModifier(VehicleUpgradeItem upgradeItem) {
+        if (upgradeItem.getFuelUsageModifier() > 0) {
+            fuelUsageModifier = upgradeItem.getFuelUsageModifier();
+        }
+
+        this.getDefaultInstance().getOrCreateTag().putInt("fuelUsageModifier", this.fuelUsageModifier);
     }
 }

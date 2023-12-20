@@ -123,4 +123,12 @@ public class RoverItem extends VehicleItem {
     public static void roverPlaceSound(BlockPos pos, Level world) {
         world.playSound(null, pos, SoundEvents.STONE_BREAK, SoundSource.BLOCKS, 1,1);
     }
+
+    public void setFuelCapacityModifier(VehicleUpgradeItem upgradeItem) {
+        if (upgradeItem.getFuelCapacityModifier() > 0) {
+            fuelCapacityModifier = upgradeItem.getFuelCapacityModifier();
+        }
+
+        this.getDefaultInstance().getOrCreateTag().putInt("fuelCapacityModifier", this.fuelCapacityModifier);
+    }
 }
