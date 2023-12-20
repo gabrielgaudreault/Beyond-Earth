@@ -21,9 +21,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class NormalRocketItemRenderer<T extends RocketEntity> extends BlockEntityWithoutLevelRenderer {
-
     /** TEXTURE */
-    public static ResourceLocation TEXTURE = new ResourceLocation(BeyondEarth.MODID, "textures/vehicle/rocket_skin/normal/standard.png");
+    public ResourceLocation TEXTURE = new ResourceLocation(BeyondEarth.MODID, "textures/vehicle/rocket_skin/normal/standard.png");
 
     /** MODEL */
     private NormalRocketModel model;

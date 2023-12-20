@@ -10,8 +10,7 @@ import com.st0x0ef.beyond_earth.common.entities.RocketEntity;
 
 @OnlyIn(Dist.CLIENT)
 public class NormalRocketRenderer extends VehicleRenderer<RocketEntity, NormalRocketModel<RocketEntity>> {
-
-    public static ResourceLocation TEXTURE = new ResourceLocation(BeyondEarth.MODID, "textures/vehicle/rocket_skin/normal/standard.png");
+    public ResourceLocation TEXTURE = new ResourceLocation(BeyondEarth.MODID, "textures/vehicle/rocket_skin/normal/standard.png");
 
     public NormalRocketRenderer(EntityRendererProvider.Context renderManagerIn) {
         super(renderManagerIn, new NormalRocketModel<>(renderManagerIn.bakeLayer(NormalRocketModel.LAYER_LOCATION)), 0.5f);

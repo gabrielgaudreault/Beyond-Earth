@@ -12,7 +12,7 @@ import javax.annotation.Nullable;
 
 public class HydrogenUtil {
 
-    public static <T> LazyOptional<T> getHydrogenCapability(Capability<T> capability, @Nullable NonNullSupplier<IHydrogenStorage> hydrogenStorage) {
+    public static <T> LazyOptional<T> getHydrogenCapability(Capability<T> capability, NonNullSupplier<IHydrogenStorage> hydrogenStorage) {
         if (capability == null) {
             return LazyOptional.empty();
         } else if (capability == HydrogenProvider.HYDROGEN) {
@@ -82,10 +82,8 @@ public class HydrogenUtil {
         return tryTransfer(sink, source, transfer);
     }
 
-    public static boolean drainSource(IItemHandlerModifiable itemHandler, int sourceItemSlot, IHydrogenStorage sink,
-            int transfer) {
+    public static boolean drainSource(IItemHandlerModifiable itemHandler, int sourceItemSlot, IHydrogenStorage sink, int transfer) {
         ItemStack sourceItemStack = itemHandler.getStackInSlot(sourceItemSlot);
-
         return drainSourceCapability(sink, sourceItemStack, transfer) > 0;
     }
 
@@ -99,13 +97,10 @@ public class HydrogenUtil {
 
         if (sink != null && source != null && transfer > 0) {
             int extractableAmount = source.extractHydrogen(transfer, true);
-
             if (extractableAmount > 0) {
                 int receivableAmount = sink.receiveHydrogen(extractableAmount, true);
-
                 if (receivableAmount > 0) {
                     int extracted = source.extractHydrogen(receivableAmount, false);
-
                     if (extracted > 0) {
                         received = sink.receiveHydrogen(extracted, false);
                     }

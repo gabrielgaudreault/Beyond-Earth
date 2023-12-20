@@ -10,8 +10,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class BigRocketRenderer extends VehicleRenderer<RocketEntity, BigRocketModel<RocketEntity>> {
-
-    public static ResourceLocation TEXTURE = new ResourceLocation(BeyondEarth.MODID, "textures/vehicle/rocket_skin/big/standard.png");
+    public ResourceLocation TEXTURE = new ResourceLocation(BeyondEarth.MODID, "textures/vehicle/rocket_skin/big/standard.png");
 
     public BigRocketRenderer(EntityRendererProvider.Context renderManagerIn) {
         super(renderManagerIn, new BigRocketModel<>(renderManagerIn.bakeLayer(BigRocketModel.LAYER_LOCATION)), 0.5f);
