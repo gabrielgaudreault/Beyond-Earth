@@ -159,6 +159,13 @@ public class PlanetSky extends DimensionSpecialEffects {
             RenderSystem.setShaderColor(starLight + 0.5F, starLight + 0.5F, starLight + 0.5F, starLight + 0.5F);
             SkyHelper.drawStars(starBuffer, matrix4f, projectionMatrix, GameRenderer.getPositionColorShader(),
                     setupFog, true);
+        } else if(planet.hasStarsAtDay){
+            matrix4f = SkyHelper.setMatrixRot(poseStack,
+                    Triple.of(Axis.YP.rotationDegrees(-90), Axis.XP.rotationDegrees(dayAngle), null));
+            RenderSystem.setShaderColor(starLight + 0.5F, starLight + 0.5F, starLight + 0.5F, starLight + 0.5F);
+            SkyHelper.drawStars(starBuffer, matrix4f, projectionMatrix, GameRenderer.getPositionColorShader(),
+                    setupFog, true);
+
         }
 
         /** PLANETS */

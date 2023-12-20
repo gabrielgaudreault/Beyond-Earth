@@ -68,6 +68,7 @@ public class PlanetData {
         boolean has_clouds = false;
         boolean space_level = true;
         boolean has_dust_storms = false;
+        boolean has_stars_at_day = false;
 
         // Options for Rotation in the gui
         float rotation = 0;
@@ -106,7 +107,7 @@ public class PlanetData {
             this.tidal_lock = planet.tidalLock;
             this.air_density = planet.airDensity;
             this.radius = planet.radius;
-
+            this.has_stars_at_day = planet.hasStarsAtDay;
             this.orbit_colour = planet.orbitColour;
             this.sunriseColour = planet.sunriseColour;
 
@@ -157,6 +158,8 @@ public class PlanetData {
             planet.hasOxygen = this.has_oxygen;
             planet.hasRain = this.has_rain;
             planet.spaceLevel = this.space_level;
+            planet.hasStarsAtDay = this.has_stars_at_day;
+
             planet.distanceFromEarth = this.distanceFromEarth;
             planet.orbitColour = this.orbit_colour;
 

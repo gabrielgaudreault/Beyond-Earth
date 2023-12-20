@@ -229,6 +229,7 @@ public class Planets {
         public boolean hasClouds = false;
         public boolean spaceLevel = true;
         public boolean hasDustStorms = false;
+        public boolean hasStarsAtDay = false;
 
         // Gui related things
         public ResourceLocation planetBar;
