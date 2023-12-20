@@ -12,7 +12,7 @@ import javax.annotation.Nullable;
 
 public class OxygenUtil {
 
-    public static <T> LazyOptional<T> getOxygenCapability(Capability<T> capability, @Nullable NonNullSupplier<IOxygenStorage> oxygenStorage) {
+    public static <T> LazyOptional<T> getOxygenCapability(Capability<T> capability, NonNullSupplier<IOxygenStorage> oxygenStorage) {
         if (capability == null) {
             return LazyOptional.empty();
         } else if (capability == OxygenProvider.OXYGEN) {
@@ -28,9 +28,7 @@ public class OxygenUtil {
         IOxygenStorage oxygenStorage = itemStack.getCapability(OxygenProvider.OXYGEN).orElse(null);
 
         if (MekanismCompat.LOADED) {
-            IOxygenStorage adapter = MekanismHelper.getItemStackOxygenAdapter(itemStack);
-
-            return adapter;
+            return MekanismHelper.getItemStackOxygenAdapter(itemStack);
         }
 
         return oxygenStorage;
@@ -92,10 +90,8 @@ public class OxygenUtil {
         return tryTransfer(sink, source, transfer);
     }
 
-    public static boolean drainSource(IItemHandlerModifiable itemHandler, int sourceItemSlot, IOxygenStorage sink,
-            int transfer) {
+    public static boolean drainSource(IItemHandlerModifiable itemHandler, int sourceItemSlot, IOxygenStorage sink, int transfer) {
         ItemStack sourceItemStack = itemHandler.getStackInSlot(sourceItemSlot);
-
         return drainSourceCapability(sink, sourceItemStack, transfer) > 0;
     }
 
@@ -109,13 +105,10 @@ public class OxygenUtil {
 
         if (sink != null && source != null && transfer > 0) {
             int extractableAmount = source.extractOxygen(transfer, true);
-
             if (extractableAmount > 0) {
                 int receivableAmount = sink.receiveOxygen(extractableAmount, true);
-
                 if (receivableAmount > 0) {
                     int extracted = source.extractOxygen(receivableAmount, false);
-
                     if (extracted > 0) {
                         received = sink.receiveOxygen(extracted, false);
                     }
