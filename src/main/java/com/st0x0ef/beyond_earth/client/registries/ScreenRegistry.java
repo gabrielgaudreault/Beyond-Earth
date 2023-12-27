@@ -28,6 +28,7 @@ public class ScreenRegistry {
         MenuScreens.register(ContainerRegistry.WATER_PUMP_GUI.get(), WaterPumpScreen::new);
         MenuScreens.register(ContainerRegistry.OXYGEN_BUBBLE_DISTRIBUTOR_GUI.get(), OxygenDistributorScreen::new);
         MenuScreens.register(ContainerRegistry.VEHICLE_UPGRADER_GUI.get(), VehicleUpgraderScreen::new);
+        MenuScreens.register(ContainerRegistry.OXYGEN_LOADER_GUI.get(), OxygenLoaderScreen::new);
 
         MenuScreens.register(ContainerRegistry.PLANET_SELECTION_GUI.get(), PlanetSelectionScreen::new);
         MenuScreens.register(ContainerRegistry.ERROR_GUI.get(), ErrorScreen::new);

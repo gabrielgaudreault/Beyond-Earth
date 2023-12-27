@@ -26,6 +26,7 @@ public class ContainerRegistry {
     public static final RegistryObject<MenuType<WaterPumpMenu.GuiContainer>> WATER_PUMP_GUI = CONTAINERS.register("water_pump_gui", () -> new MenuType<>(new WaterPumpMenu.GuiContainerFactory(), null));
     public static final RegistryObject<MenuType<OxygenBubbleDistributorMenu.GuiContainer>> OXYGEN_BUBBLE_DISTRIBUTOR_GUI = CONTAINERS.register("oxygen_bubble_distributor_gui", () -> new MenuType<>(new OxygenBubbleDistributorMenu.GuiContainerFactory(), null));
     public static final RegistryObject<MenuType<VehicleUpgraderMenu.GuiContainer>> VEHICLE_UPGRADER_GUI = CONTAINERS.register("vehcile_upgrader_gui", () -> new MenuType<>(new VehicleUpgraderMenu.GuiContainerFactory(), null));
+    public static final RegistryObject<MenuType<OxygenLoaderMenu.GuiContainer>> OXYGEN_LOADER_GUI = CONTAINERS.register("oxygen_loader_gui", () -> new MenuType<>(new OxygenLoaderMenu.GuiContainerFactory(), null));
 
     public static final RegistryObject<MenuType<LanderMenu.GuiContainer>> LANDER_GUI = CONTAINERS.register("lander_gui", () -> new MenuType<>(new LanderMenu.GuiContainerFactory(), null));
     public static final RegistryObject<MenuType<RoverMenu.GuiContainer>> ROVER_GUI = CONTAINERS.register("rover_gui", () -> new MenuType<>(new RoverMenu.GuiContainerFactory(), null));
