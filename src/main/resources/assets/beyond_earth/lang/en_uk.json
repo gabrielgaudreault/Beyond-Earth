@@ -43,6 +43,7 @@
   "item.beyond_earth.raw_desh_block": "Raw Desh Block",
   "item.beyond_earth.raw_ostrum_block": "Raw Ostrum Block",
   "item.beyond_earth.ice_shard": "Ice Shard",
+  "item.beyond_earth.space_balise": "Space Balise",
 
   "item.beyond_earth.rocket": "Rocket",
 
@@ -76,6 +77,17 @@
   "item.beyond_earth.hydrogen_motor_upgrade": "Hydrogen Motor Upgrade",
   "item.beyond_earth.uranium_motor_upgrade": "Uranium Motor Upgrade",
 
+  "item.beyond_earth.standard_skin_modifier": "Standard Skin Modifier",
+  "item.beyond_earth.frozy_skin_modifier": "Frozy Skin Modifier",
+  "item.beyond_earth.galaxy_skin_modifier": "Galaxy Skin Modifier",
+  "item.beyond_earth.military_skin_modifier": "Military Skin Modifier",
+  "item.beyond_earth.rusty_skin_modifier": "Rusty Skin Modifier",
+
+  "item.beyond_earth.tiny_model_modifier": "Tiny Model Modifier",
+  "item.beyond_earth.small_model_modifier": "Small Model Modifier",
+  "item.beyond_earth.normal_model_modifier": "Normal Model Modifier",
+  "item.beyond_earth.big_model_modifier": "Big Model Modifier",
+
   "itemGroup.tab_normal": "Beyond Earth",
   "itemGroup.tab_flags": "Beyond Earth: Flags",
   "itemGroup.tab_globes": "Beyond Earth: Globes",
@@ -84,6 +96,7 @@
   "itemGroup.tab_machines": "Beyond Earth: Machines",
   "itemGroup.tab_spawn_eggs": "Beyond Earth: Spawn Eggs",
   "itemGroup.tab_materials": "Beyond Earth: Materials",
+  "itemGroup.tab_rocket_modifier": "Beyond Earth: Rocket Upgrade/Modifier",
 
   "block.beyond_earth.coal_lantern": "Coal Lantern",
   "block.beyond_earth.oxygen_bubble_distributor": "Oxygen Bubble Distributor",
@@ -152,7 +165,8 @@
   "block.beyond_earth.infernal_spire": "Infernal Spire",
   "block.beyond_earth.barricade_block": "Barricade Block",
   "block.beyond_earth.meteorite": "Meteorite",
-  "block.beyond_earth.rocket_upgrader": "§5Rocket Upgrader",
+  "block.beyond_earth.vehicle_upgrader": "§5Vehicle Upgrader",
+  "block.beyond_earth.oxygen_loader": "Oxygen Loader",
 
   "block.beyond_earth.moon_stone_brick_slab": "Moon Stone Brick Slab",
   "block.beyond_earth.moon_stone_bricks": "Moon Stone Bricks",
@@ -182,8 +196,10 @@
   "block.beyond_earth.venus_calorite_ore": "Venus Calorite Ore",
   "block.beyond_earth.calorite_block": "Block of Calorite",
   "block.beyond_earth.raw_calorite_block": "Raw Calorite Block",
-  
+
   "block.beyond_earth.permafrost": "Permafrost",
+  "block.beyond_earth.permafrost_grass": "Permafrost Grass",
+  "block.beyond_earth.permafrost_dirt": "Permafrost Dirt",
   "block.beyond_earth.glacio_stone": "Glacio Stone",
   "block.beyond_earth.glacio_stone_bricks": "Glacio Stone Bricks",
   "block.beyond_earth.cracked_glacio_stone_bricks": "Cracked Glacio Stone Bricks",
@@ -193,6 +209,15 @@
   "block.beyond_earth.glacio_copper_ore": "Glacio Copper Ore",
   "block.beyond_earth.glacio_iron_ore": "Glacio Iron Ore",
   "block.beyond_earth.glacio_lapis_ore": "Glacio Lapis Lazuli Ore",
+  "block.beyond_earth.glacio_tree_sapling": "Glacio Tree Sapling",
+  "block.beyond_earth.glacio_wood_planks": "Glacio Wood Planks",
+  "block.beyond_earth.glacio_wood": "Glacio Wood",
+  "block.beyond_earth.glacio_wood_log": "Glacio Wood Log",
+  "block.beyond_earth.glacio_tree_leaves": "Glacio Tree Leaves",
+  "block.beyond_earth.glacio_wood_door": "Glacio Wood Door",
+  "block.beyond_earth.glacio_wood_trapdoor": "Glacio Wood trapdoor",
+  "block.beyond_earth.glacio_wood_stairs": "Glacio Wood Stairs",
+  "block.beyond_earth.glacio_wood_slab": "Glacio Wood Slab",
 
   "block.beyond_earth.earth_globe": "Earth Globe",
   "block.beyond_earth.moon_globe": "Moon Globe",
@@ -248,7 +273,7 @@
   "key.beyond_earth.rocket_start": "Rocket Start",
   "key.beyond_earth.switch_jet_suit_mode": "Switch Jet Suit Mode",
 
-  "death.attack.oxygen": "%1$s couldn\u0027t breathe anymore",
+  "death.attack.oxygen": "%1$s couldn't breathe anymore",
   "death.attack.venus.acid": "%1$s was a sacrifice to the acid",
   "death.attack.radiations": "%1$s try to it uranium",
 
@@ -278,6 +303,7 @@
   "fluid.beyond_earth.molten_calorite": "Molten Calorite",
   "fluid.beyond_earth.flowing_molten_calorite": "Flowing Molten Calorite",
   "item.beyond_earth.molten_calorite_bucket": "Molten Calorite Bucket",
+  "item.betond_earth.hydrogen_bucket": "Hydrogen Bucket",
 
   "container.beyond_earth.coal_generator": "Coal Generator",
   "container.beyond_earth.compressor": "Compressor",
@@ -301,7 +327,11 @@
   "message.beyond_earth.no_fuel": "§cNO FUEL! §7Fill the Rocket with §cFuel§7. (§6Sneak and Right Click§7)",
   "message.beyond_earth.hold_key": "§7Hold Key",
   "message.beyond_earth.speed": "%s Speed",
-  
+  "message.beyond_earth.space_balise.no_launch_pad": "You haven't setup any launch pad coord ",
+  "message.beyond_earth.space_balise.right_click": "Right click on a launch pad with this item in your hand to setup it",
+  "message.beyond_earth.space_balise.launch_pad_coordinates": "Launch pad found at X=%s, Y=%s, Z=%s in dimension %s",
+  "message.beyond_earth.error.space_station": "A Space Station already exist here",
+
 
   "gui.beyond_earth.oxygen_bubble_distributor.workingarea.text": "Working Area: %1$sx%2$sx%3$s",
   "gui.beyond_earth.oxygen_bubble_distributor.workingarea.show": "Show",
@@ -353,6 +383,7 @@
   "general.beyond_earth.fluid": "Fluid",
   "general.beyond_earth.fuel": "Fuel",
   "general.beyond_earth.oxygen": "Oxygen",
+  "general.beyond_earth.hydrogen": "Hydrogen",
   "general.beyond_earth.burntime": "Burn Time",
   "general.beyond_earth.cooktime": "Cook Time",
   "general.beyond_earth.oxygenloading": "Loading",
@@ -361,7 +392,8 @@
   "general.beyond_earth.jet_suit_normal_mode": "Normal",
   "general.beyond_earth.jet_suit_hover_mode": "Hover",
   "general.beyond_earth.jet_suit_elytra_mode": "Elytra",
-  
+
   "config.jade.plugin_beyond_earth.entity": "Entity",
-  "config.jade.plugin_beyond_earth.block": "Block"
+  "config.jade.plugin_beyond_earth.block": "Block",
+  "block.beyond_earth.rocket_upgrader": "§5Rocket Upgrader"
 }
