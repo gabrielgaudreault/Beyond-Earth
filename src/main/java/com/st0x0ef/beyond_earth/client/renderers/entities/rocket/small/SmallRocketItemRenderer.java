@@ -19,7 +19,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-
 @OnlyIn(Dist.CLIENT)
 public class SmallRocketItemRenderer<T extends RocketEntity> extends BlockEntityWithoutLevelRenderer {
     /** TEXTURE */

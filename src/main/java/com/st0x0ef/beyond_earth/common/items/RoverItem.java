@@ -123,7 +123,7 @@ public class RoverItem extends VehicleItem {
         world.playSound(null, pos, SoundEvents.STONE_BREAK, SoundSource.BLOCKS, 1,1);
     }
 
-    public void setFuelCapacityModifier(VehicleUpgradeItem upgradeItem) {
+    public void setUpgrade(VehicleUpgradeItem upgradeItem) {
         if (upgradeItem.getFuelCapacityModifier() > 0) {
             fuelCapacityModifier = upgradeItem.getFuelCapacityModifier();
         }

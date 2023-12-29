@@ -66,23 +66,23 @@ public class ItemsRegistry {
     /** ROCKET MODIFIER */
 
     // Rocket upgrade
-    public static final RegistryObject<Item> BASIC_FUEL_UPGRADE = ITEMS.register("basic_fuel_upgrade", () -> new VehicleUpgradeItem(new Item.Properties(), 1, 0, null, null, null));
-    public static final RegistryObject<Item> ADVANCED_FUEL_UPGRADE = ITEMS.register("advanced_fuel_upgrade", () -> new VehicleUpgradeItem(new Item.Properties(), 3, 0, null, null, null));
-    public static final RegistryObject<Item> HYDROGEN_MOTOR_UPGRADE = ITEMS.register("hydrogen_motor_upgrade", () -> new VehicleUpgradeItem(new Item.Properties(), 0, 10000000, null, null, null));
-    public static final RegistryObject<Item> URANIUM_MOTOR_UPGRADE = ITEMS.register("uranium_motor_upgrade", () -> new VehicleUpgradeItem(new Item.Properties(), 0, 1000000000, null, null, null));
+    public static final RegistryObject<Item> BASIC_FUEL_UPGRADE = ITEMS.register("basic_fuel_upgrade", () -> new VehicleUpgradeItem(new Item.Properties(), 1, 0, null, null));
+    public static final RegistryObject<Item> ADVANCED_FUEL_UPGRADE = ITEMS.register("advanced_fuel_upgrade", () -> new VehicleUpgradeItem(new Item.Properties(), 3, 0, null, null));
+    public static final RegistryObject<Item> HYDROGEN_MOTOR_UPGRADE = ITEMS.register("hydrogen_motor_upgrade", () -> new VehicleUpgradeItem(new Item.Properties(), 0, 10000000, null, null));
+    public static final RegistryObject<Item> URANIUM_MOTOR_UPGRADE = ITEMS.register("uranium_motor_upgrade", () -> new VehicleUpgradeItem(new Item.Properties(), 0, 1000000000, null, null));
 
     // Rocket Skin
-    public static final RegistryObject<Item> STANDARD_SKIN_MODIFIER = ITEMS.register("standard_skin_modifier", () -> new VehicleUpgradeItem(new Item.Properties(), 0, 0, "standart", null, null));
-    public static final RegistryObject<Item> FROZY_SKIN_MODIFIER = ITEMS.register("frozy_skin_modifier", () -> new VehicleUpgradeItem(new Item.Properties(), 0, 0, "frozy", null, null));
-    public static final RegistryObject<Item> GALAXY_SKIN_MODIFIER = ITEMS.register("galaxy_skin_modifier", () -> new VehicleUpgradeItem(new Item.Properties(), 0, 0, "galaxy", null, null));
-    public static final RegistryObject<Item> MILITARY_SKIN_MODIFIER = ITEMS.register("military_skin_modifier", () -> new VehicleUpgradeItem(new Item.Properties(), 0, 0, "military", null, null));
-    public static final RegistryObject<Item> RUSTY_SKIN_MODIFIER = ITEMS.register("rusty_skin_modifier", () -> new VehicleUpgradeItem(new Item.Properties(), 0, 0, "rusty", null, null));
+    public static final RegistryObject<Item> STANDARD_SKIN_MODIFIER = ITEMS.register("standard_skin_modifier", () -> new VehicleUpgradeItem(new Item.Properties(), 0, 0, "standart", null));
+    public static final RegistryObject<Item> FROZY_SKIN_MODIFIER = ITEMS.register("frozy_skin_modifier", () -> new VehicleUpgradeItem(new Item.Properties(), 0, 0, "frozy", null));
+    public static final RegistryObject<Item> GALAXY_SKIN_MODIFIER = ITEMS.register("galaxy_skin_modifier", () -> new VehicleUpgradeItem(new Item.Properties(), 0, 0, "galaxy", null));
+    public static final RegistryObject<Item> MILITARY_SKIN_MODIFIER = ITEMS.register("military_skin_modifier", () -> new VehicleUpgradeItem(new Item.Properties(), 0, 0, "military", null));
+    public static final RegistryObject<Item> RUSTY_SKIN_MODIFIER = ITEMS.register("rusty_skin_modifier", () -> new VehicleUpgradeItem(new Item.Properties(), 0, 0, "rusty", null));
 
     // Rocket Model
-    public static final RegistryObject<Item> TINY_MODEL_MODIFIER = ITEMS.register("tiny_model_modifier", () -> new VehicleUpgradeItem(new Item.Properties(), 0, 0, null, "tiny", ItemRendererRegistry.TINY_ROCKET_ITEM_RENDERER));
-    public static final RegistryObject<Item> SMALL_MODEL_MODIFIER = ITEMS.register("small_model_modifier", () -> new VehicleUpgradeItem(new Item.Properties(), 0, 0, null, "small", ItemRendererRegistry.SMALL_ROCKET_ITEM_RENDERER));
-    public static final RegistryObject<Item> NORMAL_MODEL_MODIFIER = ITEMS.register("normal_model_modifier", () -> new VehicleUpgradeItem(new Item.Properties(), 0, 0, null, "normal", ItemRendererRegistry.NORMAL_ROCKET_ITEM_RENDERER));
-    public static final RegistryObject<Item> BIG_MODEL_MODIFIER = ITEMS.register("big_model_modifier", () -> new VehicleUpgradeItem(new Item.Properties(), 0, 0, null, "big", ItemRendererRegistry.BIG_ROCKET_ITEM_RENDERER));
+    public static final RegistryObject<Item> TINY_MODEL_MODIFIER = ITEMS.register("tiny_model_modifier", () -> new VehicleUpgradeItem(new Item.Properties(), 0, 0, null, "tiny"));
+    public static final RegistryObject<Item> SMALL_MODEL_MODIFIER = ITEMS.register("small_model_modifier", () -> new VehicleUpgradeItem(new Item.Properties(), 0, 0, null, "small"));
+    public static final RegistryObject<Item> NORMAL_MODEL_MODIFIER = ITEMS.register("normal_model_modifier", () -> new VehicleUpgradeItem(new Item.Properties(), 0, 0, null, "normal"));
+    public static final RegistryObject<Item> BIG_MODEL_MODIFIER = ITEMS.register("big_model_modifier", () -> new VehicleUpgradeItem(new Item.Properties(), 0, 0, null, "big"));
 
 
     /** NORMAL ITEMS */

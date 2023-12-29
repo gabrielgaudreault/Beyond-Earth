@@ -46,7 +46,6 @@ public class RocketItem extends VehicleItem {
     public String rocketSkinTextureBasePath = "textures/vehicle/rocket_skin/";
     public String rocketSkinTextureName = "standard";
     public String rocketModelName = "tiny";
-    public BlockEntityWithoutLevelRenderer model;
 
     public RocketItem(Properties properties) {
         super(properties);
@@ -54,14 +53,19 @@ public class RocketItem extends VehicleItem {
 
     @OnlyIn(Dist.CLIENT)
     public BlockEntityWithoutLevelRenderer getRenderer() {
-        return model;
+        return switch (rocketModelName) {
+            case "small" -> ItemRendererRegistry.SMALL_ROCKET_ITEM_RENDERER;
+            case "normal" -> ItemRendererRegistry.NORMAL_ROCKET_ITEM_RENDERER;
+            case "big" -> ItemRendererRegistry.BIG_ROCKET_ITEM_RENDERER;
+            default -> ItemRendererRegistry.TINY_ROCKET_ITEM_RENDERER;
+        };
     }
 
     public EntityType<? extends RocketEntity> getEntityType() {
         return switch (rocketModelName) {
-            case "big" -> EntityRegistry.BIG_ROCKET.get();
-            case "normal" -> EntityRegistry.NORMAL_ROCKET.get();
             case "small" -> EntityRegistry.SMALL_ROCKET.get();
+            case "normal" -> EntityRegistry.NORMAL_ROCKET.get();
+            case "big" -> EntityRegistry.BIG_ROCKET.get();
             default -> EntityRegistry.TINY_ROCKET.get();
         };
     }
@@ -161,7 +165,7 @@ public class RocketItem extends VehicleItem {
 
         list.add(Component.literal("Fuel Capacity Modifier : " + this.fuelCapacityModifier));
         list.add(Component.literal("Fuel Usage Modifier : " + this.fuelUsageModifier));
-        list.add(Component.literal("Model : " + this.rocketSkinTextureName + " rocket"));
+        list.add(Component.literal("Model : " + this.rocketModelName + " rocket"));
         list.add(Component.literal("Skin : " + this.rocketSkinTextureName));
     }
 
@@ -183,35 +187,25 @@ public class RocketItem extends VehicleItem {
         world.playSound(null, pos, SoundEvents.STONE_BREAK, SoundSource.BLOCKS, 1,1);
     }
 
-    public void setRocketSkinAndModel(VehicleUpgradeItem upgradeItem) {
-        if (upgradeItem.getRocketModel() != null) {
-            this.model = upgradeItem.getRocketModel();
-        }
-
-        if (upgradeItem.getRocketModelName() != null) {
+    public void setUpgrade(VehicleUpgradeItem upgradeItem) {
+        if (!upgradeItem.getRocketModelName().isEmpty()) {
             this.rocketModelName = upgradeItem.getRocketModelName();
         }
 
-        if (upgradeItem.getRocketSkinTexture() != null) {
+        if (!upgradeItem.getRocketSkinTexture().isEmpty()) {
             this.rocketSkinTextureName = upgradeItem.getRocketSkinTexture();
         }
 
-        this.getDefaultInstance().getOrCreateTag().putString("rocketSkinTexturePath", getRocketSkinTexturePath());
-    }
-
-    public void setFuelCapacityModifier(VehicleUpgradeItem upgradeItem) {
         if (upgradeItem.getFuelCapacityModifier() > 0) {
             fuelCapacityModifier = upgradeItem.getFuelCapacityModifier();
         }
 
-        this.getDefaultInstance().getOrCreateTag().putInt("fuelCapacityModifier", this.fuelCapacityModifier);
-    }
-
-    public void setFuelUsageModifier(VehicleUpgradeItem upgradeItem) {
         if (upgradeItem.getFuelUsageModifier() > 0) {
             fuelUsageModifier = upgradeItem.getFuelUsageModifier();
         }
 
+        this.getDefaultInstance().getOrCreateTag().putString("rocketSkinTexturePath", getRocketSkinTexturePath());
+        this.getDefaultInstance().getOrCreateTag().putInt("fuelCapacityModifier", this.fuelCapacityModifier);
         this.getDefaultInstance().getOrCreateTag().putInt("fuelUsageModifier", this.fuelUsageModifier);
     }
 }

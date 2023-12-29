@@ -46,6 +46,7 @@ public class NormalRocketItemRenderer<T extends RocketEntity> extends BlockEntit
         if(pStack.getItem() instanceof RocketItem item) {
             TEXTURE = new ResourceLocation(BeyondEarth.MODID, item.getRocketSkinTexturePath());
         }
+
         vertexBuilder = buffer.getBuffer(RenderType.entityCutoutNoCullZOffset(TEXTURE));
 
         if (this.model == null) {

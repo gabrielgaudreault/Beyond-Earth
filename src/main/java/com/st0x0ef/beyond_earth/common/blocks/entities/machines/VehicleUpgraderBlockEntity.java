@@ -62,14 +62,14 @@ public class VehicleUpgraderBlockEntity extends AbstractMachineBlockEntity {
                 ItemStack output = vehicle_input.copy();
 
                 if (output.getItem() instanceof RocketItem rocket) {
-                    rocket.setRocketSkinAndModel(upgrade);
-                    rocket.setFuelCapacityModifier(upgrade);
-                    rocket.setFuelUsageModifier(upgrade);
+                    rocket.setUpgrade(upgrade);
                 }
 
                 else if (output.getItem() instanceof RoverItem rover) {
-                    rover.setFuelCapacityModifier(upgrade);
+                    rover.setUpgrade(upgrade);
                 }
+
+                output.setCount(1);
 
                 this.removeItem(getSlotUpgradeInput(), 1);
                 this.removeItem(getSlotVehicleInput(), 1);
