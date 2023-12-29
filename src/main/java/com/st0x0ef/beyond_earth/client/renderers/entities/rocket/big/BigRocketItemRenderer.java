@@ -25,7 +25,7 @@ public class BigRocketItemRenderer<T extends RocketEntity> extends BlockEntityWi
     public ResourceLocation TEXTURE = new ResourceLocation(BeyondEarth.MODID, "textures/vehicle/rocket_skin/big/standard.png");
 
     /** MODEL */
-    private BigRocketModel model;
+    private BigRocketModel<?> model;
 
     public BigRocketItemRenderer(BlockEntityRenderDispatcher p_172550_, EntityModelSet p_172551_) {
         super(p_172550_, p_172551_);
@@ -50,7 +50,7 @@ public class BigRocketItemRenderer<T extends RocketEntity> extends BlockEntityWi
         vertexBuilder = buffer.getBuffer(RenderType.entityCutoutNoCullZOffset(TEXTURE));
 
         if (this.model == null) {
-            this.model = new BigRocketModel(mc.getEntityModels().bakeLayer(BigRocketModel.LAYER_LOCATION));
+            this.model = new BigRocketModel<>(mc.getEntityModels().bakeLayer(BigRocketModel.LAYER_LOCATION));
         }
 
         this.model.renderToBuffer(matrixStackIn, vertexBuilder, combinedLight, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
@@ -58,7 +58,7 @@ public class BigRocketItemRenderer<T extends RocketEntity> extends BlockEntityWi
         matrixStackIn.popPose();
     }
 
-    public BigRocketModel getModel() {
+    public BigRocketModel<?> getModel() {
         return model;
     }
 }

@@ -25,7 +25,7 @@ public class TinyRocketItemRenderer<T extends RocketEntity> extends BlockEntityW
     public ResourceLocation TEXTURE = new ResourceLocation(BeyondEarth.MODID, "textures/vehicle/rocket_skin/tiny/standard.png");
 
     /** MODEL */
-    private TinyRocketModel model;
+    private TinyRocketModel<?> model;
 
     public TinyRocketItemRenderer(BlockEntityRenderDispatcher p_172550_, EntityModelSet p_172551_) {
         super(p_172550_, p_172551_);
@@ -49,7 +49,7 @@ public class TinyRocketItemRenderer<T extends RocketEntity> extends BlockEntityW
         vertexBuilder = buffer.getBuffer(RenderType.entityCutoutNoCullZOffset(TEXTURE));
 
         if (this.model == null) {
-            this.model = new TinyRocketModel(mc.getEntityModels().bakeLayer(TinyRocketModel.LAYER_LOCATION));
+            this.model = new TinyRocketModel<>(mc.getEntityModels().bakeLayer(TinyRocketModel.LAYER_LOCATION));
         }
 
         this.model.renderToBuffer(matrixStackIn, vertexBuilder, combinedLight, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
@@ -57,7 +57,7 @@ public class TinyRocketItemRenderer<T extends RocketEntity> extends BlockEntityW
         matrixStackIn.popPose();
     }
 
-    public TinyRocketModel getModel() {
+    public TinyRocketModel<?> getModel() {
         return model;
     }
 }

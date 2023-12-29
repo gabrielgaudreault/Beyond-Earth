@@ -46,7 +46,7 @@ public class RocketItem extends VehicleItem {
     public String rocketSkinTextureBasePath = "textures/vehicle/rocket_skin/";
     public String rocketSkinTextureName = "standard";
     public String rocketModelName = "tiny";
-    public BlockEntityWithoutLevelRenderer model = ItemRendererRegistry.TINY_ROCKET_ITEM_RENDERER;
+    public BlockEntityWithoutLevelRenderer model;
 
     public RocketItem(Properties properties) {
         super(properties);
@@ -58,16 +58,12 @@ public class RocketItem extends VehicleItem {
     }
 
     public EntityType<? extends RocketEntity> getEntityType() {
-        switch (rocketModelName) {
-            case "big":
-                return EntityRegistry.BIG_ROCKET.get();
-            case "normal":
-                return EntityRegistry.NORMAL_ROCKET.get();
-            case "small":
-                return EntityRegistry.SMALL_ROCKET.get();
-            default:
-                return EntityRegistry.TINY_ROCKET.get();
-        }
+        return switch (rocketModelName) {
+            case "big" -> EntityRegistry.BIG_ROCKET.get();
+            case "normal" -> EntityRegistry.NORMAL_ROCKET.get();
+            case "small" -> EntityRegistry.SMALL_ROCKET.get();
+            default -> EntityRegistry.TINY_ROCKET.get();
+        };
     }
 
     public RocketEntity getRocket(Level level) {
