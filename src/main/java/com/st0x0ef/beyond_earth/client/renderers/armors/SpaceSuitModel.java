@@ -78,7 +78,7 @@ public class SpaceSuitModel {
 
         @Override
         public void renderToBuffer(PoseStack poseStack, VertexConsumer buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
-            HumanoidModel livingModel = (HumanoidModel<LivingEntity>) ((LivingEntityRenderer) Minecraft.getInstance().getEntityRenderDispatcher().getRenderer(this.getEntity())).getModel();
+            HumanoidModel<LivingEntity> livingModel = (HumanoidModel<LivingEntity>) ((LivingEntityRenderer) Minecraft.getInstance().getEntityRenderDispatcher().getRenderer(this.getEntity())).getModel();
 
             this.attackTime = livingModel.attackTime;
             this.riding = livingModel.riding;
@@ -145,7 +145,7 @@ public class SpaceSuitModel {
 
         @Override
         public void renderToBuffer(PoseStack poseStack, VertexConsumer buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
-            HumanoidModel livingModel = (HumanoidModel<LivingEntity>) ((LivingEntityRenderer) Minecraft.getInstance().getEntityRenderDispatcher().getRenderer(this.getEntity())).getModel();
+            HumanoidModel<LivingEntity> livingModel = (HumanoidModel<LivingEntity>) ((LivingEntityRenderer) Minecraft.getInstance().getEntityRenderDispatcher().getRenderer(this.getEntity())).getModel();
 
             this.attackTime = livingModel.attackTime;
             this.riding = livingModel.riding;

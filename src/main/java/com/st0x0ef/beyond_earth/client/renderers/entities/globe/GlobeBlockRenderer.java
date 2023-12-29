@@ -44,7 +44,7 @@ public class GlobeBlockRenderer<T extends GlobeTileEntity> implements BlockEntit
         matrixStackIn.mulPose(Axis.YP.rotationDegrees(direction.toYRot()));
 
         if (this.model == null) {
-            this.model = new GlobeModel(mc.getEntityModels().bakeLayer(GlobeModel.LAYER_LOCATION));
+            this.model = new GlobeModel<>(mc.getEntityModels().bakeLayer(GlobeModel.LAYER_LOCATION));
         }
 
         /** Animation */

@@ -45,10 +45,7 @@ public final class IngredientStack {
 
 	public ItemStack[] getItems() {
 		int count = this.getCount();
-		return Arrays.stream(this.getIngredient().getItems()).map(is -> {
-			is.setCount(count);
-			return is;
-		}).toArray(ItemStack[]::new);
+		return Arrays.stream(this.getIngredient().getItems()).peek(is -> is.setCount(count)).toArray(ItemStack[]::new);
 	}
 
 	public boolean testWithoutCount(ItemStack itemStack) {

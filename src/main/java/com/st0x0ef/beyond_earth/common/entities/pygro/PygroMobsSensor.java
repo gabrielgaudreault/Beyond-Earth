@@ -51,33 +51,28 @@ public class PygroMobsSensor extends Sensor<LivingEntity> {
             return true;
         })) {
             if (livingentity instanceof Hoglin hoglinentity) {
-                if (hoglinentity.isBaby() && !optional2.isPresent()) {
+                if (hoglinentity.isBaby() && optional2.isEmpty()) {
                     optional2 = Optional.of(hoglinentity);
                 } else if (hoglinentity.isAdult()) {
                     ++i;
-                    if (!optional1.isPresent() && hoglinentity.canBeHunted()) {
+                    if (optional1.isEmpty() && hoglinentity.canBeHunted()) {
                         optional1 = Optional.of(hoglinentity);
                     }
                 }
             } else if (livingentity instanceof PiglinBrute) {
                 list.add((PiglinBrute)livingentity);
             } else if (livingentity instanceof Piglin piglinentity) {
-                if (piglinentity.isBaby() && !optional3.isPresent()) {
+                if (piglinentity.isBaby() && optional3.isEmpty()) {
                     optional3 = Optional.of(piglinentity);
                 } else if (piglinentity.isAdult()) {
                     list.add(piglinentity);
                 }
             } else if (livingentity instanceof Player playerentity) {
-
-                if (false) {
-                    optional5 = Optional.of(playerentity);
-                }
-
-                if (!optional6.isPresent() && !playerentity.isSpectator() && PiglinAi.isPlayerHoldingLovedItem(playerentity)) {
+                if (optional6.isEmpty() && !playerentity.isSpectator() && PiglinAi.isPlayerHoldingLovedItem(playerentity)) {
                     optional6 = Optional.of(playerentity);
                 }
             } else if (optional.isPresent() || !(livingentity instanceof WitherSkeleton) && !(livingentity instanceof WitherBoss)) {
-                if (!optional4.isPresent() && PiglinAi.isZombified(livingentity.getType())) {
+                if (optional4.isEmpty() && PiglinAi.isZombified(livingentity.getType())) {
                     optional4 = Optional.of(livingentity);
                 }
             } else {

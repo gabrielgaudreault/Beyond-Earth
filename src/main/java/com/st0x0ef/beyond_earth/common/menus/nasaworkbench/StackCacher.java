@@ -27,9 +27,9 @@ public class StackCacher {
         return this.test(Lists.newArrayList(stack));
     }
 
-    public boolean test(Collection<? extends Object> stacks) {
-        List<? extends Object> list = this.getStacks();
-        List<? extends Object> tests = new ArrayList<>(stacks);
+    public boolean test(Collection<?> stacks) {
+        List<?> list = this.getStacks();
+        List<?> tests = new ArrayList<>(stacks);
 
         int size = list.size();
 
@@ -82,7 +82,7 @@ public class StackCacher {
         this.set(Lists.newArrayList(stack));
     }
 
-    public void set(Collection<? extends Object> stacks) {
+    public void set(Collection<?> stacks) {
         this.list.clear();
 
         for (Object object : stacks) {

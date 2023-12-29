@@ -83,7 +83,7 @@ public class EnergyIngredient implements IIngredientHelper<EnergyIngredient>, II
             // TODO include message for amount of energy?
 
         } catch (RuntimeException e) {
-
+            e.printStackTrace();
         }
         return tooltip;
     }

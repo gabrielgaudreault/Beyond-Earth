@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -254,7 +253,7 @@ public class NASAWorkbenchBlockEntity extends AbstractMachineBlockEntity {
     }
 
     protected void spawnParticles() {
-        if (this.possibleRecipes.size() > 0 && !MenuHelper.isEmpty(this.getPartsItemHandler())) {
+        if (!this.possibleRecipes.isEmpty() && !MenuHelper.isEmpty(this.getPartsItemHandler())) {
 
             Level level = this.getLevel();
 

@@ -12,7 +12,6 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.Style;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.fluids.IFluidTank;
-import net.minecraftforge.fml.ModContainer;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.registries.ForgeRegistries;
 import com.st0x0ef.beyond_earth.BeyondEarth;
@@ -63,13 +62,9 @@ public class GaugeTextHelper {
 		ResourceLocation registryName = ForgeRegistries.FLUIDS.getKey(tank.getFluid().getFluid());
 
 		if (registryName != null) {
-			ModContainer container = ModList.get().getModContainerById(registryName.getNamespace()).orElse(null);
+            ModList.get().getModContainerById(registryName.getNamespace()).ifPresent(container -> tooltip.add(Component.literal(container.getModInfo().getDisplayName()).withStyle(ChatFormatting.BLUE, ChatFormatting.ITALIC)));
 
-			if (container != null) {
-				tooltip.add(Component.literal(container.getModInfo().getDisplayName()).withStyle(ChatFormatting.BLUE, ChatFormatting.ITALIC));
-			}
-
-		}
+        }
 
 		return tooltip;
 	}

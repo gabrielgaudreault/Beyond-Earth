@@ -21,7 +21,7 @@ public class BlockRegistry {
     /** SPECIAL BLOCKS */
     public static final RegistryObject<Block> ROCKET_LAUNCH_PAD = BLOCKS.register("rocket_launch_pad", () -> new RocketLaunchPad(BlockBehaviour.Properties.of().mapColor(MapColor.METAL).sound(SoundType.METAL).strength(5f, 2.5f).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> COAL_TORCH_BLOCK = BLOCKS.register("coal_torch", () -> new CoalTorchBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).noCollission().instabreak().sound(SoundType.WOOD)));
-    public static final RegistryObject<Block> WALL_COAL_TORCH_BLOCK = BLOCKS.register("wall_coal_torch", () -> new WallCoalTorchBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).noCollission().instabreak().sound(SoundType.WOOD).lootFrom(COAL_TORCH_BLOCK::get)));
+    public static final RegistryObject<Block> WALL_COAL_TORCH_BLOCK = BLOCKS.register("wall_coal_torch", () -> new WallCoalTorchBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).noCollission().instabreak().sound(SoundType.WOOD).lootFrom(COAL_TORCH_BLOCK)));
     public static final RegistryObject<Block> COAL_LANTERN_BLOCK = BLOCKS.register("coal_lantern", () -> new CoalLanternBlock(BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(3.5F).sound(SoundType.LANTERN).noOcclusion().requiresCorrectToolForDrops()));
 
     /** MACHINES */

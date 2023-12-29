@@ -93,7 +93,7 @@ public abstract class ItemStackToItemStackBlockEntity extends AbstractMachineBlo
     protected ItemStackToItemStackRecipe cacheRecipe() {
         ItemStack itemStack = this.getItem(this.getSlotIngredient());
 
-        if (itemStack == null || itemStack.isEmpty()) {
+        if (itemStack.isEmpty()) {
             this.itemStackCacher.set(itemStack);
             this.cachedRecipe = null;
             this.setMaxTimer(0);

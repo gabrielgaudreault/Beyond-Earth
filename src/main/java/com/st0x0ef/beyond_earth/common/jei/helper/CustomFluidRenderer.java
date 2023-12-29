@@ -66,7 +66,7 @@ public class CustomFluidRenderer implements IIngredientRenderer<FluidStack> {
             tooltip.add(amountString.withStyle(ChatFormatting.GRAY));
 
         } catch (RuntimeException e) {
-
+            e.printStackTrace();
         }
         return tooltip;
     }

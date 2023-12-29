@@ -34,7 +34,7 @@ public class ErrorScreen extends Screen implements MenuAccess<ErrorMenu.GuiConta
 
 
 
-    ErrorMenu.GuiContainer menu;
+    private ErrorMenu.GuiContainer menu;
     public ErrorScreen(ErrorMenu.GuiContainer menu, Inventory inventory, Component component) {
         super(component);
         this.menu = menu;

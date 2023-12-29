@@ -15,8 +15,6 @@ import net.minecraft.client.renderer.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.material.FogType;
@@ -230,10 +228,7 @@ public class PlanetSky extends DimensionSpecialEffects {
                                 k2 = i2;
                             }
 
-                            int l2 = i2;
-                            if (i2 < j) {
-                                l2 = j;
-                            }
+                            int l2 = Math.max(i2, j);
 
                             if (j2 != k2) {
                                 RandomSource randomsource = RandomSource.create(

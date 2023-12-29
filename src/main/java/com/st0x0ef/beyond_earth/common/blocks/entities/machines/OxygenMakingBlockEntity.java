@@ -23,7 +23,6 @@ import com.st0x0ef.beyond_earth.BeyondEarth;
 import com.st0x0ef.beyond_earth.common.blocks.entities.machines.gauge.IGaugeValue;
 import com.st0x0ef.beyond_earth.common.blocks.entities.machines.power.NamedComponentRegistry;
 import com.st0x0ef.beyond_earth.common.capabilities.oxygen.IOxygenStorage;
-import com.st0x0ef.beyond_earth.common.capabilities.oxygen.IOxygenStorageHolder;
 import com.st0x0ef.beyond_earth.common.capabilities.oxygen.OxygenStorage;
 import com.st0x0ef.beyond_earth.common.capabilities.oxygen.OxygenUtil;
 import com.st0x0ef.beyond_earth.common.data.recipes.BeyondEarthRecipeType;

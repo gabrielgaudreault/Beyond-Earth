@@ -54,7 +54,7 @@ public class EntityRendererRegistry {
         event.registerEntityRenderer(EntityRegistry.MARTIAN_RAPTOR.get(), MartianRaptorRenderer::new);
 
         /** PROJECT TILES */
-        event.registerEntityRenderer(EntityRegistry.ICE_SPIT_ENTITY.get(), renderManager -> new ThrownItemRenderer(renderManager, 1, true));
+        event.registerEntityRenderer(EntityRegistry.ICE_SPIT_ENTITY.get(), renderManager -> new ThrownItemRenderer<>(renderManager, 1, true));
 
         /** VEHICLES */
         event.registerEntityRenderer(EntityRegistry.TINY_ROCKET.get(), TinyRocketRenderer::new);

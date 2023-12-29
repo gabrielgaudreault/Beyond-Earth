@@ -1,14 +1,10 @@
 package com.st0x0ef.beyond_earth.common.capabilities.hydrogen;
 
-import com.st0x0ef.beyond_earth.common.compats.mekanism.MekanismCompat;
-import com.st0x0ef.beyond_earth.common.compats.mekanism.MekanismHelper;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.common.util.NonNullSupplier;
 import net.minecraftforge.items.IItemHandlerModifiable;
-
-import javax.annotation.Nullable;
 
 public class HydrogenUtil {
 

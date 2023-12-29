@@ -1,7 +1,6 @@
 package com.st0x0ef.beyond_earth.common.data.recipes;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import com.google.gson.JsonObject;
 
@@ -37,7 +36,7 @@ public class AlienTradingRecipePotionedItem extends AlienTradingRecipeItemStack 
 	@Override
 	public ItemStack getResult(Entity trader, RandomSource rand) {
 		ItemStack result = super.getResult(trader, rand);
-		List<Potion> potions = ForgeRegistries.POTIONS.getValues().stream().filter(this::testPotion).collect(Collectors.toList());
+		List<Potion> potions = ForgeRegistries.POTIONS.getValues().stream().filter(this::testPotion).toList();
 		Potion potion = potions.get(rand.nextInt(potions.size()));
 		return PotionUtils.setPotion(result, potion);
 	}

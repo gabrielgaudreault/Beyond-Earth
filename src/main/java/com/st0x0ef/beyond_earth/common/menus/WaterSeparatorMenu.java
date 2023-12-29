@@ -10,7 +10,6 @@ import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.network.IContainerFactory;
 import com.st0x0ef.beyond_earth.common.blocks.entities.machines.WaterSeparatorBlockEntity;
-import com.st0x0ef.beyond_earth.common.blocks.entities.machines.OxygenMakingBlockEntity;
 import com.st0x0ef.beyond_earth.common.menus.helper.MenuHelper;
 import com.st0x0ef.beyond_earth.common.registries.ContainerRegistry;
 

@@ -139,7 +139,7 @@ public abstract class AbstractMachineBlockEntity extends RandomizableContainerBl
     }
 
     protected int getInitialInventorySize() {
-        return this.getPowerSystems().values().stream().collect(Collectors.summingInt(PowerSystem::getUsingSlots));
+        return this.getPowerSystems().values().stream().mapToInt(PowerSystem::getUsingSlots).sum();
     }
 
     @Override
@@ -166,8 +166,7 @@ public abstract class AbstractMachineBlockEntity extends RandomizableContainerBl
 
     @SuppressWarnings("unchecked")
     public <T> void deserializeComponent(ResourceLocation name, @Nonnull T component, @Nonnull Tag tag) {
-        if (component == null || tag == null) {
-        } else if (component instanceof INBTSerializable<?>) {
+        if (component instanceof INBTSerializable<?>) {
             ((INBTSerializable<Tag>) component).deserializeNBT(tag);
         } else if (component instanceof EnergyStorage) {
             ((EnergyStorage) component).deserializeNBT(tag);
@@ -236,7 +235,7 @@ public abstract class AbstractMachineBlockEntity extends RandomizableContainerBl
     }
 
     protected void getSlotsForFace(Direction direction, List<Integer> slots) {
-        this.getPowerSystems().values().stream().forEach(ps -> ps.getSlotsForFace(direction, slots));
+        this.getPowerSystems().values().forEach(ps -> ps.getSlotsForFace(direction, slots));
     }
 
     @Override

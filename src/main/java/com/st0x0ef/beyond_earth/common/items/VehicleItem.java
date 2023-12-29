@@ -2,7 +2,6 @@ package com.st0x0ef.beyond_earth.common.items;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.phys.AABB;

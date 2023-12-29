@@ -1,6 +1,5 @@
 package com.st0x0ef.beyond_earth.mixin;
 
-import com.st0x0ef.beyond_earth.BeyondEarth;
 import com.st0x0ef.beyond_earth.common.capabilities.oxygen.ChunkOxygen;
 import com.st0x0ef.beyond_earth.common.registries.CapabilityRegistry;
 import com.st0x0ef.beyond_earth.common.util.Methods;

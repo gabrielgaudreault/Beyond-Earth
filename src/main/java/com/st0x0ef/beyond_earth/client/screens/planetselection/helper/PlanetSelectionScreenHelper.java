@@ -114,7 +114,7 @@ public class PlanetSelectionScreenHelper {
     public static void drawGalaxy(Screen screen, PoseStack ms, ResourceLocation texture, float x, float y, int width, int height, float rotation) {
         ms.pushPose();
 
-        ms.translate(screen.width / 2, screen.height / 2, 0);
+        ms.translate((float) screen.width / 2, (float) screen.height / 2, 0);
         ms.mulPose(Axis.ZP.rotationDegrees(rotation));
 
         RenderSystem.setShader(GameRenderer::getPositionTexShader);

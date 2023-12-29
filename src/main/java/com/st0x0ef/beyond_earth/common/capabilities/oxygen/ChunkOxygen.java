@@ -135,7 +135,7 @@ public class ChunkOxygen implements ICapabilityProvider, INBTSerializable<Compou
                 // This could possibly happen if we try adding too close to a loaded chunk
                 // border!
                 if (flowTo == null) {
-                    continue directions;
+                    continue;
                 }
                 int oldAmt = flowTo.getO2(index2);
                 oldAmt = Math.min(255, checkResult.amount() + oldAmt);
@@ -274,7 +274,7 @@ public class ChunkOxygen implements ICapabilityProvider, INBTSerializable<Compou
      */
     public int addO2(BlockPos pos, int toAdd, boolean spread) {
         if (infiniteO2)
-            return toAdd > 0 ? toAdd : 0;
+            return Math.max(toAdd, 0);
         int ret = 0;
         int O2 = this.getO2(pos);
         int newO2 = 0;

@@ -22,7 +22,6 @@ import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 import com.st0x0ef.beyond_earth.BeyondEarth;
 import com.st0x0ef.beyond_earth.common.blocks.entities.machines.gauge.GaugeTextHelper;
 import com.st0x0ef.beyond_earth.common.blocks.entities.machines.gauge.GaugeValueHelper;
-import com.st0x0ef.beyond_earth.common.config.Config;
 import com.st0x0ef.beyond_earth.common.entities.RoverEntity;
 import com.st0x0ef.beyond_earth.common.registries.EntityRegistry;
 import com.st0x0ef.beyond_earth.common.util.FluidUtils;

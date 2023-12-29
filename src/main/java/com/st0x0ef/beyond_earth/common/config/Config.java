@@ -2,7 +2,6 @@ package com.st0x0ef.beyond_earth.common.config;
 
 import net.minecraftforge.common.ForgeConfigSpec;
 import com.st0x0ef.beyond_earth.common.blocks.entities.machines.*;
-import com.st0x0ef.beyond_earth.common.entities.RoverEntity;
 
 public class Config {
 	public static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();

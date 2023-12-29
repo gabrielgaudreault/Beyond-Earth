@@ -1,7 +1,6 @@
 package com.st0x0ef.beyond_earth.common.commands;
 
 import com.mojang.brigadier.CommandDispatcher;
-import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.st0x0ef.beyond_earth.BeyondEarth;
 import com.st0x0ef.beyond_earth.common.util.Methods;
 import net.minecraft.commands.CommandSourceStack;

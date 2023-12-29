@@ -18,7 +18,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class ItemsRegistry {
-
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, BeyondEarth.MODID);
 
     /** VEHICLE ITEMS */
@@ -26,13 +25,13 @@ public class ItemsRegistry {
     public static final RegistryObject<RoverItem> ROVER_ITEM = ITEMS.register("rover", () -> new RoverItem(new Item.Properties().stacksTo(1).rarity(Rarity.RARE)));
 
     /** SPAWN EGG ITEMS */
-    public static final RegistryObject<ForgeSpawnEggItem> ALIEN_SPAWN_EGG = ITEMS.register("alien_spawn_egg", () -> new ForgeSpawnEggItem(EntityRegistry.ALIEN::get, -13382401, -11650781, new Item.Properties()));
-    public static final RegistryObject<ForgeSpawnEggItem> ALIEN_ZOMBIE_SPAWN_EGG = ITEMS.register("alien_zombie_spawn_egg",() -> new ForgeSpawnEggItem(EntityRegistry.ALIEN_ZOMBIE::get, -14804199, -16740159, new Item.Properties()));
-    public static final RegistryObject<ForgeSpawnEggItem> STAR_CRAWLER_SPAWN_EGG = ITEMS.register("star_crawler_spawn_egg",() -> new ForgeSpawnEggItem(EntityRegistry.STAR_CRAWLER::get, -13421773, -16724788, new Item.Properties()));
-    public static final RegistryObject<ForgeSpawnEggItem> PYGRO_SPAWN_EGG = ITEMS.register("pygro_spawn_egg",() -> new ForgeSpawnEggItem(EntityRegistry.PYGRO::get, -3381760, -6750208, new Item.Properties()));
-    public static final RegistryObject<ForgeSpawnEggItem> PYGRO_BRUTE_SPAWN_EGG = ITEMS.register("pygro_brute_spawn_egg",() -> new ForgeSpawnEggItem(EntityRegistry.PYGRO_BRUTE::get, -3381760, -67208, new Item.Properties()));
-    public static final RegistryObject<ForgeSpawnEggItem> MOGLER_SPAWN_EGG = ITEMS.register("mogler_spawn_egg",() -> new ForgeSpawnEggItem(EntityRegistry.MOGLER::get, -13312, -3407872, new Item.Properties()));
-    public static final RegistryObject<ForgeSpawnEggItem> MARTIAN_RAPTOR_SPAWN_EGG = ITEMS.register("martian_raptor_spawn_egg",() -> new ForgeSpawnEggItem(EntityRegistry.MARTIAN_RAPTOR::get, 5349438, -13312, new Item.Properties()));
+    public static final RegistryObject<ForgeSpawnEggItem> ALIEN_SPAWN_EGG = ITEMS.register("alien_spawn_egg", () -> new ForgeSpawnEggItem(EntityRegistry.ALIEN, -13382401, -11650781, new Item.Properties()));
+    public static final RegistryObject<ForgeSpawnEggItem> ALIEN_ZOMBIE_SPAWN_EGG = ITEMS.register("alien_zombie_spawn_egg",() -> new ForgeSpawnEggItem(EntityRegistry.ALIEN_ZOMBIE, -14804199, -16740159, new Item.Properties()));
+    public static final RegistryObject<ForgeSpawnEggItem> STAR_CRAWLER_SPAWN_EGG = ITEMS.register("star_crawler_spawn_egg",() -> new ForgeSpawnEggItem(EntityRegistry.STAR_CRAWLER, -13421773, -16724788, new Item.Properties()));
+    public static final RegistryObject<ForgeSpawnEggItem> PYGRO_SPAWN_EGG = ITEMS.register("pygro_spawn_egg",() -> new ForgeSpawnEggItem(EntityRegistry.PYGRO, -3381760, -6750208, new Item.Properties()));
+    public static final RegistryObject<ForgeSpawnEggItem> PYGRO_BRUTE_SPAWN_EGG = ITEMS.register("pygro_brute_spawn_egg",() -> new ForgeSpawnEggItem(EntityRegistry.PYGRO_BRUTE, -3381760, -67208, new Item.Properties()));
+    public static final RegistryObject<ForgeSpawnEggItem> MOGLER_SPAWN_EGG = ITEMS.register("mogler_spawn_egg",() -> new ForgeSpawnEggItem(EntityRegistry.MOGLER, -13312, -3407872, new Item.Properties()));
+    public static final RegistryObject<ForgeSpawnEggItem> MARTIAN_RAPTOR_SPAWN_EGG = ITEMS.register("martian_raptor_spawn_egg",() -> new ForgeSpawnEggItem(EntityRegistry.MARTIAN_RAPTOR, 5349438, -13312, new Item.Properties()));
 
     /** GLOBE ITEMS */
     public static final RegistryObject<BlockItem> EARTH_GLOBE_ITEM = ITEMS.register("earth_globe", () -> new GlobeItem(BlockRegistry.EARTH_GLOBE_BLOCK.get(), new Item.Properties().rarity(Rarity.EPIC).stacksTo(1), new ResourceLocation(BeyondEarth.MODID, "textures/block/globes/earth_globe.png")));

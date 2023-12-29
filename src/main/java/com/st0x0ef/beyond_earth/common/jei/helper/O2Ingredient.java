@@ -92,7 +92,7 @@ public class O2Ingredient implements IIngredientHelper<O2Ingredient>, IIngredien
             tooltip.add(amountString.withStyle(ChatFormatting.GRAY));
 
         } catch (RuntimeException e) {
-
+            e.printStackTrace();
         }
         return tooltip;
     }

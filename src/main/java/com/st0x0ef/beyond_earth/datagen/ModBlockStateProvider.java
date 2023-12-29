@@ -1,7 +1,6 @@
 package com.st0x0ef.beyond_earth.datagen;
 
 import com.st0x0ef.beyond_earth.BeyondEarth;
-import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;

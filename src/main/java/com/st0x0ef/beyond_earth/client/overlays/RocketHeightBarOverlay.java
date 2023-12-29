@@ -50,7 +50,7 @@ public class RocketHeightBarOverlay implements IGuiOverlay {
 
             /** ROCKET_Y IMAGE */
             RenderSystem.setShaderTexture(0, ROCKET);
-            ScreenHelper.renderWithFloat.blit(graphics.pose(), 4, (height / 2) + (103 / 2) - yHeight, 0, 0, 8, 11, 8, 11);
+            ScreenHelper.renderWithFloat.blit(graphics.pose(), 4, ((float) height / 2) + ((float) 103 / 2) - yHeight, 0, 0, 8, 11, 8, 11);
         }
     }
 }

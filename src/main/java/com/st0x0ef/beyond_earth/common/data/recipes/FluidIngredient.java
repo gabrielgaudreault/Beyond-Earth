@@ -42,8 +42,7 @@ public abstract class FluidIngredient implements Predicate<FluidStack> {
 
     public List<Fluid> getFluids() {
         if (this.cachedFluids == null) {
-            this.cachedFluids = Collections.unmodifiableList(
-                    ForgeRegistries.FLUIDS.getValues().stream().filter(this::testFluid).collect(Collectors.toList()));
+            this.cachedFluids = ForgeRegistries.FLUIDS.getValues().stream().filter(this::testFluid).toList();
         }
 
         return this.cachedFluids;
@@ -55,7 +54,7 @@ public abstract class FluidIngredient implements Predicate<FluidStack> {
 
     public FluidStack toStack() {
         List<Fluid> fluids = this.getFluids();
-        return fluids.size() == 0 ? FluidStack.EMPTY : new FluidStack(fluids.get(0), this.getAmount());
+        return fluids.isEmpty() ? FluidStack.EMPTY : new FluidStack(fluids.get(0), this.getAmount());
     }
 
     public int getAmount() {

@@ -60,7 +60,7 @@ public class MenuHelper {
         List<Slot> inventorySlots = container.slots;
         Slot slot = inventorySlots.get(slotNumber);
 
-        if (slot != null && slot.hasItem()) {
+        if (slot.hasItem()) {
             ItemStack slotStack = slot.getItem();
             itemStack = slotStack.copy();
 

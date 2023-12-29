@@ -1,13 +1,9 @@
 package com.st0x0ef.beyond_earth.common.items;
 
-import com.st0x0ef.beyond_earth.client.registries.ItemRendererRegistry;
-import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.world.item.Item;
 
 import javax.annotation.Nullable;
-import java.util.HashMap;
-import java.util.Map;
 
 public class VehicleUpgradeItem extends Item {
     private final int fuelCapacityModifier;

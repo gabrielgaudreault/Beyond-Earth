@@ -99,16 +99,14 @@ public class AlienEntity extends Villager implements Merchant, Npc {
 					p_230254_1_.awardStat(Stats.TALKED_TO_VILLAGER);
 				}
 
-				if (flag) {
-					return InteractionResult.sidedSuccess(this.level().isClientSide);
-				} else {
-					if (!this.level().isClientSide && !this.offers.isEmpty()) {
-						this.displayMerchantGui(p_230254_1_);
-					}
+                if (!flag) {
+                    if (!this.level().isClientSide && !this.offers.isEmpty()) {
+                        this.displayMerchantGui(p_230254_1_);
+                    }
 
-					return InteractionResult.sidedSuccess(this.level().isClientSide);
-				}
-			}
+                }
+                return InteractionResult.sidedSuccess(this.level().isClientSide);
+            }
 		} else {
 			return InteractionResult.PASS;
 		}

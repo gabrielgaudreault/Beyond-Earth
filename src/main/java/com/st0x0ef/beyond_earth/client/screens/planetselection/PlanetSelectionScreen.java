@@ -1,7 +1,6 @@
 package com.st0x0ef.beyond_earth.client.screens.planetselection;
 
 import com.google.common.collect.Lists;
-import com.st0x0ef.beyond_earth.common.util.Methods;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.Screen;
@@ -457,8 +456,8 @@ public class PlanetSelectionScreen extends Screen implements MenuAccess<PlanetSe
         float sinTick = (float) Math.sin(rotation);
         float cosTick = (float) Math.cos(rotation);
 
-        float x0 = ((this.width / 2) - width / 2);
-        float y0 = ((this.height / 2) - height / 2);
+        float x0 = (((float) this.width / 2) - width / 2);
+        float y0 = (((float) this.height / 2) - height / 2);
 
         planet._xPos = x0 + sinTick * distance + dx;
         planet._yPos = y0 + cosTick * distance + dy;

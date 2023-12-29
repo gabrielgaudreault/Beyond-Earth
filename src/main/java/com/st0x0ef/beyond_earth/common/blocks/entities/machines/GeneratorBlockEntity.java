@@ -209,7 +209,7 @@ public abstract class GeneratorBlockEntity extends AbstractMachineBlockEntity {
                 LazyOptional<IEnergyStorage> capability = blockEntity.getCapability(ForgeCapabilities.ENERGY,
                         direction.getOpposite());
 
-                if (capability != null && capability.isPresent()) {
+                if (capability.isPresent()) {
                     energyStorages.add(capability.resolve().get());
                 }
 

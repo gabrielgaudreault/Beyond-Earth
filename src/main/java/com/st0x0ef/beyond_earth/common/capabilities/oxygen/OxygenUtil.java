@@ -8,8 +8,6 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.common.util.NonNullSupplier;
 import net.minecraftforge.items.IItemHandlerModifiable;
 
-import javax.annotation.Nullable;
-
 public class OxygenUtil {
 
     public static <T> LazyOptional<T> getOxygenCapability(Capability<T> capability, NonNullSupplier<IOxygenStorage> oxygenStorage) {

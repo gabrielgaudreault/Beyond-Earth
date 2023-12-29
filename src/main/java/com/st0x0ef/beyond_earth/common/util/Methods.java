@@ -53,8 +53,6 @@ import com.st0x0ef.beyond_earth.common.registries.ItemsRegistry;
 import com.st0x0ef.beyond_earth.common.registries.TagRegistry;
 import com.st0x0ef.beyond_earth.common.util.Planets.Planet;
 
-import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Function;
 
 public class Methods {

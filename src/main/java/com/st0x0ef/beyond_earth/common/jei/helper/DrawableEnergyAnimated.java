@@ -9,7 +9,7 @@ import com.st0x0ef.beyond_earth.client.util.GuiHelper;
 public class DrawableEnergyAnimated implements IDrawableAnimated {
 
     private final ITickTimer tickTimer;
-    boolean drain;
+    private boolean drain;
 
     public DrawableEnergyAnimated(int timer, boolean drain) {
         this.drain = drain;

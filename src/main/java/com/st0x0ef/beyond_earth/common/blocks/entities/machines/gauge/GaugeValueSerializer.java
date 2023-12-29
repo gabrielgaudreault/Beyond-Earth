@@ -37,7 +37,7 @@ public class GaugeValueSerializer<T extends INBTSerializable<CompoundTag>> {
 			format = clazz.getConstructor().newInstance();
 			format.deserializeNBT(valueNBT);
 		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
-			
+			e.printStackTrace();
 		}
 
 		return format;

@@ -1,7 +1,6 @@
 package com.st0x0ef.beyond_earth.common.data.recipes;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.world.Container;
@@ -63,7 +62,7 @@ public class AlienTradingRecipeEnchantedBook extends AlienTradingRecipeItemStack
 
 	@Override
 	public Triple<ItemStack, ItemStack, ItemStack> getTrade(Entity trader, RandomSource rand) {
-		List<Enchantment> list = ForgeRegistries.ENCHANTMENTS.getValues().stream().filter(Enchantment::isTradeable).collect(Collectors.toList());
+		List<Enchantment> list = ForgeRegistries.ENCHANTMENTS.getValues().stream().filter(Enchantment::isTradeable).toList();
 		Enchantment enchantment = list.get(rand.nextInt(list.size()));
 		int level = Mth.nextInt(rand, enchantment.getMinLevel(), enchantment.getMaxLevel());
 

@@ -25,7 +25,6 @@ import com.st0x0ef.beyond_earth.common.registries.RocketPartsRegistry;
 import java.util.*;
 import java.util.Map.Entry;
 import java.util.function.BiPredicate;
-import java.util.stream.Collectors;
 
 public class WorkbenchingRecipe extends BeyondEarthRecipe implements BiPredicate<RocketPartsItemHandler, Boolean> {
     private final Map<RocketPart, List<Ingredient>> parts;
@@ -42,9 +41,8 @@ public class WorkbenchingRecipe extends BeyondEarthRecipe implements BiPredicate
             RocketPart part = RocketPartsRegistry.ROCKET_PARTS_REGISTRY.get()
                     .getValue(new ResourceLocation(entry.getKey()));
             JsonArray slotsJson = entry.getValue().getAsJsonArray();
-            List<Ingredient> ingredients = Lists.newArrayList(slotsJson).stream().map(Ingredient::fromJson)
-                    .collect(Collectors.toList());
-            map.put(part, Collections.unmodifiableList(ingredients));
+            List<Ingredient> ingredients = Lists.newArrayList(slotsJson).stream().map(Ingredient::fromJson).toList();
+            map.put(part, ingredients);
         }
 
         this.parts = Collections.unmodifiableMap(map);
@@ -61,8 +59,8 @@ public class WorkbenchingRecipe extends BeyondEarthRecipe implements BiPredicate
             RocketPart part = buffer.readRegistryId();
             int ingredientsSize = buffer.readInt();
             List<Ingredient> ingredients = Arrays.stream(new Ingredient[ingredientsSize])
-                    .map(in -> Ingredient.fromNetwork(buffer)).collect(Collectors.toList());
-            map.put(part, Collections.unmodifiableList(ingredients));
+                    .map(in -> Ingredient.fromNetwork(buffer)).toList();
+            map.put(part, ingredients);
         }
 
         this.parts = Collections.unmodifiableMap(map);
@@ -102,7 +100,7 @@ public class WorkbenchingRecipe extends BeyondEarthRecipe implements BiPredicate
     @Override
     public NonNullList<Ingredient> getIngredients() {
         NonNullList<Ingredient> ingredients = super.getIngredients();
-        ingredients.addAll(this.parts.values().stream().flatMap(l -> l.stream()).collect(Collectors.toList()));
+        ingredients.addAll(this.parts.values().stream().flatMap(Collection::stream).toList());
         return ingredients;
     }
 
@@ -179,9 +177,7 @@ public class WorkbenchingRecipe extends BeyondEarthRecipe implements BiPredicate
                 ItemStack stack = subHandler.getStackInSlot(i);
                 Ingredient ingredient = ingredients.get(i);
 
-                if (ignoreAir && stack.isEmpty()) {
-                    continue;
-                } else if (!ingredient.test(stack)) {
+                if (!ingredient.test(stack)) {
                     return false;
                 }
             }

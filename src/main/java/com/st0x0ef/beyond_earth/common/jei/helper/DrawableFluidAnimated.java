@@ -11,8 +11,8 @@ public class DrawableFluidAnimated implements IDrawableAnimated {
 
     private FluidStack fluid;
     private final ITickTimer tickTimer;
-    boolean drain;
-    boolean O2;
+    private boolean drain;
+    private boolean O2;
 
     public DrawableFluidAnimated(int timer, boolean drain, FluidStack fluid) {
         this(timer, drain, fluid, false);
@@ -44,8 +44,7 @@ public class DrawableFluidAnimated implements IDrawableAnimated {
 
         int animationValue = tickTimer.getValue();
 
-        int fluidY = this.drain ? yOffset - +animationValue + this.getHeight()
-                : this.getHeight() - animationValue + yOffset;
+        int fluidY = this.drain ? yOffset - animationValue + this.getHeight() : this.getHeight() - animationValue + yOffset;
 
         if (this.O2) {
             GuiHelper.drawOxygenTank(graphics, xOffset, yOffset,
