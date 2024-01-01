@@ -47,9 +47,7 @@ public class PygroMobsSensor extends Sensor<LivingEntity> {
         List<AbstractPiglin> list1 = Lists.newArrayList();
         NearestVisibleLivingEntities nearestvisiblelivingentities = brain.getMemory(MemoryModuleType.NEAREST_VISIBLE_LIVING_ENTITIES).orElse(NearestVisibleLivingEntities.empty());
 
-        for(LivingEntity livingentity : nearestvisiblelivingentities.findAll((p_186157_) -> {
-            return true;
-        })) {
+        for(LivingEntity livingentity : nearestvisiblelivingentities.findAll((p_186157_) -> true)) {
             if (livingentity instanceof Hoglin hoglinentity) {
                 if (hoglinentity.isBaby() && optional2.isEmpty()) {
                     optional2 = Optional.of(hoglinentity);
@@ -99,9 +97,7 @@ public class PygroMobsSensor extends Sensor<LivingEntity> {
     }
 
     private static Optional<BlockPos> findNearestRepellent(ServerLevel world, LivingEntity livingEntity) {
-        return BlockPos.findClosestMatch(new BlockPos((int)livingEntity.getX(), (int)livingEntity.getY(), (int)livingEntity.getZ()), 8, 4, (pos) -> {
-            return isRepellent(world, pos);
-        });
+        return BlockPos.findClosestMatch(new BlockPos((int)livingEntity.getX(), (int)livingEntity.getY(), (int)livingEntity.getZ()), 8, 4, (pos) -> isRepellent(world, pos));
     }
 
     private static boolean isRepellent(ServerLevel world, BlockPos pos) {

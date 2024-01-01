@@ -341,7 +341,7 @@ public abstract class AbstractMachineBlockEntity extends RandomizableContainerBl
     @Override
     public void setRemoved() {
         super.setRemoved();
-        Arrays.stream(this.itemHandlers).forEach(h -> h.invalidate());
+        Arrays.stream(this.itemHandlers).forEach(LazyOptional::invalidate);
     }
 
     public void tick() {
@@ -365,7 +365,7 @@ public abstract class AbstractMachineBlockEntity extends RandomizableContainerBl
     }
 
     protected void updatePowerSystem() {
-        this.getPowerSystems().values().forEach(ps -> ps.update());
+        this.getPowerSystems().values().forEach(PowerSystem::update);
     }
 
     protected BooleanProperty getBlockActivatedProperty() {
@@ -384,7 +384,7 @@ public abstract class AbstractMachineBlockEntity extends RandomizableContainerBl
         BlockPos pos = this.getBlockPos();
         boolean activated = this.isActivated();
 
-        if (state.getValue(property).booleanValue() != activated) {
+        if (state.getValue(property) != activated) {
             level.setBlock(pos, state.setValue(property, activated), 3);
         }
     }

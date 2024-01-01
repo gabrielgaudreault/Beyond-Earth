@@ -331,9 +331,7 @@ public class PlanetSelectionScreen extends Screen implements MenuAccess<PlanetSe
 
         stationButton.isVisible = i -> i == planetCategory;
 
-        planet.moons.forEach(p2 -> {
-            addPlanetButtons(planet, p2, planetCategory, starCategory);
-        });
+        planet.moons.forEach(p2 -> addPlanetButtons(planet, p2, planetCategory, starCategory));
     }
 
     @Override
@@ -438,9 +436,7 @@ public class PlanetSelectionScreen extends Screen implements MenuAccess<PlanetSe
                     maxR = (float) Math.max(maxR, planet.orbitRadius);
                 }
                 float rScale = Math.min(1.15f / maxR, 1);
-                system.planets.forEach(planet -> {
-                    drawPlanetRing(planet, rScale, x, y, 0, 0, 10, 10);
-                });
+                system.planets.forEach(planet -> drawPlanetRing(planet, rScale, x, y, 0, 0, 10, 10));
             }
             start += end;
         }
@@ -478,10 +474,8 @@ public class PlanetSelectionScreen extends Screen implements MenuAccess<PlanetSe
         maxR *= 5;
         float newScale = Math.min(1.15f / maxR, 1);
 
-        planet.moons.forEach(moon -> {
-            drawPlanetRing(moon, newScale, planet._xPos + width / 2, planet._yPos + width / 2, dxm, dym, width / 2,
-                    height / 2);
-        });
+        planet.moons.forEach(moon -> drawPlanetRing(moon, newScale, planet._xPos + width / 2, planet._yPos + width / 2, dxm, dym, width / 2,
+                height / 2));
     }
 
     public void drawPlanets(GuiGraphics graphics) {
@@ -495,9 +489,7 @@ public class PlanetSelectionScreen extends Screen implements MenuAccess<PlanetSe
         for (StarSystem system : Planets.getStarsList()) {
             int end = start + system.planets.size();
             if (PlanetSelectionScreenHelper.categoryRange(this.category.get(), start, end)) {
-                system.planets.forEach(planet -> {
-                    drawPlanet(graphics, planet, 10, 10, true);
-                });
+                system.planets.forEach(planet -> drawPlanet(graphics, planet, 10, 10, true));
             }
             start += end;
         }
@@ -568,9 +560,7 @@ public class PlanetSelectionScreen extends Screen implements MenuAccess<PlanetSe
         List<ModifiedButton> listVisible = new ArrayList<>();
 
         /** ADD VISIBLE BUTTONS TO THE LIST */
-        for (int f1 = 0; f1 < this.visibleButtons.size(); f1++) {
-            ModifiedButton button = this.visibleButtons.get(f1);
-
+        for (ModifiedButton button : this.visibleButtons) {
             if (button.row == row) {
                 listVisible.add(button);
             }

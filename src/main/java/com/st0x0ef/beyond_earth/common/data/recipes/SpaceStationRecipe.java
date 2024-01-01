@@ -32,9 +32,7 @@ public class SpaceStationRecipe extends BeyondEarthRecipe {
 		super(id);
 		this.ingredients = NonNullList.withSize(buffer.readInt(), IngredientStack.EMPTY);
 
-		for (int i = 0; i < this.ingredients.size(); i++) {
-			this.ingredients.set(i, new IngredientStack(buffer));
-		}
+        this.ingredients.replaceAll(ignored -> new IngredientStack(buffer));
 	}
 
 	public SpaceStationRecipe(ResourceLocation id, JsonObject json) {

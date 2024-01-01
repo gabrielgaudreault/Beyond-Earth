@@ -177,9 +177,7 @@ public class LanderEntity extends IVehicleEntity {
 						packetBuffer.writeVarInt(LanderEntity.this.getId());
 						return new LanderMenu.GuiContainer(id, inventory, packetBuffer);
 					}
-				}, buf -> {
-					buf.writeVarInt(this.getId());
-				});
+				}, buf -> buf.writeVarInt(this.getId()));
 
 				return InteractionResult.CONSUME;
 			}

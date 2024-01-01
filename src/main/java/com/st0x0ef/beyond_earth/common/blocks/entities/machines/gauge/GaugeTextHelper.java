@@ -52,7 +52,7 @@ public class GaugeTextHelper {
 	}
 
 	public static GaugeTextBuilder getStorageText(IGaugeValue value) {
-		return getText(value, "%1$s: %2$s \u00A78| %3$s");
+		return getText(value, "%1$s: %2$s §8| %3$s");
 	}
 
 	public static List<Component> getFluidTooltip(IFluidTank tank) {
@@ -128,7 +128,7 @@ public class GaugeTextHelper {
 	}
 
 	public static MutableComponent buildSpacesuitOxygenTooltip(IGaugeValue value) {
-		GaugeTextBuilder builder = GaugeTextHelper.getText(value, "%1$s: %2$s \u00A78| %3$s");
+		GaugeTextBuilder builder = GaugeTextHelper.getText(value, "%1$s: %2$s §8| %3$s");
 		builder.setTextStyle(Style.EMPTY.withColor(ChatFormatting.BLUE));
 		builder.setAmountStyle(Style.EMPTY.withColor(ChatFormatting.GOLD));
 		builder.setCapacityStyle(Style.EMPTY.withColor(ChatFormatting.RED));

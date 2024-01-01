@@ -21,8 +21,6 @@ public class SkyRendererRegistry {
             float clouds = planet.hasClouds ? 192f : Float.NaN;
             event.register(key.location(), new PlanetSky(clouds, planet));
         });
-        Planets.PLANETS_BY_ORBIT.forEach((key, planet) -> {
-            event.register(key.location(), new OrbitSky(planet));
-        });
+        Planets.PLANETS_BY_ORBIT.forEach((key, planet) -> event.register(key.location(), new OrbitSky(planet)));
     }
 }

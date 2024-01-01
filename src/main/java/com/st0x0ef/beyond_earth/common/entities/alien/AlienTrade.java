@@ -67,12 +67,7 @@ public class AlienTrade implements ItemListing {
 		if (event.getServerResources() != null) {
 			RecipeManager recipeManager = event.getServerResources().getRecipeManager();
 
-			event.addListener(new ResourceManagerReloadListener() {
-				@Override
-				public void onResourceManagerReload(ResourceManager resourceManager) {
-					AlienTrade.registerTrades(recipeManager);
-				}
-			});
+			event.addListener((ResourceManagerReloadListener) resourceManager -> AlienTrade.registerTrades(recipeManager));
 		}
 	}
 

@@ -444,9 +444,7 @@ public class Planets {
             for (StarSystem system : list) {
                 var list2 = system.planets;
                 synchronized (list2) {
-                    list2.forEach(planet -> {
-                        updateLocation(level, planet);
-                    });
+                    list2.forEach(planet -> updateLocation(level, planet));
                 }
             }
         }

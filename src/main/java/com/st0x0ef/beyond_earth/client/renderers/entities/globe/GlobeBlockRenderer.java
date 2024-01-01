@@ -19,22 +19,22 @@ import com.st0x0ef.beyond_earth.common.blocks.entities.GlobeTileEntity;
 @OnlyIn(Dist.CLIENT)
 public class GlobeBlockRenderer<T extends GlobeTileEntity> implements BlockEntityRenderer<GlobeTileEntity>, BlockEntityRendererProvider<T> {
 
-    private GlobeModel model;
+    private GlobeModel<?> model;
 
     public GlobeBlockRenderer(BlockEntityRendererProvider.Context context) {
 
     }
 
     @Override
-    public void render(GlobeTileEntity p_112307_, float particleTicks, PoseStack matrixStackIn, MultiBufferSource buffer, int combinedLight, int p_112312_) {
-        BlockState state = p_112307_.getLevel().getBlockState(p_112307_.getBlockPos());
+    public void render(GlobeTileEntity tileEntity, float particleTicks, PoseStack matrixStackIn, MultiBufferSource buffer, int combinedLight, int p_112312_) {
+        BlockState state = tileEntity.getLevel().getBlockState(tileEntity.getBlockPos());
 
         if (!(state.getBlock() instanceof GlobeBlock)) {
             return;
         }
 
         Minecraft mc = Minecraft.getInstance();
-        BlockState blockstate = p_112307_.getBlockState();
+        BlockState blockstate = tileEntity.getBlockState();
         Direction direction = blockstate.getValue(GlobeBlock.FACING);
 
         matrixStackIn.pushPose();
@@ -48,7 +48,7 @@ public class GlobeBlockRenderer<T extends GlobeTileEntity> implements BlockEntit
         }
 
         /** Animation */
-        this.model.setupAnim(p_112307_, particleTicks);
+        this.model.setupAnim(tileEntity, particleTicks);
 
         VertexConsumer vertexBuilder = buffer.getBuffer(RenderType.entityTranslucent(((GlobeBlock) state.getBlock()).texture));
 

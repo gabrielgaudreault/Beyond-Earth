@@ -394,9 +394,7 @@ public class Methods {
                         packetBuffer.writeDouble(player.getPersistentData().getDouble(BeyondEarth.MODID + ":rocket_distance"));
                         return new PlanetSelectionMenu.GuiContainer(id, inventory, packetBuffer);
                     }
-                }, buf -> {
-                    buf.writeDouble(player.getPersistentData().getDouble(BeyondEarth.MODID + ":rocket_distance"));
-                });
+                }, buf -> buf.writeDouble(player.getPersistentData().getDouble(BeyondEarth.MODID + ":rocket_distance")));
             }
         }
     }

@@ -38,7 +38,7 @@ public class RocketPartsItemHandler implements IItemHandlerModifiable {
         int slotCount = 0;
 
         for (RocketPart part : parts) {
-            int count = part.getSlots();
+            int count = part.slots();
             int slotNumber = this.getParentSlotIndex(slotCount);
 
             list.add(part);

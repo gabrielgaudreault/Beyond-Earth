@@ -25,7 +25,6 @@ public class GlobeItem extends BlockItem {
     @Override
     public void initializeClient(Consumer<IClientItemExtensions> consumer) {
         consumer.accept(new IClientItemExtensions() {
-
             @Override
             public BlockEntityWithoutLevelRenderer getCustomRenderer() {
                 return ItemRendererRegistry.GLOBE_ITEM_RENDERER.setTexture(GlobeItem.this.getTexture());

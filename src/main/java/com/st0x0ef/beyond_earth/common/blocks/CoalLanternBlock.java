@@ -57,9 +57,7 @@ public class CoalLanternBlock extends LanternBlock {
         if (itemstack.getItem() == Items.FLINT_AND_STEEL) {
             world.playSound(null, pos, SoundEvents.FLINTANDSTEEL_USE, SoundSource.BLOCKS, 1, 1);
 
-            itemstack.hurtAndBreak(1, playerEntity, (player) -> {
-                player.broadcastBreakEvent(hand);
-            });
+            itemstack.hurtAndBreak(1, playerEntity, (player) -> player.broadcastBreakEvent(hand));
         }
 
         if (itemstack.getItem() == Items.FIRE_CHARGE) {

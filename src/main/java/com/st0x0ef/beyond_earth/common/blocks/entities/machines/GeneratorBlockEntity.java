@@ -1,6 +1,7 @@
 package com.st0x0ef.beyond_earth.common.blocks.entities.machines;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import net.minecraft.core.BlockPos;
@@ -85,8 +86,7 @@ public abstract class GeneratorBlockEntity extends AbstractMachineBlockEntity {
         List<IEnergyStorage> sinks = this.findNearEnergyStorages();
         List<EjectingTuple> tuples = new ArrayList<>();
 
-        for (int i = 0; i < sinks.size(); i++) {
-            IEnergyStorage sink = sinks.get(i);
+        for (IEnergyStorage sink : sinks) {
             EjectingTuple e = new EjectingTuple(sink);
             e.receivable = sink.receiveEnergy(ejectingEnergy, true);
             e.receiving = 0;
@@ -149,8 +149,8 @@ public abstract class GeneratorBlockEntity extends AbstractMachineBlockEntity {
      * @return
      */
     private int calculateBalance(int energy, List<EjectingTuple> tuples) {
-        List<EjectingTuple> orderedReceivables = new ArrayList<EjectingTuple>(tuples);
-        orderedReceivables.sort((o1, o2) -> o1.receivable - o2.receivable);
+        List<EjectingTuple> orderedReceivables = new ArrayList<>(tuples);
+        orderedReceivables.sort(Comparator.comparingInt(o -> o.receivable));
 
         for (int i = 0; i < orderedReceivables.size(); i++) {
             int amount = i == 0 ? orderedReceivables.get(i).receivable
@@ -163,8 +163,8 @@ public abstract class GeneratorBlockEntity extends AbstractMachineBlockEntity {
             int amountSum = 0;
             int receiveCount = 0;
 
-            for (int j = 0; j < tuples.size(); j++) {
-                if (!tuples.get(j).isFull()) {
+            for (EjectingTuple ejectingTuple : tuples) {
+                if (!ejectingTuple.isFull()) {
                     amountSum += amount;
                     receiveCount++;
                 }
@@ -182,8 +182,7 @@ public abstract class GeneratorBlockEntity extends AbstractMachineBlockEntity {
                 give = amount;
             }
 
-            for (int j = 0; j < tuples.size(); j++) {
-                EjectingTuple tuple = tuples.get(j);
+            for (EjectingTuple tuple : tuples) {
                 if (!tuple.isFull()) {
                     tuple.receiving += give;
                     energy -= give;

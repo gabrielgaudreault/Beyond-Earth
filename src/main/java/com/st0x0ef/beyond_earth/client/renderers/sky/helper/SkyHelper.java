@@ -204,7 +204,7 @@ public class SkyHelper {
             Object2ObjectArrayMap<Planet, float[]> renderAfterSun = new Object2ObjectArrayMap<>();
             CelestialBody parent = planet._parent;
 
-            if (parent != null && parent instanceof Planet planet2) {
+            if (parent instanceof Planet planet2) {
                 drawPlanetsAndParents(poseStack, bufferBuilder, camera, dayAngle, skyLight, worldTime, planet2,
                         parentDepth + 1, false);
             }

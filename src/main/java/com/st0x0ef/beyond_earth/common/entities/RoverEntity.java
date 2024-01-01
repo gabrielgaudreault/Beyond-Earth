@@ -341,9 +341,7 @@ public class RoverEntity extends IVehicleEntity implements IGaugeValuesProvider 
                         packetBuffer.writeVarInt(RoverEntity.this.getId());
                         return new RoverMenu.GuiContainer(id, inventory, packetBuffer);
                     }
-                }, buf -> {
-                    buf.writeVarInt(this.getId());
-                });
+                }, buf -> buf.writeVarInt(this.getId()));
 
                 return InteractionResult.CONSUME;
             }

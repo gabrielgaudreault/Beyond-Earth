@@ -37,7 +37,6 @@ import com.st0x0ef.beyond_earth.common.util.Methods;
 
 @Mod.EventBusSubscriber(modid = BeyondEarth.MODID, value = Dist.CLIENT)
 public class ClientEvents {
-
     @SubscribeEvent
     public static void playSounds(PlaySoundEvent event) {
         Minecraft mc = Minecraft.getInstance();

@@ -25,15 +25,15 @@ public class RoverItemRenderer<T extends RoverEntity> extends BlockEntityWithout
     public static final ResourceLocation TEXTURE = new ResourceLocation(BeyondEarth.MODID, "textures/vehicle/rover.png");
 
     /** MODEL */
-    private RoverModel model;
+    private RoverModel<?> model;
 
-    public RoverItemRenderer(BlockEntityRenderDispatcher p_172550_, EntityModelSet p_172551_) {
-        super(p_172550_, p_172551_);
+    public RoverItemRenderer(BlockEntityRenderDispatcher renderDispatcher, EntityModelSet modelSet) {
+        super(renderDispatcher, modelSet);
     }
 
 
     @Override
-    public void renderByItem(ItemStack p_108830_, ItemDisplayContext p_108831_, PoseStack matrixStackIn, MultiBufferSource buffer, int combinedLight, int p_108835_) {
+    public void renderByItem(ItemStack stack, ItemDisplayContext displayContext, PoseStack matrixStackIn, MultiBufferSource buffer, int combinedLight, int p_108835_) {
         matrixStackIn.pushPose();
 
         matrixStackIn.mulPose(Axis.ZP.rotationDegrees(180));
@@ -47,7 +47,7 @@ public class RoverItemRenderer<T extends RoverEntity> extends BlockEntityWithout
         vertexBuilder = buffer.getBuffer(RenderType.entityCutoutNoCullZOffset(TEXTURE));
 
         if (this.model == null) {
-            this.model = new RoverModel(mc.getEntityModels().bakeLayer(RoverModel.LAYER_LOCATION));
+            this.model = new RoverModel<>(mc.getEntityModels().bakeLayer(RoverModel.LAYER_LOCATION));
         }
 
         this.model.renderToBuffer(matrixStackIn, vertexBuilder, combinedLight, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);

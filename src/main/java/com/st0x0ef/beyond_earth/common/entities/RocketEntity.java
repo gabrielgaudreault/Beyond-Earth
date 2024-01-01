@@ -319,9 +319,7 @@ public class RocketEntity extends IVehicleEntity implements HasCustomInventorySc
 					packetBuffer.writeVarInt(RocketEntity.this.getId());
 					return new RocketMenu.GuiContainer(id, inventory, packetBuffer);
 				}
-			}, buf -> {
-				buf.writeVarInt(RocketEntity.this.getId());
-			});
+			}, buf -> buf.writeVarInt(RocketEntity.this.getId()));
 		}
 	}
 

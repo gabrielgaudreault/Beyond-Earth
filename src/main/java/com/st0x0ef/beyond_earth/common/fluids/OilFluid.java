@@ -81,7 +81,7 @@ public class OilFluid extends FlowingFluid {
 
     @Override
     protected BlockState createLegacyBlock(FluidState p_76136_) {
-        return BlockRegistry.OIL_BLOCK.get().defaultBlockState().setValue(LiquidBlock.LEVEL, Integer.valueOf(getLegacyLevel(p_76136_)));
+        return BlockRegistry.OIL_BLOCK.get().defaultBlockState().setValue(LiquidBlock.LEVEL, getLegacyLevel(p_76136_));
     }
 
     @Override

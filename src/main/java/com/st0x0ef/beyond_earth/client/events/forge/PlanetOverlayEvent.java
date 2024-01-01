@@ -6,7 +6,6 @@ import net.minecraftforge.client.gui.overlay.ForgeGui;
 import net.minecraftforge.eventbus.api.Event;
 
 public class PlanetOverlayEvent extends Event {
-
     private final ForgeGui gui;
     private ResourceLocation resourceLocation;
     private final PoseStack poseStack;

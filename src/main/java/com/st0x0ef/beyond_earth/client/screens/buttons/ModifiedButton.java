@@ -88,8 +88,8 @@ public class ModifiedButton extends TexturedButton {
 
             List<Component> list = new ArrayList<>();
 
-            list.add(Component.literal("\u00A79" + PlanetSelectionScreen.CATEGORY_TEXT.getString() + ": \u00A7b" + this.list.get(0)));
-            list.add(Component.literal("\u00A79" + PlanetSelectionScreen.TYPE_TEXT.getString() + ": \u00A73" + PlanetSelectionScreen.SOLAR_SYSTEM_TEXT.getString()));
+            list.add(Component.literal("§9" + PlanetSelectionScreen.CATEGORY_TEXT.getString() + ": §b" + this.list.get(0)));
+            list.add(Component.literal("§9" + PlanetSelectionScreen.TYPE_TEXT.getString() + ": §3" + PlanetSelectionScreen.SOLAR_SYSTEM_TEXT.getString()));
 
             graphics.renderComponentTooltip(Minecraft.getInstance().font, list, mouseX, mouseY);
         }
@@ -104,8 +104,8 @@ public class ModifiedButton extends TexturedButton {
 
             String condition = this.rocketCondition ? "a" : "c";
 
-            list.add(Component.literal("\u00A79" + PlanetSelectionScreen.CATEGORY_TEXT.getString() + ": \u00A7" + condition + this.list.get(0)).getVisualOrderText());
-            list.add(Component.literal("\u00A79" + PlanetSelectionScreen.PROVIDED_TEXT.getString() + ": \u00A7b" + this.list.get(1)).getVisualOrderText());
+            list.add(Component.literal("§9" + PlanetSelectionScreen.CATEGORY_TEXT.getString() + ": §" + condition + this.list.get(0)).getVisualOrderText());
+            list.add(Component.literal("§9" + PlanetSelectionScreen.PROVIDED_TEXT.getString() + ": §b" + this.list.get(1)).getVisualOrderText());
 
             screen.setTooltipForNextRenderPass(list);
             screen.renderWithTooltip(graphics, mouseX, mouseY, partialTick);
@@ -119,10 +119,10 @@ public class ModifiedButton extends TexturedButton {
 
             List<FormattedCharSequence> list = new ArrayList<>();
 
-            list.add(Component.literal("\u00A79" + PlanetSelectionScreen.TYPE_TEXT.getString() + ": \u00A73" + this.list.get(0)).getVisualOrderText());
-            list.add(Component.literal("\u00A79" + PlanetSelectionScreen.GRAVITY_TEXT.getString() + ": \u00A73" + this.list.get(1)).getVisualOrderText());
-            list.add(Component.literal("\u00A79" + PlanetSelectionScreen.OXYGEN_TEXT.getString() + ": \u00A7" + this.list.get(2)).getVisualOrderText());
-            list.add(Component.literal("\u00A79" + PlanetSelectionScreen.TEMPERATURE_TEXT.getString() + ": \u00A7" + this.list.get(3)).getVisualOrderText());
+            list.add(Component.literal("§9" + PlanetSelectionScreen.TYPE_TEXT.getString() + ": §3" + this.list.get(0)).getVisualOrderText());
+            list.add(Component.literal("§9" + PlanetSelectionScreen.GRAVITY_TEXT.getString() + ": §3" + this.list.get(1)).getVisualOrderText());
+            list.add(Component.literal("§9" + PlanetSelectionScreen.OXYGEN_TEXT.getString() + ": §" + this.list.get(2)).getVisualOrderText());
+            list.add(Component.literal("§9" + PlanetSelectionScreen.TEMPERATURE_TEXT.getString() + ": §" + this.list.get(3)).getVisualOrderText());
 
             screen.setTooltipForNextRenderPass(list);
             screen.renderWithTooltip(graphics, mouseX, mouseY, partialTick);
@@ -136,7 +136,7 @@ public class ModifiedButton extends TexturedButton {
 
             List<FormattedCharSequence> list = new ArrayList<>();
 
-            list.add(Component.literal("\u00A79" + PlanetSelectionScreen.ITEM_REQUIREMENT_TEXT.getString()).getVisualOrderText());
+            list.add(Component.literal("§9" + PlanetSelectionScreen.ITEM_REQUIREMENT_TEXT.getString()).getVisualOrderText());
 
             //TODO NEED A REWORK WITH THE CRAFTING RECPIES
             /*
@@ -144,14 +144,14 @@ public class ModifiedButton extends TexturedButton {
                 boolean check = screen.getSpaceStationItemCheck(ingredientStack);
                 Component component = Arrays.stream(ingredientStack.getIngredient().getItems()).findFirst().map(ItemStack::getHoverName).orElse(Component.empty());
 
-                list.add(Component.literal("\u00A78[\u00A76" + ingredientStack.getCount() + "\u00A78]" + (check ? "\u00A7a" : "\u00A7c") + " " + component.getString() + (ingredientStack.getCount() > 1 ? "'s" : "")));
+                list.add(Component.literal("§8[§6" + ingredientStack.getCount() + "§8]" + (check ? "§a" : "§c") + " " + component.getString() + (ingredientStack.getCount() > 1 ? "'s" : "")));
             }*/
 
-            list.add(Component.literal("\u00A7c----------------").getVisualOrderText());
-            list.add(Component.literal("\u00A79" + PlanetSelectionScreen.TYPE_TEXT.getString() + ": \u00A73" + this.list.get(0)).getVisualOrderText());
-            list.add(Component.literal("\u00A79" + PlanetSelectionScreen.GRAVITY_TEXT.getString() + ": \u00A73" + this.list.get(1)).getVisualOrderText());
-            list.add(Component.literal("\u00A79" + PlanetSelectionScreen.OXYGEN_TEXT.getString() + ": \u00A7" + this.list.get(2)).getVisualOrderText());
-            list.add(Component.literal("\u00A79" + PlanetSelectionScreen.TEMPERATURE_TEXT.getString() + ": \u00A7" + this.list.get(3)).getVisualOrderText());
+            list.add(Component.literal("§c----------------").getVisualOrderText());
+            list.add(Component.literal("§9" + PlanetSelectionScreen.TYPE_TEXT.getString() + ": §3" + this.list.get(0)).getVisualOrderText());
+            list.add(Component.literal("§9" + PlanetSelectionScreen.GRAVITY_TEXT.getString() + ": §3" + this.list.get(1)).getVisualOrderText());
+            list.add(Component.literal("§9" + PlanetSelectionScreen.OXYGEN_TEXT.getString() + ": §" + this.list.get(2)).getVisualOrderText());
+            list.add(Component.literal("§9" + PlanetSelectionScreen.TEMPERATURE_TEXT.getString() + ": §" + this.list.get(3)).getVisualOrderText());
 
             screen.setTooltipForNextRenderPass(list);
             screen.renderWithTooltip(graphics, mouseX, mouseY, partialTick);

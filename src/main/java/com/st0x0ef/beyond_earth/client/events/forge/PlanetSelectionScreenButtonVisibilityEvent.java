@@ -5,7 +5,6 @@ import net.minecraftforge.client.event.ScreenEvent;
 import net.minecraftforge.eventbus.api.Cancelable;
 
 public class PlanetSelectionScreenButtonVisibilityEvent extends ScreenEvent {
-
     public PlanetSelectionScreenButtonVisibilityEvent(Screen screen) {
         super(screen);
     }

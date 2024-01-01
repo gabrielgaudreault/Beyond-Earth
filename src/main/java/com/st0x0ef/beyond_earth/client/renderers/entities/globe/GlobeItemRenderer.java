@@ -21,13 +21,13 @@ import com.st0x0ef.beyond_earth.common.blocks.entities.GlobeTileEntity;
 public class GlobeItemRenderer<T extends GlobeTileEntity> extends BlockEntityWithoutLevelRenderer {
 
     private ResourceLocation texture;
-    private GlobeModel model;
+    private GlobeModel<?> model;
 
     public GlobeItemRenderer(BlockEntityRenderDispatcher p_172550_, EntityModelSet p_172551_) {
         super(p_172550_, p_172551_);
     }
 
-    public GlobeItemRenderer setTexture(ResourceLocation texture) {
+    public GlobeItemRenderer<?> setTexture(ResourceLocation texture) {
         this.texture = texture;
         return this;
     }
@@ -43,7 +43,7 @@ public class GlobeItemRenderer<T extends GlobeTileEntity> extends BlockEntityWit
         ClientLevel level = mc.level;
 
         if (this.model == null) {
-            this.model = new GlobeModel(mc.getEntityModels().bakeLayer(GlobeModel.LAYER_LOCATION));
+            this.model = new GlobeModel<>(mc.getEntityModels().bakeLayer(GlobeModel.LAYER_LOCATION));
         }
 
         VertexConsumer vertexBuilder = buffer.getBuffer(RenderType.entityCutoutNoCullZOffset(texture));

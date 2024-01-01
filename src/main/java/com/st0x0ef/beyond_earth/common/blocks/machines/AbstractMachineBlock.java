@@ -35,17 +35,14 @@ public abstract class AbstractMachineBlock<T extends AbstractMachineBlockEntity>
         public static final BooleanProperty LIT = BlockStateProperties.LIT;
 
         public AbstractMachineBlock(Properties properties) {
-                super(properties.lightLevel(new ToIntFunction<BlockState>() {
-                        @Override
-                        public int applyAsInt(BlockState state) {
-                                Block block = state.getBlock();
+                super(properties.lightLevel(state -> {
+                    Block block = state.getBlock();
 
-                                if (block instanceof AbstractMachineBlock<?>) {
-                                        return ((AbstractMachineBlock<?>) block).getLightLevel(state);
-                                }
+                    if (block instanceof AbstractMachineBlock<?>) {
+                        return ((AbstractMachineBlock<?>) block).getLightLevel(state);
+                    }
 
-                                return 0;
-                        }
+                    return 0;
                 }));
 
                 this.registerDefaultState(this.buildDefaultState());

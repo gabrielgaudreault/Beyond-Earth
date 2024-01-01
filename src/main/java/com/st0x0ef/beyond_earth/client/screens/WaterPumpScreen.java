@@ -21,9 +21,7 @@ import java.util.Objects;
 
 @OnlyIn(Dist.CLIENT)
 public class WaterPumpScreen extends AbstractContainerScreen<WaterPumpMenu.GuiContainer> {
-
-    public static final ResourceLocation texture = new ResourceLocation(BeyondEarth.MODID,
-            "textures/gui/water_pump.png");
+    public static final ResourceLocation texture = new ResourceLocation(BeyondEarth.MODID, "textures/gui/water_pump.png");
 
     public static final int WATER_TANK_LEFT = 81;
     public static final int WATER_TANK_TOP = 23;

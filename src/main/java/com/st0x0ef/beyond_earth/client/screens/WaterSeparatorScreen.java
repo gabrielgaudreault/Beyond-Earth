@@ -68,8 +68,7 @@ public class WaterSeparatorScreen extends AbstractContainerScreen<WaterSeparator
     }
 
     @Override
-    protected void renderBg(GuiGraphics graphics, float p_97788_, int p_97789_, int p_97790_) {
-
+    protected void renderBg(GuiGraphics graphics, float partialTick, int mouseX, int mouseY) {
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.setShaderTexture(0, texture);
@@ -81,10 +80,10 @@ public class WaterSeparatorScreen extends AbstractContainerScreen<WaterSeparator
                 Objects.requireNonNull(blockEntity.getPrimaryEnergyStorage()));
         GuiHelper.drawFluidTank(graphics, this.leftPos + INPUT_TANK_LEFT, this.topPos + INPUT_TANK_TOP,
                 blockEntity.getInputTank());
-        GuiHelper.drawOxygenTank(graphics, this.leftPos + O2_OUTPUT_TANK_LEFT, this.topPos + O2_OUTPUT_TANK_TOP,
-                blockEntity.getO2OutputTank());
         GuiHelper.drawHydrogenTank(graphics, this.leftPos + H2_OUTPUT_TANK_LEFT, this.topPos + H2_OUTPUT_TANK_TOP,
                 blockEntity.getH2OutputTank());
+        GuiHelper.drawOxygenTank(graphics, this.leftPos + O2_OUTPUT_TANK_LEFT, this.topPos + O2_OUTPUT_TANK_TOP,
+                blockEntity.getO2OutputTank());
     }
 
     public Rectangle2d getInputTankBounds() {

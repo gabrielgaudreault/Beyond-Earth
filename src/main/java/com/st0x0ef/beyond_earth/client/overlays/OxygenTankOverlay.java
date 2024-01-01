@@ -48,7 +48,7 @@ public class OxygenTankOverlay implements IGuiOverlay {
 
                 /** OXYGEN AMOUNT TEXT */
                 Font font = mc.font;
-                Component text = Component.translatable("general." + BeyondEarth.MODID + ".oxygen").append(": ").withStyle(ChatFormatting.BLUE).append("\u00A77" + oxygenStorage.getOxygen() / (oxygenStorage.getMaxCapacity() / 100) + "%");
+                Component text = Component.translatable("general." + BeyondEarth.MODID + ".oxygen").append(": ").withStyle(ChatFormatting.BLUE).append("§7" + oxygenStorage.getOxygen() / (oxygenStorage.getMaxCapacity() / 100) + "%");
                 graphics.drawString(font, text, (x + (textureWidth - font.width(text)) / 2), y + textureHeight + 3, 0xFFFFFF);
             }
         }

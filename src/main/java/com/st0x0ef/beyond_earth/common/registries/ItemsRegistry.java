@@ -1,7 +1,6 @@
 package com.st0x0ef.beyond_earth.common.registries;
 
 import com.st0x0ef.beyond_earth.BeyondEarth;
-import com.st0x0ef.beyond_earth.client.registries.ItemRendererRegistry;
 import com.st0x0ef.beyond_earth.common.armors.JetSuit;
 import com.st0x0ef.beyond_earth.common.armors.NetheriteSpaceSuit;
 import com.st0x0ef.beyond_earth.common.armors.SpaceSuit;

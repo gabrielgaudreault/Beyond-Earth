@@ -115,7 +115,7 @@ public class ChunkOxygen implements ICapabilityProvider, INBTSerializable<Compou
             int dO2max = 1;
             int total = amt;
 
-            directions: for (Direction d : Direction.values()) {
+            for (Direction d : Direction.values()) {
                 int x2 = x + d.getStepX();
                 int y2 = y + d.getStepY();
                 int z2 = z + d.getStepZ();
@@ -174,9 +174,7 @@ public class ChunkOxygen implements ICapabilityProvider, INBTSerializable<Compou
                 }
             }
             if (depth < 10 && !dirty.isEmpty()) {
-                dirty.forEach((pos, section) -> {
-                    section.propagate(nearby, shouldSpread, pos, level, depth + 1);
-                });
+                dirty.forEach((pos, section) -> section.propagate(nearby, shouldSpread, pos, level, depth + 1));
                 propagate(nearby, shouldSpread, origin, serverlevel, depth + 1);
             }
         }
@@ -307,9 +305,7 @@ public class ChunkOxygen implements ICapabilityProvider, INBTSerializable<Compou
     @Override
     public CompoundTag serializeNBT() {
         CompoundTag tag = new CompoundTag();
-        O2.forEach((i, o2) -> {
-            tag.put(String.valueOf(i), o2.serializeNBT());
-        });
+        O2.forEach((i, o2) -> tag.put(String.valueOf(i), o2.serializeNBT()));
         return tag;
     }
 

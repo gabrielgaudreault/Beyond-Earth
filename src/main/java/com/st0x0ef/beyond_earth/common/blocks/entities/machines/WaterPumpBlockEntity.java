@@ -162,7 +162,7 @@ public class WaterPumpBlockEntity extends AbstractMachineBlockEntity {
     @Override
     protected void createFluidHandlers(NamedComponentRegistry<IFluidHandler> registry) {
         super.createFluidHandlers(registry);
-        this.waterTank = (FluidTank) registry.computeIfAbsent(this.getTankName(), k -> this.createTank(k));
+        this.waterTank = (FluidTank) registry.computeIfAbsent(this.getTankName(), this::createTank);
     }
 
     protected int getInitialTankCapacity(ResourceLocation name) {

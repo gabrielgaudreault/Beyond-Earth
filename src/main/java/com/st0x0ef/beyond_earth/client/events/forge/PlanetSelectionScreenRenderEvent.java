@@ -6,7 +6,6 @@ import net.minecraftforge.client.event.ScreenEvent;
 import net.minecraftforge.eventbus.api.Cancelable;
 
 public class PlanetSelectionScreenRenderEvent extends ScreenEvent {
-
     private final PoseStack poseStack;
     private final float partialTicks;
     private final int mouseX;

@@ -43,7 +43,7 @@ public class GlobeModel<T extends GlobeTileEntity> extends Model {
         globe.render(poseStack, buffer, packedLight, packedOverlay, red, green, blue, alpha);
     }
 
-    public void setupAnim(T entity, float partialTicks) {
+    public void setupAnim(GlobeTileEntity entity, float partialTicks) {
         this.globe.getChild("planet").yRot = Mth.lerp(partialTicks, entity.getYaw0(), entity.getYaw());
     }
 }

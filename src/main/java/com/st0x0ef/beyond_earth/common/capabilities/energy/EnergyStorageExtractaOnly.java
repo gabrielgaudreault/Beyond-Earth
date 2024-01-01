@@ -2,15 +2,7 @@ package com.st0x0ef.beyond_earth.common.capabilities.energy;
 
 import net.minecraftforge.energy.IEnergyStorage;
 
-public class EnergyStorageExtractaOnly implements IEnergyStorage {
-
-    private final IEnergyStorage parent;
-    private final int maxExtract;
-
-    public EnergyStorageExtractaOnly(IEnergyStorage parent, int maxExtract) {
-        this.parent = parent;
-        this.maxExtract = maxExtract;
-    }
+public record EnergyStorageExtractaOnly(IEnergyStorage parent, int maxExtract) implements IEnergyStorage {
 
     @Override
     public int receiveEnergy(int maxReceive, boolean simulate) {
@@ -19,30 +11,22 @@ public class EnergyStorageExtractaOnly implements IEnergyStorage {
 
     @Override
     public int extractEnergy(int maxExtract, boolean simulate) {
-        return this.getParent().extractEnergy(maxExtract, simulate);
-    }
-
-    public IEnergyStorage getParent() {
-        return this.parent;
+        return this.parent().extractEnergy(maxExtract, simulate);
     }
 
     @Override
     public int getEnergyStored() {
-        return this.getParent().getEnergyStored();
+        return this.parent().getEnergyStored();
     }
 
     @Override
     public int getMaxEnergyStored() {
-        return this.getParent().getMaxEnergyStored();
+        return this.parent().getMaxEnergyStored();
     }
 
     @Override
     public boolean canExtract() {
-        return this.getMaxExtract() > 0;
-    }
-
-    public int getMaxExtract() {
-        return this.maxExtract;
+        return this.maxExtract() > 0;
     }
 
     @Override

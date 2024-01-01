@@ -69,8 +69,6 @@ public class VehicleUpgraderBlockEntity extends AbstractMachineBlockEntity {
                     rover.setUpgrade(upgrade);
                 }
 
-                output.setCount(1);
-
                 this.removeItem(getSlotUpgradeInput(), 1);
                 this.removeItem(getSlotVehicleInput(), 1);
                 this.setItem(getSlotOutput(), output);

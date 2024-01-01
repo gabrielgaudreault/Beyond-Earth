@@ -62,9 +62,7 @@ public class FlagHeadRenderer implements BlockEntityRenderer<FlagBlockEntity> {
 		p_209262_0_.put(FlagBlock.Types.PLAYER, genericheadmodel);
 	});
 
-	private static final Map<FlagBlock.ISkullType, ResourceLocation> SKINS = Util.make(Maps.newHashMap(), (p_209263_0_) -> {
-		p_209263_0_.put(FlagBlock.Types.PLAYER, DefaultPlayerSkin.getDefaultSkin());
-	});
+	private static final Map<FlagBlock.ISkullType, ResourceLocation> SKINS = Util.make(Maps.newHashMap(), (p_209263_0_) -> p_209263_0_.put(FlagBlock.Types.PLAYER, DefaultPlayerSkin.getDefaultSkin()));
 
 	@Override
 	public void render(FlagBlockEntity tileEntityIn, float partialTicks, PoseStack matrixStackIn, MultiBufferSource bufferIn, int combinedLightIn, int combinedOverlayIn) {

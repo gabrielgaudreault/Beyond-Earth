@@ -271,7 +271,7 @@ public class Events {
 		holder.data = data;
 		// This can be null during the /reload command
 		if (event.getPlayer() != null)
-			NetworkRegistry.PACKET_HANDLER.send(PacketDistributor.PLAYER.with(() -> event.getPlayer()), holder);
+			NetworkRegistry.PACKET_HANDLER.send(PacketDistributor.PLAYER.with(event::getPlayer), holder);
     }
 
     @SubscribeEvent

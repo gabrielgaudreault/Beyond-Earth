@@ -11,8 +11,8 @@ public class DrawableFluidAnimated implements IDrawableAnimated {
 
     private FluidStack fluid;
     private final ITickTimer tickTimer;
-    private boolean drain;
-    private boolean O2;
+    private final boolean drain;
+    private final boolean O2;
 
     public DrawableFluidAnimated(int timer, boolean drain, FluidStack fluid) {
         this(timer, drain, fluid, false);

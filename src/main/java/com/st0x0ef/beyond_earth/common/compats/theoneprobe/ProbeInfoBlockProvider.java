@@ -34,7 +34,7 @@ public class ProbeInfoBlockProvider implements IProbeInfoProvider {
 
 			if (MekanismCompat.LOADED) {
 				List<? extends IElement> elements = MekanismHelper.createGasGaugeDataElement(machineBlockEntity.getCapability(MekanismHelper.getGasHandlerCapability()).orElse(null));
-				elements.forEach(element -> probeInfo.element(element));
+				elements.forEach(probeInfo::element);
 			}
 		}
 

@@ -237,7 +237,7 @@ public class PlanetSky extends DimensionSpecialEffects {
 
                                 if (biome.warmEnoughToRain(blockpos$mutableblockpos)) {
                                     if (i1 != 0) {
-                                        if (i1 >= 0) {
+                                        if (i1 > 0) {
                                             tesselator.end();
                                         }
 
@@ -283,7 +283,7 @@ public class PlanetSky extends DimensionSpecialEffects {
                                             .uv2(k4, j4).endVertex();
                                 } else {
                                     if (i1 != 1) {
-                                        if (i1 >= 0) {
+                                        if (i1 == 0) {
                                             tesselator.end();
                                         }
 
