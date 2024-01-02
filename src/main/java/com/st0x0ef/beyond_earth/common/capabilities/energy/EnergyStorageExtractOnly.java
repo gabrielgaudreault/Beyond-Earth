@@ -2,7 +2,7 @@ package com.st0x0ef.beyond_earth.common.capabilities.energy;
 
 import net.minecraftforge.energy.IEnergyStorage;
 
-public record EnergyStorageExtractaOnly(IEnergyStorage parent, int maxExtract) implements IEnergyStorage {
+public record EnergyStorageExtractOnly(IEnergyStorage parent, int maxExtract) implements IEnergyStorage {
 
     @Override
     public int receiveEnergy(int maxReceive, boolean simulate) {

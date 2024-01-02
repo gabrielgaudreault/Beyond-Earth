@@ -13,7 +13,7 @@ import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.IEnergyStorage;
 import com.st0x0ef.beyond_earth.common.blocks.entities.machines.power.NamedComponentRegistry;
-import com.st0x0ef.beyond_earth.common.capabilities.energy.EnergyStorageExtractaOnly;
+import com.st0x0ef.beyond_earth.common.capabilities.energy.EnergyStorageExtractOnly;
 
 public abstract class GeneratorBlockEntity extends AbstractMachineBlockEntity {
 
@@ -58,7 +58,7 @@ public abstract class GeneratorBlockEntity extends AbstractMachineBlockEntity {
         super.createEnergyStorages(registry);
 
         this.internalEnergyStorage = this.createGeneratingEnergyStorage();
-        this.energyStorage = new EnergyStorageExtractaOnly(this.internalEnergyStorage,
+        this.energyStorage = new EnergyStorageExtractOnly(this.internalEnergyStorage,
                 this.internalEnergyStorage.getMaxEnergyStored());
         registry.put(this.internalEnergyStorage);
     }
