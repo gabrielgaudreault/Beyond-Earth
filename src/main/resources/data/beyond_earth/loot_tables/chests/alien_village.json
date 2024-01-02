@@ -233,6 +233,27 @@
             }
           ],
           "name": "beyond_earth:steel_block"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "beyond_earth:galaxy_skin_modifier"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "beyond_earth:military_skin_modifier"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "beyond_earth:normal_model_modifier"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "name": "beyond_earth:big_model_modifier"
+        },
         }
       ],
       "rolls": {
@@ -240,6 +261,5 @@
         "max": 2.0,
         "min": 1.0
       }
-    }
   ]
 }

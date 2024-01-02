@@ -62,7 +62,7 @@ public class ItemsRegistry {
     public static final RegistryObject<BlockItem> ROCKET_LAUNCH_PAD_ITEM = ITEMS.register("rocket_launch_pad", () -> new BlockItem(BlockRegistry.ROCKET_LAUNCH_PAD.get(), new Item.Properties()));
     public static final RegistryObject<Item> FLAG_ITEM = ITEMS.register("flag", () -> new DoubleHighBlockItem(BlockRegistry.FLAG_BLOCK.get(), new Item.Properties()));
 
-    /** ROCKET MODIFIER */
+    /** ROCKET MODIFIER / UPGRADE */
 
     // Rocket upgrade
     public static final RegistryObject<Item> BASIC_FUEL_UPGRADE = ITEMS.register("basic_fuel_upgrade", () -> new VehicleUpgradeItem(new Item.Properties(), 1, 0, null, null));

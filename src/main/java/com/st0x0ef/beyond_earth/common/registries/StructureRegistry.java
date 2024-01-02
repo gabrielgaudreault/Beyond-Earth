@@ -13,4 +13,5 @@ public class StructureRegistry {
 
     /** STRUCTURES */
     public static final RegistryObject<StructureType<LargeJigsawStructure>> LARGE_JIGSAW_STRUCTURE = STRUCTURES.register("large_jigsaw_structure", () -> () -> LargeJigsawStructure.CODEC);
+
 }

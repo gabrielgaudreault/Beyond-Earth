@@ -12,14 +12,12 @@ import com.st0x0ef.beyond_earth.common.world.processors.StructureVoidProcessor;
 
 @Mod.EventBusSubscriber(modid = BeyondEarth.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class StructureProcessorRegistry {
-
     /** STRUCTURE VOID PROCESSOR */
     public static final StructureProcessorType<StructureVoidProcessor> STRUCTURE_VOID_PROCESSOR = () -> StructureVoidProcessor.CODEC;
 
     @SubscribeEvent
     public static void register(FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
-
             /** STRUCTURE VOID PROCESSOR */
             Registry.register(BuiltInRegistries.STRUCTURE_PROCESSOR, new ResourceLocation(BeyondEarth.MODID, "structure_void_processor"), STRUCTURE_VOID_PROCESSOR);
         });
