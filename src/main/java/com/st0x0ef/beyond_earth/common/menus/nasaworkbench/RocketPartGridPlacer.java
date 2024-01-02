@@ -16,7 +16,7 @@ public class RocketPartGridPlacer {
 
     public static void place(int left, int top, int mod, IPlacer placer, RocketPart part,
             BiConsumer<Integer, Rectangle2d> consumer) {
-        for (int i = 0; i < part.slots(); i++) {
+        for (int i = 0; i < part.getSlots(); i++) {
             Rectangle2d bounds = placer.place(i, left, top, mod);
             consumer.accept(i, bounds);
         }
