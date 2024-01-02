@@ -253,7 +253,6 @@
           "type": "minecraft:item",
           "weight": 5,
           "name": "beyond_earth:big_model_modifier"
-        },
         }
       ],
       "rolls": {
@@ -261,5 +260,6 @@
         "max": 2.0,
         "min": 1.0
       }
+    }
   ]
 }
