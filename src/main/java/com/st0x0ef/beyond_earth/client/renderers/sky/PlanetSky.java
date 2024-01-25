@@ -32,9 +32,8 @@ public class PlanetSky extends DimensionSpecialEffects {
     private final float[] sunriseCol = new float[4];
     private final float[] rainSizeX = new float[1024];
     private final float[] rainSizeZ = new float[1024];
-
     private Planet planet;
-
+    private VertexBuffer starBuffer;
     public PlanetSky(float cloudLevel, Planet planet) {
         super(cloudLevel, false, SkyType.NONE, false, false);
         SkyHelper.setupRainSize(this.rainSizeX, this.rainSizeZ);
@@ -44,7 +43,7 @@ public class PlanetSky extends DimensionSpecialEffects {
     @Override
     public Vec3 getBrightnessDependentFogColor(Vec3 colour, float brightness) {
         if (planet != null) {
-            // If we have no iar density, return nothing
+            // If we have no air density, return nothing
             if (planet.airDensity <= 0)
                 return colour;
             // This is the default used by overworld
@@ -76,11 +75,11 @@ public class PlanetSky extends DimensionSpecialEffects {
             float f3 = (f1 - f2) / f * 0.5F + 0.5F;
             float f4 = 1.0F - (1.0F - Mth.sin(f3 * (float) Math.PI)) * 0.99F;
             f4 *= f4;
-            this.sunriseCol[0] = f3 * 0.3F + dr;
-            this.sunriseCol[1] = f3 * f3 * 0.7F + dg;
-            this.sunriseCol[2] = f3 * f3 * 0.0F + db;
-            this.sunriseCol[3] = f4;
-            return this.sunriseCol;
+            sunriseCol[0] = f3 * 0.3F + dr;
+            sunriseCol[1] = f3 * f3 * 0.7F + dg;
+            sunriseCol[2] = f3 * f3 * 0.0F + db;
+            sunriseCol[3] = f4;
+            return sunriseCol;
         } else {
             return null;
         }
@@ -147,24 +146,11 @@ public class PlanetSky extends DimensionSpecialEffects {
         RenderSystem.defaultBlendFunc();
 
         /** STARS */
-        VertexBuffer starBuffer = StarHelper.createStars(0.1F, ClientConfig.PLANETS_FAST_STARS_COUNT.get(), ClientConfig.PLANETS_FANCY_STARS_COUNT.get(), 190, 160, -1);
-
-        float rainLevel = 1.0F - mc.level.getRainLevel(partialTick);
-        float starLight = mc.level.getStarBrightness(partialTick) * rainLevel;
-        if (starLight > 0.0F) {
-            matrix4f = SkyHelper.setMatrixRot(poseStack,
-                    Triple.of(Axis.YP.rotationDegrees(-90), Axis.XP.rotationDegrees(dayAngle), null));
-            RenderSystem.setShaderColor(starLight + 0.5F, starLight + 0.5F, starLight + 0.5F, starLight + 0.5F);
-            SkyHelper.drawStars(starBuffer, matrix4f, projectionMatrix, GameRenderer.getPositionColorShader(),
-                    setupFog, true);
-        } else if(planet.hasStarsAtDay){
-            matrix4f = SkyHelper.setMatrixRot(poseStack,
-                    Triple.of(Axis.YP.rotationDegrees(-90), Axis.XP.rotationDegrees(dayAngle), null));
-            RenderSystem.setShaderColor(starLight + 1F, starLight + 1F, starLight + 1F, starLight + 1F);
-            SkyHelper.drawStars(starBuffer, matrix4f, projectionMatrix, GameRenderer.getPositionColorShader(),
-                    setupFog, true);
-
+        if (starBuffer == null) {
+            starBuffer = StarHelper.createStars(0.1F, ClientConfig.PLANETS_FAST_STARS_COUNT.get(), ClientConfig.PLANETS_FANCY_STARS_COUNT.get(), 190, 160, -1);
         }
+
+        renderStars(mc, dayAngle, partialTick, poseStack, projectionMatrix, setupFog);
 
         /** PLANETS */
         planet = Planets.getLocationForPlanet(level);
@@ -175,6 +161,25 @@ public class PlanetSky extends DimensionSpecialEffects {
         RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
 
         return true;
+    }
+
+    private void renderStars(Minecraft mc, float dayAngle, float partialTick, PoseStack poseStack, Matrix4f projectionMatrix, Runnable setupFog) {
+        float rainLevel = 1.0F - mc.level.getRainLevel(partialTick);
+        float starLight = mc.level.getStarBrightness(partialTick) * rainLevel;
+        if (starLight > 0.0F) {
+             Matrix4f matrix4f = SkyHelper.setMatrixRot(poseStack,
+                    Triple.of(Axis.YP.rotationDegrees(-90), Axis.XP.rotationDegrees(dayAngle), null));
+            RenderSystem.setShaderColor(starLight + 0.5F, starLight + 0.5F, starLight + 0.5F, starLight + 0.5F);
+            SkyHelper.drawStars(starBuffer, matrix4f, projectionMatrix, GameRenderer.getPositionColorShader(),
+                    setupFog, true);
+        } else if(planet.hasStarsAtDay){
+            Matrix4f matrix4f = SkyHelper.setMatrixRot(poseStack,
+                    Triple.of(Axis.YP.rotationDegrees(-90), Axis.XP.rotationDegrees(dayAngle), null));
+            RenderSystem.setShaderColor(starLight + 1F, starLight + 1F, starLight + 1F, starLight + 1F);
+            SkyHelper.drawStars(starBuffer, matrix4f, projectionMatrix, GameRenderer.getPositionColorShader(),
+                    setupFog, true);
+
+        }
     }
 
     @Override

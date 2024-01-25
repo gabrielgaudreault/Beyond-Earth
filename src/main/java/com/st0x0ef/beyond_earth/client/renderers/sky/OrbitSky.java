@@ -25,9 +25,8 @@ import org.joml.Matrix4f;
 
 @OnlyIn(Dist.CLIENT)
 public class OrbitSky extends DimensionSpecialEffects {
-
-
     private Planet planet;
+    private VertexBuffer starBuffer;
 
     public OrbitSky(Planet planet) {
         super(Float.NaN, false, SkyType.NONE, false, false);
@@ -104,7 +103,9 @@ public class OrbitSky extends DimensionSpecialEffects {
                 SkyHelper.drawSky(mc, matrix4f, projectionMatrix, shaderInstance);
 
                 /** STARS */
-                VertexBuffer starBuffer = StarHelper.createStars(0.1F, ClientConfig.ORBIT_FAST_STARS_COUNT.get(), ClientConfig.ORBIT_FANCY_STARS_COUNT.get(), 190, 160, -1);
+                if (starBuffer == null) {
+                    starBuffer = StarHelper.createStars(0.1F, ClientConfig.ORBIT_FAST_STARS_COUNT.get(), ClientConfig.ORBIT_FANCY_STARS_COUNT.get(), 190, 160, -1);
+                }
 
                 matrix4f = SkyHelper.setMatrixRot(poseStack,
                         Triple.of(Axis.YP.rotationDegrees(-90), Axis.XP.rotationDegrees(dayTime), null));
