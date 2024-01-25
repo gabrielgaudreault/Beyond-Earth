@@ -10,7 +10,7 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
 
 public class HydrogenProvider implements ICapabilityProvider, IHydrogenStorageHolder {
-    public static Capability<HydrogenStorage> HYDROGEN = CapabilityManager.get(new CapabilityToken<>() {
+    public static final Capability<HydrogenStorage> HYDROGEN = CapabilityManager.get(new CapabilityToken<>() {
     });
     public static final String KEY_HYDROGEN = "Hydrogen"; // for compatible other code
 

@@ -31,7 +31,7 @@ import java.util.List;
 import java.util.function.Consumer;
 
 public class RoverItem extends VehicleItem {
-    public static String FUEL_TAG = BeyondEarth.MODID + ":fuel";
+    public static final String FUEL_TAG = BeyondEarth.MODID + ":fuel";
     public int fuelCapacityModifier = 0;
 
     public RoverItem(Properties properties) {

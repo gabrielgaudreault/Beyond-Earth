@@ -25,7 +25,7 @@ public class ModifiedButton extends TexturedButton {
     private final List<String> list;
 
     /** USE ROW 0 FOR (NO ROW SYSTEM), USE ROW 1 FOR (CATEGORIES, PLANETS), USE ROW 2 FOR (ORBITS), USE ROW 3 FOR (SPACE STATIONS) */
-    public int row;
+    public final int row;
 
     // Category for if we are visible
     public Predicate<Integer> isVisible = i -> false;

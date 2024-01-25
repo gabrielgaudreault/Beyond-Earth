@@ -57,7 +57,7 @@ public class ChunkOxygen implements ICapabilityProvider, INBTSerializable<Compou
 
         public static final DefaultCheck DEFAULTS = new DefaultCheck();
 
-        public List<Function<AirCheckTest, AirCheckResult>> children = Lists.newArrayList();
+        public final List<Function<AirCheckTest, AirCheckResult>> children = Lists.newArrayList();
 
         @Override
         public AirCheckResult apply(AirCheckTest t) {

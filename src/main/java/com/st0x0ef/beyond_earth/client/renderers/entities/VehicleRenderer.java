@@ -27,7 +27,7 @@ import java.util.List;
 
 @OnlyIn(Dist.CLIENT)
 public abstract class VehicleRenderer<T extends IVehicleEntity, M extends EntityModel<T>> extends EntityRenderer<T> implements RenderLayerParent<T, M> {
-    protected M model;
+    protected final M model;
     protected final List<RenderLayer<T, M>> layers = Lists.newArrayList();
 
     public VehicleRenderer(EntityRendererProvider.Context p_174289_, M p_174290_, float p_174291_) {

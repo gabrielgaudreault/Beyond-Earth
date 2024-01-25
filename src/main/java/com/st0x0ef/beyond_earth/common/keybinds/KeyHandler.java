@@ -7,8 +7,8 @@ import net.minecraftforge.network.NetworkEvent;
 import java.util.function.Supplier;
 
 public class KeyHandler {
-    public String key;
-    public boolean condition;
+    public final String key;
+    public final boolean condition;
 
     public KeyHandler(String key, boolean condition) {
         this.key = key;

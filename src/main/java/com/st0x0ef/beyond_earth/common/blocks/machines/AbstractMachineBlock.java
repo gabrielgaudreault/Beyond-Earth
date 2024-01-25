@@ -1,7 +1,5 @@
 package com.st0x0ef.beyond_earth.common.blocks.machines;
 
-import java.util.function.ToIntFunction;
-
 import javax.annotation.Nullable;
 
 import net.minecraft.core.BlockPos;

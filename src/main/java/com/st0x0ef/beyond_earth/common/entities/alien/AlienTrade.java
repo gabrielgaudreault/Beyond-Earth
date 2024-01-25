@@ -9,7 +9,6 @@ import net.minecraftforge.fml.common.Mod;
 import com.st0x0ef.beyond_earth.BeyondEarth;
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
-import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.server.packs.resources.ResourceManagerReloadListener;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.npc.VillagerProfession;

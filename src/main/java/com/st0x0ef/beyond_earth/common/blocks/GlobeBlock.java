@@ -35,7 +35,7 @@ public class GlobeBlock extends BaseEntityBlock implements SimpleWaterloggedBloc
 
     public static final VoxelShape SHAPE = Shapes.box(0.2, 0, 0.2, 0.8, 1, 0.8);
 
-    public ResourceLocation texture;
+    public final ResourceLocation texture;
 
     public GlobeBlock(Properties properties, ResourceLocation texture) {
         super(properties);

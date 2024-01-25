@@ -97,7 +97,7 @@ public class PlanetSelectionScreen extends Screen implements MenuAccess<PlanetSe
     public CategoryHelper category; // IF YOU DO AN ADDON MOD SET THIS CATEGORY TO -1 AND CREATE A OWN WITH
                                     // "AbstractCategoryHelper"
     // Index of current star
-    public CategoryHelper starIndex = new CategoryHelper();
+    public final CategoryHelper starIndex = new CategoryHelper();
 
     /** BUTTON LISTS */
     public List<ModifiedButton> visibleButtons;
@@ -621,8 +621,7 @@ public class PlanetSelectionScreen extends Screen implements MenuAccess<PlanetSe
     public ModifiedButton addButton(int x, int y, int row, int width, int height, boolean rocketCondition,
             ModifiedButton.ButtonTypes type, List<String> list, ResourceLocation buttonTexture,
             ModifiedButton.ColorTypes colorType, Component title, Button.OnPress onPress) {
-        ModifiedButton button = this.addRenderableWidget(new ModifiedButton(x, y, row, width, height, 0, 0, 0,
+        return this.addRenderableWidget(new ModifiedButton(x, y, row, width, height, 0, 0, 0,
                 rocketCondition, type, list, buttonTexture, colorType, width, height, onPress, title));
-        return button;
     }
 }

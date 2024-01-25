@@ -41,9 +41,8 @@ public class SpaceSuit {
 					);
 
 					ModelPart modelPart = new ModelPart(Collections.emptyList(), map);
-					SpaceSuitModel.SpaceSuitP1<?> armorModel = new SpaceSuitModel.SpaceSuitP1<>(modelPart, livingEntity, itemStack);
 
-					return armorModel;
+                    return new SpaceSuitModel.SpaceSuitP1<>(modelPart, livingEntity, itemStack);
 				}
 			});
 		}
@@ -78,9 +77,8 @@ public class SpaceSuit {
 					);
 
 					ModelPart modelPart = new ModelPart(Collections.emptyList(), map);
-					SpaceSuitModel.SpaceSuitP1<?> armorModel = new SpaceSuitModel.SpaceSuitP1<>(modelPart, livingEntity, itemStack);
 
-					return armorModel;
+                    return new SpaceSuitModel.SpaceSuitP1<>(modelPart, livingEntity, itemStack);
 				}
 			});
 		}
@@ -120,9 +118,8 @@ public class SpaceSuit {
 					);
 
 					ModelPart modelPart = new ModelPart(Collections.emptyList(), map);
-					SpaceSuitModel.SpaceSuitP2<?> armorModel = new SpaceSuitModel.SpaceSuitP2<>(modelPart, livingEntity, itemStack);
 
-					return armorModel;
+                    return new SpaceSuitModel.SpaceSuitP2<>(modelPart, livingEntity, itemStack);
 				}
 			});
 		}
@@ -162,9 +159,8 @@ public class SpaceSuit {
 					);
 
 					ModelPart modelPart = new ModelPart(Collections.emptyList(), map);
-					SpaceSuitModel.SpaceSuitP1<?> armorModel = new SpaceSuitModel.SpaceSuitP1<>(modelPart, livingEntity, itemStack);
 
-					return armorModel;
+                    return new SpaceSuitModel.SpaceSuitP1<>(modelPart, livingEntity, itemStack);
 				}
 			});
 		}

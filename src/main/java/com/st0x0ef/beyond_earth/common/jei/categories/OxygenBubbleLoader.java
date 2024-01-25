@@ -91,10 +91,8 @@ public class OxygenBubbleLoader implements IRecipeCategory<OxygenBubbleDistribut
 
     @Override
     public void draw(OxygenBubbleDistributorRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics graphics, double mouseX, double mouseY) {
-        int energyTime = 100 / Config.FUEL_REFINERY_ENERGY_USAGE.get();
 
-        int compressTime = energyTime;
-        IDrawableAnimated arrow = cachedArrow.getUnchecked(compressTime);
+        IDrawableAnimated arrow = cachedArrow.getUnchecked(100 / Config.FUEL_REFINERY_ENERGY_USAGE.get());
         arrow.draw(graphics, 40, 22);
 
         // Update the energy cost

@@ -13,7 +13,7 @@ import com.st0x0ef.beyond_earth.BeyondEarth;
 public class TabsRegistry {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MOD_TAB = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, BeyondEarth.MODID);
 
-    public static RegistryObject<CreativeModeTab> DEFAULT = CREATIVE_MOD_TAB.register("tab_normal", () -> CreativeModeTab.builder()
+    public static final RegistryObject<CreativeModeTab> DEFAULT = CREATIVE_MOD_TAB.register("tab_normal", () -> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup.tab_normal"))
             .icon(() -> new ItemStack(ItemsRegistry.ROCKET_ITEM.get()))
             .displayItems((feature, builder) -> {
@@ -42,7 +42,7 @@ public class TabsRegistry {
                 builder.accept(ItemsRegistry.SPACE_BALISE.get());
             }).build());
 
-    public static RegistryObject<CreativeModeTab> MACHINES = CREATIVE_MOD_TAB.register("tab_machines", () -> CreativeModeTab.builder()
+    public static final RegistryObject<CreativeModeTab> MACHINES = CREATIVE_MOD_TAB.register("tab_machines", () -> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup.tab_machines"))
             .icon(() -> new ItemStack(ItemsRegistry.VEHICLE_UPGRADER_ITEM.get()))
             .withTabsBefore(DEFAULT.getId())
@@ -58,7 +58,7 @@ public class TabsRegistry {
                 builder.accept(ItemsRegistry.VEHICLE_UPGRADER_ITEM.get());
             }).build());
 
-    public static RegistryObject<CreativeModeTab> BASICS = CREATIVE_MOD_TAB.register("tab_basics", () -> CreativeModeTab.builder()
+    public static final RegistryObject<CreativeModeTab> BASICS = CREATIVE_MOD_TAB.register("tab_basics", () -> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup.tab_basics"))
             .icon(() -> new ItemStack(ItemsRegistry.DESH_ENGINE.get()))
             .withTabsBefore(MACHINES.getId())
@@ -83,7 +83,7 @@ public class TabsRegistry {
                 builder.accept(ItemsRegistry.GLACIO_TREE_SAPLING_ITEM.get());
             }).build());
 
-    public static RegistryObject<CreativeModeTab> ROCKET_MODIFIER = CREATIVE_MOD_TAB.register("rocket_modifier", () -> CreativeModeTab.builder()
+    public static final RegistryObject<CreativeModeTab> ROCKET_MODIFIER = CREATIVE_MOD_TAB.register("rocket_modifier", () -> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup.tab_rocket_modifier"))
             .icon(() -> new ItemStack(ItemsRegistry.ADVANCED_FUEL_UPGRADE.get()))
             .withTabsBefore(BASICS.getId())
@@ -103,7 +103,7 @@ public class TabsRegistry {
                 builder.accept(ItemsRegistry.BIG_MODEL_MODIFIER.get());
             }).build());
 
-    public static RegistryObject<CreativeModeTab> MATERIALS = CREATIVE_MOD_TAB.register("tab_materials", () -> CreativeModeTab.builder()
+    public static final RegistryObject<CreativeModeTab> MATERIALS = CREATIVE_MOD_TAB.register("tab_materials", () -> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup.tab_materials"))
             .icon(() -> new ItemStack(ItemsRegistry.IRON_PLATE.get()))
             .withTabsBefore(ROCKET_MODIFIER.getId())
@@ -130,7 +130,7 @@ public class TabsRegistry {
                 builder.accept(ItemsRegistry.URANIUM_INGOT.get());
             }).build());
 
-    public static RegistryObject<CreativeModeTab> GLOBES = CREATIVE_MOD_TAB.register("tab_globes", () -> CreativeModeTab.builder()
+    public static final RegistryObject<CreativeModeTab> GLOBES = CREATIVE_MOD_TAB.register("tab_globes", () -> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup.tab_globes"))
             .icon(() -> new ItemStack(ItemsRegistry.GLACIO_GLOBE_ITEM.get()))
             .withTabsBefore(MATERIALS.getId())
@@ -143,7 +143,7 @@ public class TabsRegistry {
                 builder.accept(ItemsRegistry.GLACIO_GLOBE_ITEM.get());
             }).build());
 
-    public static RegistryObject<CreativeModeTab> BLOCKS = CREATIVE_MOD_TAB.register("tab_blocks", () -> CreativeModeTab.builder()
+    public static final RegistryObject<CreativeModeTab> BLOCKS = CREATIVE_MOD_TAB.register("tab_blocks", () -> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup.tab_blocks"))
             .icon(() -> new ItemStack(ItemsRegistry.MOON_STONE_BRICKS_ITEM.get()))
             .withTabsBefore(GLOBES.getId())

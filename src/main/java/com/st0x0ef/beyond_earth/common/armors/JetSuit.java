@@ -56,9 +56,8 @@ public class JetSuit {
                     );
 
                     ModelPart modelPart = new ModelPart(Collections.emptyList(), map);
-                    JetSuitModel.JetSuitP1<?> armorModel = new JetSuitModel.JetSuitP1<>(modelPart, livingEntity, itemStack);
 
-                    return armorModel;
+                    return new JetSuitModel.JetSuitP1<>(modelPart, livingEntity, itemStack);
                 }
             });
         }
@@ -99,9 +98,8 @@ public class JetSuit {
                     );
 
                     ModelPart modelPart = new ModelPart(Collections.emptyList(), map);
-                    JetSuitModel.JetSuitP1<?> armorModel = new JetSuitModel.JetSuitP1<>(modelPart, livingEntity, itemStack);
 
-                    return armorModel;
+                    return new JetSuitModel.JetSuitP1<>(modelPart, livingEntity, itemStack);
                 }
             });
         }
@@ -393,9 +391,8 @@ public class JetSuit {
                     );
 
                     ModelPart modelPart = new ModelPart(Collections.emptyList(), map);
-                    JetSuitModel.JetSuitP2<?> armorModel = new JetSuitModel.JetSuitP2<>(modelPart, livingEntity, itemStack);
 
-                    return armorModel;
+                    return new JetSuitModel.JetSuitP2<>(modelPart, livingEntity, itemStack);
                 }
             });
         }
@@ -434,9 +431,8 @@ public class JetSuit {
                     );
 
                     ModelPart modelPart = new ModelPart(Collections.emptyList(), map);
-                    JetSuitModel.JetSuitP1<?> armorModel = new JetSuitModel.JetSuitP1<>(modelPart, livingEntity, itemStack);
 
-                    return armorModel;
+                    return new JetSuitModel.JetSuitP1<>(modelPart, livingEntity, itemStack);
                 }
             });
         }

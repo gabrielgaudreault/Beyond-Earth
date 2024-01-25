@@ -43,7 +43,7 @@ public class RocketItem extends VehicleItem {
 
     public int fuelCapacityModifier = 0;
     public int fuelUsageModifier = 0;
-    public String rocketSkinTextureBasePath = "textures/vehicle/rocket_skin/";
+    public final String rocketSkinTextureBasePath = "textures/vehicle/rocket_skin/";
     public String rocketSkinTextureName = "standard";
     public String rocketModelName = "tiny";
 

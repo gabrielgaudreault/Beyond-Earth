@@ -24,9 +24,8 @@ public class PygroRenderer extends HumanoidMobRenderer<Mob, PygroModel<Mob>> {
     }
 
     private static PygroModel<Mob> createModel(EntityModelSet p_174350_, ModelLayerLocation p_174351_) {
-        PygroModel<Mob> pygroModel = new PygroModel<>(p_174350_.bakeLayer(p_174351_));
 
-        return pygroModel;
+        return new PygroModel<>(p_174350_.bakeLayer(p_174351_));
     }
 
     public ResourceLocation getTextureLocation(Mob p_115708_) {

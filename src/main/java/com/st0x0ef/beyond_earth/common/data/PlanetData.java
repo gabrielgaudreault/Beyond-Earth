@@ -85,7 +85,7 @@ public class PlanetData {
         // Planet button tier
         double distanceFromEarth = 0;
 
-        public List<PlanetEntry> moons = new ArrayList<>();
+        public final List<PlanetEntry> moons = new ArrayList<>();
 
         public PlanetEntry() {
         }
@@ -177,7 +177,7 @@ public class PlanetData {
         String texture;
 
         // List of planets for this star.
-        public List<PlanetEntry> planets = new ArrayList<>();
+        public final List<PlanetEntry> planets = new ArrayList<>();
 
         // These are coordinates of the star, in lightyears from centre
         public float[] location = new float[3];
@@ -217,7 +217,7 @@ public class PlanetData {
     // Set this to true if you want to change the config!
     public boolean modified = false;
     // List of stars to include.
-    public List<StarEntry> stars = new ArrayList<>();
+    public final List<StarEntry> stars = new ArrayList<>();
 
     public void initPlanets(boolean event) {
 

@@ -10,7 +10,7 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
 
 public class OxygenProvider implements ICapabilityProvider, IOxygenStorageHolder {
-    public static Capability<OxygenStorage> OXYGEN = CapabilityManager.get(new CapabilityToken<>() {});
+    public static final Capability<OxygenStorage> OXYGEN = CapabilityManager.get(new CapabilityToken<>() {});
     public static final String KEY_OXYGEN = "Oxygen"; // for compatible other code
 
     private final ItemStack itemStack;

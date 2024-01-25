@@ -28,7 +28,6 @@ public class NasaWorkbenchMenu {
 
     public static class GuiContainer extends AbstractContainerMenu {
         private final NASAWorkbenchBlockEntity blockEntity;
-        private final ResultContainer resultInventory;
         private final Slot resultSlot;
         private int partSlotStart = 0;
         private int partSlotEnd = 0;
@@ -37,7 +36,7 @@ public class NasaWorkbenchMenu {
             super(ContainerRegistry.NASA_WORKBENCH_GUI.get(), id);
             this.blockEntity = blockEntity;
 
-            this.resultInventory = new ResultContainer() {
+            ResultContainer resultInventory = new ResultContainer() {
                 @Override
                 public ItemStack removeItem(int p_40149_, int p_40150_) {
                     ItemStack stack = super.removeItem(p_40149_, p_40150_);
@@ -53,7 +52,7 @@ public class NasaWorkbenchMenu {
                 }
             };
 
-            this.resultSlot = this.addSlot(new NasaWorkbenchResultSlot(this.resultInventory, 0, 128, 56, blockEntity));
+            this.resultSlot = this.addSlot(new NasaWorkbenchResultSlot(resultInventory, 0, 128, 56, blockEntity));
 
             this.partSlotStart = this.slots.size();
 

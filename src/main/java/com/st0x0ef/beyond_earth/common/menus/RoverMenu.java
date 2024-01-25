@@ -25,7 +25,7 @@ public class RoverMenu {
 	}
 
 	public static class GuiContainer extends AbstractContainerMenu {
-		public RoverEntity rover;
+		public final RoverEntity rover;
 
 		public GuiContainer(int id, Inventory inv, FriendlyByteBuf extraData) {
 			super(ContainerRegistry.ROVER_GUI.get(), id);

@@ -10,7 +10,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class JetSuitMaterial {
-    public static ArmorMaterial ARMOR_MATERIAL = new ArmorMaterial() {
+    public static final ArmorMaterial ARMOR_MATERIAL = new ArmorMaterial() {
         @Override
         public int getDurabilityForType(ArmorItem.Type type) {
             return new int[]{481, 555, 592, 407}[type.getSlot().getIndex()];

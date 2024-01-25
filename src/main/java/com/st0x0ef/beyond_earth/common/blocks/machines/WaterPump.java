@@ -38,17 +38,12 @@ public class WaterPump extends AbstractMachineBlock<WaterPumpBlockEntity> {
 
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-        switch (state.getValue(FACING)) {
-        case NORTH:
-        default:
-            return NORTH_SHAPE;
-        case SOUTH:
-            return SOUTH_SHAPE;
-        case EAST:
-            return EAST_SHAPE;
-        case WEST:
-            return WEST_SHAPE;
-        }
+        return switch (state.getValue(FACING)) {
+            default -> NORTH_SHAPE;
+            case SOUTH -> SOUTH_SHAPE;
+            case EAST -> EAST_SHAPE;
+            case WEST -> WEST_SHAPE;
+        };
     }
 
     static {

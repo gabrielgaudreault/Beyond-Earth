@@ -13,7 +13,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 
 public final class IngredientStack {
 
-	public static IngredientStack EMPTY = new IngredientStack(Ingredient.EMPTY);
+	public static final IngredientStack EMPTY = new IngredientStack(Ingredient.EMPTY);
 
 	private final Ingredient ingredient;
 	private int count = 1;

@@ -31,32 +31,32 @@ public class Planets {
      * Planets::getLocationForOrbit to access this in most cases. This is public as
      * the keyset is a useful way to tell if you are in orbit.
      */
-    public static Map<ResourceKey<Level>, Planet> PLANETS_BY_ORBIT = Maps.newHashMap();
+    public static final Map<ResourceKey<Level>, Planet> PLANETS_BY_ORBIT = Maps.newHashMap();
     /**
      * Mapping of level -> planet, where level is for the planet, use
      * Planets::getLocationForPlanet to access this in most cases. This is public as
      * the keyset is a useful way to tell if you are on a planet
      */
-    public static Map<ResourceKey<Level>, Planet> PLANETS_BY_PLANET = Maps.newHashMap();
+    public static final Map<ResourceKey<Level>, Planet> PLANETS_BY_PLANET = Maps.newHashMap();
     /**
      * This is a mapping of level -> planet, it contains both the orbits and the
      * planets. This is useful for determining if you are either on a level, or in
      * orbit.
      */
-    public static Map<ResourceKey<Level>, Planet> BY_DIMENSION = Maps.newHashMap();
+    public static final Map<ResourceKey<Level>, Planet> BY_DIMENSION = Maps.newHashMap();
 
-    public static Int2ObjectOpenHashMap<ResourceKey<Level>> PLANET_ID_MAPS = new Int2ObjectOpenHashMap<>();
-    public static Int2ObjectOpenHashMap<ResourceKey<Level>> ORBIT_ID_MAPS = new Int2ObjectOpenHashMap<>();
-    public static Int2ObjectOpenHashMap<ResourceKey<Level>> STATION_ID_MAPS = new Int2ObjectOpenHashMap<>();
+    public static final Int2ObjectOpenHashMap<ResourceKey<Level>> PLANET_ID_MAPS = new Int2ObjectOpenHashMap<>();
+    public static final Int2ObjectOpenHashMap<ResourceKey<Level>> ORBIT_ID_MAPS = new Int2ObjectOpenHashMap<>();
+    public static final Int2ObjectOpenHashMap<ResourceKey<Level>> STATION_ID_MAPS = new Int2ObjectOpenHashMap<>();
 
-    public static Set<ResourceKey<Level>> LEVELS_WITHOUT_RAIN = new HashSet<>();
+    public static final Set<ResourceKey<Level>> LEVELS_WITHOUT_RAIN = new HashSet<>();
 
-    public static Set<ResourceKey<Level>> LEVELS_WITHOUT_OXYGEN = new HashSet<>();
+    public static final Set<ResourceKey<Level>> LEVELS_WITHOUT_OXYGEN = new HashSet<>();
 
-    public static Set<ResourceKey<Level>> SPACE_LEVELS = new HashSet<>();
+    public static final Set<ResourceKey<Level>> SPACE_LEVELS = new HashSet<>();
 
-    public static Map<String, StarSystem> STARS = Maps.newHashMap();
-    public static List<StarSystem> ORDERED_STARS = new ArrayList<>();
+    public static final Map<String, StarSystem> STARS = Maps.newHashMap();
+    public static final List<StarSystem> ORDERED_STARS = new ArrayList<>();
     private static final AtomicInteger IDMAPPINGS = new AtomicInteger();
 
     public static final double MOON_MASS_SCALE = 7.34e22;
@@ -217,8 +217,8 @@ public class Planets {
         private static final ResourceLocation DEFAULT_PLANET_BAR = new ResourceLocation(BeyondEarth.MODID,
                 "textures/planet_bar/earth_planet_bar.png");
 
-        public ResourceKey<Level> planet;
-        public ResourceKey<Level> orbit;
+        public final ResourceKey<Level> planet;
+        public final ResourceKey<Level> orbit;
 
         public int planetID;
         public int orbitID;
@@ -259,7 +259,7 @@ public class Planets {
         public double distanceFromEarth = 0;
         public int button_category = -1;
 
-        public List<Planet> moons;
+        public final List<Planet> moons;
 
         public Planet(ResourceKey<Level> planet, ResourceKey<Level> orbit) {
             this.planet = planet;
@@ -322,7 +322,7 @@ public class Planets {
     }
 
     public static class StarSystem extends CelestialBody {
-        public List<Planet> planets;
+        public final List<Planet> planets;
 
         public StarSystem() {
             planets = this.children;
@@ -353,7 +353,7 @@ public class Planets {
         public double orbitRadius = PLANET_ORBIT_SCALE;
 
         public float g = 1;
-        public float orbitG = 0.05f;
+        public final float orbitG = 0.05f;
         public float temperature = 14;
         public boolean tidalLock = false;
         public float airDensity = 0;
@@ -363,8 +363,8 @@ public class Planets {
 
         public CelestialBody _parent = null;
 
-        public List<Planet> children = new ArrayList<>();
-        public Set<String> childNames = Sets.newHashSet();
+        public final List<Planet> children = new ArrayList<>();
+        public final Set<String> childNames = Sets.newHashSet();
 
         protected Vec3 colourCache = null;
 

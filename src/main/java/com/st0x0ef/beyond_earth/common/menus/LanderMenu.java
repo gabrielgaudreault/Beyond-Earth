@@ -22,7 +22,7 @@ public class LanderMenu {
 	}
 
 	public static class GuiContainer extends AbstractContainerMenu {
-		LanderEntity lander;
+		final LanderEntity lander;
 
 		public GuiContainer(int id, Inventory inv, FriendlyByteBuf extraData) {
 			super(ContainerRegistry.LANDER_GUI.get(), id);

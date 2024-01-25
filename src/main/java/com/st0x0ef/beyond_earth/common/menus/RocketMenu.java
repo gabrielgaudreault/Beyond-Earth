@@ -25,7 +25,7 @@ public class RocketMenu {
 	}
 
 	public static class GuiContainer extends AbstractContainerMenu {
-		public RocketEntity rocket;
+		public final RocketEntity rocket;
 
 		public GuiContainer(int id, Inventory inv, FriendlyByteBuf extraData) {
 			super(ContainerRegistry.ROCKET_GUI.get(), id);

@@ -106,8 +106,7 @@ public class ErrorScreen extends Screen implements MenuAccess<ErrorMenu.GuiConta
     public ModifiedButton addButton(int x, int y, int row, int width, int height, boolean rocketCondition,
                                     ModifiedButton.ButtonTypes type, List<String> list, ResourceLocation buttonTexture,
                                     ModifiedButton.ColorTypes colorType, Component title, Button.OnPress onPress) {
-        ModifiedButton button = this.addRenderableWidget(new ModifiedButton(x, y, row, width, height, 0, 0, 0,
+        return this.addRenderableWidget(new ModifiedButton(x, y, row, width, height, 0, 0, 0,
                 rocketCondition, type, list, buttonTexture, colorType, width, height, onPress, title));
-        return button;
     }
 }

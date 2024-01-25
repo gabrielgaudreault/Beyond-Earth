@@ -13,7 +13,7 @@ import net.minecraftforge.network.NetworkEvent;
 import java.util.function.Supplier;
 
 public class PlanetSelectionMenuNetworkHandler extends PlanetSelectionMenuNetworkHandlerHelper {
-    public int integer;
+    public final int integer;
 
     public PlanetSelectionMenuNetworkHandler(int integer) {
         this.integer = integer;
