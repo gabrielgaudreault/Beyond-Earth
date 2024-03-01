@@ -7,6 +7,7 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.MenuAccess;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -600,18 +601,8 @@ public class PlanetSelectionScreen extends Screen implements MenuAccess<PlanetSe
     }
 
     public boolean canGoOn(Planet planetTo) {
-        Planet planet = this.menu.getPlanet();
-        //BeyondEarth.LOGGER.error("The distance between " + planet.name + " and " + planetTo.name + " is "+(planet.distanceFromEarth - planetTo.distanceFromEarth) + " " + this.menu.getMaxDistanceTravelable());
-
-        if(planet.distanceFromEarth > planetTo.distanceFromEarth) {
-            BeyondEarth.LOGGER.error("The distance between " + planet.name + " and " + planetTo.name + " is "+(planet.distanceFromEarth - planetTo.distanceFromEarth) + " " + this.menu.getMaxDistanceTravelable());
-
-            return (planet.distanceFromEarth - planetTo.distanceFromEarth) <= this.menu.getMaxDistanceTravelable();
-        } else {
-            BeyondEarth.LOGGER.error("The distance between " + planet.name + " and " + planetTo.name + " is "+(planetTo.distanceFromEarth - planet.distanceFromEarth) + " " + this.menu.getMaxDistanceTravelable());
-
-            return (planetTo.distanceFromEarth - planet.distanceFromEarth) <= this.menu.getMaxDistanceTravelable();
-        }
+        Planet planet = this.menu.getPlanetOrOrbit();
+        return Mth.abs((float) (planet.distanceFromEarth - planetTo.distanceFromEarth)) <= this.menu.getMaxDistanceTravelable();
     }
 
     /**

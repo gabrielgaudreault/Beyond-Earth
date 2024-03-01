@@ -10,7 +10,6 @@ import net.minecraft.world.entity.player.Player;
 public class PlanetSelectionCommand {
 
     public PlanetSelectionCommand(CommandDispatcher<CommandSourceStack> dispatcher) {
-
         dispatcher.register(Commands.literal("planetselectionmenu").requires(player -> player.hasPermission(2)).executes((context) -> openPlanetSelection(context.getSource())));
     }
 

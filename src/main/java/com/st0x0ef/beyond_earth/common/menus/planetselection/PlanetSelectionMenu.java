@@ -44,8 +44,13 @@ public class PlanetSelectionMenu {
             return this.player;
         }
 
-        public Planets.Planet getPlanet() {
-            return Planets.getLocationForPlanet(this.player.level());
+        public Planets.Planet getPlanetOrOrbit() {
+            Planets.Planet planet = Planets.getLocationForPlanet(this.player.level());
+            if (planet == null) {
+                // We are in orbit
+                planet = Planets.getLocationForOrbit(this.player.level());
+            }
+            return planet;
         }
     }
 }

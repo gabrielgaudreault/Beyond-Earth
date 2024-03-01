@@ -124,8 +124,7 @@ public class Planets {
      */
     @Nullable
     public static Planet getLocationForPlanet(Level level) {
-        if (!PLANETS_BY_PLANET.containsKey(level.dimension()))
-            return null;
+        if (!PLANETS_BY_PLANET.containsKey(level.dimension())) return null;
         return PLANETS_BY_PLANET.get(level.dimension());
     }
 
