@@ -95,19 +95,17 @@ public class RocketItem extends VehicleItem {
             return InteractionResult.PASS;
         }
 
-        /** POS */
-        int x = pos.getX();
-        int y = pos.getY();
-        int z = pos.getZ();
-
         if (state.getBlock() instanceof RocketLaunchPad && state.getValue(RocketLaunchPad.STAGE)) {
-
             BlockPlaceContext blockplacecontext = new BlockPlaceContext(context);
             BlockPos blockpos = blockplacecontext.getClickedPos();
             Vec3 vec3 = Vec3.upFromBottomCenterOf(blockpos, this.getRocketPlaceHigh());
             AABB aabb = this.getEntityType().getDimensions().makeBoundingBox(vec3.x(), vec3.y(), vec3.z());
 
             if (level.noCollision(aabb)) {
+                /** POS */
+                int x = pos.getX();
+                int y = pos.getY();
+                int z = pos.getZ();
 
                 /** CHECK IF NO ENTITY ON THE LAUNCH PAD */
                 AABB scanAbove = new AABB(x, y, z, x + 1, y + 1, z + 1);
