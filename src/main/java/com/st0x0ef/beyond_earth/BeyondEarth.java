@@ -2,6 +2,7 @@ package com.st0x0ef.beyond_earth;
 
 import com.st0x0ef.beyond_earth.common.config.ClientConfig;
 import com.st0x0ef.beyond_earth.common.config.Config;
+import com.st0x0ef.beyond_earth.common.events.BlockRenderLayerEvent;
 import com.st0x0ef.beyond_earth.common.registries.*;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -46,6 +47,8 @@ public class BeyondEarth {
 		FeatureRegistry.FEATURES.register(bus);
 		TabsRegistry.CREATIVE_MOD_TAB.register(bus);
 		MobEffectsRegistry.MOB_EFFECTS.register(bus);
+
+		bus.addListener(BlockRenderLayerEvent::renderLayerEvent);
 
 		MinecraftForge.EVENT_BUS.register(this);
 

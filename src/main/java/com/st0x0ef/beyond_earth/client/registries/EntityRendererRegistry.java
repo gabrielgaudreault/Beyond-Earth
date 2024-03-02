@@ -70,8 +70,5 @@ public class EntityRendererRegistry {
         /** BLOCK ENTITIES */
         event.registerBlockEntityRenderer(BlockEntityRegistry.FLAG_BLOCK_ENTITY.get(), FlagHeadRenderer::new);
         event.registerBlockEntityRenderer(BlockEntityRegistry.GLOBE_BLOCK_ENTITY.get(), GlobeBlockRenderer::new);
-
-        /** BLOCK */
-        ItemBlockRenderTypes.setRenderLayer(BlockRegistry.COAL_LANTERN_BLOCK.get(), RenderType.translucent());
     }
 }
