@@ -86,7 +86,7 @@
   "itemGroup.tab_machines": "Beyond Earth: Máquinas",
   "itemGroup.tab_spawn_eggs": "Beyond Earth: Hevos Generadores",
   "itemGroup.tab_materials": "Beyond Earth: Materiales",
-  "itemGroup.tab_rocket_modifier": "Mejora/Modificacion de cohete",
+  "itemGroup.tab_modifier": "Mejora/Modificacion de cohete",
   "block.beyond_earth.coal_lantern": "Farol de carbón",
   "block.beyond_earth.oxygen_bubble_distributor": "Distribuidor de Burbuja de Oxígeno",
   "block.beyond_earth.blue_iron_plating_block": "Bloque de placas de hierro",

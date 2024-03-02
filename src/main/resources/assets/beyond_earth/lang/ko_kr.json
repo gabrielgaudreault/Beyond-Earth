@@ -86,7 +86,7 @@
   "itemGroup.tab_machines": "Beyond Earth: 기계",
   "itemGroup.tab_spawn_eggs": "Beyond Earth: 생성 알",
   "itemGroup.tab_materials": "Beyond Earth: 재료",
-  "itemGroup.tab_rocket_modifier": "Beyond Earth: 로켓 업그레이드/수정자",
+  "itemGroup.tab_modifier": "Beyond Earth: 로켓 업그레이드/수정자",
   "block.beyond_earth.coal_lantern": "석탄 랜턴",
   "block.beyond_earth.oxygen_bubble_distributor": "산소 기포 분배기",
   "block.beyond_earth.blue_iron_plating_block": "푸른 철 판금 블록",

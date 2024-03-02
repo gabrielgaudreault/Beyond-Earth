@@ -96,7 +96,7 @@
   "itemGroup.tab_machines": "Beyond Earth: Machines",
   "itemGroup.tab_spawn_eggs": "Beyond Earth: Spawn Eggs",
   "itemGroup.tab_materials": "Beyond Earth: Materials",
-  "itemGroup.tab_rocket_modifier": "Beyond Earth: Rocket Upgrade/Modifier",
+  "itemGroup.tab_modifier": "Beyond Earth: Vehicle Upgrade/Modifier",
 
   "block.beyond_earth.coal_lantern": "Coal Lantern",
   "block.beyond_earth.oxygen_bubble_distributor": "Oxygen Bubble Distributor",
