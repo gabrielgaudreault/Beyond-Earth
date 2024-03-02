@@ -21,9 +21,12 @@ import com.st0x0ef.beyond_earth.client.sounds.TickableBeepSound;
 import com.st0x0ef.beyond_earth.client.sounds.TickableLandingSound;
 import com.st0x0ef.beyond_earth.common.entities.LanderEntity;
 import com.st0x0ef.beyond_earth.common.registries.BlockEntityRegistry;
+import com.st0x0ef.beyond_earth.common.registries.BlockRegistry;
 import com.st0x0ef.beyond_earth.common.registries.EntityRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.geom.ModelLayers;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -67,5 +70,8 @@ public class EntityRendererRegistry {
         /** BLOCK ENTITIES */
         event.registerBlockEntityRenderer(BlockEntityRegistry.FLAG_BLOCK_ENTITY.get(), FlagHeadRenderer::new);
         event.registerBlockEntityRenderer(BlockEntityRegistry.GLOBE_BLOCK_ENTITY.get(), GlobeBlockRenderer::new);
+
+        /** BLOCK */
+        ItemBlockRenderTypes.setRenderLayer(BlockRegistry.COAL_LANTERN_BLOCK.get(), RenderType.translucent());
     }
 }
