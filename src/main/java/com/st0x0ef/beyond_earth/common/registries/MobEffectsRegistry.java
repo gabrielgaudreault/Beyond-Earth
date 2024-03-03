@@ -14,6 +14,6 @@ public class MobEffectsRegistry {
             = DeferredRegister.create(ForgeRegistries.MOB_EFFECTS, BeyondEarth.MODID);
 
     public static final RegistryObject<MobEffect> RADIATION = MOB_EFFECTS.register("radiation_effect",
-            () -> new RadiationEffect(MobEffectCategory.HARMFUL, 3124687));
+            () -> new RadiationEffect(MobEffectCategory.HARMFUL, 11184640));
 
 }
