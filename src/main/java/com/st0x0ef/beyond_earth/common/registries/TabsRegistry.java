@@ -83,8 +83,8 @@ public class TabsRegistry {
                 builder.accept(ItemsRegistry.GLACIO_TREE_SAPLING_ITEM.get());
             }).build());
 
-    public static final RegistryObject<CreativeModeTab> ROCKET_MODIFIER = CREATIVE_MOD_TAB.register("rocket_modifier", () -> CreativeModeTab.builder()
-            .title(Component.translatable("itemGroup.tab_rocket_modifier"))
+    public static final RegistryObject<CreativeModeTab> VEHICLE_MODIFIER = CREATIVE_MOD_TAB.register("tab_modifier", () -> CreativeModeTab.builder()
+            .title(Component.translatable("itemGroup.tab_modifier"))
             .icon(() -> new ItemStack(ItemsRegistry.ADVANCED_FUEL_UPGRADE.get()))
             .withTabsBefore(BASICS.getId())
             .displayItems((feature, builder) -> {
@@ -106,7 +106,7 @@ public class TabsRegistry {
     public static final RegistryObject<CreativeModeTab> MATERIALS = CREATIVE_MOD_TAB.register("tab_materials", () -> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup.tab_materials"))
             .icon(() -> new ItemStack(ItemsRegistry.IRON_PLATE.get()))
-            .withTabsBefore(ROCKET_MODIFIER.getId())
+            .withTabsBefore(VEHICLE_MODIFIER.getId())
             .displayItems((feature, builder) -> {
                 builder.accept(ItemsRegistry.STEEL_INGOT.get());
                 builder.accept(ItemsRegistry.DESH_INGOT.get());
