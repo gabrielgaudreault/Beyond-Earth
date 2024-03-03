@@ -1,17 +1,14 @@
 package com.st0x0ef.beyond_earth.common.registries;
 
+import com.st0x0ef.beyond_earth.BeyondEarth;
+import com.st0x0ef.beyond_earth.common.blocks.entities.FlagBlockEntity;
+import com.st0x0ef.beyond_earth.common.blocks.entities.GlobeTileEntity;
+import com.st0x0ef.beyond_earth.common.blocks.entities.UraniumBlockEntity;
+import com.st0x0ef.beyond_earth.common.blocks.entities.machines.*;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-import com.st0x0ef.beyond_earth.BeyondEarth;
-import com.st0x0ef.beyond_earth.common.blocks.entities.FlagBlockEntity;
-import com.st0x0ef.beyond_earth.common.blocks.entities.GlobeTileEntity;
-import com.st0x0ef.beyond_earth.common.blocks.entities.uranium.GlacioUraniumOreEntity;
-import com.st0x0ef.beyond_earth.common.blocks.entities.UraniumBlockEntity;
-import com.st0x0ef.beyond_earth.common.blocks.entities.uranium.MercuryUraniumOreEntity;
-import com.st0x0ef.beyond_earth.common.blocks.entities.machines.*;
-import com.st0x0ef.beyond_earth.common.blocks.entities.uranium.RawUraniumBlockEntity;
 
 public class BlockEntityRegistry {
 
