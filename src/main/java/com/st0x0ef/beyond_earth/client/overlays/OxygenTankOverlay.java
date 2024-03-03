@@ -44,7 +44,7 @@ public class OxygenTankOverlay implements IGuiOverlay {
                 /** DRAW OXYGEN TANK */
                 RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
                 ScreenHelper.drawTexture(x, y, textureWidth, textureHeight, OXYGEN_TANK, false);
-                ScreenHelper.drawVertical(graphics.pose(), x, y, textureWidth, textureHeight, oxygenStorage.getOxygen(), oxygenStorage.getMaxCapacity(), OXYGEN_TANK_FULL, false);
+                ScreenHelper.drawVertical(graphics, x, y, textureWidth, textureHeight, oxygenStorage.getOxygen(), oxygenStorage.getMaxCapacity(), OXYGEN_TANK_FULL, false);
 
                 /** OXYGEN AMOUNT TEXT */
                 Font font = mc.font;

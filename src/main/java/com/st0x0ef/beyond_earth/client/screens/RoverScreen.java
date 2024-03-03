@@ -62,7 +62,7 @@ public class RoverScreen extends AbstractContainerScreen<RoverMenu.GuiContainer>
         /** FUEL RENDERER */
         IGaugeValue fuel = this.getFuel();
         FluidStack fluidStack = new FluidStack(ItemsRegistry.FUEL_BUCKET.get().getFluid(), fuel.getAmount());
-        ScreenHelper.renderFluid.drawFluidVertical(graphics.pose(), fluidStack, this.leftPos + fx + 1, this.topPos + fy + 1, 12, 46,
+        ScreenHelper.renderFluid.drawFluidVertical(graphics, fluidStack, this.leftPos + fx + 1, this.topPos + fy + 1, 12, 46,
                 fuel.getCapacity());
 
         /** FUEL TANK OVERLAY */

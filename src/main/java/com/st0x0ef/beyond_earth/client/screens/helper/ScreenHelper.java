@@ -100,16 +100,16 @@ public class ScreenHelper {
     public static class renderFluid {
 
         /** USE IT TO DRAW FLUID VERTICAL */
-        public static void drawFluidVertical(PoseStack poseStack, FluidStack fluidStack, int leftPos, int topPos, int width, int height, double maxAmount) {
+        public static void drawFluidVertical(GuiGraphics graphics, FluidStack fluidStack, int leftPos, int topPos, int width, int height, double maxAmount) {
             double ratio = fluidStack.getAmount() / maxAmount;
             int ratioHeight = (int) Math.ceil(height * ratio);
             int remainHeight = height - ratioHeight;
 
-            drawFluid(poseStack, fluidStack, leftPos, topPos, width, height, 0, -remainHeight);
+            drawFluid(graphics, fluidStack, leftPos, topPos, width, height, 0, -remainHeight);
         }
 
         /** USE IT TO DRAW FLUID */
-        public static void drawFluid(PoseStack poseStack, FluidStack fluidStack, int leftPos, int topPos, int width, int height, int xOffset, int yOffset) {
+        public static void drawFluid(GuiGraphics graphics, FluidStack fluidStack, int leftPos, int topPos, int width, int height, int xOffset, int yOffset) {
             if (fluidStack.getFluid() == null) {
                 return;
             }
@@ -137,7 +137,7 @@ public class ScreenHelper {
                 for (int f2 = topPos; f2 < topPos + height; f2 += 16) {
 
                     /** RENDERER */
-                    renderWithFloat.blit(poseStack, f1, f2, 0, 16, 16, sprite);
+                    renderWithFloat.blit(graphics.pose(), f1, f2, 0, 16, 16, sprite);
                 }
             }
 
@@ -148,7 +148,7 @@ public class ScreenHelper {
     }
 
     /** USE IT TO DRAW VERTICAL */
-    public static void drawVertical(PoseStack poseStack, int leftPos, int topPos, int width, int height, double min, double max, ResourceLocation resourceLocation, boolean blend) {
+    public static void drawVertical(GuiGraphics graphics, int leftPos, int topPos, int width, int height, double min, double max, ResourceLocation resourceLocation, boolean blend) {
         double ratio = min / max;
         int ratioHeight = (int) Math.ceil(height * ratio);
         int remainHeight = height - ratioHeight;
@@ -160,7 +160,7 @@ public class ScreenHelper {
 
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderTexture(0, resourceLocation);
-        renderWithFloat.blit(poseStack, leftPos, topPos + remainHeight, 0, remainHeight, width, ratioHeight, width, height);
+        renderWithFloat.blit(graphics.pose(), leftPos, topPos + remainHeight, 0, remainHeight, width, ratioHeight, width, height);
 
         if (blend) {
             RenderSystem.disableBlend();

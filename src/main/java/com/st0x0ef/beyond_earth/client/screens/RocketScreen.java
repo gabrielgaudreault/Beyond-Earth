@@ -58,7 +58,7 @@ public class RocketScreen extends AbstractContainerScreen<RocketMenu.GuiContaine
 		/** FUEL RENDERER */
 		IGaugeValue fuel = this.getFuel();
 		FluidStack fluidStack = new FluidStack(ItemsRegistry.FUEL_BUCKET.get().getFluid(), fuel.getAmount());
-		ScreenHelper.renderFluid.drawFluidVertical(graphics.pose(), fluidStack, this.leftPos + 51, this.topPos + 24, 12, 46, fuel.getCapacity());
+		ScreenHelper.renderFluid.drawFluidVertical(graphics, fluidStack, this.leftPos + 51, this.topPos + 24, 12, 46, fuel.getCapacity());
 
 		/** FUEL TANK OVERLAY */
 		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
