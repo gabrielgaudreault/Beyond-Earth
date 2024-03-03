@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "group": "beyond_earth",
   "result": {
-    "item": "beyond_earth:raw_uranium_ingot"
+    "item": "beyond_earth:raw_uranium"
   },
   "pattern": [
     "#"
