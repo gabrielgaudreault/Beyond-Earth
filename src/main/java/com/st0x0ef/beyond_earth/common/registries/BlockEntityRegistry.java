@@ -8,7 +8,7 @@ import com.st0x0ef.beyond_earth.BeyondEarth;
 import com.st0x0ef.beyond_earth.common.blocks.entities.FlagBlockEntity;
 import com.st0x0ef.beyond_earth.common.blocks.entities.GlobeTileEntity;
 import com.st0x0ef.beyond_earth.common.blocks.entities.uranium.GlacioUraniumOreEntity;
-import com.st0x0ef.beyond_earth.common.blocks.entities.uranium.UraniumBlockEntity;
+import com.st0x0ef.beyond_earth.common.blocks.entities.UraniumBlockEntity;
 import com.st0x0ef.beyond_earth.common.blocks.entities.uranium.MercuryUraniumOreEntity;
 import com.st0x0ef.beyond_earth.common.blocks.entities.machines.*;
 import com.st0x0ef.beyond_earth.common.blocks.entities.uranium.RawUraniumBlockEntity;
@@ -33,11 +33,6 @@ public class BlockEntityRegistry {
     /** BLOCK ENTITIES (Other) */
     public static final RegistryObject<BlockEntityType<GlobeTileEntity>> GLOBE_BLOCK_ENTITY = BLOCK_ENTITIES.register("globe", () -> BlockEntityType.Builder.of(GlobeTileEntity::new, BlockRegistry.EARTH_GLOBE_BLOCK.get(), BlockRegistry.MOON_GLOBE_BLOCK.get(), BlockRegistry.MARS_GLOBE_BLOCK.get(), BlockRegistry.MERCURY_GLOBE_BLOCK.get(), BlockRegistry.VENUS_GLOBE_BLOCK.get(), BlockRegistry.GLACIO_GLOBE_BLOCK.get()).build(null));
     public static final RegistryObject<BlockEntityType<FlagBlockEntity>> FLAG_BLOCK_ENTITY = BLOCK_ENTITIES.register("flag", () -> BlockEntityType.Builder.of(FlagBlockEntity::new, BlockRegistry.FLAG_BLOCK.get()).build(null));
-
-    /** BLOCK ENTITIES (Uranium) */
-    public static final RegistryObject<BlockEntityType<MercuryUraniumOreEntity>> MERCURY_URANIUM_ORE_BLOCK_ENTITY = BLOCK_ENTITIES.register("mercury_uranium_ore", () -> BlockEntityType.Builder.of(MercuryUraniumOreEntity::new, BlockRegistry.MERCURY_URANIUM_ORE.get()).build(null));
-    public static final RegistryObject<BlockEntityType<RawUraniumBlockEntity>> URANIUM_RAW_BLOCK_ENTITY = BLOCK_ENTITIES.register("raw_uranium_block", () -> BlockEntityType.Builder.of(RawUraniumBlockEntity::new, BlockRegistry.RAW_URANIUM_BLOCK.get()).build(null));
-    public static final RegistryObject<BlockEntityType<UraniumBlockEntity>> URANIUM_BLOCK_ENTITY = BLOCK_ENTITIES.register("uranium_block", () -> BlockEntityType.Builder.of(UraniumBlockEntity::new, BlockRegistry.URANIUM_BLOCK.get()).build(null));
-    public static final RegistryObject<BlockEntityType<GlacioUraniumOreEntity>> GLACIO_URANIUM_ORE_BLOCK_ENTITY = BLOCK_ENTITIES.register("glacio_uranium_ore", () -> BlockEntityType.Builder.of(GlacioUraniumOreEntity::new, BlockRegistry.GLACIO_URANIUM_ORE.get()).build(null));
+    public static final RegistryObject<BlockEntityType<UraniumBlockEntity>> URANIUM_BLOCK_ENTITY = BLOCK_ENTITIES.register("uranium_block", () -> BlockEntityType.Builder.of(UraniumBlockEntity::new, BlockRegistry.URANIUM_BLOCK.get(), BlockRegistry.RAW_URANIUM_BLOCK.get(), BlockRegistry.MERCURY_URANIUM_ORE.get(), BlockRegistry.GLACIO_URANIUM_ORE.get()).build(null));
 
 }

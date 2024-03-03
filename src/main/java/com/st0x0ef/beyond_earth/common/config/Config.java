@@ -72,6 +72,8 @@ public class Config {
         public static final ForgeConfigSpec.ConfigValue<Boolean> WATER_TO_ICE_GLACIO;
         public static final ForgeConfigSpec.ConfigValue<Boolean> CHECK_SPACE_STATION;
 
+        public static final ForgeConfigSpec.ConfigValue<Integer> RADIOACTIVITY_EFFECT_DISTANCE;
+
 
 	static {
 		BUILDER.push("Beyond Earth Config");
@@ -167,6 +169,10 @@ public class Config {
             WATER_TO_ICE_GLACIO = BUILDER.comment("Enable or Disable the transformation of water into ice on glacio").define("Water to ice glacio", false);
             BUILDER.pop();
 
+            /** Radioactivity */
+            BUILDER.push("Radioactivity");
+            RADIOACTIVITY_EFFECT_DISTANCE = BUILDER.comment("The distance at which radioactivity affects you").define("Radioactivity effect distance", 5);
+            BUILDER.pop();
 
             SPEC = BUILDER.build();
 	}
