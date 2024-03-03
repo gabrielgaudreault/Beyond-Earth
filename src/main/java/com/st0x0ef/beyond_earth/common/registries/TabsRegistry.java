@@ -226,6 +226,7 @@ public class TabsRegistry {
                 builder.accept(ItemsRegistry.PERMAFROST_GRASS_ITEM.get());
                 builder.accept(ItemsRegistry.PERMAFROST_DIRT_ITEM.get());
                 builder.accept(ItemsRegistry.MERCURY_URANIUM_ORE_ITEM.get());
+                builder.accept(ItemsRegistry.GLACIO_URANIUM_ORE_ITEM.get());
                 builder.accept(ItemsRegistry.RAW_URANIUM_BLOCK_ITEM.get());
                 builder.accept(ItemsRegistry.URANIUM_BLOCK_ITEM.get());
             }).build());
