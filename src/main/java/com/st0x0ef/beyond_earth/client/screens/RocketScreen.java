@@ -1,6 +1,7 @@
 package com.st0x0ef.beyond_earth.client.screens;
 
 import com.mojang.blaze3d.systems.RenderSystem;
+import com.st0x0ef.beyond_earth.client.util.GuiHelper;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
@@ -58,11 +59,7 @@ public class RocketScreen extends AbstractContainerScreen<RocketMenu.GuiContaine
 		/** FUEL RENDERER */
 		IGaugeValue fuel = this.getFuel();
 		FluidStack fluidStack = new FluidStack(ItemsRegistry.FUEL_BUCKET.get().getFluid(), fuel.getAmount());
-		ScreenHelper.renderFluid.drawFluidVertical(graphics, fluidStack, this.leftPos + 51, this.topPos + 24, 12, 46, fuel.getCapacity());
-
-		/** FUEL TANK OVERLAY */
-		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-		ScreenHelper.drawTexture(this.leftPos + 51, this.topPos + 24, 12, 46, FLUID_TANK_OVERLAY, false);
+		GuiHelper.drawFluidTank(graphics, this.leftPos + 51, this.topPos + 24, fluidStack, fuel.getCapacity());
 	}
 
 	@Override

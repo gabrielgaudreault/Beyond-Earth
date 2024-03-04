@@ -1,5 +1,6 @@
 package com.st0x0ef.beyond_earth.client.screens;
 
+import com.st0x0ef.beyond_earth.client.util.GuiHelper;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
@@ -56,17 +57,10 @@ public class RoverScreen extends AbstractContainerScreen<RoverMenu.GuiContainer>
         /** BACKGROUND */
         ScreenHelper.drawTexture(this.leftPos, this.topPos, this.imageWidth, this.imageHeight, TEXTURE, false);
 
-        int fx = 50;
-        int fy = 25;
-
         /** FUEL RENDERER */
         IGaugeValue fuel = this.getFuel();
         FluidStack fluidStack = new FluidStack(ItemsRegistry.FUEL_BUCKET.get().getFluid(), fuel.getAmount());
-        ScreenHelper.renderFluid.drawFluidVertical(graphics, fluidStack, this.leftPos + fx + 1, this.topPos + fy + 1, 12, 46,
-                fuel.getCapacity());
-
-        /** FUEL TANK OVERLAY */
-        ScreenHelper.drawTexture(this.leftPos + fx, this.topPos + fy, 14, 48, FLUID_TANK_OVERLAY, false);
+        GuiHelper.drawFluidTank(graphics, this.leftPos + 51, this.topPos + 26, fluidStack, fuel.getCapacity());
     }
 
     @Override
