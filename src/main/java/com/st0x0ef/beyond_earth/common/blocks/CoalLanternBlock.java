@@ -23,25 +23,25 @@ public class CoalLanternBlock extends LanternBlock {
     }
 
     @Override
-    public InteractionResult use(BlockState p_51274_, Level p_51275_, BlockPos p_51276_, Player p_51277_, InteractionHand p_51278_, BlockHitResult p_51279_) {
-        ItemStack itemstack = p_51277_.getItemInHand(p_51278_);
+    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+        ItemStack itemstack = player.getItemInHand(hand);
 
-        if (!p_51275_.getBlockState(p_51276_).getValue(CoalLanternBlock.HANGING) && !Methods.isSpaceLevelWithoutOxygen(p_51275_) && (itemstack.getItem() == Items.FLINT_AND_STEEL || itemstack.getItem() == Items.FIRE_CHARGE)) {
-            if (!p_51275_.isClientSide) {
+        if (!level.getBlockState(pos).getValue(CoalLanternBlock.HANGING) && !Methods.isSpaceLevelWithoutOxygen(level) && (itemstack.getItem() == Items.FLINT_AND_STEEL || itemstack.getItem() == Items.FIRE_CHARGE)) {
+            if (!level.isClientSide) {
 
-                p_51275_.setBlock(p_51276_, Blocks.LANTERN.defaultBlockState(), 3);
+                level.setBlock(pos, Blocks.LANTERN.defaultBlockState(), 3);
 
-                this.fireManager(itemstack, p_51277_, p_51278_, p_51276_, p_51275_);
+                this.fireManager(itemstack, player, hand, pos, level);
                 return InteractionResult.SUCCESS;
             }
         }
 
-        if (p_51275_.getBlockState(p_51276_).getValue(CoalLanternBlock.HANGING) && !Methods.isSpaceLevelWithoutOxygen(p_51275_) && (itemstack.getItem() == Items.FLINT_AND_STEEL || itemstack.getItem() == Items.FIRE_CHARGE)) {
-            if (!p_51275_.isClientSide) {
+        if (level.getBlockState(pos).getValue(CoalLanternBlock.HANGING) && !Methods.isSpaceLevelWithoutOxygen(level) && (itemstack.getItem() == Items.FLINT_AND_STEEL || itemstack.getItem() == Items.FIRE_CHARGE)) {
+            if (!level.isClientSide) {
 
-                p_51275_.setBlock(p_51276_, Blocks.LANTERN.defaultBlockState().setValue(LanternBlock.HANGING, true), 3);
+                level.setBlock(pos, Blocks.LANTERN.defaultBlockState().setValue(LanternBlock.HANGING, true), 3);
 
-                this.fireManager(itemstack, p_51277_, p_51278_, p_51276_, p_51275_);
+                this.fireManager(itemstack, player, hand, pos, level);
                 return InteractionResult.SUCCESS;
             }
         }

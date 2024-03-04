@@ -34,8 +34,8 @@ public class WallCoalTorchBlock extends CoalTorchBlock {
 	}
 
 	@Override
-	public InteractionResult use(BlockState p_60503_, Level p_60504_, BlockPos p_60505_, Player p_60506_, InteractionHand p_60507_, BlockHitResult p_60508_) {
-		return super.use(p_60503_, p_60504_, p_60505_, p_60506_, p_60507_, p_60508_);
+	public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+		return super.use(state, level, pos, player, hand, hitResult);
 	}
 
 	@Override
@@ -44,8 +44,8 @@ public class WallCoalTorchBlock extends CoalTorchBlock {
 	}
 
 	@Override
-	public VoxelShape getShape(BlockState p_60555_, BlockGetter p_60556_, BlockPos p_60557_, CollisionContext p_60558_) {
-		return getShapeForState(p_60555_);
+	public VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos pos, CollisionContext context) {
+		return getShapeForState(state);
 	}
 
 	public static VoxelShape getShapeForState(BlockState state) {
@@ -53,11 +53,11 @@ public class WallCoalTorchBlock extends CoalTorchBlock {
 	}
 
 	@Override
-	public boolean canSurvive(BlockState p_58133_, LevelReader p_58134_, BlockPos p_58135_) {
-		Direction direction = p_58133_.getValue(FACING);
-		BlockPos blockpos = p_58135_.relative(direction.getOpposite());
-		BlockState blockstate = p_58134_.getBlockState(blockpos);
-		return blockstate.isFaceSturdy(p_58134_, blockpos, direction);
+	public boolean canSurvive(BlockState state, LevelReader reader, BlockPos pos) {
+		Direction direction = state.getValue(FACING);
+		BlockPos blockpos = pos.relative(direction.getOpposite());
+		BlockState blockstate = reader.getBlockState(blockpos);
+		return blockstate.isFaceSturdy(reader, blockpos, direction);
 	}
 
 	@Nullable
@@ -92,12 +92,12 @@ public class WallCoalTorchBlock extends CoalTorchBlock {
 	}
 
 	@Override
-	public BlockState mirror(BlockState p_60528_, Mirror p_60529_) {
-		return p_60528_.rotate(p_60529_.getRotation(p_60528_.getValue(FACING)));
+	public BlockState mirror(BlockState state, Mirror mirror) {
+		return state.rotate(mirror.getRotation(state.getValue(FACING)));
 	}
 
 	@Override
-	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> p_49915_) {
-		p_49915_.add(FACING);
+	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+		builder.add(FACING);
 	}
 }
