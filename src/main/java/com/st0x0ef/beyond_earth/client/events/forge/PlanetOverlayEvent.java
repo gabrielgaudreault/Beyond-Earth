@@ -19,7 +19,7 @@ public class PlanetOverlayEvent extends Event {
         this.poseStack = poseStack;
         this.partialTicks = partialTicks;
         this.width = width;
-        this.height = width;
+        this.height = height;
     }
 
     public ForgeGui getGui() {
