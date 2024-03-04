@@ -1,6 +1,6 @@
 modLoader="javafml"
 loaderVersion="[${loader_version},)"
-license="All Rights Reserved unless otherwise explicitly stated"
+license="CC BY-NC-SA 4.0"
 
 [[mods]]
 modId="beyond_earth"
