@@ -52,7 +52,7 @@ public class NasaWorkbenchMenu {
                 }
             };
 
-            this.resultSlot = this.addSlot(new NasaWorkbenchResultSlot(resultInventory, 0, 128, 56, blockEntity));
+            this.resultSlot = this.addSlot(new NasaWorkbenchResultSlot(resultInventory, 0, 129, 56, blockEntity));
 
             this.partSlotStart = this.slots.size();
 
