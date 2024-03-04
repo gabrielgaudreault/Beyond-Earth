@@ -54,15 +54,15 @@ public class SpaceBaliseItem extends Item {
         CompoundTag coords = stack.getOrCreateTagElement("coords");
 
         if (!coordsSet) {
-            player.sendSystemMessage(Component.literal("No coords found"));
+            player.displayClientMessage(Component.literal("No coords found"), true);
             return InteractionResultHolder.fail(stack);
         }
         else if (!level.getBlockState(new BlockPos(coords.getInt("x"), coords.getInt("y"), coords.getInt("z"))).is(BlockRegistry.ROCKET_LAUNCH_PAD.get())) {
-            player.sendSystemMessage(Component.translatable("message.beyond_earth.space_balise.no_launch_pad", coords.getInt("x"), coords.getInt("y"), coords.getInt("z"), coords.getString("level")));
+            player.displayClientMessage(Component.translatable("message.beyond_earth.space_balise.no_launch_pad", coords.getInt("x"), coords.getInt("y"), coords.getInt("z"), coords.getString("level")), true);
             coordsSet = false;
         }
         else {
-            player.sendSystemMessage(Component.translatable("message.beyond_earth.space_balise.launch_pad_coordinates", coords.getInt("x"), coords.getInt("z"), coords.getInt("y"), coords.getString("level")));
+            player.displayClientMessage(Component.translatable("message.beyond_earth.space_balise.launch_pad_coordinates", coords.getInt("x"), coords.getInt("z"), coords.getInt("y"), coords.getString("level")), true);
 
         }
 
@@ -72,10 +72,10 @@ public class SpaceBaliseItem extends Item {
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltipComponents, TooltipFlag isAdvanced) {
         CompoundTag coords = stack.getOrCreateTagElement("coords");
-        if (!coordsSet && coords == null) {
+        if (!coordsSet) {
             tooltipComponents.add(Component.translatable("message.beyond_earth.space_balise.right_click"));
 
-        } else if(coords != null) {
+        } else {
             tooltipComponents.add(Component.translatable("message.beyond_earth.space_balise.launch_pad_coordinates", coords.getInt("x"), coords.getInt("z"), coords.getInt("y"), coords.getString("level")));
         }
     }
