@@ -47,11 +47,6 @@
     "beyond_earth:cracked_glacio_stone_bricks",
     "beyond_earth:glacio_stone_brick_slab",
     "beyond_earth:glacio_stone_brick_stairs",
-	
-    "beyond_earth:steel_block",
-    "beyond_earth:desh_block",
-    "beyond_earth:ostrum_block",
-    "beyond_earth:calorite_block",
 
     "beyond_earth:iron_plating_block",
     "beyond_earth:iron_mark_block",
@@ -60,7 +55,7 @@
     "beyond_earth:fuel_refinery",
     "beyond_earth:compressor",
     "beyond_earth:coal_generator",
-    "beyond_earth:water_separator",
+    "beyond_earth:vehicle_upgrader",
     "beyond_earth:solar_panel",
     "beyond_earth:nasa_workbench",
     "beyond_earth:oxygen_bubble_distributor",
