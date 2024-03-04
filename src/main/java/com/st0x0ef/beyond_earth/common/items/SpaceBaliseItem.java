@@ -53,7 +53,7 @@ public class SpaceBaliseItem extends Item {
         ItemStack stack = player.getItemInHand(usedHand);
         CompoundTag coords = stack.getOrCreateTagElement("coords");
 
-        if (coords == null) {
+        if (!coordsSet) {
             player.sendSystemMessage(Component.literal("No coords found"));
             return InteractionResultHolder.fail(stack);
         }
