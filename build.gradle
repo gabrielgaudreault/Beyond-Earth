@@ -5,7 +5,6 @@ plugins {
     id "net.minecraftforge.gradle" version "[6.0,6.2)"
     id "org.spongepowered.mixin" version "0.7-SNAPSHOT"
     id "org.parchmentmc.librarian.forgegradle" version "1.+"
-
 }
 
 version = "${mc_version}-${mod_version}"
@@ -15,16 +14,14 @@ archivesBaseName = "Beyond-Earth"
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 minecraft {
-
     mappings channel: 'parchment', version: '2023.09.03-1.20.1'
     accessTransformer = file("src/main/resources/META-INF/accesstransformer.cfg")
 
     runs {
-        client {
+        all {
             workingDirectory project.file("run")
             property "forge.logging.markers", "REGISTRIES"
             property "forge.logging.console.level", "debug"
-            property "forge.enabledGameTestNamespaces", "beyond_earth"
             arg "-mixin.config=beyond_earth.mixin.json"
 
             mods {
@@ -32,48 +29,22 @@ minecraft {
                     source sourceSets.main
                 }
             }
+        }
+
+        client {
+            property "forge.enabledGameTestNamespaces", "beyond_earth"
         }
 
         server {
-            workingDirectory project.file("run")
-            property "forge.logging.markers", "REGISTRIES"
-            property "forge.logging.console.level", "debug"
             property "forge.enabledGameTestNamespaces", "beyond_earth"
-            arg "-mixin.config=beyond_earth.mixin.json"
-
-            mods {
-                beyond_earth {
-                    source sourceSets.main
-                }
-            }
         }
 
         gameTestServer {
-            workingDirectory project.file("run")
-            property "forge.logging.markers", "REGISTRIES"
-            property "forge.logging.console.level", "debug"
             property "forge.enabledGameTestNamespaces", "beyond_earth"
-            arg "-mixin.config=beyond_earth.mixin.json"
-
-            mods {
-                beyond_earth {
-                    source sourceSets.main
-                }
-            }
         }
 
         data {
-            workingDirectory project.file("run")
-            property "forge.logging.markers", "REGISTRIES"
-            property "forge.logging.console.level", "debug"
             args "--mod", "beyond_earth", "--all", "--output", file("src/generated/resources/"), "--existing", file("src/main/resources/")
-            arg "-mixin.config=beyond_earth.mixin.json"
-
-            mods {
-                beyond_earth {
-                    source sourceSets.main
-                }
-            }
         }
     }
 }
@@ -94,9 +65,8 @@ dependencies {
     minecraft "net.minecraftforge:forge:${mc_version}-${forge_version}"
 
     /** MIXIN */
-    if (System.getProperty("idea.sync.active") != "true") {
+    if (System.getProperty("idea.sync.active") != "true")
         annotationProcessor "org.spongepowered:mixin:${mixin_version}:processor"
-    }
 
     /** JEI */
     implementation fg.deobf("curse.maven:jei-${version_jei}")
@@ -126,9 +96,9 @@ jar {
                 "MixinConfigs"            : "beyond_earth.mixin.json"
         ])
     }
-}
 
-jar.finalizedBy("reobfJar")
+    finalizedBy 'reobfJar'
+}
 
 publishing {
     publications {
@@ -147,6 +117,9 @@ tasks.withType(JavaCompile).configureEach {
     options.encoding = "UTF-8"
 }
 
+import groovy.json.JsonSlurper
+import groovy.json.JsonOutput
+
 def resourceTargets = ["META-INF/mods.toml", "pack.mcmeta"]
 def intoTargets = ["$rootDir/out/production/resources/", "$rootDir/out/production/${project.name}.main/", "$rootDir/bin/main/"]
 def replaceProperties = [mod_version: mod_version, mc_version: mc_version, forge_version: forge_version, loader_version: loader_version]
@@ -156,6 +129,9 @@ processResources {
 
     filesMatching(resourceTargets) {
         expand replaceProperties
+        filter {
+            it.empty ? null : it
+        }
     }
 
     intoTargets.each { target ->
@@ -167,6 +143,12 @@ processResources {
                 }
                 into target
             }
+        }
+    }
+
+    doLast {
+        fileTree(dir: outputs.files.asPath, include: '@(**/*.json|pack.mcmeta)').each {
+            it.text = JsonOutput.toJson(new JsonSlurper().parse(it))
         }
     }
 }
