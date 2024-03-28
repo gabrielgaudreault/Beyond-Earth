@@ -97,6 +97,7 @@ jar {
         ])
     }
 
+    from('LICENSE')
     finalizedBy 'reobfJar'
 }
 
@@ -147,8 +148,10 @@ processResources {
     }
 
     doLast {
-        fileTree(dir: outputs.files.asPath, include: '@(**/*.json|pack.mcmeta)').each {
-            it.text = JsonOutput.toJson(new JsonSlurper().parse(it))
+        fileTree(dir: outputs.files.asPath).each {
+            var name = it.name
+            if (name.endsWith('.json') || name.endsWith('.mcmeta'.)
+                it.text = JsonOutput.toJson(new JsonSlurper().parse(it))
         }
     }
 }
