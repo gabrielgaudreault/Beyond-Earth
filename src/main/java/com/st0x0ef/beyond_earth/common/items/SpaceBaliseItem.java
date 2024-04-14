@@ -45,7 +45,6 @@ public class SpaceBaliseItem extends Item {
         }
 
         return InteractionResult.PASS;
-
     }
 
     @Override
