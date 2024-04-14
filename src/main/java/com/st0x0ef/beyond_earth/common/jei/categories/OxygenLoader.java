@@ -51,7 +51,7 @@ public class OxygenLoader implements IRecipeCategory<WaterSeparatorRecipe> {
         this.background = guiHelper.createDrawable(OxygenLoader.GUI, 0, 128, OxygenLoader.width, OxygenLoader.height);
         this.icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK,
                 new ItemStack(ItemsRegistry.OXYGEN_LOADER_ITEM.get()));
-        this.localizedName = I18n.get("container." + BeyondEarth.MODID + ".water_separator");
+        this.localizedName = I18n.get("container." + BeyondEarth.MODID + ".oxygen_loader");
 
         this.cachedArrow = CacheBuilder.newBuilder().maximumSize(25).build(new CacheLoader<>() {
             @Override
