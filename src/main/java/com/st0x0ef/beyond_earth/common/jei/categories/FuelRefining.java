@@ -49,7 +49,7 @@ public class FuelRefining implements IRecipeCategory<FuelRefiningRecipe> {
         this.guiHelper = guiHelper;
         this.background = guiHelper.createDrawable(FuelRefining.GUI, 0, 128, FuelRefining.width, FuelRefining.height);
         this.icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK,
-                new ItemStack(ItemsRegistry.COAL_GENERATOR_ITEM.get()));
+                new ItemStack(ItemsRegistry.FUEL_REFINERY_ITEM.get()));
         this.localizedName = I18n.get("container." + BeyondEarth.MODID + ".fuel_refinery");
 
         this.cachedArrow = CacheBuilder.newBuilder().maximumSize(25).build(new CacheLoader<>() {

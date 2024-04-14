@@ -47,8 +47,7 @@ public class Jei implements IModPlugin {
         COMPRESS_TYPE = RecipeType.create(BeyondEarth.MODID, "compressor", CompressingRecipe.class);
         REFINE_TYPE = RecipeType.create(BeyondEarth.MODID, "fuel_refining", FuelRefiningRecipe.class);
         WATER_SEPARATOR_TYPE = RecipeType.create(BeyondEarth.MODID, "water_separator", WaterSeparatorRecipe.class);
-        OXYGEN_BUBBLE_TYPE = RecipeType.create(BeyondEarth.MODID, "oxygen_bubble_distributing",
-                OxygenBubbleDistributorRecipe.class);
+        OXYGEN_BUBBLE_TYPE = RecipeType.create(BeyondEarth.MODID, "oxygen_bubble_distributing", OxygenBubbleDistributorRecipe.class);
         WORKBENCH_TYPE = RecipeType.create(BeyondEarth.MODID, "nasa_workbenching", WorkbenchingRecipe.class);
     }
 

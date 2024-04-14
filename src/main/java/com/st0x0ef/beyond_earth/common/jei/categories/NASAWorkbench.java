@@ -41,7 +41,7 @@ public class NASAWorkbench implements IRecipeCategory<WorkbenchingRecipe> {
         this.background = guiHelper.createDrawable(NASAWorkbench.GUI, 128, 0, NASAWorkbench.width,
                 NASAWorkbench.height);
         this.icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK,
-                new ItemStack(ItemsRegistry.COAL_GENERATOR_ITEM.get()));
+                new ItemStack(ItemsRegistry.NASA_WORKBENCH_ITEM.get()));
         this.localizedName = I18n.get("container." + BeyondEarth.MODID + ".nasa_workbench");
     }
 

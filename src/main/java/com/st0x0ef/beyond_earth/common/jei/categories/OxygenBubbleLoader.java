@@ -51,7 +51,7 @@ public class OxygenBubbleLoader implements IRecipeCategory<OxygenBubbleDistribut
         this.background = guiHelper.createDrawable(OxygenBubbleLoader.GUI, 0, 128, OxygenBubbleLoader.width,
                 OxygenBubbleLoader.height);
         this.icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK,
-                new ItemStack(ItemsRegistry.COAL_GENERATOR_ITEM.get()));
+                new ItemStack(ItemsRegistry.OXYGEN_BUBBLE_DISTRIBUTOR_ITEM.get()));
         this.localizedName = I18n.get("container." + BeyondEarth.MODID + ".oxygen_bubble_distributor");
 
         this.cachedArrow = CacheBuilder.newBuilder().maximumSize(25).build(new CacheLoader<>() {

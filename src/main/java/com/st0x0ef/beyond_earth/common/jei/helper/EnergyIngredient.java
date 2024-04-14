@@ -1,28 +1,26 @@
 package com.st0x0ef.beyond_earth.common.jei.helper;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
-import net.minecraft.client.gui.GuiGraphics;
-import org.jetbrains.annotations.Nullable;
-
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import com.google.common.collect.Lists;
-
+import com.st0x0ef.beyond_earth.BeyondEarth;
+import com.st0x0ef.beyond_earth.client.util.GuiHelper;
+import com.st0x0ef.beyond_earth.common.jei.Jei;
 import mezz.jei.api.ingredients.IIngredientHelper;
 import mezz.jei.api.ingredients.IIngredientRenderer;
 import mezz.jei.api.ingredients.IIngredientType;
 import mezz.jei.api.ingredients.subtypes.UidContext;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.TooltipFlag;
-import com.st0x0ef.beyond_earth.BeyondEarth;
-import com.st0x0ef.beyond_earth.client.util.GuiHelper;
-import com.st0x0ef.beyond_earth.common.jei.Jei;
+
+import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 public class EnergyIngredient implements IIngredientHelper<EnergyIngredient>, IIngredientRenderer<EnergyIngredient> {
 
