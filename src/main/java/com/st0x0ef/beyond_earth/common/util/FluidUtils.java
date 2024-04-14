@@ -98,7 +98,13 @@ public class FluidUtils {
                         return true;
                 }
 
-                return !getItemStackFluidHandler(itemStack).drain(1, FluidAction.SIMULATE).isEmpty();
+
+                IFluidHandlerItem fluidHandlerItem = getItemStackFluidHandler(itemStack);
+
+                if (fluidHandlerItem != null) {
+                        return fluidHandlerItem.drain(1, FluidAction.SIMULATE).isEmpty();
+                }
+                return false;
         }
 
         /**
@@ -117,7 +123,14 @@ public class FluidUtils {
                         return true;
                 }
 
-                return getItemStackFluidHandler(itemStack).drain(new FluidStack(fluid, 1), FluidAction.SIMULATE).isEmpty();
+
+                IFluidHandlerItem fluidHandlerItem = getItemStackFluidHandler(itemStack);
+
+                if (fluidHandlerItem != null) {
+                        return fluidHandlerItem.drain(new FluidStack(fluid, 1), FluidAction.SIMULATE).isEmpty();
+                }
+                return false;
+
         }
 
         public static int getMaxCapacity(ItemStack itemStack) {
