@@ -114,6 +114,8 @@ public class PlanetSky extends DimensionSpecialEffects {
             return false;
         }
 
+        planet = Planets.getLocationForPlanet(level);
+
         /** DEFAULT VARIABLES */
         BufferBuilder bufferBuilder = Tesselator.getInstance().getBuilder();
         Minecraft mc = Minecraft.getInstance();
@@ -153,8 +155,9 @@ public class PlanetSky extends DimensionSpecialEffects {
         renderStars(mc, dayAngle, partialTick, poseStack, projectionMatrix, setupFog);
 
         /** PLANETS */
-        planet = Planets.getLocationForPlanet(level);
-        SkyHelper.drawPlanetsAndParents(poseStack, bufferBuilder, camera, dayAngle, skyLight, worldTime, planet, 1, true);
+        if(planet != null){
+            SkyHelper.drawPlanetsAndParents(poseStack, bufferBuilder, camera, dayAngle, skyLight, worldTime, planet, 1, true);
+        }        
 
         SkyHelper.setupShaderColor(mc, r, g, b);
         RenderSystem.depthMask(true);
@@ -172,7 +175,7 @@ public class PlanetSky extends DimensionSpecialEffects {
             RenderSystem.setShaderColor(starLight + 0.5F, starLight + 0.5F, starLight + 0.5F, starLight + 0.5F);
             SkyHelper.drawStars(starBuffer, matrix4f, projectionMatrix, GameRenderer.getPositionColorShader(),
                     setupFog, true);
-        } else if(planet.hasStarsAtDay){
+        } else if(planet != null && planet.hasStarsAtDay){
             Matrix4f matrix4f = SkyHelper.setMatrixRot(poseStack,
                     Triple.of(Axis.YP.rotationDegrees(-90), Axis.XP.rotationDegrees(dayAngle), null));
             RenderSystem.setShaderColor(starLight + 1F, starLight + 1F, starLight + 1F, starLight + 1F);
